@@ -132,3 +132,19 @@ p { color: var(--muted); line-height: 1.65; }
   .button { width: 100%; }
   h1 { font-size: 62px; }
 }
+h1, h2, h3, p, li, a, span {
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+}
+.hero-copy,
+.section-heading,
+.copy-block,
+.cta-card {
+  max-width: 720px;
+}
+.hero h1 {
+  font-size: clamp(3.2rem, 8vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
