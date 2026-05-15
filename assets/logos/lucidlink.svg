@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="132" height="28" viewBox="0 0 132 28"><g fill="none" stroke="#A7AFBE" stroke-width="2.2" opacity=".9"><circle cx="14" cy="14" r="6.5"/><circle cx="24" cy="14" r="6.5"/><circle cx="19" cy="7.5" r="6.5"/></g><text x="39" y="20" fill="#A7AFBE" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="800" opacity=".9">LucidLink</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="132" height="28" viewBox="0 0 132 28" role="img" aria-label="LucidLink">
+  <g fill="none" stroke-width="2.3" opacity=".96">
+    <circle cx="14" cy="14" r="6.3" stroke="#7C3CFF"/>
+    <circle cx="24" cy="14" r="6.3" stroke="#00D9FF"/>
+    <circle cx="19" cy="7.4" r="6.3" stroke="#2EB67D"/>
+  </g>
+
+  <text
+    x="39"
+    y="19.6"
+    fill="#A7AFBE"
+    font-family="Inter, Arial, sans-serif"
+    font-size="15"
+    font-weight="800">
+    LucidLink
+  </text>
+</svg>
