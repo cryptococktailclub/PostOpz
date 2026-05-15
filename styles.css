@@ -743,3 +743,29 @@ h1 span {
     gap: 5px;
   }
 }
+.hero-logo-strip{
+    display:flex;
+    align-items:center;
+    gap:42px;
+
+    margin-top:54px;
+
+    opacity:.82;
+    flex-wrap:wrap;
+}
+
+.hero-logo-strip img{
+    height:26px;
+    width:auto;
+
+    object-fit:contain;
+
+    transition:all .25s ease;
+    filter:brightness(.95);
+}
+
+.hero-logo-strip img:hover{
+    opacity:1;
+    transform:translateY(-1px);
+    filter:brightness(1.1);
+}
