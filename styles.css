@@ -921,3 +921,59 @@ h3 {
     flex-wrap: wrap;
   }
 }
+.hero-title {
+  margin: 0 0 34px;
+  line-height: 0.92;
+  overflow: visible;
+}
+
+.hero-title-top,
+.hero-title-bottom {
+  display: block;
+  font-size: clamp(92px, 7vw, 132px);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  white-space: nowrap;
+  overflow: visible;
+  padding-bottom: 0.08em;
+}
+
+.hero-title-top {
+  color: #f5f7fa;
+}
+
+.hero-title-bottom {
+  margin-top: 8px;
+  background: linear-gradient(
+    90deg,
+    #ff5a36 0%,
+    #ff1f8f 38%,
+    #8b3dff 70%,
+    #2f7cff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-dot {
+  color: #2f7cff;
+  -webkit-text-fill-color: #2f7cff;
+}
+padding-bottom: 0.08em;
+line-height: 0.92;
+overflow: visible;
+.hero-logo-strip {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.hero-logo-strip img {
+  height: 24px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  opacity: 0.88;
+}
