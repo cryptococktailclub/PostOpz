@@ -1035,3 +1035,237 @@ overflow: visible;
     padding-right: 0;
   }
 }
+/* === EXACT REFERENCE HERO REBUILD === */
+
+.hero {
+  min-height: calc(100vh - 86px);
+  padding: 72px 0 62px;
+  display: block;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 16%, rgba(79, 70, 229, 0.24), transparent 30%),
+    radial-gradient(circle at 73% 29%, rgba(206, 0, 160, 0.18), transparent 30%),
+    radial-gradient(circle at 0% 8%, rgba(0, 217, 255, 0.08), transparent 22%),
+    linear-gradient(90deg, #040b0e 0%, #05060b 38%, #0b0613 68%, #101736 100%);
+}
+
+.hero-inner {
+  width: min(1560px, calc(100% - 72px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(760px, 0.96fr) minmax(560px, 1.04fr);
+  grid-template-areas:
+    "copy command"
+    "logos logos";
+  column-gap: 96px;
+  row-gap: 52px;
+  align-items: center;
+}
+
+.hero-copy {
+  grid-area: copy;
+  max-width: 820px;
+  overflow: visible;
+}
+
+.hero-kicker {
+  margin: 0 0 28px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #00d9ff;
+}
+
+.hero-title {
+  display: block;
+  margin: 0 0 34px;
+  line-height: 0.92;
+  overflow: visible;
+}
+
+.hero-title-top,
+.hero-title-bottom {
+  display: block;
+  font-size: clamp(104px, 7.25vw, 142px);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  line-height: 0.92;
+  white-space: nowrap;
+  overflow: visible;
+  padding-bottom: 0.16em;
+}
+
+.hero-title-top {
+  color: #f7f8fb;
+}
+
+.hero-title-bottom {
+  margin-top: 4px;
+  background: linear-gradient(
+    90deg,
+    #ff5037 0%,
+    #ff157f 34%,
+    #b12eff 68%,
+    #157cff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-dot {
+  color: #157cff;
+  -webkit-text-fill-color: #157cff;
+}
+
+.hero-subhead {
+  margin: 0 0 24px;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.hero-lede {
+  max-width: 735px;
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.52;
+  color: #d5dbe7;
+}
+
+.hero-actions {
+  margin-top: 36px;
+}
+
+.button.primary {
+  min-height: 60px;
+  padding: 0 34px;
+  border-radius: 17px;
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.workflow-note {
+  margin-top: 24px;
+  font-size: 16px;
+  color: #aeb6c8;
+}
+
+.command-center {
+  grid-area: command;
+  justify-self: center;
+  align-self: center;
+  max-width: 650px;
+  width: 100%;
+}
+
+.command-shell {
+  width: 100%;
+  padding: 30px;
+  border-radius: 34px;
+}
+
+.command-header {
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+}
+
+.queue-list {
+  gap: 20px;
+}
+
+.queue-item {
+  padding: 22px 24px;
+  border-radius: 22px;
+  gap: 22px;
+}
+
+.queue-num {
+  min-width: 58px;
+  font-size: 38px;
+}
+
+.queue-top strong {
+  font-size: 18px;
+}
+
+.queue-main p {
+  font-size: 15px;
+}
+
+.hero-logo-section {
+  grid-area: logos;
+  width: 100%;
+  margin: 0;
+  padding: 28px 46px 34px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.028));
+  box-shadow:
+    0 32px 90px rgba(0,0,0,0.42),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.hero-logo-copy {
+  margin: 0 0 26px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #b7c1d6;
+}
+
+.hero-logo-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+.hero-logo-strip img {
+  display: block;
+  height: 34px;
+  width: auto;
+  max-width: 210px;
+  justify-self: center;
+  object-fit: contain;
+  opacity: 0.96;
+}
+
+.hero-logo-strip img:not(:last-child) {
+  padding-right: 36px;
+  border-right: 1px solid rgba(255,255,255,0.10);
+}
+
+@media (max-width: 1180px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos";
+    width: min(920px, calc(100% - 48px));
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size: clamp(68px, 13vw, 98px);
+    white-space: normal;
+  }
+
+  .hero-logo-strip {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 28px;
+  }
+
+  .hero-logo-strip img:not(:last-child) {
+    border-right: none;
+    padding-right: 0;
+  }
+}
