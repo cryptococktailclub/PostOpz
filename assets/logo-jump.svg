@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108" height="32" viewBox="0 0 108 32" role="img" aria-label="Jump Desktop">
+<rect x="2" y="7" width="27" height="18" rx="5" fill="#9AA3B2" opacity=".9"/>
+<path d="M8 19l5-6 3.3 4 3.2-3.3 4.5 5.3H8Z" fill="#DCE3EE"/>
+<text x="40" y="21.5" fill="#9AA3B2" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="800">Jump</text>
+</svg>
