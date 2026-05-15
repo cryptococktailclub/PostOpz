@@ -1064,8 +1064,10 @@ overflow: visible;
 
 .hero-copy {
   grid-area: copy;
-  max-width: 820px;
+  max-width: 620px;
   overflow: visible;
+  padding-top:32px;
+}
 }
 
 .hero-kicker {
@@ -1309,4 +1311,48 @@ overflow: visible;
   grid-template-areas:
     "copy command"
     "logos logos" !important;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 72% 32%,
+    rgba(177,72,255,.18),
+    transparent 32%),
+    radial-gradient(circle at 18% 22%,
+    rgba(0,212,255,.10),
+    transparent 28%);
+  pointer-events:none;
+  z-index:0;
+}
+.progress-fill{
+  background:linear-gradient(
+    90deg,
+    #00d4ff,
+    #7a5cff,
+    #d62bff
+  );
+  background-size:200% 100%;
+  animation:flow 4s linear infinite;
+}
+
+@keyframes flow{
+  0%{background-position:0% 0%;}
+  100%{background-position:200% 0%;}
+}
+.hero-gradient-word{
+  background:
+    linear-gradient(
+      180deg,
+      #ff5a4f 0%,
+      #ff2ea6 42%,
+      #b14cff 100%
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  filter:
+    drop-shadow(0 0 18px rgba(214,43,255,.22));
 }
