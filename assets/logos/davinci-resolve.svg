@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="134" height="28" viewBox="0 0 134 28" role="img" aria-label="DaVinci Resolve">
+  <circle cx="14" cy="14" r="11" fill="#111827" stroke="#A7AFBE" stroke-width="1.2" opacity=".92"/>
+  <circle cx="14" cy="8.9" r="4.3" fill="#56CCF2" opacity=".9"/>
+  <circle cx="9.5" cy="16.6" r="4.3" fill="#F2C94C" opacity=".9"/>
+  <circle cx="18.5" cy="16.6" r="4.3" fill="#BB6BD9" opacity=".9"/>
+  <circle cx="14" cy="14" r="3.3" fill="#0B1020"/>
+  <text x="32" y="19.6" fill="#A7AFBE" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">Resolve</text>
+</svg>
