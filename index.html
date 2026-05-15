@@ -1,329 +1,620 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PostOpz | Assistant Editor Operations, On Demand</title>
-  <meta name="description" content="PostOpz delivers assistant editor support and post operations infrastructure so your team can move faster without hiring, onboarding, or managing freelancers.">
-  <meta property="og:title" content="PostOpz | Keep Editors Editing">
-  <meta property="og:description" content="Assistant editor operations and workflow infrastructure for modern post teams.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#05070B">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PostOpz | Assistant Editor Operations for Modern Post Teams</title>
 
-  <link rel="icon" href="assets/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/postopz-icon-180.png">
-  <link rel="stylesheet" href="styles.css">
+  <meta
+    name="description"
+    content="PostOpz provides on-demand assistant editor support, remote post-production operations, cloud editorial workflows, turnovers, transcodes, syncs, exports, and workflow infrastructure for modern post teams."
+  />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;700;800;900&display=swap" rel="stylesheet">
+  <meta
+    name="keywords"
+    content="assistant editor services, remote assistant editor, post production support, post operations, Avid assistant editor, cloud editing workflow, remote post production, Avid Edit On Demand support"
+  />
+
+  <meta property="og:title" content="PostOpz | Keep Editors Editing" />
+  <meta
+    property="og:description"
+    content="On-demand assistant editor support and workflow infrastructure for modern post-production teams."
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://postopz.com" />
+  <meta name="theme-color" content="#080A0F" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    h1,
+    h2,
+    h3,
+    p,
+    li,
+    a,
+    span {
+      word-break: normal;
+      overflow-wrap: break-word;
+      hyphens: none;
+    }
+
+    .hero-copy,
+    .section-heading,
+    .copy-block,
+    .cta-card {
+      max-width: 720px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+    }
+  </style>
 </head>
 
 <body>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="PostOpz home">
-      <img class="brand-logo" src="assets/postopz-pz-icon-transparent.png" alt="PostOpz PZ logo">
-      <span class="brand-name">PostOpz</span>
-      <span class="brand-divider" aria-hidden="true"></span>
-      <span class="brand-kicker">Post Operations<br>Infrastructure</span>
+      <span class="brand-mark">PZ</span>
+      <span>PostOpz</span>
     </a>
 
-    <nav class="nav" aria-label="Primary navigation">
+    <nav class="nav">
       <a href="#services">Services</a>
-      <a href="#workflows">Workflows</a>
+      <a href="#workflow">Workflow</a>
       <a href="#pricing">Pricing</a>
-      <a href="#resources">Resources</a>
-      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Book Call</a>
     </nav>
-
-    <a class="header-cta" href="mailto:info@postopz.com?subject=PostOpz%20Workflow%20Call">Book a Workflow Call</a>
   </header>
 
   <main id="top">
-    <section class="hero section-pad" aria-label="PostOpz hero">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">Assistant Editor Operations, On Demand</div>
 
-          <h1>Keep Editors<br><span>Editing.</span></h1>
+    <!-- HERO -->
+
+    <section class="hero section-pad">
+      <div class="hero-grid">
+
+        <div class="hero-copy">
+
+          <div class="eyebrow">
+            Assistant Editor Operations · Remote Post Infrastructure
+          </div>
+
+          <h1>Keep Editors Editing.</h1>
 
           <p class="hero-lede">
-            PostOpz delivers assistant editor support and post operations infrastructure so your team can move faster —
-            without hiring, onboarding, or managing freelancers.
+            PostOpz provides on-demand assistant editor support for modern
+            post teams — handling syncs, transcodes, turnovers, exports,
+            and media operations so editors stay focused on the cut.
           </p>
-
-          <div class="hero-points" aria-label="Key benefits">
-            <span>Unlimited Requests</span>
-            <span>Fast Turnaround</span>
-            <span>Flexible Workflows</span>
-            <span>Expert Support</span>
-          </div>
 
           <div class="hero-actions">
-            <a class="button primary" href="mailto:info@postopz.com?subject=PostOpz%20Workflow%20Call">Book a Workflow Call <span aria-hidden="true">→</span></a>
-            <a class="button secondary" href="#workflows">See How It Works <span aria-hidden="true">▶</span></a>
+            <a
+              class="button primary"
+              href="mailto:hello@postopz.com?subject=PostOpz%20Workflow%20Call"
+            >
+              Book a Workflow Call
+            </a>
+
+            <a class="button secondary" href="#services">
+              See Services
+            </a>
           </div>
 
-          <div class="trusted">
-            <p>Workflow support for industry-standard post environments</p>
-            <div class="trusted-row" aria-label="Supported tools">
-              <span>Avid</span>
-              <span>Frame.io</span>
-              <span>LucidLink</span>
-              <span>MASV</span>
-              <span>Blackmagic</span>
-              <span>Jump</span>
-            </div>
+          <div class="trust-line">
+            Built for post supervisors, editors, production companies,
+            sports media teams, agencies, and creator-led studios.
           </div>
+
         </div>
 
-        <div class="hero-visual" aria-label="PostOpz visual identity">
-          <div class="logo-orbit">
-            <img src="assets/postopz-pz-icon-transparent.png" alt="PostOpz PZ logo">
+        <div
+          class="system-card"
+          aria-label="PostOpz workflow dashboard mockup"
+        >
+
+          <div class="card-topline">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+
+            <span class="card-title">
+              AE REQUEST QUEUE
+            </span>
           </div>
 
-          <div class="metric-card" aria-label="PostOpz outcomes">
+          <div class="queue-item active">
+            <span>01</span>
+
             <div>
-              <strong>◷</strong>
-              <span>Save Valuable<br>Editing Time</span>
-            </div>
-            <div>
-              <strong>♙</strong>
-              <span>No Hiring or<br>Training</span>
-            </div>
-            <div>
-              <strong>↔</strong>
-              <span>Flexible<br>Terms</span>
-            </div>
-            <div>
-              <strong>↗</strong>
-              <span>Scalable as<br>You Grow</span>
+              <strong>Sync multicam interview footage</strong>
+              <p>In progress · Delivery before editor start</p>
             </div>
           </div>
+
+          <div class="queue-item">
+            <span>02</span>
+
+            <div>
+              <strong>Create DNxHR transcodes</strong>
+              <p>Queued · Source media verified</p>
+            </div>
+          </div>
+
+          <div class="queue-item">
+            <span>03</span>
+
+            <div>
+              <strong>Prep turnover for mix</strong>
+              <p>Queued · Locked cut received</p>
+            </div>
+          </div>
+
+          <div class="status-grid">
+            <div>
+              <strong>24h</strong>
+              <span>Typical task cycle</span>
+            </div>
+
+            <div>
+              <strong>2</strong>
+              <span>Workflow modes</span>
+            </div>
+
+            <div>
+              <strong>0</strong>
+              <span>Freelancer onboarding</span>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </section>
 
-    <section id="workflows" class="workflow-section section-pad">
-      <div class="section-heading">
-        <div class="eyebrow">Flexible Workflow Options</div>
-        <h2>Work Your Way</h2>
+    <!-- LOGOS -->
+
+    <section class="logos section-tight">
+      <p>Workflow support for industry-standard post environments</p>
+
+      <div class="logo-row">
+        <span>Avid</span>
+        <span>Premiere</span>
+        <span>Resolve</span>
+        <span>Frame.io</span>
+        <span>LucidLink</span>
+        <span>Jump</span>
+        <span>RGS</span>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+
+    <section id="problem" class="section-pad split-section">
+
+      <div>
+        <div class="eyebrow">The bottleneck</div>
+
+        <h2>
+          Editors shouldn’t lose creative time to operational work.
+        </h2>
+      </div>
+
+      <div class="copy-block">
+
         <p>
-          Use your existing systems or leverage our managed cloud infrastructure.
-          We adapt to your workflow — not the other way around.
+          Freelance AE support can be inconsistent, difficult to scale,
+          and time-consuming to manage. PostOpz gives your team reliable
+          operational support across every stage of post-production.
         </p>
+
+        <ul class="check-list">
+          <li>No recurring freelancer search</li>
+          <li>No workflow retraining every job</li>
+          <li>No editor downtime waiting on prep</li>
+          <li>No media chaos between teams</li>
+        </ul>
+
       </div>
 
-      <div class="workflow-grid">
-        <article class="workflow-card blue-edge">
-          <div class="icon-box">▣</div>
-          <h3>Work Inside Your Existing Systems</h3>
-          <p>
-            We securely remote into your environment to handle AE tasks inside your tools,
-            storage, and pipelines.
-          </p>
-          <div class="tool-row">
-            <span>Jump Desktop</span>
-            <span>HP RGS</span>
-            <span>Teradici</span>
-            <span>Parsec</span>
-          </div>
-        </article>
-
-        <article class="workflow-card purple-edge">
-          <div class="icon-box">☁</div>
-          <h3>Managed Cloud Editing <em>(Add-On)</em></h3>
-          <p>
-            Leverage fully managed cloud editing environments powered by Avid Edit On Demand
-            and our workflow support.
-          </p>
-          <div class="tool-row">
-            <span>Avid EOD</span>
-            <span>LucidLink</span>
-            <span>AWS</span>
-            <span>Tech Support</span>
-          </div>
-        </article>
-      </div>
     </section>
+
+    <!-- SERVICES -->
 
     <section id="services" class="section-pad">
+
       <div class="section-heading">
-        <div class="eyebrow">What We Handle</div>
-        <h2>Assistant Editor Execution Without Staffing Overhead</h2>
+
+        <div class="eyebrow">What we execute</div>
+
+        <h2>
+          Assistant editor support built for modern post pipelines.
+        </h2>
+
         <p>
-          Request the operational work that slows down editors and producers. We handle the setup,
-          processing, organization, prep, and delivery details.
+          Submit requests through your existing workflow.
+          We handle the operational execution behind the scenes.
         </p>
+
       </div>
 
       <div class="service-grid">
+
         <article class="service-card">
           <h3>Project Builds</h3>
-          <p>Avid, Premiere, and Resolve project setup, folder structure, naming conventions, and media organization.</p>
+
+          <p>
+            Avid, Premiere, and Resolve project setup,
+            bin organization, media structure, naming conventions,
+            and editorial handoff prep.
+          </p>
         </article>
 
         <article class="service-card">
           <h3>Transcodes & Proxies</h3>
-          <p>Proxy creation, codec prep, offline workflows, editorial-ready media, and upload/download management.</p>
+
+          <p>
+            DNxHR, ProRes, proxy generation,
+            relink-safe workflows, upload coordination,
+            and media verification.
+          </p>
         </article>
 
         <article class="service-card">
           <h3>Sync & Grouping</h3>
-          <p>Multicam groups, sync maps, stringouts, audio organization, and prep for fast editorial starts.</p>
+
+          <p>
+            Audio sync, multicam grouping,
+            interview prep, stringouts,
+            scene organization, and editor-ready timelines.
+          </p>
         </article>
 
         <article class="service-card">
           <h3>Turnovers</h3>
-          <p>Picture, mix, color, and online prep with clean exports, reference files, and organized handoff packages.</p>
+
+          <p>
+            Mix and online turnovers,
+            AAF/OMF prep, split tracks,
+            reference exports, and vendor delivery coordination.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <h3>Exports & Deliverables</h3>
+
+          <p>
+            Review exports, Frame.io uploads,
+            versioning, captions prep,
+            delivery QC, and final output management.
+          </p>
         </article>
 
         <article class="service-card">
           <h3>Backups & Archive</h3>
-          <p>Footage verification, storage organization, drive prep, archival workflows, and transfer tracking.</p>
+
+          <p>
+            Drive organization, cloud backups,
+            checksum verification, archive prep,
+            transfer tracking, and project wrap support.
+          </p>
         </article>
 
-        <article class="service-card">
-          <h3>Exports & Delivery</h3>
-          <p>Screeners, review exports, Frame.io uploads, versioning, QC checks, and final delivery support.</p>
-        </article>
       </div>
     </section>
 
-    <section id="about" class="section-pad">
-      <div class="split-section">
-        <div>
-          <div class="eyebrow">Why PostOpz</div>
-          <h2>Stop Losing Senior Editorial Time to Repeatable AE Tasks.</h2>
-        </div>
+    <!-- WORKFLOW -->
 
-        <div class="copy-block">
+    <section id="workflow" class="section-pad workflow-section">
+
+      <div class="section-heading">
+        <div class="eyebrow">Flexible workflow support</div>
+
+        <h2>
+          Operate inside your workflow — or let us help build it.
+        </h2>
+      </div>
+
+      <div class="workflow-grid">
+
+        <article class="workflow-card">
+
+          <span class="pill">Client Infrastructure</span>
+
+          <h3>Remote into your existing systems.</h3>
+
           <p>
-            Freelancers can be hard to schedule, inconsistent to onboard, and expensive to manage.
-            PostOpz gives post teams a reliable operations layer that can plug into existing workflows
-            or help stand up cloud-based editing systems when needed.
+            For teams with established storage,
+            shared workstations, Nexis environments,
+            RAIDs, or cloud infrastructure,
+            PostOpz integrates directly into your workflow
+            using approved remote access tools.
           </p>
 
-          <ul class="check-list">
-            <li>No long hiring cycle</li>
-            <li>No freelancer onboarding burden</li>
-            <li>No workflow rebuild required</li>
-            <li>Flexible monthly support</li>
-            <li>Built for editors, producers, agencies, and post supervisors</li>
+          <ul>
+            <li>Jump Desktop</li>
+            <li>HP Anyware / RGS</li>
+            <li>Teradici</li>
+            <li>Parsec / Splashtop</li>
           </ul>
-        </div>
+
+        </article>
+
+        <article class="workflow-card featured">
+
+          <span class="pill">Premium Add-On</span>
+
+          <h3>Managed cloud editorial systems.</h3>
+
+          <p>
+            For remote-first productions,
+            PostOpz can support cloud-based edit environments,
+            Avid Edit On Demand workflows,
+            cloud storage coordination,
+            and technical onboarding.
+          </p>
+
+          <ul>
+            <li>Avid Edit On Demand support</li>
+            <li>Cloud storage coordination</li>
+            <li>Remote workstation onboarding</li>
+            <li>Workflow technical support</li>
+          </ul>
+
+        </article>
+
       </div>
     </section>
 
-    <section id="resources" class="section-pad workflow-section">
+    <!-- PROCESS -->
+
+    <section class="section-pad process-section">
+
       <div class="section-heading">
-        <div class="eyebrow">How It Works</div>
-        <h2>Simple Request-Based Execution</h2>
+
+        <div class="eyebrow">How it works</div>
+
+        <h2>
+          From request to editor-ready delivery.
+        </h2>
+
       </div>
 
       <div class="process-grid">
-        <article class="process-step">
+
+        <div class="process-step">
           <span>1</span>
-          <h3>Book Workflow Call</h3>
-          <p>We map your tools, storage, remote access, editorial needs, and recurring bottlenecks.</p>
-        </article>
 
-        <article class="process-step">
+          <h3>Onboard Workflow</h3>
+
+          <p>
+            We map your NLE, storage,
+            naming conventions, delivery specs,
+            and access requirements.
+          </p>
+        </div>
+
+        <div class="process-step">
           <span>2</span>
-          <h3>Connect Systems</h3>
-          <p>We plug into your remote workstation, cloud workflow, or managed Avid EOD setup.</p>
-        </article>
 
-        <article class="process-step">
-          <span>3</span>
           <h3>Submit Requests</h3>
-          <p>Send AE tasks through your request queue. We execute one active request at a time.</p>
-        </article>
 
-        <article class="process-step">
+          <p>
+            Send AE tasks through Slack,
+            email, or your project management system.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <span>3</span>
+
+          <h3>We Execute</h3>
+
+          <p>
+            We execute the work,
+            manage status updates,
+            and deliver editor-ready handoffs.
+          </p>
+        </div>
+
+        <div class="process-step">
           <span>4</span>
-          <h3>Keep Cutting</h3>
-          <p>Your editors stay focused on story, pacing, and creative decisions instead of operations.</p>
-        </article>
+
+          <h3>Editors Cut</h3>
+
+          <p>
+            Your creative team receives organized projects,
+            synced media, exports, and turnovers
+            without the operational overhead.
+          </p>
+        </div>
+
       </div>
     </section>
 
+    <!-- PRICING -->
+
     <section id="pricing" class="section-pad">
+
       <div class="section-heading">
-        <div class="eyebrow">Flexible Terms</div>
-        <h2>Support That Scales With Your Post Load</h2>
-        <p>Start lean, expand as your slate grows, and add cloud infrastructure only when you need it.</p>
+
+        <div class="eyebrow">Flexible terms</div>
+
+        <h2>
+          Recurring support without staffing overhead.
+        </h2>
+
+        <p>
+          Flexible support plans for teams that need
+          consistent assistant editor coverage
+          without expanding headcount.
+        </p>
+
       </div>
 
       <div class="pricing-grid">
+
         <article class="price-card">
+
           <h3>Starter</h3>
-          <div class="price">$1,500<span>/mo</span></div>
-          <p>For solo editors, creators, and lightweight production teams.</p>
+
+          <p class="price">
+            $1,500<span>/mo</span>
+          </p>
+
+          <p>
+            For solo editors, creators,
+            and small teams needing recurring AE support.
+          </p>
+
           <ul>
-            <li>Unlimited requests</li>
-            <li>One active request at a time</li>
-            <li>Transcodes, sync, exports</li>
-            <li>Remote-in workflow support</li>
+            <li>Unlimited request queue</li>
+            <li>One active task at a time</li>
+            <li>Transcodes, syncs, exports</li>
+            <li>Email/task-board support</li>
           </ul>
-          <a class="button secondary full" href="mailto:info@postopz.com?subject=PostOpz%20Starter%20Plan">Start Starter</a>
+
+          <a
+            href="mailto:hello@postopz.com?subject=PostOpz%20Starter%20Plan"
+            class="button secondary full"
+          >
+            Start Starter
+          </a>
+
         </article>
 
         <article class="price-card highlighted">
-          <div class="popular">Most Popular</div>
+
           <h3>Studio</h3>
-          <div class="price">$3,500<span>/mo</span></div>
-          <p>For agencies, production companies, and teams with recurring post needs.</p>
+
+          <p class="price">
+            $3,500<span>/mo</span>
+          </p>
+
+          <p>
+            For production companies, agencies,
+            and teams with ongoing post volume.
+          </p>
+
           <ul>
-            <li>Everything in Starter</li>
+            <li>Unlimited request queue</li>
             <li>Priority turnaround</li>
             <li>Project builds and turnovers</li>
-            <li>Slack or email request queue</li>
+            <li>Remote workstation support</li>
           </ul>
-          <a class="button primary full" href="mailto:info@postopz.com?subject=PostOpz%20Studio%20Plan">Book Studio</a>
+
+          <a
+            href="mailto:hello@postopz.com?subject=PostOpz%20Studio%20Plan"
+            class="button primary full"
+          >
+            Book Studio Call
+          </a>
+
         </article>
 
         <article class="price-card">
+
           <h3>Enterprise</h3>
-          <div class="price">Custom</div>
-          <p>For shows, studios, and teams that need dedicated workflows or cloud infrastructure.</p>
+
+          <p class="price">Custom</p>
+
+          <p>
+            For shows, post departments,
+            and remote-first teams needing infrastructure support.
+          </p>
+
           <ul>
-            <li>Dedicated workflow setup</li>
-            <li>Avid EOD add-on support</li>
-            <li>Cloud storage configuration</li>
-            <li>Custom SLA and coverage</li>
+            <li>Dedicated workflow support</li>
+            <li>Cloud edit system add-ons</li>
+            <li>Avid EOD support</li>
+            <li>SLA and team onboarding</li>
           </ul>
-          <a class="button secondary full" href="mailto:info@postopz.com?subject=PostOpz%20Enterprise%20Plan">Talk to Us</a>
+
+          <a
+            href="mailto:hello@postopz.com?subject=PostOpz%20Enterprise%20Plan"
+            class="button secondary full"
+          >
+            Talk Enterprise
+          </a>
+
         </article>
+
       </div>
     </section>
 
-    <section class="section-pad">
+    <!-- CTA -->
+
+    <section id="contact" class="section-pad cta-section">
+
       <div class="cta-card">
+
         <div>
-          <div class="eyebrow">Ready When Your Editors Are</div>
-          <h2>Give your team a reliable AE operations layer without adding headcount.</h2>
-          <p>Book a workflow call and we’ll map the fastest way to support your current post pipeline.</p>
+
+          <div class="eyebrow">
+            Ready to move faster?
+          </div>
+
+          <h2>
+            Add a dedicated operations layer to your post pipeline.
+          </h2>
+
+          <p>
+            Tell us about your workflow,
+            infrastructure, and the operational tasks
+            consuming editorial time.
+          </p>
+
         </div>
 
-        <a class="button primary" href="mailto:info@postopz.com?subject=PostOpz%20Workflow%20Call">Book a Workflow Call <span aria-hidden="true">→</span></a>
+        <a
+          class="button primary"
+          href="mailto:hello@postopz.com?subject=Book%20a%20PostOpz%20Workflow%20Call"
+        >
+          Book Workflow Call
+        </a>
+
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
-    <div class="footer-brand">
-      <img src="assets/postopz-pz-icon-transparent.png" alt="PostOpz PZ logo">
-      <strong>PostOpz</strong>
+
+    <div class="brand">
+      <span class="brand-mark">PZ</span>
+      <span>PostOpz</span>
     </div>
 
-    <p>© 2026 PostOpz. Post operations infrastructure for modern teams.</p>
+    <p>
+      On-demand assistant editor support
+      for modern post-production teams.
+    </p>
 
     <div class="footer-links">
-      <a href="mailto:info@postopz.com">Contact</a>
-      <a href="#services">Services</a>
-      <a href="#pricing">Pricing</a>
+      <a href="mailto:hello@postopz.com">
+        hello@postopz.com
+      </a>
+
+      <a
+        href="https://x.com/postopz"
+        target="_blank"
+        rel="noreferrer"
+      >
+        @postopz
+      </a>
     </div>
+
   </footer>
 </body>
 </html>
