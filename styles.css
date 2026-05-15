@@ -769,3 +769,39 @@ h1 span {
     font-size: 18px;
   }
 }
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 26px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #14cfff;
+  opacity: 0.92;
+  line-height: 1.2;
+}
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 26px;
+  margin-top: 28px;
+}
+
+.hero-points span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  white-space: nowrap;
+}
+
+.hero-points svg {
+  width: 16px;
+  height: 16px;
+  stroke: #168dff;
+  flex-shrink: 0;
+}
