@@ -1308,3 +1308,108 @@ h1 {
     margin: -24px auto 0;
   }
 }
+/* === HARD RESET HERO LAYOUT FIX === */
+
+.hero,
+.hero-reference {
+  min-height: calc(100vh - 86px) !important;
+  height: auto !important;
+  display: grid !important;
+  align-items: center !important;
+  padding: 64px clamp(48px, 5vw, 88px) 46px !important;
+  overflow: hidden !important;
+}
+
+.hero-grid {
+  width: 100% !important;
+  max-width: 1480px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(560px, 0.95fr) minmax(560px, 1.05fr) !important;
+  align-items: center !important;
+  gap: clamp(72px, 6vw, 118px) !important;
+}
+
+.hero-copy {
+  max-width: 680px !important;
+  align-self: center !important;
+}
+
+.hero h1,
+.hero-reference h1,
+h1 {
+  font-size: clamp(78px, 7vw, 118px) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.082em !important;
+  margin: 0 0 28px !important;
+  padding-bottom: 0.08em !important;
+}
+
+.hero-lede {
+  max-width: 620px !important;
+  font-size: 21px !important;
+  line-height: 1.45 !important;
+  margin-bottom: 26px !important;
+}
+
+.hero-points {
+  margin-bottom: 28px !important;
+}
+
+.hero-actions {
+  margin-bottom: 0 !important;
+}
+
+.hero-brand-visual {
+  min-height: 560px !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+  align-self: center !important;
+  transform: none !important;
+}
+
+.hero-logo-orbit {
+  width: min(510px, 34vw) !important;
+  min-width: 390px !important;
+  transform: translateY(-28px) !important;
+}
+
+.hero-metric-card {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 22px !important;
+  transform: translateX(-50%) !important;
+  width: min(650px, 96%) !important;
+  z-index: 5 !important;
+}
+
+.trusted,
+.hero-logos,
+.logos.section-tight {
+  display: none !important;
+}
+
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-brand-visual {
+    min-height: auto !important;
+  }
+
+  .hero-logo-orbit {
+    width: min(420px, 76vw) !important;
+    min-width: 280px !important;
+    transform: none !important;
+  }
+
+  .hero-metric-card {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: -28px auto 0 !important;
+  }
+}
