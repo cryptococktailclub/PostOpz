@@ -805,3 +805,42 @@ h1 span {
   stroke: #168dff;
   flex-shrink: 0;
 }
+.hero-points {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  align-items: center;
+  gap: 18px 28px;
+  margin-top: 28px;
+}
+
+.hero-points span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.92);
+  white-space: nowrap;
+}
+
+.hero-points svg {
+  width: 16px;
+  height: 16px;
+  stroke: #168dff;
+  flex-shrink: 0;
+}
+
+@media (max-width: 980px) {
+  .hero-points {
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-points {
+    grid-template-columns: 1fr;
+  }
+}
+.hero-logo-glow {
+  display: none;
+}
