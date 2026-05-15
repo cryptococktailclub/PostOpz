@@ -1356,3 +1356,67 @@ overflow: visible;
   filter:
     drop-shadow(0 0 18px rgba(214,43,255,.22));
 }
+.tools-strip {
+  margin-top: 56px;
+  padding: 28px 42px 30px;
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20,32,42,0.88),
+      rgba(10,12,24,0.92)
+    );
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+
+.tools-strip p {
+  margin: 0 0 24px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.34em;
+  font-weight: 700;
+  color: rgba(255,255,255,0.72);
+  text-transform: uppercase;
+}
+
+.tools-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  width: 100%;
+}
+
+.tools-logos .logo-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  position: relative;
+}
+
+.tools-logos .logo-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 34px;
+  background: rgba(255,255,255,0.10);
+}
+
+.tools-logos img {
+  height: 28px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  opacity: 0.95;
+}
