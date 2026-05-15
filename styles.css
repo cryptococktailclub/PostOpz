@@ -977,3 +977,34 @@ overflow: visible;
   object-fit: contain;
   opacity: 0.88;
 }
+/* === TOOL LOGO STRIP FIX === */
+
+.hero-logo-section {
+  width: 100%;
+  max-width: 760px;
+  padding: 24px 28px;
+  overflow: hidden;
+}
+
+.hero-logo-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, auto));
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.hero-logo-strip img {
+  display: block;
+  height: 24px;
+  width: auto;
+  max-width: 112px;
+  object-fit: contain;
+}
+
+@media (max-width: 1180px) {
+  .hero-logo-strip {
+    grid-template-columns: repeat(4, minmax(0, auto));
+    row-gap: 18px;
+  }
+}
