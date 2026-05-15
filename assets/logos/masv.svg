@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="96" height="28" viewBox="0 0 96 28"><text x="2" y="20" fill="#A7AFBE" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="900" letter-spacing="7" opacity=".9">MASV</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="28" viewBox="0 0 96 28" role="img" aria-label="MASV">
+  <defs>
+    <linearGradient id="masvGrad" x1="0" y1="0" x2="96" y2="0">
+      <stop offset="0%" stop-color="#00D9FF"/>
+      <stop offset="45%" stop-color="#8F2BFF"/>
+      <stop offset="100%" stop-color="#FF1F8F"/>
+    </linearGradient>
+  </defs>
+  <text x="2" y="20" fill="url(#masvGrad)" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="900" letter-spacing="7">MASV</text>
+</svg>
