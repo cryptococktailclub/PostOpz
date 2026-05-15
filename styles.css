@@ -696,133 +696,6 @@ h3 {
   }
 }
 
-
-/* =========================================
-   CURRENT HERO FIX — TWO-LINE TITLE + LOGOS
-========================================= */
-
-.hero-inner {
-  width: min(1400px, calc(100% - 72px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(610px, 0.96fr) minmax(610px, 1.04fr);
-  align-items: center;
-  gap: clamp(72px, 6vw, 118px);
-}
-
-.hero-copy {
-  position: relative;
-  z-index: 2;
-  max-width: 720px;
-}
-
-.hero-title {
-  display: flex;
-  flex-direction: column;
-  line-height: 0.9;
-  margin: 0 0 34px;
-}
-
-.hero-title-top,
-.hero-title-bottom {
-  display: block;
-  font-size: clamp(82px, 7.2vw, 122px);
-  font-weight: 900;
-  letter-spacing: -0.075em;
-}
-
-.hero-title-top {
-  color: #F3F5F7;
-}
-
-.hero-title-bottom {
-  margin-top: 6px;
-  background: linear-gradient(90deg, #ff6a3d 0%, #ff008c 34%, #8f2bff 68%, #1f7cff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero-dot {
-  color: #2F7CFF;
-  -webkit-text-fill-color: #2F7CFF;
-}
-
-.hero-logo-section {
-  margin-top: 52px;
-}
-
-.hero-logo-copy {
-  margin: 0 0 18px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #7F8DA8;
-}
-
-.hero-logo-strip {
-  display: flex;
-  align-items: center;
-  gap: 34px;
-  flex-wrap: wrap;
-  opacity: 0.82;
-}
-
-.hero-logo-strip img {
-  display: block;
-  height: 24px;
-  width: auto;
-  max-width: 160px;
-  object-fit: contain;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.hero-logo-strip img:hover {
-  opacity: 1;
-  transform: translateY(-1px);
-}
-
-/* Prevent old stat block / duplicate visual elements from showing */
-.signal-card,
-.stack-row,
-.command-glow {
-  display: none !important;
-}
-
-/* Keep the command card in the right column */
-.command-center {
-  position: relative;
-  z-index: 2;
-  align-self: center;
-  max-width: 680px;
-  justify-self: center;
-}
-
-.command-shell {
-  width: 100%;
-}
-
-/* Responsive */
-@media (max-width: 1180px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-    width: min(860px, calc(100% - 48px));
-    gap: 56px;
-  }
-
-  .hero-copy,
-  .command-center {
-    max-width: 760px;
-  }
-}
-
-@media (max-width: 720px) {
-  .hero-title-top,
-  .hero-title-bottom {
-    font-size: clamp(62px, 16vw, 78px);
-  }
-}
 /* === HERO TITLE + TOOL BOX FINAL FIX === */
 
 .hero-copy {
@@ -1006,5 +879,159 @@ overflow: visible;
   .hero-logo-strip {
     grid-template-columns: repeat(4, minmax(0, auto));
     row-gap: 18px;
+  }
+}
+/* === FINAL HERO LAYOUT PATCH === */
+
+.hero {
+  min-height: calc(100vh - 86px);
+  padding: 92px 0 72px;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-inner {
+  width: min(1480px, calc(100% - 72px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(720px, 0.95fr) minmax(560px, 1.05fr);
+  grid-template-areas:
+    "copy command"
+    "logos command";
+  align-items: center;
+  column-gap: clamp(72px, 6vw, 118px);
+  row-gap: 44px;
+}
+
+.hero-copy {
+  grid-area: copy;
+  max-width: 760px;
+  overflow: visible;
+}
+
+.command-center {
+  grid-area: command;
+  justify-self: center;
+  align-self: center;
+  max-width: 680px;
+}
+
+.command-shell {
+  width: 100%;
+}
+
+.hero-title {
+  display: block;
+  margin: 0 0 34px;
+  line-height: 1;
+  overflow: visible;
+}
+
+.hero-title-top,
+.hero-title-bottom {
+  display: block;
+  font-size: clamp(92px, 7vw, 132px);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  white-space: nowrap;
+  line-height: 0.92;
+  padding-bottom: 0.13em;
+  overflow: visible;
+}
+
+.hero-title-top {
+  color: #f5f7fa;
+}
+
+.hero-title-bottom {
+  margin-top: 0;
+  background: linear-gradient(
+    90deg,
+    #ff5a36 0%,
+    #ff1f8f 38%,
+    #8b3dff 70%,
+    #2f7cff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-dot {
+  color: #2f7cff;
+  -webkit-text-fill-color: #2f7cff;
+}
+
+.hero-logo-section {
+  grid-area: logos;
+  width: min(100%, 1180px);
+  padding: 26px 34px;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.028));
+  box-shadow:
+    0 28px 80px rgba(0,0,0,0.36),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.hero-logo-copy {
+  margin: 0 0 22px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #aab3c5;
+}
+
+.hero-logo-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: center;
+  gap: 0;
+}
+
+.hero-logo-strip img {
+  display: block;
+  height: 26px;
+  width: auto;
+  max-width: 150px;
+  justify-self: center;
+  object-fit: contain;
+  opacity: 0.94;
+}
+
+.hero-logo-strip img:not(:last-child) {
+  padding-right: 24px;
+  border-right: 1px solid rgba(255,255,255,0.09);
+}
+
+@media (max-width: 1180px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos";
+    width: min(920px, calc(100% - 48px));
+    row-gap: 48px;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size: clamp(64px, 12vw, 98px);
+    white-space: normal;
+  }
+
+  .hero-logo-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 24px;
+  }
+
+  .hero-logo-strip img:not(:last-child) {
+    border-right: none;
+    padding-right: 0;
   }
 }
