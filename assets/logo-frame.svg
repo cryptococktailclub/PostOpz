@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="126" height="32" viewBox="0 0 126 32" role="img" aria-label="Frame.io">
+  <title>Frame.io</title>
+  <g fill="#A7AFBE" opacity="0.92">
+    <path d="M7 16c0-6.2 3.5-11.2 8.4-13.8v27.6C10.5 27.2 7 22.2 7 16Z"/>
+    <path d="M20.6 6.8c2.4 2.5 3.8 5.8 3.8 9.2s-1.4 6.7-3.8 9.2V6.8Z"/>
+    <path d="M30.8 2.6c4.8 3.3 7.6 8 7.6 13.4s-2.8 10.1-7.6 13.4V2.6Z"/>
+    <text x="48" y="21.5" font-family="Inter, Arial, Helvetica, sans-serif" font-size="17" font-weight="800">frame.io</text>
+  </g>
+</svg>
