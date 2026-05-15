@@ -1269,3 +1269,44 @@ overflow: visible;
     padding-right: 0;
   }
 }
+/* === FIX LOGO TRAY CROPPING === */
+
+.hero-logo-section {
+  grid-area: logos !important;
+  width: 100% !important;
+  max-width: none !important;
+  justify-self: stretch !important;
+
+  padding: 28px 48px 34px !important;
+  overflow: visible !important;
+}
+
+.hero-logo-strip {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 0 !important;
+  overflow: visible !important;
+}
+
+.hero-logo-strip img {
+  display: block !important;
+  justify-self: center !important;
+  height: 32px !important;
+  width: auto !important;
+  max-width: 175px !important;
+  object-fit: contain !important;
+  opacity: 0.96 !important;
+}
+
+.hero-logo-strip img:not(:last-child) {
+  padding-right: 28px !important;
+  border-right: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.hero-inner {
+  grid-template-areas:
+    "copy command"
+    "logos logos" !important;
+}
