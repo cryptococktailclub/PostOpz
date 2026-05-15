@@ -908,3 +908,117 @@ h1 span {
     height: 23px;
   }
 }
+/* === Hero PZ logo visual === */
+
+.hero-brand-visual {
+  min-height: 560px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: visible;
+}
+
+.hero-logo-orbit {
+  width: min(500px, 36vw);
+  min-width: 360px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  filter:
+    drop-shadow(0 0 80px rgba(246, 0, 143, 0.28))
+    drop-shadow(0 0 55px rgba(22, 136, 255, 0.24));
+}
+
+.hero-logo-orbit::before {
+  content: "";
+  position: absolute;
+  inset: -68px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 22% 62%, rgba(255,122,24,.26), transparent 28%),
+    radial-gradient(circle at 72% 48%, rgba(155,23,255,.28), transparent 34%),
+    radial-gradient(circle at 84% 58%, rgba(22,136,255,.24), transparent 38%),
+    radial-gradient(circle, rgba(246,0,143,.18), transparent 62%);
+  z-index: -1;
+}
+
+.hero-logo-orbit img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  background: transparent;
+  display: block;
+}
+
+.hero-metric-card {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  width: min(620px, 96%);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 22px;
+  background: rgba(13,18,27,.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 32px 90px rgba(0,0,0,.45);
+}
+
+.hero-metric-card div {
+  text-align: center;
+}
+
+.hero-metric-card strong {
+  display: block;
+  color: var(--blue, #1688FF);
+  font-size: 34px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.hero-metric-card span {
+  color: #F3F6FC;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+@media (max-width: 960px) {
+  .hero-brand-visual {
+    min-height: auto;
+    padding: 28px 0 44px;
+  }
+
+  .hero-logo-orbit {
+    width: min(420px, 76vw);
+    min-width: 280px;
+  }
+
+  .hero-metric-card {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin: -28px auto 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-metric-card {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 18px;
+  }
+
+  .hero-metric-card strong {
+    font-size: 28px;
+  }
+
+  .hero-metric-card span {
+    font-size: 13px;
+  }
+}
