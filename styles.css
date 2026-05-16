@@ -1659,21 +1659,144 @@ overflow: visible;
     font-size: 15px;
   }
 }
-
 /* =========================================
-   FIX INVALID CSS FRAGMENTS
+   FINAL MOBILE HERO FIX
 ========================================= */
 
-/* REMOVE THESE BROKEN LINES FROM FILE:
+@media screen and (max-width: 768px) {
 
+  .hero {
+    min-height: auto !important;
+    padding: 32px 0 56px !important;
+    overflow-x: hidden !important;
+  }
+
+  .hero-inner {
+    width: calc(100% - 32px) !important;
+    margin: 0 auto !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 32px !important;
+  }
+
+  .hero-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-top: 0 !important;
+  }
+
+  .hero-title {
+    width: 100% !important;
+    margin: 0 0 22px !important;
+
+    overflow: visible !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    font-size: 18vw !important;
+    line-height: 0.92 !important;
+
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+
+    letter-spacing: -0.07em !important;
+
+    padding-bottom: 0 !important;
+  }
+
+  .hero-subhead {
+    font-size: 18px !important;
+    line-height: 1.28 !important;
+  }
+
+  .hero-lede {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .hero-actions {
+    width: 100% !important;
+  }
+
+  .hero-actions .button,
+  .hero-actions a {
+    width: 100% !important;
+  }
+
+  /* ---------- COMMAND CENTER ---------- */
+
+  .command-center {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .command-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    padding: 18px !important;
+    border-radius: 22px !important;
+  }
+
+  .queue-item {
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .queue-top {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* ---------- LOGO SECTION ---------- */
+
+  .hero-logo-section {
+    width: 100% !important;
+
+    padding: 22px 16px !important;
+
+    overflow: hidden !important;
+  }
+
+  .hero-logo-strip {
+    display: grid !important;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 20px !important;
+
+    width: 100% !important;
+  }
+
+  .hero-logo-strip img {
+    max-width: 100px !important;
+    height: auto !important;
+  }
+
+  .hero-logo-strip img:not(:last-child) {
+    border-right: none !important;
+    padding-right: 0 !important;
+  }
+
+  /* ---------- GLOBAL OVERFLOW FIX ---------- */
+
+  body,
+  html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  * {
+    max-width: 100%;
+  }
 }
-}
-
-padding-bottom: 0.08em;
-line-height: 0.92;
-overflow: visible;
-
-They are invalid standalone declarations and
-can break mobile rendering unpredictably.
-
-*/
