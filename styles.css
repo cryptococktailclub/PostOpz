@@ -482,7 +482,10 @@ h3 {
   border-bottom: 1px solid var(--line);
 }
 
-.workflow-grid { grid-template-columns: repeat(2, 1fr); }
+.workflow-grid {
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+}
 
 .workflow-card.featured {
   border-color: rgba(0, 217, 255, 0.35);
