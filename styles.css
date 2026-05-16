@@ -1803,3 +1803,18 @@ overflow: visible;
     max-width: 100%;
   }
 }
+/* === BALANCED WORKFLOW CARD LAYOUT === */
+
+.workflow-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.workflow-card p {
+  flex-grow: 1;
+  margin-bottom: 28px;
+}
+
+.workflow-card ul {
+  margin-top: auto;
+}
