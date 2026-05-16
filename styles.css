@@ -1420,3 +1420,262 @@ overflow: visible;
   object-fit: contain;
   opacity: 0.95;
 }
+/* =========================================
+   MOBILE CROPPING + SPACING FIX PATCH
+   ADD TO VERY BOTTOM OF CSS
+========================================= */
+
+@media (max-width: 768px) {
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* ---------- HEADER ---------- */
+
+  .site-header {
+    padding: 14px 18px;
+    min-height: 74px;
+  }
+
+  .brand-name {
+    font-size: 24px;
+  }
+
+  .brand-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero {
+    padding: 42px 0 56px;
+    min-height: auto;
+  }
+
+  .hero-inner {
+    width: calc(100% - 32px);
+    grid-template-columns: 1fr !important;
+    row-gap: 36px;
+    column-gap: 0;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+    padding-top: 0 !important;
+  }
+
+  .hero-kicker {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .hero-title {
+    margin-bottom: 24px;
+    line-height: 0.95;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size: clamp(52px, 15vw, 74px) !important;
+    line-height: 0.95;
+    white-space: normal !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    padding-bottom: 0;
+  }
+
+  .hero-subhead {
+    font-size: 19px;
+    line-height: 1.3;
+    margin-bottom: 18px;
+  }
+
+  .hero-lede {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    margin-top: 28px;
+  }
+
+  .button,
+  .button.primary,
+  .button.secondary {
+    width: 100%;
+    min-height: 54px;
+    font-size: 16px;
+  }
+
+  .workflow-note {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ---------- COMMAND CENTER ---------- */
+
+  .command-center {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .command-shell {
+    width: 100%;
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .queue-item {
+    padding: 18px;
+    gap: 14px;
+    flex-direction: column;
+  }
+
+  .queue-num {
+    font-size: 28px;
+    min-width: auto;
+  }
+
+  .queue-top {
+    gap: 6px;
+  }
+
+  .queue-top strong {
+    font-size: 16px;
+  }
+
+  .queue-main p {
+    font-size: 14px;
+  }
+
+  /* ---------- LOGO STRIPS ---------- */
+
+  .hero-logo-section,
+  .tools-strip {
+    width: 100%;
+    padding: 22px 18px;
+    overflow: hidden;
+  }
+
+  .hero-logo-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    row-gap: 22px;
+    column-gap: 12px;
+  }
+
+  .hero-logo-strip img {
+    max-width: 100px !important;
+    height: 24px !important;
+  }
+
+  .hero-logo-strip img:not(:last-child) {
+    border-right: none !important;
+    padding-right: 0 !important;
+  }
+
+  .tools-logos {
+    flex-wrap: wrap;
+    gap: 22px;
+    justify-content: center;
+  }
+
+  .tools-logos .logo-item {
+    flex: 0 0 calc(50% - 12px);
+  }
+
+  .tools-logos .logo-item::after {
+    display: none !important;
+  }
+
+  .tools-logos img {
+    max-width: 90px;
+    height: 24px;
+  }
+
+  /* ---------- GRIDS ---------- */
+
+  .service-grid,
+  .workflow-grid,
+  .pricing-grid,
+  .process-grid,
+  .split-section {
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+  }
+
+  /* ---------- CARDS ---------- */
+
+  .service-card,
+  .workflow-card,
+  .price-card,
+  .process-step {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  /* ---------- CTA ---------- */
+
+  .cta-card {
+    padding: 26px 20px;
+    border-radius: 24px;
+    gap: 20px;
+  }
+
+  .cta-card h2 {
+    font-size: 36px;
+    line-height: 1;
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  .footer {
+    padding: 28px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .footer-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* ---------- SECTION SPACING ---------- */
+
+  .section-pad {
+    padding: 64px 18px;
+  }
+
+  h2 {
+    font-size: clamp(34px, 9vw, 48px);
+    line-height: 1;
+  }
+
+  p {
+    font-size: 15px;
+  }
+}
+
+/* =========================================
+   FIX INVALID CSS FRAGMENTS
+========================================= */
+
+/* REMOVE THESE BROKEN LINES FROM FILE:
+
+}
+}
+
+padding-bottom: 0.08em;
+line-height: 0.92;
+overflow: visible;
+
+They are invalid standalone declarations and
+can break mobile rendering unpredictably.
+
+*/
