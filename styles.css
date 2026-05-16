@@ -1818,3 +1818,24 @@ overflow: visible;
 .workflow-card ul {
   margin-top: auto;
 }
+/* === MOBILE HERO DESCENDER FIX === */
+
+@media screen and (max-width: 768px) {
+
+  .hero-title {
+    overflow: visible !important;
+    line-height: 1.02 !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+
+    line-height: 1.02 !important;
+
+    padding-bottom: 0.14em !important;
+
+    overflow: visible !important;
+
+    display: block;
+  }
+}
