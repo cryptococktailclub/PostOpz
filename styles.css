@@ -808,7 +808,6 @@ h3 {
   letter-spacing: -0.075em;
   white-space: nowrap;
   overflow: visible;
-  padding-bottom: 0.08em;
 }
 
 .hero-title-top {
@@ -833,7 +832,6 @@ h3 {
   color: #2f7cff;
   -webkit-text-fill-color: #2f7cff;
 }
-padding-bottom: 0.08em;
 line-height: 0.92;
 overflow: visible;
 .hero-logo-strip {
