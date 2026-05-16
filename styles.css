@@ -222,7 +222,24 @@ h3 {
   line-height: 1.6;
   color: #8B93A7;
 }
+/* === POSTOPZ GRADIENT TEXT === */
 
+.gradient-word {
+  background: linear-gradient(
+    90deg,
+    #ff5037 0%,
+    #ff157f 34%,
+    #b12eff 68%,
+    #157cff 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  display: inline-block;
+}
 /* Command center */
 
 .command-center {
