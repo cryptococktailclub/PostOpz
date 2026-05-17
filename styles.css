@@ -962,8 +962,7 @@ letter-spacing: 0.06em;
   color: #2f7cff;
   -webkit-text-fill-color: #2f7cff;
 }
-line-height: 0.92;
-overflow: visible;
+
 .hero-logo-strip {
   display: flex;
   align-items: center;
