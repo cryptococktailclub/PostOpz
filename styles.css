@@ -1939,3 +1939,452 @@ letter-spacing: 0.06em;
     max-width:92px;
   }
 }
+/* =========================================
+   FINAL HERO PROPORTION + BALANCE PATCH
+========================================= */
+
+/* ---------- HERO CONTAINER ---------- */
+
+.hero{
+  padding: 72px 0 58px !important;
+}
+
+.hero::after{
+  content:"";
+
+  position:absolute;
+
+  inset:auto 0 0 0;
+
+  height:180px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(0,0,0,.28)
+    );
+
+  pointer-events:none;
+}
+
+/* ---------- MAIN GRID ---------- */
+
+.hero-inner{
+
+  width:min(1460px, calc(100% - 96px)) !important;
+
+  margin:0 auto !important;
+
+  display:grid !important;
+
+  grid-template-columns:
+    minmax(700px, 760px)
+    minmax(540px, 620px) !important;
+
+  grid-template-areas:
+    "copy command"
+    "logos logos" !important;
+
+  align-items:start !important;
+
+  column-gap:54px !important;
+  row-gap:34px !important;
+}
+
+/* ---------- LEFT COLUMN ---------- */
+
+.hero-copy{
+  grid-area:copy;
+
+  max-width:760px !important;
+
+  padding-top:34px !important;
+}
+
+.hero-kicker{
+  margin-bottom:24px !important;
+
+  font-size:12px !important;
+
+  letter-spacing:.18em !important;
+}
+
+.hero-title{
+  margin:0 0 22px !important;
+
+  line-height:.84 !important;
+}
+
+.hero-title-top,
+.hero-title-bottom{
+
+  display:block !important;
+
+  font-size:clamp(118px, 7.4vw, 148px) !important;
+
+  font-weight:900 !important;
+
+  line-height:.84 !important;
+
+  letter-spacing:-.09em !important;
+
+  white-space:nowrap !important;
+
+  padding-bottom:.04em !important;
+}
+
+.hero-subhead{
+
+  margin:0 0 16px !important;
+
+  font-size:18px !important;
+
+  line-height:1.32 !important;
+
+  font-weight:850 !important;
+
+  color:#ffffff !important;
+}
+
+.hero-lede{
+
+  max-width:590px !important;
+
+  font-size:17px !important;
+
+  line-height:1.7 !important;
+
+  color:#bfc8d8 !important;
+}
+
+.hero-actions{
+  margin-top:30px !important;
+}
+
+.workflow-note{
+  margin-top:18px !important;
+
+  font-size:14px !important;
+}
+
+/* ---------- RIGHT COLUMN ---------- */
+
+.command-center{
+  grid-area:command;
+
+  width:100% !important;
+
+  max-width:620px !important;
+
+  justify-self:end !important;
+
+  transform:translateY(-10px);
+}
+
+.command-shell{
+
+  width:100% !important;
+
+  padding:26px !important;
+
+  border-radius:34px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,24,40,.98),
+      rgba(10,12,22,.96)
+    ) !important;
+
+  border:1px solid rgba(255,255,255,.08) !important;
+
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+/* ---------- STATUS PILLS ---------- */
+
+.system-status{
+  margin-bottom:22px !important;
+}
+
+/* ---------- QUEUE ---------- */
+
+.queue-list{
+  gap:18px !important;
+}
+
+.queue-item{
+
+  padding:22px 24px !important;
+
+  border-radius:24px !important;
+
+  align-items:flex-start !important;
+
+  gap:20px !important;
+
+  min-height:132px;
+}
+
+.queue-item.active{
+
+  box-shadow:
+    0 0 36px rgba(0,217,255,.10) !important;
+}
+
+.queue-num{
+
+  min-width:54px !important;
+
+  font-size:36px !important;
+
+  line-height:1 !important;
+}
+
+.queue-main{
+  width:100%;
+}
+
+.queue-top{
+  margin-bottom:8px !important;
+}
+
+.queue-top strong{
+  font-size:18px !important;
+}
+
+.queue-top span{
+  font-size:12px !important;
+}
+
+.queue-main p{
+
+  font-size:14px !important;
+
+  line-height:1.55 !important;
+}
+
+.queue-meta{
+
+  margin-top:12px !important;
+
+  font-size:10px !important;
+
+  opacity:.9;
+}
+
+.progress-bar{
+  margin-top:16px !important;
+}
+
+/* ---------- TOOL STRIP ---------- */
+
+.tools-strip{
+
+  grid-area:logos;
+
+  width:100% !important;
+
+  margin-top:-6px !important;
+
+  padding:24px 34px 26px !important;
+
+  border-radius:26px !important;
+
+  border:1px solid rgba(255,255,255,.07) !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.04),
+      rgba(255,255,255,.02)
+    ) !important;
+
+  backdrop-filter:blur(20px);
+}
+
+.tools-strip p{
+  margin-bottom:20px !important;
+}
+
+.tools-logos{
+
+  display:grid !important;
+
+  grid-template-columns:repeat(7,1fr) !important;
+
+  align-items:center !important;
+
+  width:100% !important;
+}
+
+.tools-logos .logo-item{
+
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:40px;
+}
+
+.tools-logos .logo-item:not(:last-child)::after{
+  content:"";
+
+  position:absolute;
+
+  right:0;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:1px;
+  height:28px;
+
+  background:rgba(255,255,255,.08);
+}
+
+.tools-logos img{
+
+  height:26px !important;
+
+  width:auto !important;
+
+  max-width:120px !important;
+
+  object-fit:contain;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1180px){
+
+  .hero{
+    padding:56px 0 54px !important;
+  }
+
+  .hero-inner{
+
+    width:min(920px, calc(100% - 42px)) !important;
+
+    grid-template-columns:1fr !important;
+
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos" !important;
+
+    row-gap:42px !important;
+  }
+
+  .hero-copy{
+    max-width:100% !important;
+
+    padding-top:0 !important;
+  }
+
+  .command-center{
+
+    justify-self:stretch !important;
+
+    max-width:100% !important;
+
+    transform:none !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom{
+
+    white-space:normal !important;
+
+    font-size:clamp(66px, 12vw, 96px) !important;
+  }
+
+  .tools-logos{
+
+    grid-template-columns:repeat(3,1fr) !important;
+
+    row-gap:28px !important;
+  }
+
+  .tools-logos .logo-item::after{
+    display:none !important;
+  }
+}
+
+@media (max-width: 768px){
+
+  .hero{
+    padding:34px 0 48px !important;
+  }
+
+  .hero-inner{
+    width:calc(100% - 28px) !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom{
+
+    font-size:18vw !important;
+
+    white-space:normal !important;
+
+    line-height:.92 !important;
+  }
+
+  .hero-subhead{
+    font-size:18px !important;
+  }
+
+  .hero-lede{
+    font-size:15px !important;
+  }
+
+  .command-shell{
+    padding:18px !important;
+  }
+
+  .queue-item{
+
+    flex-direction:column !important;
+
+    gap:14px !important;
+
+    min-height:auto !important;
+  }
+
+  .queue-top{
+
+    flex-direction:column !important;
+
+    align-items:flex-start !important;
+
+    gap:4px !important;
+  }
+
+  .queue-meta{
+
+    flex-direction:column !important;
+
+    gap:4px !important;
+  }
+
+  .tools-strip{
+    padding:22px 18px !important;
+  }
+
+  .tools-logos{
+
+    grid-template-columns:repeat(2,1fr) !important;
+
+    gap:24px !important;
+  }
+
+  .tools-logos img{
+    max-width:92px !important;
+  }
+}
