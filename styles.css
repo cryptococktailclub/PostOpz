@@ -2120,3 +2120,159 @@ letter-spacing: 0.06em;
     gap:4px;
   }
 }
+/* =========================================
+   HERO QUEUE REFINEMENT PATCH
+========================================= */
+
+.system-status{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+
+  margin-bottom:24px;
+}
+
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  min-height:32px;
+
+  padding:0 12px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.04);
+
+  border:1px solid rgba(255,255,255,.06);
+
+  font-size:11px;
+  font-weight:800;
+
+  letter-spacing:.05em;
+  text-transform:uppercase;
+
+  color:#B4BFD4;
+}
+
+.status-pill.online span{
+  width:8px;
+  height:8px;
+
+  border-radius:999px;
+
+  background:#66FFB3;
+
+  box-shadow:
+    0 0 12px rgba(102,255,179,.7);
+}
+
+.queue-item{
+  position:relative;
+
+  overflow:hidden;
+
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    background .22s ease;
+}
+
+.queue-item:hover{
+  transform:translateY(-2px);
+
+  border-color:rgba(0,217,255,.22);
+}
+
+.queue-item.active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,195,255,.12),
+      rgba(120,0,255,.08)
+    );
+
+  border-color:rgba(0,207,255,.42);
+
+  box-shadow:
+    0 0 30px rgba(0,217,255,.10);
+}
+
+.queue-item.active::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.045),
+      transparent
+    );
+
+  transform:translateX(-100%);
+
+  animation:queueSweep 4s linear infinite;
+}
+
+@keyframes queueSweep{
+  100%{
+    transform:translateX(100%);
+  }
+}
+
+.queue-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+
+  margin-top:14px;
+
+  font-size:11px;
+  font-weight:800;
+
+  letter-spacing:.04em;
+  text-transform:uppercase;
+
+  color:#7F8AA3;
+}
+
+.progress-fill{
+  display:block;
+
+  width:72%;
+  height:100%;
+
+  border-radius:inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #00d4ff,
+      #7a5cff,
+      #d62bff
+    );
+
+  background-size:200% 100%;
+
+  animation:flow 4s linear infinite;
+}
+
+@media (max-width:768px){
+
+  .system-status{
+    gap:8px;
+  }
+
+  .status-pill{
+    font-size:10px;
+  }
+
+  .queue-meta{
+    flex-direction:column;
+    gap:4px;
+  }
+}
