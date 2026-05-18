@@ -270,12 +270,12 @@ p{
 
   line-height:.92;
 
-  letter-spacing:-.072em;
+  letter-spacing:-.054em;
 
   white-space:nowrap;
 
   overflow:visible;
-
+}
   background:
     linear-gradient(
       90deg,
