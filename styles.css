@@ -1513,41 +1513,6 @@ overflow: visible;
   text-transform: uppercase;
 }
 
-.tools-logos {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0;
-  width: 100%;
-}
-
-.tools-logos .logo-item {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  position: relative;
-}
-
-.tools-logos .logo-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 34px;
-  background: rgba(255,255,255,0.10);
-}
-
-.tools-logos img {
-  height: 28px;
-  width: auto;
-  max-width: 130px;
-  object-fit: contain;
-  opacity: 0.95;
-}
 /* =========================================
    MOBILE CROPPING + SPACING FIX PATCH
    ADD TO VERY BOTTOM OF CSS
@@ -1704,25 +1669,6 @@ overflow: visible;
   .hero-logo-strip img:not(:last-child) {
     border-right: none !important;
     padding-right: 0 !important;
-  }
-
-  .tools-logos {
-    flex-wrap: wrap;
-    gap: 22px;
-    justify-content: center;
-  }
-
-  .tools-logos .logo-item {
-    flex: 0 0 calc(50% - 12px);
-  }
-
-  .tools-logos .logo-item::after {
-    display: none !important;
-  }
-
-  .tools-logos img {
-    max-width: 90px;
-    height: 24px;
   }
 
   /* ---------- GRIDS ---------- */
@@ -2336,152 +2282,6 @@ overflow: visible;
   color:#ffffff !important;
 }
 
-/* =========================================
-   RESTORED TOOL LOGO TRAY
-========================================= */
-
-.tools-strip {
-
-  width: 100% !important;
-
-  max-width: 1220px !important;
-
-  margin: 18px auto 0 !important;
-
-  padding: 28px 42px 30px !important;
-
-  border-radius: 28px !important;
-
-  border: 1px solid rgba(255,255,255,0.08) !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(20,32,42,0.88),
-      rgba(10,12,24,0.92)
-    ) !important;
-
-  backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 24px 80px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(255,255,255,0.04);
-
-  overflow: hidden;
-}
-
-.tools-strip p {
-
-  margin: 0 0 24px !important;
-
-  text-align: center;
-
-  font-size: 12px;
-
-  line-height: 1;
-
-  letter-spacing: 0.32em;
-
-  font-weight: 700;
-
-  color: rgba(255,255,255,0.72);
-
-  text-transform: uppercase;
-}
-
-.tools-logos {
-
-  display: grid !important;
-
-  grid-template-columns: repeat(7, 1fr) !important;
-
-  align-items: center !important;
-
-  width: 100% !important;
-
-  gap: 0 !important;
-}
-
-.tools-logos .logo-item {
-
-  position: relative;
-
-  display: flex !important;
-
-  align-items: center !important;
-
-  justify-content: center !important;
-
-  min-height: 44px;
-}
-
-.tools-logos .logo-item:not(:last-child)::after {
-
-  content: "";
-
-  position: absolute;
-
-  right: 0;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  width: 1px;
-  height: 34px;
-
-  background: rgba(255,255,255,0.10);
-}
-
-.tools-logos img {
-
-  height: 28px !important;
-
-  width: auto !important;
-
-  max-width: 140px !important;
-
-  object-fit: contain !important;
-
-  opacity: 0.95 !important;
-}
-
-/* ---------- MOBILE ---------- */
-
-@media (max-width: 1180px) {
-
-  .tools-logos {
-
-    grid-template-columns: repeat(3, 1fr) !important;
-
-    row-gap: 26px !important;
-  }
-
-  .tools-logos .logo-item::after {
-    display: none !important;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .tools-strip {
-
-    padding: 22px 18px 24px !important;
-  }
-
-  .tools-logos {
-
-    grid-template-columns: repeat(2, 1fr) !important;
-
-    gap: 22px !important;
-  }
-
-  .tools-logos img {
-
-    height: 24px !important;
-
-    max-width: 100px !important;
-  }
-}
 /* ---------- MOBILE ---------- */
 
 @media (max-width: 1180px){
@@ -2507,23 +2307,7 @@ overflow: visible;
     max-width:100% !important;
   }
 
-  .tools-logos{
-
-    flex-wrap:wrap !important;
-
-    row-gap:24px !important;
-  }
-
-  .tools-logos .logo-item{
-
-    flex:0 0 33.333% !important;
-  }
-
-  .tools-logos .logo-item::after{
-    display:none !important;
-  }
-}
-
+ 
 @media (max-width: 768px){
 
   .workflow-toolbar{
@@ -2566,56 +2350,77 @@ overflow: visible;
     gap:10px !important;
   }
 
-  .tools-logos .logo-item{
-
-    flex:0 0 50% !important;
-  }
 }
 /* =========================================
-   FINAL TOOL STRIP SPACING FIX
+   TOOL STRIP — CLEAN FINAL SYSTEM
 ========================================= */
 
 .tools-strip{
-  width:100% !important;
-  max-width:1220px !important;
 
-  margin:28px auto 0 !important;
+  width:100%;
+  max-width:1180px;
 
-  padding:30px 44px !important;
+  margin:22px auto 0;
 
-  overflow:hidden !important;
+  padding:30px 38px;
+
+  border-radius:26px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(17,24,36,.92),
+      rgba(8,10,18,.96)
+    );
+
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.04);
+
+  overflow:hidden;
 }
+
+.tools-strip p{
+
+  margin:0 0 24px;
+
+  text-align:center;
+
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.28em;
+  line-height:1.4;
+
+  text-transform:uppercase;
+
+  color:rgba(255,255,255,.68);
+}
+
+/* ---------- DESKTOP ---------- */
 
 .tools-logos{
 
-  display:grid !important;
+  display:grid;
 
-  grid-template-columns:repeat(7, 1fr) !important;
+  grid-template-columns:repeat(7, minmax(0,1fr));
 
-  align-items:center !important;
+  align-items:center;
 
-  width:100% !important;
-
-  gap:0 !important;
+  width:100%;
 }
 
 .tools-logos .logo-item{
 
-  position:relative !important;
+  position:relative;
 
-  display:flex !important;
+  display:flex;
 
-  align-items:center !important;
+  align-items:center;
+  justify-content:center;
 
-  justify-content:center !important;
-
-  width:100% !important;
-
-  min-width:0 !important;
-
-  min-height:52px !important;
-
-  flex:none !important;
+  min-height:46px;
 }
 
 .tools-logos .logo-item:not(:last-child)::after{
@@ -2630,24 +2435,23 @@ overflow: visible;
   transform:translateY(-50%);
 
   width:1px;
-  height:38px;
+  height:36px;
 
-  background:rgba(255,255,255,.10);
+  background:rgba(255,255,255,.09);
 }
 
 .tools-logos img{
 
-  display:block !important;
+  display:block;
 
-  width:auto !important;
+  width:auto;
+  height:28px;
 
-  height:30px !important;
+  max-width:125px;
 
-  max-width:150px !important;
+  object-fit:contain;
 
-  object-fit:contain !important;
-
-  opacity:.96 !important;
+  opacity:.94;
 }
 
 /* ---------- TABLET ---------- */
@@ -2656,18 +2460,13 @@ overflow: visible;
 
   .tools-logos{
 
-    grid-template-columns:repeat(3,1fr) !important;
+    grid-template-columns:repeat(3,1fr);
 
-    gap:28px 0 !important;
-  }
-
-  .tools-logos .logo-item{
-
-    min-height:44px !important;
+    gap:28px 0;
   }
 
   .tools-logos .logo-item::after{
-    display:none !important;
+    display:none;
   }
 }
 
@@ -2677,20 +2476,20 @@ overflow: visible;
 
   .tools-strip{
 
-    padding:22px 18px 24px !important;
+    padding:22px 18px;
   }
 
   .tools-logos{
 
-    grid-template-columns:repeat(2,1fr) !important;
+    grid-template-columns:repeat(2,1fr);
 
-    gap:24px 0 !important;
+    gap:22px 0;
   }
 
   .tools-logos img{
 
-    height:24px !important;
+    height:24px;
 
-    max-width:100px !important;
+    max-width:100px;
   }
 }
