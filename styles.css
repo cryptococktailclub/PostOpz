@@ -187,8 +187,8 @@ p{
   display:grid;
 
   grid-template-columns:
-    minmax(620px, 720px)
-    minmax(560px, 640px);
+    minmax(620px, 680px)
+    minmax(560px, 620px);
 
   grid-template-areas:
     "copy command"
@@ -196,7 +196,7 @@ p{
 
   align-items:center;
 
-  column-gap:88px;
+  column-gap:120px;
   row-gap:48px;
 }
 
@@ -208,29 +208,10 @@ p{
 
   grid-area:copy;
 
-  max-width:690px;
+  max-width:640px;
 
   position:relative;
   z-index:2;
-}
-
-/* ---------- KICKER ---------- */
-
-.hero-kicker{
-
-  margin-bottom:28px;
-
-  font-size:12px;
-  font-weight:900;
-  line-height:1.5;
-  letter-spacing:.22em;
-
-  text-transform:uppercase;
-
-  color:var(--cyan);
-
-  text-shadow:
-    0 0 14px rgba(0,225,255,.18);
 }
 
 /* ---------- TITLE ---------- */
@@ -242,9 +223,9 @@ p{
 
   gap:0;
 
-  margin:0 0 34px;
+  margin:0 0 30px;
 
-  line-height:.84;
+  line-height:.9;
 }
 
 .hero-title-top,
@@ -257,11 +238,9 @@ p{
   white-space:nowrap;
 
   font-size:
-    clamp(108px,8vw,162px);
+    clamp(88px, 6.6vw, 132px);
 
-  line-height:.84;
-
-  padding-bottom:.08em;
+  line-height:.9;
 
   text-rendering:optimizeLegibility;
 }
@@ -272,16 +251,16 @@ p{
 
   color:#f7f8fb;
 
-  letter-spacing:-.072em;
+  letter-spacing:-.078em;
 }
 
 /* BOTTOM LINE */
 
 .hero-title-bottom{
 
-  margin-top:-10px;
+  margin-top:-2px;
 
-  letter-spacing:-.092em;
+  letter-spacing:-.09em;
 
   background:
     linear-gradient(
@@ -300,8 +279,6 @@ p{
   filter:
     drop-shadow(0 10px 28px rgba(190,70,255,.12));
 }
-
-/* DOT */
 
 .hero-dot{
 
