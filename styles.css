@@ -258,21 +258,19 @@ p{
 
 .hero-title-bottom{
 
-  display:inline-flex;
+  display:block;
 
-  align-items:flex-end;
+  margin-top:18px;
 
-  margin-top:10px;
-
-  padding-bottom:.1em;
+  padding-bottom:.16em;
 
   font-size:clamp(112px, 7.2vw, 164px);
 
   font-weight:900;
 
-  line-height:.9;
+  line-height:.92;
 
-  letter-spacing:-.058em;
+  letter-spacing:-.072em;
 
   white-space:nowrap;
 
@@ -282,8 +280,8 @@ p{
     linear-gradient(
       90deg,
       #ff5a36 0%,
-      #ff2f92 42%,
-      #c12fff 74%,
+      #ff2f92 40%,
+      #c12fff 72%,
       #2f7cff 100%
     );
 
@@ -297,7 +295,6 @@ p{
       0 14px 36px rgba(185,70,255,.14)
     );
 }
-
 /* ---------- PERIOD ---------- */
 
 .hero-dot{
@@ -994,6 +991,7 @@ p{
       #5bffcb
     );
 }
+
 /* =========================================
    ADDITIONAL PROGRESS STATES
 ========================================= */
@@ -1032,6 +1030,28 @@ p{
       #28ffb8,
       #52ffe1
     );
+}
+/* ---------- DELIVERED STATE ---------- */
+
+.queue-item.delivered .queue-top span{
+  color:#42ff9c;
+}
+
+.queue-item.delivered .queue-top span::before{
+  content:"";
+  display:inline-block;
+
+  width:8px;
+  height:8px;
+
+  margin-right:8px;
+
+  border-radius:50%;
+
+  background:#42ff9c;
+
+  box-shadow:
+    0 0 12px rgba(66,255,156,.75);
 }
 /* =========================================
    TOOLS STRIP
