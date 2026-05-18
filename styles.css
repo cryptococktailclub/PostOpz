@@ -237,14 +237,18 @@ p{
    HERO TITLE
 ========================================= */
 
+/* =========================================
+   HERO TITLE
+========================================= */
+
 .hero-title{
 
   display:flex;
   flex-direction:column;
 
-  margin:0 0 38px;
+  margin:0 0 42px;
 
-  line-height:.92;
+  line-height:1;
 
   overflow:visible;
 }
@@ -255,13 +259,13 @@ p{
 
   display:block;
 
-  font-size:clamp(112px, 7.4vw, 168px);
+  font-size:clamp(112px, 7.2vw, 164px);
 
   font-weight:900;
 
-  line-height:.86;
+  line-height:.92;
 
-  letter-spacing:-.09em;
+  letter-spacing:-.072em;
 
   white-space:nowrap;
 
@@ -276,17 +280,17 @@ p{
 
   display:block;
 
-  margin-top:-10px;
+  margin-top:8px;
 
   padding-bottom:.16em;
 
-  font-size:clamp(112px, 7.4vw, 168px);
+  font-size:clamp(112px, 7.2vw, 164px);
 
   font-weight:900;
 
-  line-height:.9;
+  line-height:.92;
 
-  letter-spacing:-.105em;
+  letter-spacing:-.082em;
 
   white-space:nowrap;
 
@@ -307,9 +311,10 @@ p{
   -webkit-text-fill-color:transparent;
 
   filter:
-    drop-shadow(0 14px 36px rgba(185,70,255,.16));
+    drop-shadow(
+      0 14px 36px rgba(185,70,255,.14)
+    );
 }
-
 /* =========================================
    COMMAND CENTER
 ========================================= */
