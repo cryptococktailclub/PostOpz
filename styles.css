@@ -251,7 +251,22 @@ p{
 }
 
 .hero-title-bottom{
+
   letter-spacing:-.078em;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff5a36 0%,
+      #ff1f8f 38%,
+      #b12eff 72%,
+      #2f7cff 100%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
 }
 
   -webkit-background-clip:text;
@@ -1350,7 +1365,22 @@ h3{
 
   color:#b7c0d0;
 }
+.gradient-word{
 
+  background:
+    linear-gradient(
+      90deg,
+      #ff5a36 0%,
+      #ff1f8f 40%,
+      #b12eff 72%,
+      #2f7cff 100%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+}
 /* ---------- PANEL ---------- */
 
 .bottleneck-panel{
