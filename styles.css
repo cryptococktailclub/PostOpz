@@ -153,16 +153,16 @@ p{
 
   color:#fff;
 }
-
 /* =========================================
-   HERO
+   HERO — FINAL LOCKED LAYOUT
 ========================================= */
 
 .hero{
+
   position:relative;
   overflow:hidden;
 
-  padding:78px 0 64px;
+  padding:72px 0 58px;
 
   border-bottom:1px solid var(--line);
 
@@ -179,20 +179,7 @@ p{
     );
 }
 
-/* =========================================
-   HERO COPY — REFINED BALANCE
-========================================= */
-
-.hero-copy{
-
-  position:relative;
-  z-index:2;
-
-  max-width:620px;
-}
-/* =========================================
-   HERO LAYOUT — FINAL
-========================================= */
+/* ---------- GRID ---------- */
 
 .hero-inner{
 
@@ -206,10 +193,29 @@ p{
     minmax(540px, 620px)
     minmax(520px, 590px);
 
+  grid-template-areas:
+    "copy command"
+    "logos logos";
+
   align-items:center;
 
   column-gap:72px;
+
+  row-gap:52px;
 }
+
+/* ---------- COPY ---------- */
+
+.hero-copy{
+
+  grid-area:copy;
+
+  position:relative;
+  z-index:2;
+
+  max-width:620px;
+}
+
 /* ---------- KICKER ---------- */
 
 .hero-kicker{
@@ -230,11 +236,12 @@ p{
 }
 
 /* ---------- TITLE ---------- */
+
 .hero-title{
 
-  margin:0 0 26px;
+  margin:0 0 28px;
 
-  line-height:.88;
+  line-height:.86;
 }
 
 .hero-title-top,
@@ -249,7 +256,7 @@ p{
   text-rendering:optimizeLegibility;
 
   font-size:
-    clamp(88px, 6vw, 122px);
+    clamp(92px, 7vw, 124px);
 }
 
 /* ---------- KEEP EDITORS ---------- */
@@ -258,28 +265,48 @@ p{
 
   color:#f7f8fb;
 
-  letter-spacing:-.078em;
+  letter-spacing:-.082em;
 
-  line-height:.9;
+  line-height:.88;
 }
 
 /* ---------- EDITING ---------- */
 
 .hero-title-bottom{
 
-  margin-top:-10px;
+  margin-top:-12px;
 
-  letter-spacing:-.09em;
+  letter-spacing:-.095em;
 
-  line-height:.86;
+  line-height:.84;
 
   background:
     linear-gradient(
       90deg,
-      #ff5b3d 0%,
+      #ff5a36 0%,
       #ff2f92 40%,
       #c12fff 72%,
       #4f7dff 100%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  filter:
+    drop-shadow(0 10px 28px rgba(190,70,255,.18));
+}
+
+/* ---------- DOT ---------- */
+
+.hero-dot{
+
+  background:
+    linear-gradient(
+      90deg,
+      #c12fff,
+      #4f7dff
     );
 
   -webkit-background-clip:text;
@@ -296,8 +323,8 @@ p{
 
   max-width:520px;
 
-  font-size:18px;
-  line-height:1.3;
+  font-size:19px;
+  line-height:1.35;
   font-weight:900;
   letter-spacing:-.04em;
 
@@ -308,9 +335,9 @@ p{
 
 .hero-lede{
 
-  max-width:540px;
+  max-width:560px;
 
-  font-size:16px;
+  font-size:17px;
   line-height:1.72;
   font-weight:500;
 
@@ -325,7 +352,7 @@ p{
   flex-direction:column;
   align-items:flex-start;
 
-  margin-top:30px;
+  margin-top:32px;
 }
 
 .button{
@@ -335,9 +362,9 @@ p{
   justify-content:center;
   gap:10px;
 
-  min-height:54px;
+  min-height:56px;
 
-  padding:0 28px;
+  padding:0 30px;
 
   border-radius:16px;
 
@@ -346,8 +373,6 @@ p{
   font-size:15px;
   font-weight:800;
   letter-spacing:-.01em;
-
-  text-decoration:none;
 
   transition:
     transform .18s ease,
@@ -377,14 +402,7 @@ p{
   box-shadow:
     0 14px 42px rgba(92,82,255,.24);
 }
-.hero-visual{
 
-  justify-self:end;
-
-  transform:none;
-
-  margin-top:0;
-}
 /* ---------- FOOTNOTE ---------- */
 
 .workflow-note{
@@ -397,17 +415,104 @@ p{
   color:#95a3bc;
 }
 
+/* ---------- COMMAND CENTER ---------- */
+
+.command-center{
+
+  grid-area:command;
+
+  width:100%;
+  max-width:590px;
+
+  justify-self:end;
+}
+
+.hero-visual{
+  transform:none;
+}
+
+/* ---------- TOOLS STRIP ---------- */
+
+.tools-strip{
+  grid-area:logos;
+}
+
 /* =========================================
-   RESPONSIVE
+   HERO RESPONSIVE
 ========================================= */
 
-@media (max-width:1200px){
+@media (max-width:1180px){
+
+  .hero-inner{
+
+    width:min(920px, calc(100% - 48px));
+
+    grid-template-columns:1fr;
+
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos";
+
+    row-gap:42px;
+  }
+
+  .hero-copy{
+    max-width:100%;
+  }
+
+  .command-center{
+
+    justify-self:stretch;
+
+    max-width:100%;
+  }
 
   .hero-title-top,
   .hero-title-bottom{
 
     font-size:
-      clamp(72px,8vw,104px);
+      clamp(72px, 10vw, 104px);
+
+    white-space:normal;
+  }
+}
+
+@media (max-width:768px){
+
+  .hero{
+    padding:54px 0 54px;
+  }
+
+  .hero-inner{
+    width:calc(100% - 32px);
+  }
+
+  .hero-title-top,
+  .hero-title-bottom{
+
+    font-size:
+      clamp(64px, 15vw, 92px);
+
+    white-space:normal;
+
+    line-height:.9;
+  }
+
+  .hero-title-bottom{
+    margin-top:-6px;
+  }
+
+  .hero-subhead{
+    font-size:17px;
+  }
+
+  .hero-lede{
+    font-size:15px;
+  }
+
+  .button{
+    width:100%;
   }
 }
 
