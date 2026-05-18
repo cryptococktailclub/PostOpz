@@ -1572,14 +1572,58 @@ h3{
   -webkit-text-fill-color:transparent;
 }
 
-/* ---------- INDIVIDUAL STEP COLORS ---------- */
+/* =========================================
+   PROCESS STEP NUMBER SYSTEM
+========================================= */
+
+.process-step{
+
+  position:relative;
+
+  overflow:hidden;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.process-step:hover{
+
+  transform:translateY(-4px);
+
+  border-color:rgba(255,255,255,.14);
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.34);
+}
+
+.step-number{
+
+  display:inline-block;
+
+  margin-bottom:16px;
+
+  font-size:34px;
+  font-weight:900;
+  line-height:1;
+
+  letter-spacing:-.06em;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+}
+
+/* ---------- GRADIENT PROGRESSION ---------- */
 
 .process-step:nth-child(1) .step-number{
   background-image:
     linear-gradient(
       90deg,
       #00d4ff,
-      #1e8cff
+      #1d8cff
     );
 }
 
@@ -1587,8 +1631,8 @@ h3{
   background-image:
     linear-gradient(
       90deg,
-      #1e8cff,
-      #7c4dff
+      #1d8cff,
+      #7a4dff
     );
 }
 
@@ -1596,8 +1640,8 @@ h3{
   background-image:
     linear-gradient(
       90deg,
-      #7c4dff,
-      #c22fff
+      #7a4dff,
+      #c12fff
     );
 }
 
@@ -1608,4 +1652,26 @@ h3{
       #ff2f92,
       #ff5a36
     );
+}
+
+/* ---------- CARD TYPOGRAPHY ---------- */
+
+.process-step h3{
+
+  margin-bottom:14px;
+
+  font-size:28px;
+
+  line-height:1.05;
+
+  letter-spacing:-.055em;
+}
+
+.process-step p{
+
+  font-size:16px;
+
+  line-height:1.7;
+
+  color:#b3bccd;
 }
