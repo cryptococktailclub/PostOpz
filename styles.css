@@ -304,9 +304,13 @@ p{
 
   display:inline-block;
 
-  margin-left:-0.025em;
+  margin-left:.015em;
 
-  transform:translateY(-0.02em);
+  padding-right:.04em;
+
+  transform:translateY(-0.01em);
+
+  overflow:visible;
 
   background:
     linear-gradient(
