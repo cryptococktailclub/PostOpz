@@ -2336,71 +2336,152 @@ overflow: visible;
   color:#ffffff !important;
 }
 
-/* ---------- LOGO TRAY ---------- */
+/* =========================================
+   RESTORED TOOL LOGO TRAY
+========================================= */
 
-.tools-strip{
+.tools-strip {
 
-  width:100% !important;
+  width: 100% !important;
 
-  margin-top:10px !important;
+  max-width: 1220px !important;
 
-  padding:26px 36px 28px !important;
+  margin: 18px auto 0 !important;
 
-  border-radius:26px !important;
+  padding: 28px 42px 30px !important;
+
+  border-radius: 28px !important;
+
+  border: 1px solid rgba(255,255,255,0.08) !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20,32,42,0.88),
+      rgba(10,12,24,0.92)
+    ) !important;
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 24px 80px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  overflow: hidden;
 }
 
-.tools-logos{
+.tools-strip p {
 
-  display:flex !important;
+  margin: 0 0 24px !important;
 
-  align-items:center !important;
+  text-align: center;
 
-  justify-content:space-between !important;
+  font-size: 12px;
 
-  gap:0 !important;
+  line-height: 1;
 
-  width:100% !important;
+  letter-spacing: 0.32em;
+
+  font-weight: 700;
+
+  color: rgba(255,255,255,0.72);
+
+  text-transform: uppercase;
 }
 
-.tools-logos .logo-item{
+.tools-logos {
 
-  flex:1 !important;
+  display: grid !important;
 
-  display:flex !important;
+  grid-template-columns: repeat(7, 1fr) !important;
 
-  align-items:center !important;
+  align-items: center !important;
 
-  justify-content:center !important;
+  width: 100% !important;
 
-  position:relative !important;
+  gap: 0 !important;
 }
 
-.tools-logos .logo-item:not(:last-child)::after{
+.tools-logos .logo-item {
 
-  content:"";
+  position: relative;
 
-  position:absolute;
+  display: flex !important;
 
-  right:0;
-  top:50%;
+  align-items: center !important;
 
-  transform:translateY(-50%);
+  justify-content: center !important;
 
-  width:1px;
-  height:28px;
-
-  background:rgba(255,255,255,.08);
+  min-height: 44px;
 }
 
-.tools-logos img{
+.tools-logos .logo-item:not(:last-child)::after {
 
-  height:26px !important;
+  content: "";
 
-  max-width:120px !important;
+  position: absolute;
 
-  object-fit:contain !important;
+  right: 0;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 1px;
+  height: 34px;
+
+  background: rgba(255,255,255,0.10);
 }
 
+.tools-logos img {
+
+  height: 28px !important;
+
+  width: auto !important;
+
+  max-width: 140px !important;
+
+  object-fit: contain !important;
+
+  opacity: 0.95 !important;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 1180px) {
+
+  .tools-logos {
+
+    grid-template-columns: repeat(3, 1fr) !important;
+
+    row-gap: 26px !important;
+  }
+
+  .tools-logos .logo-item::after {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .tools-strip {
+
+    padding: 22px 18px 24px !important;
+  }
+
+  .tools-logos {
+
+    grid-template-columns: repeat(2, 1fr) !important;
+
+    gap: 22px !important;
+  }
+
+  .tools-logos img {
+
+    height: 24px !important;
+
+    max-width: 100px !important;
+  }
+}
 /* ---------- MOBILE ---------- */
 
 @media (max-width: 1180px){
