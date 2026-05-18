@@ -720,7 +720,142 @@ p{
 .footer-stat strong{
   color:#fff;
 }
+/* =========================================
+   QUEUE STATUS SYSTEM
+========================================= */
 
+.queue-status{
+
+  display:inline-flex;
+  align-items:center;
+
+  gap:8px;
+
+  font-size:12px;
+  font-weight:900;
+
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+}
+
+.queue-status::before{
+
+  content:"";
+
+  width:8px;
+  height:8px;
+
+  border-radius:999px;
+
+  background:currentColor;
+
+  box-shadow:
+    0 0 12px currentColor;
+}
+
+/* ---------- STATUS COLORS ---------- */
+
+.status-progress{
+  color:#00d9ff;
+}
+
+.status-ready{
+  color:#7b7cff;
+}
+
+.status-exporting{
+  color:#c12fff;
+}
+
+.status-delivered{
+  color:#3dffb5;
+}
+
+/* =========================================
+   PROGRESS SYSTEM
+========================================= */
+
+.progress-fill.progress-72{
+
+  width:72%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #00d9ff 0%,
+      #7b7cff 52%,
+      #c12fff 100%
+    );
+}
+
+/* ---------- MINI BARS ---------- */
+
+.queue-mini-progress{
+
+  margin-top:16px;
+
+  width:100%;
+  height:4px;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  overflow:hidden;
+}
+
+.mini-bar{
+
+  display:block;
+
+  height:100%;
+
+  border-radius:999px;
+}
+
+/* ---------- READY ---------- */
+
+.mini-ready{
+
+  width:42%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7b7cff,
+      #9d7dff
+    );
+}
+
+/* ---------- EXPORTING ---------- */
+
+.mini-exporting{
+
+  width:78%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #9d4dff,
+      #d42fff
+    );
+}
+
+/* ---------- DELIVERED ---------- */
+
+.mini-delivered{
+
+  width:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #22ffb0,
+      #5bffcb
+    );
+}
 /* =========================================
    TOOLS STRIP
 ========================================= */
