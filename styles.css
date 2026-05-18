@@ -1544,3 +1544,68 @@ h3{
     font-size:15px;
   }
 }
+/* =========================================
+   HOW IT WORKS — GRADIENT STEP NUMBERS
+========================================= */
+
+.process-step{
+  position:relative;
+
+  overflow:hidden;
+}
+
+.process-step .step-number{
+
+  display:inline-block;
+
+  margin-bottom:14px;
+
+  font-size:30px;
+  font-weight:900;
+  line-height:1;
+
+  letter-spacing:-.05em;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+}
+
+/* ---------- INDIVIDUAL STEP COLORS ---------- */
+
+.process-step:nth-child(1) .step-number{
+  background-image:
+    linear-gradient(
+      90deg,
+      #00d4ff,
+      #1e8cff
+    );
+}
+
+.process-step:nth-child(2) .step-number{
+  background-image:
+    linear-gradient(
+      90deg,
+      #1e8cff,
+      #7c4dff
+    );
+}
+
+.process-step:nth-child(3) .step-number{
+  background-image:
+    linear-gradient(
+      90deg,
+      #7c4dff,
+      #c22fff
+    );
+}
+
+.process-step:nth-child(4) .step-number{
+  background-image:
+    linear-gradient(
+      90deg,
+      #ff2f92,
+      #ff5a36
+    );
+}
