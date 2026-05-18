@@ -233,26 +233,6 @@ p{
   z-index:2;
 }
 
-/* =========================================
-   HERO TITLE
-========================================= */
-
-/* =========================================
-   HERO TITLE
-========================================= */
-
-.hero-title{
-
-  display:flex;
-  flex-direction:column;
-
-  margin:0 0 42px;
-
-  line-height:1;
-
-  overflow:visible;
-}
-
 /* ---------- KEEP EDITORS ---------- */
 
 .hero-title-top{
@@ -263,9 +243,9 @@ p{
 
   font-weight:900;
 
-  line-height:.92;
+  line-height:.94;
 
-  letter-spacing:-.072em;
+  letter-spacing:-.052em;
 
   white-space:nowrap;
 
@@ -278,19 +258,21 @@ p{
 
 .hero-title-bottom{
 
-  display:block;
+  display:inline-flex;
 
-  margin-top:8px;
+  align-items:flex-end;
 
-  padding-bottom:.16em;
+  margin-top:10px;
+
+  padding-bottom:.1em;
 
   font-size:clamp(112px, 7.2vw, 164px);
 
   font-weight:900;
 
-  line-height:.92;
+  line-height:.9;
 
-  letter-spacing:-.082em;
+  letter-spacing:-.058em;
 
   white-space:nowrap;
 
@@ -300,8 +282,8 @@ p{
     linear-gradient(
       90deg,
       #ff5a36 0%,
-      #ff2f92 40%,
-      #c12fff 72%,
+      #ff2f92 42%,
+      #c12fff 74%,
       #2f7cff 100%
     );
 
@@ -315,23 +297,16 @@ p{
       0 14px 36px rgba(185,70,255,.14)
     );
 }
-/* =========================================
-   COMMAND CENTER
-========================================= */
-
-.command-center{
-
-  grid-area:command;
-
-  width:100%;
-  max-width:720px;
-
-  justify-self:end;
-}
 
 /* ---------- PERIOD ---------- */
 
 .hero-dot{
+
+  display:inline-block;
+
+  margin-left:-0.025em;
+
+  transform:translateY(-0.02em);
 
   background:
     linear-gradient(
@@ -344,6 +319,19 @@ p{
   background-clip:text;
 
   -webkit-text-fill-color:transparent;
+}
+/* =========================================
+   COMMAND CENTER
+========================================= */
+
+.command-center{
+
+  grid-area:command;
+
+  width:100%;
+  max-width:720px;
+
+  justify-self:end;
 }
 
 /* ---------- SUBHEAD ---------- */
