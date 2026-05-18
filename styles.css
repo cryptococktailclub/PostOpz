@@ -246,17 +246,13 @@ p{
 
 .hero-title-top{
   color:#f7f8fb;
+
+  letter-spacing:-.065em;
 }
 
 .hero-title-bottom{
-  background:
-    linear-gradient(
-      90deg,
-      var(--orange) 0%,
-      var(--pink) 38%,
-      #b12eff 70%,
-      #157cff 100%
-    );
+  letter-spacing:-.078em;
+}
 
   -webkit-background-clip:text;
   background-clip:text;
