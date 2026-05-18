@@ -1859,8 +1859,14 @@ h3{
   }
 
   .hero-title-top,
-  .hero-title-bottom{
-    font-size:18vw;
+.hero-title-bottom{
+
+  font-size:clamp(64px, 15vw, 92px);
+
+  white-space:normal;
+
+  line-height:.9;
+}
 
     white-space:normal;
 
