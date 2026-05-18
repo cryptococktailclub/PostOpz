@@ -275,19 +275,22 @@ p{
   white-space:nowrap;
 
   overflow:visible;
-}
+
   background:
     linear-gradient(
       90deg,
       #ff5a36 0%,
-      #ff2f92 40%,
+      #ff2f92 38%,
       #c12fff 72%,
-      #2f7cff 100%
+      #4f7dff 100%
     );
+
+  background-size:100% 100%;
 
   -webkit-background-clip:text;
   background-clip:text;
 
+  color:transparent;
   -webkit-text-fill-color:transparent;
 
   filter:
