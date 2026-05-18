@@ -180,15 +180,15 @@ p{
 }
 
 .hero-inner{
-  width:min(1480px, calc(100% - 72px));
+  width:min(1380px, calc(100% - 72px));
 
   margin:0 auto;
 
   display:grid;
 
   grid-template-columns:
-    minmax(620px, 680px)
-    minmax(560px, 620px);
+    minmax(540px, 620px)
+    minmax(520px, 600px);
 
   grid-template-areas:
     "copy command"
@@ -196,22 +196,29 @@ p{
 
   align-items:center;
 
-  column-gap:120px;
+  justify-content:space-between;
+
+  column-gap:72px;
   row-gap:48px;
 }
-
-/* =========================================
-   HERO COPY
-========================================= */
 
 .hero-copy{
 
   grid-area:copy;
 
-  max-width:640px;
+  max-width:600px;
 
   position:relative;
   z-index:2;
+}
+
+.command-center{
+  grid-area:command;
+
+  width:100%;
+  max-width:600px;
+
+  justify-self:end;
 }
 
 /* ---------- TITLE ---------- */
