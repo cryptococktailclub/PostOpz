@@ -221,6 +221,34 @@ p{
   justify-self:end;
 }
 
+/* =========================================
+   HERO COPY
+========================================= */
+
+.hero-copy{
+  grid-area:copy;
+
+  max-width:600px;
+
+  position:relative;
+  z-index:2;
+}
+
+/* ---------- KICKER ---------- */
+
+.hero-kicker{
+  margin-bottom:22px;
+
+  font-size:12px;
+  font-weight:900;
+  line-height:1.5;
+  letter-spacing:.18em;
+
+  text-transform:uppercase;
+
+  color:var(--cyan);
+}
+
 /* ---------- TITLE ---------- */
 
 .hero-title{
@@ -228,11 +256,11 @@ p{
   display:flex;
   flex-direction:column;
 
-  gap:0;
+  margin:0 0 34px;
 
-  margin:0 0 30px;
+  line-height:1;
 
-  line-height:.9;
+  overflow:visible;
 }
 
 .hero-title-top,
@@ -244,30 +272,37 @@ p{
 
   white-space:nowrap;
 
-  font-size:
-    clamp(88px, 6.6vw, 132px);
-
-  line-height:.9;
-
   text-rendering:optimizeLegibility;
+
+  overflow:visible;
 }
 
-/* TOP LINE */
+/* ---------- TOP LINE ---------- */
 
 .hero-title-top{
 
-  color:#f7f8fb;
+  font-size:clamp(86px, 6vw, 124px);
 
-  letter-spacing:-.078em;
+  line-height:.88;
+
+  letter-spacing:-.082em;
+
+  color:#f7f8fb;
 }
 
-/* BOTTOM LINE */
+/* ---------- BOTTOM LINE ---------- */
 
 .hero-title-bottom{
 
-  margin-top:-2px;
+  margin-top:-4px;
 
-  letter-spacing:-.09em;
+  padding-bottom:.12em;
+
+  font-size:clamp(86px, 6vw, 124px);
+
+  line-height:.92;
+
+  letter-spacing:-.095em;
 
   background:
     linear-gradient(
@@ -286,6 +321,8 @@ p{
   filter:
     drop-shadow(0 10px 28px rgba(190,70,255,.12));
 }
+
+/* ---------- PERIOD ---------- */
 
 .hero-dot{
 
