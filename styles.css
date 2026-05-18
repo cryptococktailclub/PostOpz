@@ -1226,9 +1226,183 @@ h3{
     rgba(255,255,255,.07);
 }
 
-/* ---------- FEATURED CTA ---------- */
+/* =========================================
+   PREMIUM CTA SECTION
+========================================= */
 
-.featured-button{
+.cta-section{
+  padding-top:110px;
+}
+
+.cta-shell{
+
+  position:relative;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    280px;
+
+  gap:56px;
+
+  align-items:center;
+
+  max-width:1380px;
+
+  margin:0 auto;
+
+  padding:
+    clamp(38px,5vw,72px);
+
+  border-radius:38px;
+
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(0,217,255,.14),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(174,0,255,.14),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(15,20,34,.96),
+      rgba(8,10,18,.98)
+    );
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.46),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* ---------- GLOW ---------- */
+
+.cta-shell::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,217,255,.06),
+      rgba(165,50,255,.06)
+    );
+
+  opacity:.7;
+
+  pointer-events:none;
+}
+
+/* ---------- COPY ---------- */
+
+.cta-copy{
+  position:relative;
+  z-index:2;
+}
+
+.cta-copy h2{
+
+  max-width:980px;
+
+  margin-bottom:24px;
+
+  font-size:
+    clamp(44px,5vw,78px);
+
+  line-height:.94;
+
+  letter-spacing:-.075em;
+}
+
+.cta-copy p{
+
+  max-width:720px;
+
+  margin-bottom:34px;
+
+  font-size:19px;
+
+  line-height:1.75;
+
+  color:#b7c0d0;
+}
+
+/* ---------- META ---------- */
+
+.cta-meta{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:14px;
+}
+
+.cta-meta span{
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:38px;
+
+  padding:0 16px;
+
+  border-radius:999px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    rgba(255,255,255,.04);
+
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.06em;
+
+  text-transform:uppercase;
+
+  color:#dfe6f2;
+}
+
+/* ---------- ACTION ---------- */
+
+.cta-action{
+
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+
+  gap:18px;
+}
+
+.cta-button{
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+
+  min-height:72px;
+
+  padding:0 28px;
+
+  border-radius:22px;
 
   background:
     linear-gradient(
@@ -1238,30 +1412,90 @@ h3{
       #d100ff 100%
     );
 
-  border:none;
+  color:#fff;
+
+  font-size:18px;
+  font-weight:900;
+
+  letter-spacing:-.02em;
+
+  text-align:center;
 
   box-shadow:
-    0 16px 40px rgba(124,60,255,.28);
+    0 24px 60px rgba(124,60,255,.34);
+
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease;
 }
 
-.featured-button:hover{
+.cta-button:hover{
+
+  transform:translateY(-3px);
 
   box-shadow:
-    0 20px 52px rgba(124,60,255,.38);
+    0 30px 80px rgba(124,60,255,.44);
 }
 
-/* ---------- MOBILE ---------- */
+.cta-note{
 
-@media (max-width:768px){
+  font-size:13px;
 
-  .pricing-button{
+  color:#8f99ab;
+}
 
-    min-height:58px;
+/* ---------- RESPONSIVE ---------- */
 
-    font-size:15px;
+@media (max-width:1180px){
+
+  .cta-shell{
+
+    grid-template-columns:1fr;
+
+    gap:42px;
+  }
+
+  .cta-action{
+
+    align-items:flex-start;
+  }
+
+  .cta-button{
+    max-width:360px;
   }
 }
 
+@media (max-width:768px){
+
+  .cta-copy h2{
+
+    font-size:15vw;
+
+    line-height:.94;
+  }
+
+  .cta-copy p{
+
+    font-size:16px;
+  }
+
+  .cta-meta{
+
+    gap:10px;
+  }
+
+  .cta-meta span{
+
+    font-size:11px;
+  }
+
+  .cta-button{
+
+    width:100%;
+
+    max-width:none;
+  }
+}
 /* =========================================
    FOOTER
 ========================================= */
