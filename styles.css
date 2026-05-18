@@ -835,27 +835,54 @@ p{
 
   text-wrap:balance;
 }
-.eyebrow{
+.workflow-card .eyebrow{
+
   display:inline-flex;
 
-  margin-bottom:24px;
+  align-items:center;
+  justify-content:center;
 
-  padding:10px 16px;
+  width:auto;
+
+  min-height:38px;
+
+  margin:0 auto 26px auto;
+
+  padding:0 18px;
 
   border-radius:999px;
 
-  border:1px solid rgba(0,217,255,.3);
-
-  background:
-    rgba(0,217,255,.04);
-
-  color:var(--cyan);
+  text-align:center;
 
   font-size:12px;
   font-weight:900;
-  letter-spacing:.18em;
+
+  letter-spacing:.08em;
 
   text-transform:uppercase;
+
+  color:#00d9ff;
+
+  border:1px solid rgba(0,217,255,.26);
+
+  background:
+    rgba(0,217,255,.05);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+.workflow-card{
+
+  text-align:left;
+}
+
+.workflow-card .eyebrow-wrap{
+
+  display:flex;
+
+  justify-content:center;
+
+  width:100%;
 }
 
 h2{
