@@ -1091,35 +1091,175 @@ h3{
 .price-card.highlighted{
   border-color:rgba(0,217,255,.4);
 }
-
 /* =========================================
-   CTA
+   PREMIUM PRICING BUTTON SYSTEM
 ========================================= */
 
-.cta-card{
-  max-width:1180px;
+.price-card{
 
-  margin:0 auto;
+  position:relative;
 
-  padding:clamp(28px,5vw,56px);
+  overflow:hidden;
 
-  border-radius:34px;
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
 
-  border:1px solid rgba(0,217,255,.34);
+.price-card:hover{
+
+  transform:translateY(-4px);
+
+  border-color:rgba(255,255,255,.14);
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.34);
+}
+
+/* ---------- TOP PILLS ---------- */
+
+.price-pill{
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:36px;
+
+  margin-bottom:22px;
+
+  padding:0 16px;
+
+  border-radius:999px;
+
+  border:1px solid rgba(255,255,255,.10);
+
+  background:
+    rgba(255,255,255,.04);
+
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+
+  text-transform:uppercase;
+
+  color:#eef3fb;
+
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    background .22s ease,
+    box-shadow .22s ease;
+}
+
+/* ---------- HOVER ONLY ---------- */
+
+.price-card:hover .price-pill{
+
+  transform:translateY(-1px);
+
+  border-color:rgba(0,217,255,.36);
+
+  background:
+    rgba(0,217,255,.08);
+
+  box-shadow:
+    0 0 24px rgba(0,217,255,.12);
+}
+
+/* ---------- FEATURED ---------- */
+
+.featured-pill{
+
+  border-color:rgba(0,217,255,.28);
+
+  color:#00d9ff;
+}
+
+/* ---------- BUTTONS ---------- */
+
+.pricing-button{
 
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:center;
 
-  gap:30px;
+  width:100%;
+
+  min-height:54px;
+
+  margin-top:28px;
+
+  padding:0 18px;
+
+  border-radius:16px;
+
+  border:1px solid rgba(255,255,255,.08);
 
   background:
-    radial-gradient(circle at 15% 0%, rgba(0,217,255,.16), transparent 42%),
+    rgba(255,255,255,.04);
+
+  font-size:16px;
+  font-weight:800;
+
+  line-height:1.2;
+
+  text-align:center;
+
+  color:#ffffff;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.pricing-button:hover{
+
+  transform:translateY(-2px);
+
+  border-color:rgba(255,255,255,.16);
+
+  background:
+    rgba(255,255,255,.07);
+}
+
+/* ---------- FEATURED CTA ---------- */
+
+.featured-button{
+
+  background:
     linear-gradient(
-      135deg,
-      rgba(22,136,255,.12),
-      rgba(155,23,255,.11)
+      90deg,
+      #1976ff 0%,
+      #7c3cff 55%,
+      #d100ff 100%
     );
+
+  border:none;
+
+  box-shadow:
+    0 16px 40px rgba(124,60,255,.28);
+}
+
+.featured-button:hover{
+
+  box-shadow:
+    0 20px 52px rgba(124,60,255,.38);
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width:768px){
+
+  .pricing-button{
+
+    min-height:58px;
+
+    font-size:15px;
+  }
 }
 
 /* =========================================
