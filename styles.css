@@ -1840,6 +1840,16 @@ h3{
     max-width:none;
   }
 }
+.desktop-break{
+  display:inline;
+}
+
+@media (max-width:768px){
+
+  .desktop-break{
+    display:none;
+  }
+}
 /* =========================================
    FOOTER
 ========================================= */
