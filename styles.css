@@ -1143,7 +1143,81 @@ p{
 
   opacity:.94;
 }
+/* ---------- LOGO STRIP ---------- */
 
+.logo-strip{
+
+  display:grid;
+
+  grid-template-columns:repeat(8, minmax(0,1fr));
+
+  align-items:center;
+
+  gap:0;
+
+  width:100%;
+}
+
+/* ---------- LOGO ITEMS ---------- */
+
+.logo-item{
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  min-height:72px;
+
+  padding:0 18px;
+
+  position:relative;
+}
+
+.logo-item:not(:last-child)::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:50%;
+  right:0;
+
+  transform:translateY(-50%);
+
+  width:1px;
+  height:36px;
+
+  background:rgba(255,255,255,.08);
+}
+
+/* ---------- DEFAULT SVG / IMG ---------- */
+
+.logo-item img,
+.logo-item svg{
+
+  max-width:132px;
+
+  max-height:30px;
+
+  width:auto;
+  height:auto;
+
+  object-fit:contain;
+
+  opacity:.92;
+}
+
+/* ---------- WETRANSFER FIX ---------- */
+
+.logo-wetransfer img{
+
+  max-width:142px;
+
+  max-height:34px;
+
+  transform:translateY(-1px);
+}
 /* =========================================
    GENERIC SECTIONS
 ========================================= */
