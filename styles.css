@@ -2459,9 +2459,15 @@ h3{
     row-gap:38px;
   }
 
-  .hero-copy{
-    max-width:100%;
-  }
+ .hero-copy{
+
+  grid-area:copy;
+
+  max-width:820px;
+
+  position:relative;
+  z-index:2;
+}
 
   /* ---------- HERO TITLE ---------- */
 
@@ -2503,9 +2509,16 @@ h3{
   }
 
   .hero-lede{
-    font-size:17px;
-    line-height:1.65;
-  }
+
+  max-width:700px;
+
+  font-size:18px;
+  line-height:1.62;
+
+  color:#d2d9e5;
+
+  text-wrap:balance;
+}
 
   /* ---------- COMMAND CENTER ---------- */
 
