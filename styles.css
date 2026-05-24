@@ -181,15 +181,15 @@ p{
 
 .hero-inner{
 
-  width:min(1380px, calc(100% - 64px));
+  width:min(1320px, calc(100% - 72px));
 
   margin:0 auto;
 
   display:grid;
 
   grid-template-columns:
-    minmax(0,1fr)
-    minmax(520px,620px);
+    minmax(0, 720px)
+    minmax(480px, 560px);
 
   grid-template-areas:
     "copy command"
@@ -197,11 +197,16 @@ p{
 
   align-items:center;
 
-  gap:46px 56px;
+  gap:40px 48px;
 }
 
 .hero-copy{
+
   grid-area:copy;
+
+  max-width:720px;
+
+  padding-top:28px;
 }
 
 .hero-kicker{
@@ -227,22 +232,17 @@ p{
 
   display:block;
 
-  font-size:clamp(96px,6.4vw,142px);
+  font-size:clamp(84px,5.8vw,126px);
 
   font-weight:900;
 
   white-space:nowrap;
 
-  line-height:.92;
+  line-height:.9;
 
   overflow:visible;
-}
 
-.hero-title-top{
-
-  letter-spacing:-.052em;
-
-  color:#f7f8fb;
+  text-rendering:geometricPrecision;
 }
 
 .hero-title-bottom{
@@ -359,7 +359,14 @@ p{
 ========================================= */
 
 .command-center{
+
   grid-area:command;
+
+  width:100%;
+
+  max-width:560px;
+
+  justify-self:end;
 }
 
 .command-shell{
