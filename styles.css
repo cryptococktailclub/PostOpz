@@ -181,15 +181,15 @@ p{
 
 .hero-inner{
 
-  width:min(1500px, calc(100% - 90px));
+  width:min(1380px, calc(100% - 64px));
 
   margin:0 auto;
 
   display:grid;
 
   grid-template-columns:
-    minmax(620px,1fr)
-    minmax(560px,680px);
+    minmax(0,1fr)
+    minmax(520px,620px);
 
   grid-template-areas:
     "copy command"
@@ -197,7 +197,7 @@ p{
 
   align-items:center;
 
-  gap:54px 80px;
+  gap:46px 56px;
 }
 
 .hero-copy{
@@ -227,7 +227,7 @@ p{
 
   display:block;
 
-  font-size:clamp(112px,7vw,160px);
+  font-size:clamp(96px,6.4vw,142px);
 
   font-weight:900;
 
@@ -736,7 +736,7 @@ p{
 
   grid-area:logos;
 
-  padding:28px 42px;
+  padding:22px 30px;
 
   border-radius:28px;
 
@@ -819,7 +819,7 @@ p{
 ========================================= */
 
 .section-pad{
-  padding:90px 32px;
+  padding:72px 32px;
 }
 
 .section-heading{
@@ -1179,6 +1179,9 @@ h3{
       rgba(255,255,255,.04),
       rgba(255,255,255,.02)
     );
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.28);
 }
 
 .cloud-points{
@@ -1206,7 +1209,7 @@ h3{
   color:#fff;
 }
 
-.cloud-pricing-grid{
+.cloud-pricing{
 
   display:grid;
 
@@ -1253,7 +1256,28 @@ h3{
 
   color:var(--success);
 }
+/* =========================================
+   CLOUD FEATURE PANEL
+========================================= */
 
+.cloud-feature{
+
+  padding:36px;
+
+  border-radius:32px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.04),
+      rgba(255,255,255,.02)
+    );
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.28);
+}
 /* =========================================
    CTA
 ========================================= */
@@ -1263,8 +1287,8 @@ h3{
   display:grid;
 
   grid-template-columns:
-    minmax(0,1fr)
-    320px;
+  minmax(0,1fr)
+  minmax(280px,340px);
 
   gap:50px;
 
@@ -1386,9 +1410,12 @@ h3{
   }
 
   .tools-logos{
-    grid-template-columns:repeat(4,1fr);
-    row-gap:24px;
-  }
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:18px;
+}
 
   .logo-item::after{
     display:none;
@@ -1421,7 +1448,7 @@ h3{
   .hero-title-top,
   .hero-title-bottom{
 
-    font-size:17vw;
+    font-size:15vw;
 
     white-space:normal;
   }
@@ -1482,5 +1509,61 @@ h3{
       clamp(38px,11vw,54px);
 
     line-height:1;
+  }
+}
+/* =========================================
+   FINAL PREMIUM REFINEMENTS
+========================================= */
+
+.service-card,
+.kit-card,
+.cloud-card,
+.bottleneck-panel,
+.command-shell,
+.tools-strip,
+.premium-shell{
+
+  backdrop-filter:blur(12px);
+}
+
+.service-card:hover,
+.kit-card:hover,
+.cloud-card:hover{
+
+  transform:translateY(-4px);
+
+  border-color:
+    rgba(255,255,255,.14);
+}
+
+.hero-title-bottom{
+
+  filter:
+    drop-shadow(
+      0 12px 30px rgba(170,70,255,.14)
+    );
+}
+
+.value-item{
+
+  border-right:
+    1px solid rgba(255,255,255,.06);
+}
+
+.value-item:last-child{
+  border-right:none;
+}
+
+@media (max-width:1180px){
+
+  .value-item{
+    border-right:none;
+
+    border-bottom:
+      1px solid rgba(255,255,255,.06);
+  }
+
+  .value-item:last-child{
+    border-bottom:none;
   }
 }
