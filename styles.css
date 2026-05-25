@@ -857,13 +857,14 @@ h3 {
 
 .bottleneck-copy h2 {
   max-width: 920px;
+
   margin: 0;
 
   font-size: clamp(68px, 5.2vw, 102px);
 
   line-height: .94;
 
-  letter-spacing: -.065em;
+  letter-spacing: -.045em;
 
   font-weight: 900;
 
