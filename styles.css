@@ -1293,43 +1293,6 @@ h3 {
   gap:24px;
 }
 
-.cloud-system-card{
-  position:relative;
-
-  min-height:340px;
-
-  padding:34px;
-
-  border-radius:30px;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(18,24,36,.96),
-      rgba(10,12,18,.98)
-    );
-
-  box-shadow:
-    0 24px 80px rgba(0,0,0,.32);
-
-  transition:
-    transform .3s ease,
-    border-color .3s ease,
-    box-shadow .3s ease;
-}
-
-.cloud-system-card:hover{
-  transform:translateY(-6px);
-
-  border-color:rgba(0,217,255,.22);
-
-  box-shadow:
-    0 30px 100px rgba(0,0,0,.42),
-    0 0 40px rgba(0,217,255,.08);
-}
-
 .cloud-system-label{
   display:inline-flex;
 
@@ -1360,31 +1323,6 @@ h3 {
   text-transform:uppercase;
 }
 
-.cloud-system-card h3{
-  margin:0 0 20px;
-
-  font-size:34px;
-
-  line-height:1;
-
-  letter-spacing:-.05em;
-
-  color:#fff;
-}
-
-.cloud-system-card p{
-  margin:0;
-
-  font-size:16px;
-
-  line-height:1.85;
-
-  color:#9aa7bc;
-}
-
-@media (max-width: 1180px){
-
-  
   .cloud-copy h2{
     font-size:clamp(52px, 8vw, 82px);
   }
@@ -1402,15 +1340,6 @@ h3 {
 
   .cloud-copy h2{
     font-size:clamp(40px, 12vw, 62px);
-  }
-
-  .cloud-system-card{
-    min-height:auto;
-    padding:28px 24px;
-  }
-
-  .cloud-system-card h3{
-    font-size:28px;
   }
 }
 
