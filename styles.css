@@ -1287,8 +1287,6 @@ h3 {
   color:#aab4c8;
 }
 
-.cloud-system-grid{
-  display:grid;
 
   grid-template-columns:repeat(3, 1fr);
 
@@ -1386,10 +1384,7 @@ h3 {
 
 @media (max-width: 1180px){
 
-  .cloud-system-grid{
-    grid-template-columns:1fr;
-  }
-
+  
   .cloud-copy h2{
     font-size:clamp(52px, 8vw, 82px);
   }
