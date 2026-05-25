@@ -736,104 +736,6 @@ h3 {
 }
 
 /* =========================================
-   TRUST STRIP
-========================================= */
-
-.trust-strip {
-  position: relative;
-  padding: 56px 0;
-  overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,.04);
-  border-bottom: 1px solid rgba(255,255,255,.04);
-  background:
-    linear-gradient(90deg, rgba(0,217,255,.04) 0%, rgba(6,8,14,.96) 28%, rgba(8,10,18,.98) 72%, rgba(140,70,255,.08) 100%);
-}
-
-.trust-strip::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 10% 50%, rgba(0,217,255,.08), transparent 28%),
-    radial-gradient(circle at 88% 50%, rgba(140,70,255,.1), transparent 32%);
-  pointer-events: none;
-}
-
-.trust-shell {
-  position: relative;
-  z-index: 2;
-  width: min(1380px, calc(100% - 80px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(420px, 520px) minmax(520px, 1fr);
-  gap: 64px;
-  align-items: center;
-}
-
-.trust-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.trust-label {
-  display: inline-flex;
-  align-items: center;
-  width: max-content;
-  min-height: 36px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,217,255,.18);
-  background: rgba(0,217,255,.05);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--cyan);
-}
-
-.trust-copy h3 {
-  margin: 0;
-  font-size: clamp(26px, 2.2vw, 40px);
-  line-height: 1.1;
-  letter-spacing: -.05em;
-  font-weight: 800;
-  color: #f5f7fc;
-}
-
-.trust-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.trust-grid span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 70px;
-  padding: 0 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.07);
-  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  backdrop-filter: blur(12px);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #d9e1f2;
-  transition: transform .25s cubic-bezier(.16,1,.3,1), border-color .25s ease, background .25s ease;
-}
-
-.trust-grid span:hover {
-  transform: translateY(-3px);
-  border-color: rgba(0,217,255,.18);
-  background: linear-gradient(180deg, rgba(0,217,255,.07), rgba(255,255,255,.025));
-  color: #fff;
-}
-
-/* =========================================
    BOTTLENECK SECTION
 ========================================= */
 
@@ -1334,267 +1236,66 @@ h3 {
    CLOUD EDITORIAL
 ========================================= */
 
-.cloud-editorial-section { padding-top: 110px; }
+<section id="cloud-editorial" class="section-pad cloud-editorial-section">
 
-.cloud-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 460px);
-  gap: 28px;
-  align-items: start;
-  max-width: 1320px;
-  margin: 0 auto;
-}
+  <div class="cloud-shell">
 
-.cloud-feature {
-  padding: 52px;
-  border-radius: 32px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: linear-gradient(180deg, rgba(18,22,32,.96), rgba(10,12,18,.98));
-  box-shadow: 0 24px 80px rgba(0,0,0,.34);
-}
+    <div class="cloud-layout">
 
-.cloud-feature h2 {
-  max-width: 760px;
-  margin-bottom: 24px;
-  font-size: clamp(54px, 4.8vw, 84px);
-  line-height: .92;
-  letter-spacing: -.075em;
-}
+      <div class="cloud-copy reveal">
 
-.cloud-lede {
-  max-width: 760px;
-  margin-bottom: 42px;
-  font-size: 19px;
-  line-height: 1.7;
-  color: #b8c2d3;
-}
+        <div class="eyebrow">
+          Cloud Editorial Systems
+        </div>
 
-.cloud-points {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px 32px;
-}
+        <h2>
+          Deploy production-ready
+          cloud editorial environments
+          without building infrastructure
+          from scratch.
+        </h2>
 
-.cloud-points div {
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
+        <p class="cloud-lede">
+          Managed Avid EOD environments powered by AWS,
+          remote workstations, shared storage systems,
+          and embedded operational support.
+        </p>
 
-.cloud-points strong {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: -.03em;
-  color: #fff;
-}
+      </div>
 
-.cloud-points p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.75;
-  color: #9ca8bc;
-}
+      <div class="cloud-panel reveal">
 
-/* PRICING */
+        <div class="cloud-row">
+          <span>Deploy</span>
+          <p>
+            Avid EOD deployment, remote workstations,
+            and shared storage configuration.
+          </p>
+        </div>
 
-.cloud-pricing {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
+        <div class="cloud-row">
+          <span>Operate</span>
+          <p>
+            Embedded AE support, media management,
+            turnovers, exports, and workflow coordination.
+          </p>
+        </div>
 
-.cloud-card {
-  padding: 34px;
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,.07);
-  background: linear-gradient(180deg, rgba(18,22,32,.96), rgba(10,12,18,.98));
-  box-shadow: 0 20px 60px rgba(0,0,0,.3);
-  backdrop-filter: blur(12px);
-  transition: transform .3s cubic-bezier(.16,1,.3,1), border-color .3s ease;
-}
+        <div class="cloud-row">
+          <span>Scale</span>
+          <p>
+            Expand from solo editorial seats
+            to multi-user production environments.
+          </p>
+        </div>
 
-.cloud-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0,217,255,.2);
-}
+      </div>
 
-.cloud-card.featured {
-  border-color: rgba(0,217,255,.2);
-  background: linear-gradient(180deg, rgba(0,217,255,.04), rgba(10,12,18,.98));
-}
+    </div>
 
-.cloud-tier {
-  margin-bottom: 16px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--cyan);
-}
+  </div>
 
-.cloud-card h3 {
-  margin-bottom: 22px;
-  font-size: 40px;
-  line-height: .96;
-  letter-spacing: -.06em;
-}
-
-.cloud-price {
-  display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  margin: 0 0 28px;
-  font-size: 68px;
-  font-weight: 900;
-  line-height: .88;
-  letter-spacing: -.08em;
-  color: #fff;
-}
-
-.cloud-price span {
-  margin-bottom: 8px;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -.02em;
-  color: #95a1b5;
-}
-
-.cloud-card ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.cloud-card li {
-  display: flex;
-  align-items: center;
-  min-height: 52px;
-  padding: 0;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  font-size: 16px;
-  color: #e6edf9;
-}
-
-.cloud-card li:last-child { border-bottom: none; }
-
-.cloud-card li::before {
-  content: "✓";
-  margin-right: 14px;
-  font-size: 14px;
-  font-weight: 900;
-  color: var(--success);
-}
-/* =========================================
-   CLOUD EDITORIAL
-========================================= */
-
-.cloud-editorial-section{
-  position:relative;
-  padding:140px 0;
-}
-
-.cloud-shell{
-  width:min(1320px,calc(100% - 80px));
-  margin:0 auto;
-}
-
-.cloud-copy{
-  max-width:880px;
-  margin-bottom:72px;
-}
-
-.cloud-copy h2{
-  margin:0 0 28px;
-  font-size:clamp(54px,4.6vw,82px);
-  line-height:.96;
-  letter-spacing:-.06em;
-  font-weight:900;
-  color:#f5f7fb;
-  max-width:860px;
-}
-
-.cloud-lede{
-  max-width:760px;
-  margin:0;
-  font-size:20px;
-  line-height:1.8;
-  color:#aab4c8;
-  letter-spacing:-.01em;
-}
-
-.cloud-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:28px;
-}
-
-.cloud-card{
-  position:relative;
-  padding:42px 38px;
-  border-radius:32px;
-  background:
-    linear-gradient(180deg,
-      rgba(18,24,44,.92),
-      rgba(8,10,18,.98));
-  border:1px solid rgba(90,120,255,.14);
-  overflow:hidden;
-}
-
-.cloud-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at top left,
-      rgba(0,225,255,.10),
-      transparent 42%);
-  pointer-events:none;
-}
-
-.cloud-label{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px 16px;
-  margin-bottom:28px;
-  border-radius:999px;
-  border:1px solid rgba(0,225,255,.26);
-  background:rgba(0,225,255,.06);
-  color:var(--cyan);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
-
-.cloud-card h3{
-  margin:0 0 18px;
-  font-size:32px;
-  line-height:1.08;
-  letter-spacing:-.045em;
-  font-weight:800;
-  color:#f5f7fb;
-}
-
-.cloud-card p{
-  margin:0;
-  font-size:17px;
-  line-height:1.75;
-  color:#9ba7bf;
-}
-
-@media (max-width:1100px){
-
-  .cloud-grid{
-    grid-template-columns:1fr;
-  }
-
-  .cloud-copy h2{
-    font-size:clamp(42px,9vw,68px);
-  }
-
-}
+</section>
 /* =========================================
    CTA
 ========================================= */
