@@ -694,8 +694,9 @@ p { color: var(--muted); line-height: 1.7; }
    GENERIC SECTIONS
 ========================================= */
 
-.section-pad { padding: 100px 36px; }
-
+.section-pad{
+  padding:120px 0;
+}
 .section-heading {
   max-width: 860px;
   margin: 0 auto 56px;
