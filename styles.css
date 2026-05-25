@@ -997,30 +997,34 @@ h3{
 }
 
 /* =========================================
-   TRUST STRIP — PREMIUM
+   TRUST INFRASTRUCTURE STRIP
 ========================================= */
 
 .trust-strip{
 
   position:relative;
 
-  padding:34px 0;
+  padding:54px 0;
+
+  overflow:hidden;
 
   border-top:
-    1px solid rgba(255,255,255,.05);
+    1px solid rgba(255,255,255,.04);
 
   border-bottom:
-    1px solid rgba(255,255,255,.05);
+    1px solid rgba(255,255,255,.04);
 
   background:
     linear-gradient(
-      180deg,
-      rgba(9,12,18,.92),
-      rgba(5,7,11,.98)
+      90deg,
+      rgba(0,217,255,.05) 0%,
+      rgba(6,8,14,.96) 28%,
+      rgba(8,10,18,.98) 72%,
+      rgba(140,70,255,.10) 100%
     );
-
-  overflow:hidden;
 }
+
+/* SOFT DEPTH */
 
 .trust-strip::before{
 
@@ -1032,74 +1036,124 @@ h3{
 
   background:
     radial-gradient(
-      circle at 15% 50%,
-      rgba(0,217,255,.06),
+      circle at 10% 50%,
+      rgba(0,217,255,.10),
       transparent 28%
     ),
     radial-gradient(
-      circle at 85% 50%,
-      rgba(140,70,255,.08),
-      transparent 30%
+      circle at 88% 50%,
+      rgba(140,70,255,.14),
+      transparent 32%
     );
 
   pointer-events:none;
 }
 
-.trust-inner{
+/* =========================================
+   INNER
+========================================= */
+
+.trust-shell{
 
   position:relative;
   z-index:2;
 
-  width:min(1320px, calc(100% - 72px));
+  width:min(1380px, calc(100% - 80px));
 
   margin:0 auto;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  display:grid;
 
-  gap:42px;
+  grid-template-columns:
+    minmax(420px, 520px)
+    minmax(520px, 1fr);
+
+  gap:64px;
+
+  align-items:center;
 }
+
+/* =========================================
+   COPY
+========================================= */
 
 .trust-copy{
 
-  max-width:520px;
-
-  font-size:18px;
-
-  line-height:1.5;
-
-  font-weight:600;
-
-  letter-spacing:-.02em;
-
-  color:#eef2fb;
-}
-
-.trust-tags{
-
   display:flex;
-  align-items:center;
-  justify-content:flex-end;
+  flex-direction:column;
 
-  flex-wrap:wrap;
-
-  gap:12px;
-
-  max-width:760px;
+  gap:18px;
 }
 
-.trust-tags span{
+.trust-label{
 
   display:inline-flex;
   align-items:center;
-  justify-content:center;
 
-  min-height:40px;
+  width:max-content;
+
+  min-height:38px;
 
   padding:0 16px;
 
   border-radius:999px;
+
+  border:
+    1px solid rgba(0,217,255,.20);
+
+  background:
+    rgba(0,217,255,.06);
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+
+  color:#00d9ff;
+}
+
+.trust-copy h3{
+
+  margin:0;
+
+  font-size:clamp(28px,2.2vw,42px);
+
+  line-height:1.08;
+
+  letter-spacing:-.05em;
+
+  font-weight:800;
+
+  color:#f5f7fc;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.trust-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:14px;
+}
+
+.trust-grid span{
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:74px;
+
+  padding:0 20px;
+
+  border-radius:22px;
 
   border:
     1px solid rgba(255,255,255,.08);
@@ -1111,26 +1165,29 @@ h3{
       rgba(255,255,255,.025)
     );
 
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
 
-  font-size:11px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04);
+
+  font-size:12px;
   font-weight:800;
 
   letter-spacing:.12em;
 
   text-transform:uppercase;
 
-  color:#cfd7e6;
+  color:#d9e1f2;
 
   transition:
-    border-color .2s ease,
     transform .2s ease,
+    border-color .2s ease,
     background .2s ease;
 }
 
-.trust-tags span:hover{
+.trust-grid span:hover{
 
-  transform:translateY(-2px);
+  transform:translateY(-3px);
 
   border-color:
     rgba(0,217,255,.18);
@@ -1145,6 +1202,53 @@ h3{
   color:#fff;
 }
 
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width:1080px){
+
+  .trust-shell{
+
+    grid-template-columns:1fr;
+
+    gap:32px;
+  }
+
+  .trust-grid{
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:768px){
+
+  .trust-strip{
+
+    padding:42px 0;
+  }
+
+  .trust-shell{
+
+    width:calc(100% - 32px);
+  }
+
+  .trust-copy h3{
+
+    font-size:34px;
+  }
+
+  .trust-grid{
+
+    grid-template-columns:1fr;
+  }
+
+  .trust-grid span{
+
+    min-height:62px;
+  }
+}
 /* =========================================
    MOBILE
 ========================================= */
