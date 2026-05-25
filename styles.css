@@ -1305,31 +1305,31 @@ h3{
   }
 }
 /* =========================================
-   BOTTLENECK SECTION — PREMIUM REBUILD
+   BOTTLENECK — FINAL CLEAN VERSION
 ========================================= */
 
 .bottleneck-section{
   position:relative;
-  overflow:hidden;
+  padding-top:120px;
 }
 
-/* ---------- LAYOUT ---------- */
+/* ---------- MAIN LAYOUT ---------- */
 
 .bottleneck-grid{
+
+  width:min(1400px, calc(100% - 96px));
+
+  margin:0 auto 56px;
 
   display:grid;
 
   grid-template-columns:
-    minmax(0, 1fr)
-    420px;
+    minmax(760px, 1fr)
+    360px;
 
-  gap:72px;
+  gap:64px;
 
   align-items:start;
-
-  width:min(1380px, calc(100% - 80px));
-
-  margin:0 auto 54px;
 }
 
 /* =========================================
@@ -1337,13 +1337,7 @@ h3{
 ========================================= */
 
 .bottleneck-copy{
-
-  max-width:860px;
-}
-
-.bottleneck-copy .eyebrow{
-
-  margin-bottom:28px;
+  max-width:none;
 }
 
 /* ---------- HEADLINE ---------- */
@@ -1352,31 +1346,29 @@ h3{
 
   margin:0 0 34px;
 
-  font-size:clamp(58px, 5vw, 96px);
+  max-width:1100px;
 
-  line-height:.94;
-
-  letter-spacing:-.072em;
+  font-size:clamp(72px, 6vw, 108px);
 
   font-weight:900;
 
+  line-height:.9;
+
+  letter-spacing:-.085em;
+
   color:#f7f8fb;
-
-  text-wrap:balance;
-
-  max-width:920px;
 }
 
-/* ---------- BRAND GRADIENT ---------- */
+/* ---------- GRADIENT ---------- */
 
-.bottleneck-copy .gradient-word{
+.gradient-word{
 
   background:
     linear-gradient(
       90deg,
       #ff5a36 0%,
       #ff2f92 42%,
-      #b933ff 76%,
+      #c12fff 72%,
       #4f7dff 100%
     );
 
@@ -1388,7 +1380,7 @@ h3{
   color:transparent;
 }
 
-/* ---------- BODY ---------- */
+/* ---------- BODY COPY ---------- */
 
 .bottleneck-copy p{
 
@@ -1396,13 +1388,13 @@ h3{
 
   margin:0;
 
-  font-size:19px;
+  font-size:20px;
 
   line-height:1.82;
 
   letter-spacing:-.015em;
 
-  color:#aab4c8;
+  color:#a9b4c8;
 }
 
 /* =========================================
@@ -1411,9 +1403,7 @@ h3{
 
 .workflow-panel{
 
-  position:relative;
-
-  padding:40px 40px 36px;
+  padding:38px;
 
   border-radius:34px;
 
@@ -1423,17 +1413,17 @@ h3{
   background:
     linear-gradient(
       180deg,
-      rgba(18,22,32,.96),
+      rgba(18,24,36,.96),
       rgba(10,12,18,.98)
     );
 
   box-shadow:
-    0 28px 90px rgba(0,0,0,.36);
+    0 24px 70px rgba(0,0,0,.36);
 
   backdrop-filter:blur(14px);
 }
 
-/* ---------- PANEL LABEL ---------- */
+/* ---------- LABEL ---------- */
 
 .workflow-panel-label{
 
@@ -1449,28 +1439,36 @@ h3{
   color:#00d9ff;
 }
 
-/* ---------- PANEL ITEMS ---------- */
+/* ---------- ITEMS ---------- */
 
 .workflow-panel-grid{
 
   display:flex;
   flex-direction:column;
 
-  gap:30px;
+  gap:28px;
 }
-
-/* ---------- SINGLE ITEM ---------- */
 
 .workflow-item{
 
   display:grid;
 
-  grid-template-columns:14px 1fr;
+  grid-template-columns:12px 1fr;
 
   gap:18px;
 
   align-items:start;
 }
+
+.workflow-item:not(:last-child){
+
+  padding-bottom:28px;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.06);
+}
+
+/* ---------- DOT ---------- */
 
 .workflow-dot{
 
@@ -1484,7 +1482,7 @@ h3{
   background:#59ffb2;
 
   box-shadow:
-    0 0 14px rgba(89,255,178,.7);
+    0 0 14px rgba(89,255,178,.75);
 }
 
 /* ---------- COPY ---------- */
@@ -1493,15 +1491,15 @@ h3{
 
   margin:0 0 10px;
 
-  font-size:20px;
+  font-size:18px;
 
-  line-height:1.15;
+  line-height:1.2;
 
   letter-spacing:-.045em;
 
   font-weight:800;
 
-  color:#f6f8fc;
+  color:#fff;
 }
 
 .workflow-item p{
@@ -1510,19 +1508,9 @@ h3{
 
   font-size:15px;
 
-  line-height:1.78;
+  line-height:1.75;
 
-  color:#9aa8bf;
-}
-
-/* ---------- DIVIDERS ---------- */
-
-.workflow-item:not(:last-child){
-
-  padding-bottom:28px;
-
-  border-bottom:
-    1px solid rgba(255,255,255,.06);
+  color:#97a6bd;
 }
 
 /* =========================================
@@ -1531,14 +1519,14 @@ h3{
 
 .value-strip{
 
+  width:min(1400px, calc(100% - 96px));
+
+  margin:0 auto;
+
   display:grid;
 
   grid-template-columns:
-    repeat(4, minmax(0,1fr));
-
-  width:min(1380px, calc(100% - 80px));
-
-  margin:0 auto;
+    repeat(4, 1fr);
 
   overflow:hidden;
 
@@ -1558,20 +1546,18 @@ h3{
     0 24px 70px rgba(0,0,0,.28);
 }
 
-/* ---------- VALUE ITEM ---------- */
+/* ---------- ITEM ---------- */
 
 .value-item{
 
-  position:relative;
+  min-height:250px;
+
+  padding:42px 32px;
 
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-
-  min-height:250px;
-
-  padding:42px 28px;
 
   text-align:center;
 }
@@ -1587,10 +1573,10 @@ h3{
 .value-item i,
 .value-item svg{
 
-  width:46px;
-  height:46px;
+  width:42px;
+  height:42px;
 
-  margin-bottom:24px;
+  margin-bottom:22px;
 
   opacity:.95;
 }
@@ -1601,22 +1587,20 @@ h3{
 
   display:block;
 
-  max-width:220px;
-
   margin-bottom:14px;
 
-  font-size:30px;
+  font-size:24px;
 
-  line-height:1.04;
+  line-height:1.08;
 
-  letter-spacing:-.055em;
+  letter-spacing:-.05em;
 
   font-weight:800;
 
-  color:#ffffff;
+  color:#fff;
 }
 
-/* ---------- DESCRIPTION ---------- */
+/* ---------- BODY ---------- */
 
 .value-item span{
 
@@ -1626,7 +1610,7 @@ h3{
 
   line-height:1.75;
 
-  color:#98a6bc;
+  color:#97a6bd;
 }
 
 /* =========================================
@@ -1637,20 +1621,19 @@ h3{
 
   .bottleneck-grid{
 
+    width:calc(100% - 40px);
+
     grid-template-columns:1fr;
 
-    gap:40px;
-  }
-
-  .workflow-panel{
-
-    max-width:100%;
+    gap:42px;
   }
 
   .value-strip{
 
+    width:calc(100% - 40px);
+
     grid-template-columns:
-      repeat(2, minmax(0,1fr));
+      repeat(2,1fr);
   }
 
   .value-item:nth-child(2){
@@ -1676,14 +1659,14 @@ h3{
   .bottleneck-grid,
   .value-strip{
 
-    width:calc(100% - 32px);
+    width:calc(100% - 28px);
   }
 
   .bottleneck-copy h2{
 
     font-size:15vw;
 
-    line-height:.96;
+    line-height:.94;
   }
 
   .bottleneck-copy p{
@@ -1694,11 +1677,6 @@ h3{
   .workflow-panel{
 
     padding:28px 24px;
-  }
-
-  .workflow-item h4{
-
-    font-size:18px;
   }
 
   .value-strip{
@@ -1717,11 +1695,6 @@ h3{
 
     border-bottom:
       1px solid rgba(255,255,255,.06);
-  }
-
-  .value-item strong{
-
-    font-size:24px;
   }
 }
 /* =========================================
