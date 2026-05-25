@@ -1235,67 +1235,179 @@ h3 {
 /* =========================================
    CLOUD EDITORIAL
 ========================================= */
+/* =========================================
+   CLOUD EDITORIAL
+========================================= */
 
-<section id="cloud-editorial" class="section-pad cloud-editorial-section">
+.cloud-editorial-section{
+  position:relative;
+  padding:160px 0;
+  overflow:hidden;
+}
 
-  <div class="cloud-shell">
+.cloud-shell{
+  width:min(1480px, calc(100% - 100px));
+  margin:0 auto;
+}
 
-    <div class="cloud-layout">
+.cloud-layout{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 420px;
+  gap:72px;
+  align-items:start;
+}
 
-      <div class="cloud-copy reveal">
+.cloud-copy{
+  max-width:980px;
+}
 
-        <div class="eyebrow">
-          Cloud Editorial Systems
-        </div>
+.cloud-copy .eyebrow{
+  margin-bottom:34px;
+}
 
-        <h2>
-          Deploy production-ready
-          cloud editorial environments
-          without building infrastructure
-          from scratch.
-        </h2>
+.cloud-copy h2{
+  max-width:980px;
 
-        <p class="cloud-lede">
-          Managed Avid EOD environments powered by AWS,
-          remote workstations, shared storage systems,
-          and embedded operational support.
-        </p>
+  margin:0 0 34px;
 
-      </div>
+  font-size:clamp(68px, 5.2vw, 104px);
 
-      <div class="cloud-panel reveal">
+  line-height:.92;
 
-        <div class="cloud-row">
-          <span>Deploy</span>
-          <p>
-            Avid EOD deployment, remote workstations,
-            and shared storage configuration.
-          </p>
-        </div>
+  letter-spacing:-.06em;
 
-        <div class="cloud-row">
-          <span>Operate</span>
-          <p>
-            Embedded AE support, media management,
-            turnovers, exports, and workflow coordination.
-          </p>
-        </div>
+  font-weight:900;
 
-        <div class="cloud-row">
-          <span>Scale</span>
-          <p>
-            Expand from solo editorial seats
-            to multi-user production environments.
-          </p>
-        </div>
+  color:#f5f7fb;
 
-      </div>
+  text-wrap:balance;
+}
 
-    </div>
+.cloud-lede{
+  max-width:760px;
 
-  </div>
+  margin:0;
 
-</section>
+  font-size:19px;
+
+  line-height:1.85;
+
+  letter-spacing:-.01em;
+
+  color:#aab4c8;
+}
+
+.cloud-panel{
+  position:relative;
+
+  padding:38px 34px;
+
+  border-radius:32px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,24,36,.96),
+      rgba(10,12,18,.98)
+    );
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.36);
+
+  backdrop-filter:blur(14px);
+}
+
+.cloud-row{
+  padding:0 0 28px;
+}
+
+.cloud-row:not(:last-child){
+  margin-bottom:28px;
+
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.cloud-row span{
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  min-height:34px;
+
+  margin-bottom:18px;
+
+  padding:0 16px;
+
+  border-radius:999px;
+
+  border:1px solid rgba(0,217,255,.18);
+
+  background:rgba(0,217,255,.05);
+
+  color:var(--cyan);
+
+  font-size:11px;
+
+  font-weight:800;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+}
+
+.cloud-row p{
+  margin:0;
+
+  font-size:15px;
+
+  line-height:1.9;
+
+  color:#9aa7bc;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1180px){
+
+  .cloud-layout{
+    grid-template-columns:1fr;
+  }
+
+  .cloud-copy h2{
+    font-size:clamp(52px, 9vw, 82px);
+  }
+
+  .cloud-panel{
+    max-width:100%;
+  }
+}
+
+@media (max-width: 768px){
+
+  .cloud-editorial-section{
+    padding:100px 0 80px;
+  }
+
+  .cloud-shell{
+    width:calc(100% - 32px);
+  }
+
+  .cloud-copy h2{
+    font-size:clamp(42px, 12vw, 64px);
+    line-height:.94;
+  }
+
+  .cloud-panel{
+    padding:28px 22px;
+  }
+}
+
 /* =========================================
    CTA
 ========================================= */
