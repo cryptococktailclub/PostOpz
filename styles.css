@@ -1392,21 +1392,27 @@ h3 {
 ========================================= */
 
 .infra-card h3{
+  max-width:420px;
+
   margin:0 0 28px;
 
-  font-size:44px;
+  font-size:clamp(34px, 2.2vw, 48px);
 
-  line-height:.96;
+  line-height:1.02;
 
-  letter-spacing:-.05em;
+  letter-spacing:-.055em;
 
   font-weight:900;
 
   color:#fff;
+
+  text-wrap:balance;
 }
 
 .infra-primary h3{
-  font-size:58px;
+  max-width:520px;
+
+  font-size:clamp(42px, 2.8vw, 58px);
 }
 
 .infra-list{
@@ -1423,11 +1429,13 @@ h3 {
 .infra-list li{
   position:relative;
 
-  padding-left:24px;
+  padding-left:22px;
 
-  font-size:17px;
+  font-size:16px;
 
-  line-height:1.75;
+  line-height:1.65;
+
+  letter-spacing:-.01em;
 
   color:#aab4c8;
 }
@@ -1450,7 +1458,15 @@ h3 {
   box-shadow:
     0 0 16px rgba(77,255,184,.7);
 }
+.infrastructure-grid{
+  align-items:stretch;
+}
 
+.infra-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
 /* =========================================
    RESPONSIVE
 ========================================= */
