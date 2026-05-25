@@ -1305,42 +1305,50 @@ h3{
   }
 }
 /* =========================================
-   BOTTLENECK SECTION — FINAL MATCH
+   BOTTLENECK SECTION — CLEAN FINAL
 ========================================= */
 
 .bottleneck-section{
+
   position:relative;
-  padding:120px 0 90px;
+
+  padding:140px 0 110px;
+
+  overflow:hidden;
 }
 
-/* ---------- LAYOUT ---------- */
+/* =========================================
+   MAIN LAYOUT
+========================================= */
 
 .bottleneck-grid{
 
-  width:min(1440px, calc(100% - 120px));
+  width:min(1480px, calc(100% - 120px));
 
-  margin:0 auto 58px;
+  margin:0 auto;
 
   display:grid;
 
   grid-template-columns:
-    minmax(860px, 1fr)
-    390px;
+    minmax(0, 920px)
+    420px;
 
-  gap:72px;
+  gap:90px;
 
-  align-items:center;
+  align-items:start;
 }
 
 /* =========================================
-   LEFT COPY
+   LEFT COLUMN
 ========================================= */
 
 .bottleneck-copy{
-  max-width:none;
+
+  max-width:920px;
 }
 
 .bottleneck-copy .eyebrow{
+
   margin-bottom:34px;
 }
 
@@ -1348,11 +1356,11 @@ h3{
 
 .bottleneck-copy h2{
 
-  max-width:980px;
+  max-width:920px;
 
-  margin:0 0 40px;
+  margin:0;
 
-  font-size:clamp(76px, 6vw, 108px);
+  font-size:clamp(78px, 6vw, 112px);
 
   line-height:.88;
 
@@ -1360,10 +1368,10 @@ h3{
 
   font-weight:900;
 
-  color:#f7f8fb;
+  color:#f5f7fb;
 }
 
-/* ---------- GRADIENT ---------- */
+/* ---------- GRADIENT WORD ---------- */
 
 .gradient-word{
 
@@ -1388,10 +1396,10 @@ h3{
 
 .bottleneck-divider{
 
-  width:64px;
+  width:74px;
   height:2px;
 
-  margin-bottom:34px;
+  margin:42px 0 36px;
 
   background:
     linear-gradient(
@@ -1401,9 +1409,9 @@ h3{
     );
 }
 
-/* ---------- BODY ---------- */
+/* ---------- BODY COPY ---------- */
 
-.bottleneck-copy p{
+.bottleneck-lede{
 
   max-width:760px;
 
@@ -1411,9 +1419,9 @@ h3{
 
   font-size:20px;
 
-  line-height:1.82;
+  line-height:1.9;
 
-  letter-spacing:-.015em;
+  letter-spacing:-.01em;
 
   color:#aab4c8;
 }
@@ -1424,9 +1432,11 @@ h3{
 
 .workflow-panel{
 
-  padding:40px 38px;
+  position:relative;
 
-  border-radius:34px;
+  padding:42px 40px;
+
+  border-radius:36px;
 
   border:
     1px solid rgba(255,255,255,.08);
@@ -1439,16 +1449,14 @@ h3{
     );
 
   box-shadow:
-    0 24px 80px rgba(0,0,0,.34);
+    0 30px 90px rgba(0,0,0,.36);
 
   backdrop-filter:blur(14px);
 }
 
-/* ---------- LABEL ---------- */
-
 .workflow-panel-label{
 
-  margin-bottom:28px;
+  margin-bottom:34px;
 
   font-size:11px;
   font-weight:900;
@@ -1460,23 +1468,19 @@ h3{
   color:#00d9ff;
 }
 
-/* ---------- GRID ---------- */
-
 .workflow-panel-grid{
 
   display:flex;
   flex-direction:column;
 
-  gap:28px;
+  gap:30px;
 }
-
-/* ---------- ITEM ---------- */
 
 .workflow-item{
 
   display:grid;
 
-  grid-template-columns:12px 1fr;
+  grid-template-columns:14px 1fr;
 
   gap:18px;
 
@@ -1485,18 +1489,16 @@ h3{
 
 .workflow-item:not(:last-child){
 
-  padding-bottom:26px;
+  padding-bottom:28px;
 
   border-bottom:
     1px solid rgba(255,255,255,.06);
 }
 
-/* ---------- DOT ---------- */
-
 .workflow-dot{
 
-  width:8px;
-  height:8px;
+  width:10px;
+  height:10px;
 
   margin-top:10px;
 
@@ -1505,10 +1507,8 @@ h3{
   background:#59ffb2;
 
   box-shadow:
-    0 0 14px rgba(89,255,178,.7);
+    0 0 18px rgba(89,255,178,.7);
 }
-
-/* ---------- COPY ---------- */
 
 .workflow-item h4{
 
@@ -1516,7 +1516,7 @@ h3{
 
   font-size:18px;
 
-  line-height:1.18;
+  line-height:1.2;
 
   letter-spacing:-.04em;
 
@@ -1531,9 +1531,9 @@ h3{
 
   font-size:15px;
 
-  line-height:1.7;
+  line-height:1.75;
 
-  color:#9ba8bd;
+  color:#9aa7bc;
 }
 
 /* =========================================
@@ -1542,9 +1542,9 @@ h3{
 
 .value-strip{
 
-  width:min(1440px, calc(100% - 120px));
+  width:min(1480px, calc(100% - 120px));
 
-  margin:0 auto;
+  margin:74px auto 0;
 
   display:grid;
 
@@ -1553,7 +1553,7 @@ h3{
 
   overflow:hidden;
 
-  border-radius:34px;
+  border-radius:36px;
 
   border:
     1px solid rgba(255,255,255,.08);
@@ -1566,21 +1566,21 @@ h3{
     );
 
   box-shadow:
-    0 24px 70px rgba(0,0,0,.28);
+    0 24px 80px rgba(0,0,0,.3);
 }
-
-/* ---------- VALUE ITEM ---------- */
 
 .value-item{
 
-  min-height:270px;
+  position:relative;
 
-  padding:48px 34px;
+  min-height:290px;
+
+  padding:56px 40px 44px;
 
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-start;
 
   text-align:center;
 }
@@ -1593,15 +1593,33 @@ h3{
 
 /* ---------- ICON ---------- */
 
-.value-item i,
-.value-item svg{
+.value-icon{
 
-  width:44px;
-  height:44px;
+  width:74px;
+  height:74px;
 
-  margin-bottom:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  opacity:.95;
+  margin-bottom:30px;
+
+  border-radius:999px;
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0,217,255,.10),
+      rgba(255,255,255,.02)
+    );
+
+  font-size:28px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04);
 }
 
 /* ---------- TITLE ---------- */
@@ -1610,11 +1628,13 @@ h3{
 
   display:block;
 
-  margin-bottom:16px;
+  max-width:220px;
 
-  font-size:24px;
+  margin-bottom:18px;
 
-  line-height:1.08;
+  font-size:22px;
+
+  line-height:1.14;
 
   letter-spacing:-.05em;
 
@@ -1623,17 +1643,19 @@ h3{
   color:#fff;
 }
 
-/* ---------- BODY ---------- */
+/* ---------- DESCRIPTION ---------- */
 
-.value-item span{
+.value-item p{
 
-  max-width:250px;
+  max-width:260px;
+
+  margin:0;
 
   font-size:15px;
 
   line-height:1.75;
 
-  color:#97a6bd;
+  color:#98a5ba;
 }
 
 /* =========================================
@@ -1648,7 +1670,7 @@ h3{
 
     grid-template-columns:1fr;
 
-    gap:42px;
+    gap:48px;
   }
 
   .value-strip{
@@ -1660,24 +1682,33 @@ h3{
   }
 
   .value-item:nth-child(2){
+
     border-right:none;
   }
 
   .value-item{
+
     border-bottom:
       1px solid rgba(255,255,255,.06);
   }
 
   .value-item:last-child,
   .value-item:nth-last-child(2){
+
     border-bottom:none;
   }
 }
 
 @media (max-width:768px){
 
+  .bottleneck-section{
+
+    padding:100px 0 80px;
+  }
+
   .bottleneck-grid,
   .value-strip{
+
     width:calc(100% - 28px);
   }
 
@@ -1689,16 +1720,18 @@ h3{
   }
 
   .workflow-panel{
-    padding:28px 24px;
+
+    padding:30px 24px;
   }
 
   .value-strip{
+
     grid-template-columns:1fr;
   }
 
   .value-item{
 
-    min-height:190px;
+    min-height:220px;
 
     border-right:none !important;
   }
