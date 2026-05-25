@@ -1174,7 +1174,7 @@ h3{
 }
 
 /* =========================================
-   CLOUD
+   CLOUD EDITORIAL SECTION
 ========================================= */
 
 .cloud-shell{
@@ -1182,22 +1182,130 @@ h3{
   display:grid;
 
   grid-template-columns:
-    minmax(0,1.1fr)
-    minmax(340px,460px);
+    minmax(0,1.15fr)
+    minmax(360px,.78fr);
 
-  gap:32px;
+  gap:28px;
 
-  align-items:start;
+  align-items:stretch;
 
   max-width:1320px;
 
   margin:0 auto;
 }
 
-.cloud-copy,
+/* ---------- LEFT FEATURE PANEL ---------- */
+
+.cloud-copy{
+
+  padding:54px 54px 48px;
+
+  border-radius:34px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20,24,34,.96),
+      rgba(10,12,18,.98)
+    );
+
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.34);
+
+  overflow:hidden;
+}
+
+.cloud-copy .eyebrow,
+.cloud-copy .service-pill{
+
+  margin-bottom:28px;
+}
+
+.cloud-copy h2{
+
+  max-width:760px;
+
+  margin-bottom:28px;
+
+  font-size:clamp(58px,5vw,92px);
+
+  line-height:.92;
+
+  letter-spacing:-.075em;
+}
+
+.cloud-copy p{
+
+  max-width:760px;
+
+  font-size:20px;
+
+  line-height:1.75;
+
+  color:#b8c2d3;
+}
+
+/* ---------- FEATURE GRID ---------- */
+
+.cloud-points{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  gap:24px;
+
+  margin-top:42px;
+}
+
+.cloud-points div{
+
+  padding:0;
+
+  border:none;
+}
+
+.cloud-points strong{
+
+  display:block;
+
+  margin-bottom:10px;
+
+  font-size:18px;
+  font-weight:800;
+
+  letter-spacing:-.03em;
+
+  color:#fff;
+}
+
+.cloud-points span,
+.cloud-points p{
+
+  font-size:15px;
+
+  line-height:1.7;
+
+  color:#9ca8bc;
+}
+
+/* ---------- RIGHT PRICING COLUMN ---------- */
+
+.cloud-pricing{
+
+  display:flex;
+  flex-direction:column;
+
+  gap:28px;
+}
+
+/* ---------- PRICING CARD ---------- */
+
 .cloud-card{
 
-  padding:36px;
+  padding:38px 36px;
 
   border-radius:32px;
 
@@ -1206,62 +1314,76 @@ h3{
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.04),
-      rgba(255,255,255,.02)
+      rgba(18,22,32,.96),
+      rgba(10,12,18,.98)
     );
 
   box-shadow:
-    0 20px 60px rgba(0,0,0,.28);
+    0 20px 60px rgba(0,0,0,.3);
+
+  transition:
+    transform .22s ease,
+    border-color .22s ease;
 }
 
-.cloud-points{
+.cloud-card:hover{
 
-  display:grid;
+  transform:translateY(-4px);
 
-  gap:22px;
-
-  margin-top:34px;
+  border-color:
+    rgba(0,217,255,.2);
 }
 
-.cloud-points div{
+.cloud-card .service-pill{
 
-  padding-bottom:18px;
-
-  border-bottom:1px solid rgba(255,255,255,.06);
+  margin-bottom:18px;
 }
 
-.cloud-points strong{
+.cloud-card h3{
 
-  display:block;
+  margin-bottom:24px;
 
-  margin-bottom:6px;
+  font-size:42px;
 
-  color:#fff;
-}
-
-.cloud-pricing{
-
-  display:grid;
-
-  gap:22px;
-}
-
-.cloud-price{
-
-  margin:24px 0;
-
-  font-size:52px;
-  font-weight:900;
+  line-height:.96;
 
   letter-spacing:-.06em;
 }
 
+/* ---------- PRICE ---------- */
+
+.cloud-price{
+
+  display:flex;
+  align-items:flex-end;
+
+  gap:6px;
+
+  margin:0 0 30px;
+
+  font-size:76px;
+  font-weight:900;
+
+  line-height:.9;
+
+  letter-spacing:-.08em;
+
+  color:#fff;
+}
+
 .cloud-price span{
 
-  font-size:16px;
+  margin-bottom:10px;
 
-  color:#95a0b4;
+  font-size:18px;
+  font-weight:700;
+
+  letter-spacing:-.02em;
+
+  color:#95a1b5;
 }
+
+/* ---------- FEATURE LIST ---------- */
 
 .cloud-card ul{
 
@@ -1273,40 +1395,86 @@ h3{
 
 .cloud-card li{
 
-  padding:12px 0;
+  display:flex;
+  align-items:center;
 
-  border-bottom:1px solid rgba(255,255,255,.06);
+  min-height:56px;
+
+  padding:0;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.06);
+
+  font-size:18px;
+
+  color:#e6edf9;
 }
 
 .cloud-card li::before{
 
   content:"✓";
 
-  margin-right:10px;
+  margin-right:14px;
 
-  color:var(--success);
+  font-size:16px;
+  font-weight:900;
+
+  color:#59ffb2;
 }
+
 /* =========================================
-   CLOUD FEATURE PANEL
+   RESPONSIVE
 ========================================= */
 
-.cloud-feature{
+@media (max-width:1180px){
 
-  padding:36px;
+  .cloud-shell{
 
-  border-radius:32px;
+    grid-template-columns:1fr;
+  }
 
-  border:1px solid rgba(255,255,255,.08);
+  .cloud-copy{
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.04),
-      rgba(255,255,255,.02)
-    );
+    padding:42px 34px;
+  }
 
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.28);
+  .cloud-points{
+
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:768px){
+
+  .cloud-copy h2{
+
+    font-size:15vw;
+  }
+
+  .cloud-copy,
+  .cloud-card{
+
+    padding:32px 24px;
+  }
+
+  .cloud-price{
+
+    font-size:58px;
+  }
+
+  .cloud-card h3{
+
+    font-size:34px;
+  }
+
+  .cloud-card li{
+
+    min-height:auto;
+
+    padding:12px 0;
+
+    font-size:16px;
+  }
 }
 /* =========================================
    CTA
