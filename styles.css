@@ -1233,38 +1233,39 @@ h3 {
 }
 
 /* =========================================
-   CLOUD EDITORIAL
+   REMOTE EDITORIAL INFRASTRUCTURE
 ========================================= */
 
-.cloud-editorial-section{
+.infrastructure-section{
   position:relative;
-  padding:160px 0;
+  padding:180px 0;
   overflow:hidden;
 }
 
-.cloud-shell{
+.infrastructure-shell{
   width:min(1480px, calc(100% - 100px));
   margin:0 auto;
 }
 
-.cloud-layout{
-  display:flex;
-  flex-direction:column;
-  gap:72px;
+/* =========================================
+   HEADER
+========================================= */
+
+.infrastructure-header{
+  max-width:1180px;
+  margin-bottom:90px;
 }
 
-.cloud-copy{
-  max-width:1080px;
+.infrastructure-header .eyebrow{
+  margin-bottom:34px;
 }
 
-.cloud-copy .eyebrow{
-  margin-bottom:30px;
-}
+.infrastructure-header h2{
+  max-width:1200px;
 
-.cloud-copy h2{
-  margin:0 0 30px;
+  margin:0 0 34px;
 
-  font-size:clamp(64px, 5vw, 98px);
+  font-size:clamp(64px, 5vw, 96px);
 
   line-height:.94;
 
@@ -1274,26 +1275,89 @@ h3 {
 
   color:#f5f7fb;
 
-  max-width:1200px;
+  text-wrap:balance;
 }
 
-.cloud-lede{
+.infrastructure-lede{
   max-width:820px;
+
+  margin:0;
 
   font-size:20px;
 
-  line-height:1.8;
+  line-height:1.9;
+
+  letter-spacing:-.01em;
 
   color:#aab4c8;
 }
 
+/* =========================================
+   GRID
+========================================= */
 
-  grid-template-columns:repeat(3, 1fr);
+.infrastructure-grid{
+  display:grid;
 
-  gap:24px;
+  grid-template-columns:1.2fr 1fr 1fr;
+
+  gap:28px;
+
+  align-items:stretch;
 }
 
-.cloud-system-label{
+/* =========================================
+   CARDS
+========================================= */
+
+.infra-card{
+  position:relative;
+
+  min-height:420px;
+
+  padding:38px;
+
+  border-radius:34px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,24,36,.96),
+      rgba(10,12,18,.98)
+    );
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.34);
+
+  overflow:hidden;
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+.infra-card:hover{
+  transform:translateY(-6px);
+
+  border-color:rgba(0,217,255,.18);
+
+  box-shadow:
+    0 40px 110px rgba(0,0,0,.42),
+    0 0 40px rgba(0,217,255,.06);
+}
+
+.infra-primary{
+  min-height:520px;
+}
+
+/* =========================================
+   LABELS
+========================================= */
+
+.infra-label{
   display:inline-flex;
 
   align-items:center;
@@ -1323,208 +1387,127 @@ h3 {
   text-transform:uppercase;
 }
 
-  .cloud-copy h2{
-    font-size:clamp(52px, 8vw, 82px);
-  }
-}
-
-@media (max-width: 768px){
-
-  .cloud-editorial-section{
-    padding:100px 0 80px;
-  }
-
-  .cloud-shell{
-    width:calc(100% - 32px);
-  }
-
-  .cloud-copy h2{
-    font-size:clamp(40px, 12vw, 62px);
-  }
-}
 /* =========================================
-   CLOUD SYSTEM LAYOUT
+   TYPOGRAPHY
 ========================================= */
 
-.cloud-system-layout{
-  display:grid;
+.infra-card h3{
+  margin:0 0 28px;
 
-  grid-template-columns:1.2fr .8fr;
+  font-size:44px;
 
-  gap:28px;
+  line-height:.96;
 
-  align-items:stretch;
-
-  margin-top:72px;
-}
-
-.cloud-primary-card{
-  position:relative;
-
-  min-height:420px;
-
-  padding:44px;
-
-  border-radius:34px;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(18,24,36,.96),
-      rgba(10,12,18,.98)
-    );
-
-  box-shadow:
-    0 30px 100px rgba(0,0,0,.38);
-}
-
-.cloud-primary-card h3{
-  max-width:720px;
-
-  margin:0 0 26px;
-
-  font-size:58px;
-
-  line-height:.94;
-
-  letter-spacing:-.055em;
+  letter-spacing:-.05em;
 
   font-weight:900;
 
   color:#fff;
 }
 
-.cloud-primary-card p{
-  max-width:620px;
+.infra-primary h3{
+  font-size:58px;
+}
+
+.infra-list{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
 
   margin:0;
+  padding:0;
 
-  font-size:18px;
+  list-style:none;
+}
 
-  line-height:1.9;
+.infra-list li{
+  position:relative;
+
+  padding-left:24px;
+
+  font-size:17px;
+
+  line-height:1.75;
 
   color:#aab4c8;
 }
 
-.cloud-secondary-grid{
-  display:grid;
+.infra-list li::before{
+  content:"";
 
-  grid-template-rows:1fr 1fr;
+  position:absolute;
 
-  gap:28px;
-}
+  top:12px;
+  left:0;
 
-.cloud-secondary-card{
-  position:relative;
-
-  padding:34px;
-
-  border-radius:30px;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(18,24,36,.96),
-      rgba(10,12,18,.98)
-    );
-
-  box-shadow:
-    0 20px 70px rgba(0,0,0,.28);
-}
-
-.cloud-secondary-card h4{
-  margin:0 0 18px;
-
-  font-size:34px;
-
-  line-height:1;
-
-  letter-spacing:-.05em;
-
-  color:#fff;
-}
-
-.cloud-secondary-card p{
-  margin:0;
-
-  font-size:16px;
-
-  line-height:1.85;
-
-  color:#9aa7bc;
-}
-
-.cloud-system-label{
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  min-height:34px;
-
-  margin-bottom:26px;
-
-  padding:0 16px;
+  width:8px;
+  height:8px;
 
   border-radius:999px;
 
-  border:1px solid rgba(0,217,255,.18);
+  background:#4dffb8;
 
-  background:rgba(0,217,255,.05);
-
-  color:var(--cyan);
-
-  font-size:11px;
-
-  font-weight:800;
-
-  letter-spacing:.16em;
-
-  text-transform:uppercase;
+  box-shadow:
+    0 0 16px rgba(77,255,184,.7);
 }
 
-@media (max-width: 1180px){
+/* =========================================
+   RESPONSIVE
+========================================= */
 
-  .cloud-system-layout{
+@media (max-width: 1280px){
+
+  .infrastructure-grid{
     grid-template-columns:1fr;
   }
 
-  .cloud-primary-card h3{
-    font-size:46px;
+  .infra-card,
+  .infra-primary{
+    min-height:auto;
   }
 
-  .cloud-secondary-grid{
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:auto;
+  .infra-primary h3{
+    font-size:48px;
   }
 }
 
 @media (max-width: 768px){
 
-  .cloud-system-layout{
-    gap:20px;
+  .infrastructure-section{
+    padding:110px 0 90px;
   }
 
-  .cloud-primary-card,
-  .cloud-secondary-card{
+  .infrastructure-shell{
+    width:calc(100% - 32px);
+  }
+
+  .infrastructure-header{
+    margin-bottom:56px;
+  }
+
+  .infrastructure-header h2{
+    font-size:clamp(42px, 12vw, 64px);
+  }
+
+  .infrastructure-lede{
+    font-size:18px;
+    line-height:1.8;
+  }
+
+  .infra-card{
     padding:28px 24px;
   }
 
-  .cloud-primary-card h3{
-    font-size:36px;
+  .infra-card h3{
+    font-size:34px;
   }
 
-  .cloud-secondary-grid{
-    grid-template-columns:1fr;
+  .infra-primary h3{
+    font-size:40px;
   }
 
-  .cloud-secondary-card h4{
-    font-size:28px;
+  .infra-list li{
+    font-size:16px;
   }
 }
 /* =========================================
