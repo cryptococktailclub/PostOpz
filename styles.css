@@ -1342,7 +1342,191 @@ h3 {
     font-size:clamp(40px, 12vw, 62px);
   }
 }
+/* =========================================
+   CLOUD SYSTEM LAYOUT
+========================================= */
 
+.cloud-system-layout{
+  display:grid;
+
+  grid-template-columns:1.2fr .8fr;
+
+  gap:28px;
+
+  align-items:stretch;
+
+  margin-top:72px;
+}
+
+.cloud-primary-card{
+  position:relative;
+
+  min-height:420px;
+
+  padding:44px;
+
+  border-radius:34px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,24,36,.96),
+      rgba(10,12,18,.98)
+    );
+
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.38);
+}
+
+.cloud-primary-card h3{
+  max-width:720px;
+
+  margin:0 0 26px;
+
+  font-size:58px;
+
+  line-height:.94;
+
+  letter-spacing:-.055em;
+
+  font-weight:900;
+
+  color:#fff;
+}
+
+.cloud-primary-card p{
+  max-width:620px;
+
+  margin:0;
+
+  font-size:18px;
+
+  line-height:1.9;
+
+  color:#aab4c8;
+}
+
+.cloud-secondary-grid{
+  display:grid;
+
+  grid-template-rows:1fr 1fr;
+
+  gap:28px;
+}
+
+.cloud-secondary-card{
+  position:relative;
+
+  padding:34px;
+
+  border-radius:30px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,24,36,.96),
+      rgba(10,12,18,.98)
+    );
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.28);
+}
+
+.cloud-secondary-card h4{
+  margin:0 0 18px;
+
+  font-size:34px;
+
+  line-height:1;
+
+  letter-spacing:-.05em;
+
+  color:#fff;
+}
+
+.cloud-secondary-card p{
+  margin:0;
+
+  font-size:16px;
+
+  line-height:1.85;
+
+  color:#9aa7bc;
+}
+
+.cloud-system-label{
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  min-height:34px;
+
+  margin-bottom:26px;
+
+  padding:0 16px;
+
+  border-radius:999px;
+
+  border:1px solid rgba(0,217,255,.18);
+
+  background:rgba(0,217,255,.05);
+
+  color:var(--cyan);
+
+  font-size:11px;
+
+  font-weight:800;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+}
+
+@media (max-width: 1180px){
+
+  .cloud-system-layout{
+    grid-template-columns:1fr;
+  }
+
+  .cloud-primary-card h3{
+    font-size:46px;
+  }
+
+  .cloud-secondary-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto;
+  }
+}
+
+@media (max-width: 768px){
+
+  .cloud-system-layout{
+    gap:20px;
+  }
+
+  .cloud-primary-card,
+  .cloud-secondary-card{
+    padding:28px 24px;
+  }
+
+  .cloud-primary-card h3{
+    font-size:36px;
+  }
+
+  .cloud-secondary-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cloud-secondary-card h4{
+    font-size:28px;
+  }
+}
 /* =========================================
    CTA
 ========================================= */
