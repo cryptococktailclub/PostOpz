@@ -1305,59 +1305,104 @@ h3{
   }
 }
 /* =========================================
-   BOTTLENECK SECTION
+   BOTTLENECK SECTION — PREMIUM REBUILD
 ========================================= */
+
+.bottleneck-section{
+  position:relative;
+  overflow:hidden;
+}
+
+/* ---------- LAYOUT ---------- */
 
 .bottleneck-grid{
 
   display:grid;
 
   grid-template-columns:
-    minmax(0, 1.1fr)
-    minmax(360px, 460px);
+    minmax(0, 1fr)
+    420px;
 
-  gap:42px;
+  gap:72px;
 
   align-items:start;
 
-  max-width:1320px;
+  width:min(1380px, calc(100% - 80px));
 
-  margin:0 auto 42px;
+  margin:0 auto 54px;
 }
 
 /* =========================================
-   LEFT COPY
+   LEFT SIDE
 ========================================= */
 
 .bottleneck-copy{
 
-  max-width:920px;
+  max-width:860px;
 }
+
+.bottleneck-copy .eyebrow{
+
+  margin-bottom:28px;
+}
+
+/* ---------- HEADLINE ---------- */
 
 .bottleneck-copy h2{
 
-  max-width:980px;
+  margin:0 0 34px;
 
-  margin-bottom:28px;
+  font-size:clamp(58px, 5vw, 96px);
 
-  font-size:clamp(62px,5.6vw,104px);
+  line-height:.94;
 
-  line-height:.92;
+  letter-spacing:-.072em;
 
-  letter-spacing:-.075em;
+  font-weight:900;
+
+  color:#f7f8fb;
 
   text-wrap:balance;
+
+  max-width:920px;
 }
+
+/* ---------- BRAND GRADIENT ---------- */
+
+.bottleneck-copy .gradient-word{
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff5a36 0%,
+      #ff2f92 42%,
+      #b933ff 76%,
+      #4f7dff 100%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  color:transparent;
+}
+
+/* ---------- BODY ---------- */
 
 .bottleneck-copy p{
 
   max-width:760px;
 
-  font-size:18px;
+  margin:0;
 
-  line-height:1.8;
+  font-size:19px;
 
-  color:#aeb8ca;
+  line-height:1.82;
+
+  letter-spacing:-.015em;
+
+  color:#aab4c8;
 }
 
 /* =========================================
@@ -1368,9 +1413,9 @@ h3{
 
   position:relative;
 
-  padding:34px;
+  padding:40px 40px 36px;
 
-  border-radius:32px;
+  border-radius:34px;
 
   border:
     1px solid rgba(255,255,255,.08);
@@ -1383,38 +1428,38 @@ h3{
     );
 
   box-shadow:
-    0 24px 70px rgba(0,0,0,.34);
+    0 28px 90px rgba(0,0,0,.36);
 
   backdrop-filter:blur(14px);
 }
 
-/* LABEL */
+/* ---------- PANEL LABEL ---------- */
 
 .workflow-panel-label{
 
-  margin-bottom:28px;
+  margin-bottom:30px;
 
   font-size:11px;
   font-weight:900;
 
-  letter-spacing:.16em;
+  letter-spacing:.18em;
 
   text-transform:uppercase;
 
   color:#00d9ff;
 }
 
-/* GRID */
+/* ---------- PANEL ITEMS ---------- */
 
 .workflow-panel-grid{
 
   display:flex;
   flex-direction:column;
 
-  gap:28px;
+  gap:30px;
 }
 
-/* ITEM */
+/* ---------- SINGLE ITEM ---------- */
 
 .workflow-item{
 
@@ -1424,7 +1469,7 @@ h3{
 
   gap:18px;
 
-  align-items:flex-start;
+  align-items:start;
 }
 
 .workflow-dot{
@@ -1434,28 +1479,29 @@ h3{
 
   margin-top:10px;
 
-  border-radius:50%;
+  border-radius:999px;
 
   background:#59ffb2;
 
   box-shadow:
-    0 0 12px rgba(89,255,178,.7);
+    0 0 14px rgba(89,255,178,.7);
 }
 
-/* COPY */
+/* ---------- COPY ---------- */
 
 .workflow-item h4{
 
-  margin:0 0 8px;
+  margin:0 0 10px;
 
-  font-size:24px;
-  font-weight:800;
+  font-size:20px;
 
   line-height:1.15;
 
-  letter-spacing:-.04em;
+  letter-spacing:-.045em;
 
-  color:#f5f7fb;
+  font-weight:800;
+
+  color:#f6f8fc;
 }
 
 .workflow-item p{
@@ -1464,9 +1510,19 @@ h3{
 
   font-size:15px;
 
-  line-height:1.75;
+  line-height:1.78;
 
-  color:#98a6bc;
+  color:#9aa8bf;
+}
+
+/* ---------- DIVIDERS ---------- */
+
+.workflow-item:not(:last-child){
+
+  padding-bottom:28px;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.06);
 }
 
 /* =========================================
@@ -1478,9 +1534,9 @@ h3{
   display:grid;
 
   grid-template-columns:
-    repeat(4,minmax(0,1fr));
+    repeat(4, minmax(0,1fr));
 
-  max-width:1320px;
+  width:min(1380px, calc(100% - 80px));
 
   margin:0 auto;
 
@@ -1493,60 +1549,88 @@ h3{
 
   background:
     linear-gradient(
-      180deg,
-      rgba(18,22,32,.94),
-      rgba(10,12,18,.98)
+      135deg,
+      rgba(18,24,36,.96),
+      rgba(8,10,18,.98)
     );
+
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.28);
 }
 
+/* ---------- VALUE ITEM ---------- */
+
 .value-item{
+
+  position:relative;
 
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
 
-  min-height:180px;
+  min-height:250px;
 
-  padding:32px;
+  padding:42px 28px;
 
   text-align:center;
+}
+
+.value-item:not(:last-child){
 
   border-right:
     1px solid rgba(255,255,255,.06);
 }
 
-.value-item:last-child{
-  border-right:none;
+/* ---------- ICON ---------- */
+
+.value-item i,
+.value-item svg{
+
+  width:46px;
+  height:46px;
+
+  margin-bottom:24px;
+
+  opacity:.95;
 }
+
+/* ---------- TITLE ---------- */
 
 .value-item strong{
 
-  margin-top:18px;
+  display:block;
 
-  font-size:26px;
+  max-width:220px;
+
+  margin-bottom:14px;
+
+  font-size:30px;
+
+  line-height:1.04;
+
+  letter-spacing:-.055em;
+
   font-weight:800;
 
-  line-height:1.1;
-
-  letter-spacing:-.04em;
-
-  color:#fff;
+  color:#ffffff;
 }
+
+/* ---------- DESCRIPTION ---------- */
 
 .value-item span{
 
-  margin-top:10px;
+  max-width:240px;
 
   font-size:15px;
 
-  line-height:1.7;
+  line-height:1.75;
 
   color:#98a6bc;
 }
 
 /* =========================================
-   MOBILE
+   RESPONSIVE
 ========================================= */
 
 @media (max-width:1180px){
@@ -1554,30 +1638,67 @@ h3{
   .bottleneck-grid{
 
     grid-template-columns:1fr;
+
+    gap:40px;
+  }
+
+  .workflow-panel{
+
+    max-width:100%;
   }
 
   .value-strip{
 
     grid-template-columns:
-      repeat(2,minmax(0,1fr));
+      repeat(2, minmax(0,1fr));
   }
 
   .value-item:nth-child(2){
 
     border-right:none;
   }
+
+  .value-item{
+
+    border-bottom:
+      1px solid rgba(255,255,255,.06);
+  }
+
+  .value-item:last-child,
+  .value-item:nth-last-child(2){
+
+    border-bottom:none;
+  }
 }
 
 @media (max-width:768px){
 
+  .bottleneck-grid,
+  .value-strip{
+
+    width:calc(100% - 32px);
+  }
+
   .bottleneck-copy h2{
 
-    font-size:14vw;
+    font-size:15vw;
+
+    line-height:.96;
+  }
+
+  .bottleneck-copy p{
+
+    font-size:16px;
   }
 
   .workflow-panel{
 
     padding:28px 24px;
+  }
+
+  .workflow-item h4{
+
+    font-size:18px;
   }
 
   .value-strip{
@@ -1587,16 +1708,20 @@ h3{
 
   .value-item{
 
-    min-height:140px;
+    min-height:180px;
 
-    border-right:none;
+    border-right:none !important;
+  }
+
+  .value-item:not(:last-child){
 
     border-bottom:
       1px solid rgba(255,255,255,.06);
   }
 
-  .value-item:last-child{
-    border-bottom:none;
+  .value-item strong{
+
+    font-size:24px;
   }
 }
 /* =========================================
