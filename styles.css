@@ -227,12 +227,31 @@ p{
   margin:0 0 34px;
 }
 
+.hero-title-top,
+.hero-title-bottom{
+
+  display:block;
+
+  font-size:clamp(84px,5.8vw,126px);
+
+  font-weight:900;
+
+  white-space:nowrap;
+
+  line-height:.9;
+
+  overflow:visible;
+
+  text-rendering:geometricPrecision;
+}
+
 .hero-title-top{
 
   letter-spacing:-.058em;
 
   color:#f7f8fb;
-},
+}
+
 .hero-title-bottom{
 
   margin-top:22px;
@@ -260,6 +279,7 @@ p{
     drop-shadow(
       0 12px 30px rgba(170,70,255,.14)
     );
+}
 
 .hero-dot{
 
@@ -387,10 +407,6 @@ p{
     0 30px 90px rgba(0,0,0,.42);
 
   backdrop-filter:blur(12px);
-}
-
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.42);
 }
 
 .command-header{
