@@ -858,11 +858,18 @@ h3 {
 .bottleneck-copy h2 {
   max-width: 920px;
   margin: 0;
-  font-size: clamp(72px, 5.8vw, 108px);
-  line-height: .88;
-  letter-spacing: -.08em;
+
+  font-size: clamp(68px, 5.2vw, 102px);
+
+  line-height: .94;
+
+  letter-spacing: -.065em;
+
   font-weight: 900;
+
   color: #f5f7fb;
+
+  text-wrap: balance;
 }
 
 .gradient-word {
