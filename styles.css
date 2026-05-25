@@ -287,16 +287,29 @@ p { color: var(--muted); line-height: 1.7; }
    HERO
 ========================================= */
 
-.hero {
-  position: relative;
-  padding: 140px 0 80px;
-  border-bottom: 1px solid var(--line);
-  overflow: hidden;
+.hero{
+  position:relative;
+
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+
+  padding:140px 0 120px;
+
+  overflow:hidden;
+
   background:
-    radial-gradient(ellipse 80% 60% at 75% 10%, rgba(108,66,255,.2), transparent),
-    radial-gradient(ellipse 60% 50% at 65% 25%, rgba(255,0,153,.12), transparent),
-    radial-gradient(ellipse 50% 40% at 5% 15%, rgba(0,217,255,.08), transparent),
-    linear-gradient(160deg, #041217 0%, #04060b 30%, #090611 60%, #111833 100%);
+    radial-gradient(circle at 20% 20%, rgba(0,217,255,.10), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(195,66,255,.22), transparent 40%),
+    radial-gradient(circle at 60% 60%, rgba(255,47,146,.12), transparent 40%),
+    linear-gradient(
+      180deg,
+      #04060b 0%,
+      #05070d 30%,
+      #070916 60%,
+      #05070b 100%
+    );
 }
 
 .hero-glow {
@@ -316,14 +329,20 @@ p { color: var(--muted); line-height: 1.7; }
   100% { opacity: 1; transform: scale(1.15); }
 }
 
-.hero-inner {
-  width: min(1320px, calc(100% - 72px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 720px) minmax(480px, 560px);
-  grid-template-areas: "copy command" "logos logos";
-  align-items: center;
-  gap: 40px 48px;
+.hero-inner{
+  width:min(1680px, calc(100% - 120px));
+
+  margin:0 auto;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(720px, 1fr)
+    minmax(620px, 760px);
+
+  align-items:center;
+
+  gap:100px;
 }
 
 .hero-copy {
