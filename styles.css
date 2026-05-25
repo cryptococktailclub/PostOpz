@@ -1373,7 +1373,19 @@ h3 {
 
   text-transform:uppercase;
 }
+.plan-note{
+  margin-top:28px;
 
+  padding-top:24px;
+
+  border-top:1px solid rgba(255,255,255,.06);
+
+  font-size:14px;
+
+  line-height:1.7;
+
+  color:#7f8ca8;
+}
 /* =========================================
    TYPOGRAPHY
 ========================================= */
