@@ -1118,37 +1118,6 @@ h3 {
   .pricing-card h3{
     font-size:52px;
   }
-
-}
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 1180px){
-
-  .plans-grid{
-    grid-template-columns:1fr;
-  }
-
-  .plan-card.featured{
-    transform:none;
-  }
-}
-
-@media (max-width: 768px){
-
-  .plan-card{
-    padding:34px 26px 28px;
-    border-radius:26px;
-  }
-
-  .plan-card h3{
-    font-size:40px;
-  }
-
-  .plan-price .price{
-    font-size:58px;
-  }
 }
 /* =========================================
    SERVICE CARDS
