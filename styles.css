@@ -307,7 +307,7 @@ p { color: var(--muted); line-height: 1.7; }
 .hero-title-top,
 .hero-title-bottom {
   display: block;
-  font-size: clamp(80px, 5.6vw, 122px);
+  font-size: clamp(62px, 5vw, 88px);
   font-weight: 900;
   white-space: nowrap;
   line-height: .88;
