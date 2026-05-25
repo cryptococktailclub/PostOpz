@@ -36,6 +36,45 @@ h1, h2, h3, p { margin-top: 0; }
 p { color: var(--muted); line-height: 1.7; }
 
 /* =========================================
+   LAYOUT SYSTEM
+========================================= */
+
+:root{
+  --container: 1480px;
+  --container-wide: 1600px;
+
+  --space-section: 140px;
+  --space-card: 38px;
+  --space-grid: 28px;
+
+  --radius-xl: 34px;
+  --radius-lg: 28px;
+  --radius-md: 20px;
+
+  --shadow-soft:
+    0 24px 80px rgba(0,0,0,.32);
+
+  --shadow-large:
+    0 40px 120px rgba(0,0,0,.42);
+
+  --surface:
+    linear-gradient(
+      180deg,
+      rgba(18,24,36,.96),
+      rgba(10,12,18,.98)
+    );
+}
+
+.container{
+  width:min(var(--container), calc(100% - 100px));
+  margin:0 auto;
+}
+
+.container-wide{
+  width:min(var(--container-wide), calc(100% - 100px));
+  margin:0 auto;
+}
+/* =========================================
    SCROLL REVEAL
 ========================================= */
 
@@ -1415,6 +1454,27 @@ h3 {
   flex-direction:column;
   justify-content:flex-start;
 }
+h1{
+  font-size:clamp(62px, 7vw, 96px);
+}
+
+h2{
+  font-size:clamp(44px, 5vw, 76px);
+}
+
+h3{
+  font-size:clamp(28px, 2.5vw, 44px);
+}
+
+.section-copy{
+  font-size:20px;
+  line-height:1.85;
+}
+
+.body-copy{
+  font-size:17px;
+  line-height:1.8;
+}
 /* =========================================
    RESPONSIVE
 ========================================= */
@@ -1849,12 +1909,6 @@ h3 {
   .tools-logos { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .logo-item::after { display: none !important; }
 
-  .trust-strip { padding: 40px 0; }
-  .trust-shell { width: calc(100% - 32px); }
-  .trust-copy h3 { font-size: 30px; }
-  .trust-grid { grid-template-columns: 1fr; gap: 10px; }
-  .trust-grid span { min-height: 58px; }
-
   .section-pad { padding: 72px 18px; }
 
   .bottleneck-section { padding: 100px 0 80px; }
@@ -1867,12 +1921,6 @@ h3 {
   .value-strip { grid-template-columns: 1fr; }
   .value-item { min-height: 220px; border-right: none !important; }
   .value-item:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,.06); }
-
-  .cloud-feature, .cloud-card { padding: 30px 22px; }
-  .cloud-feature h2 { font-size: clamp(40px, 12vw, 60px); }
-  .cloud-price { font-size: 52px; }
-  .cloud-card h3 { font-size: 32px; }
-  .cloud-card li { min-height: auto; padding: 12px 0; font-size: 15px; }
 
   .premium-shell { padding: 30px 22px; }
 
