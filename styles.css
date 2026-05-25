@@ -1909,7 +1909,9 @@ h3{
   .tools-logos { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .logo-item::after { display: none !important; }
 
-  .section-pad { padding: 72px 18px; }
+  .section-pad{
+  padding:96px 0;
+}
 
   .bottleneck-section { padding: 100px 0 80px; }
   .bottleneck-grid, .value-strip { width: calc(100% - 32px); }
