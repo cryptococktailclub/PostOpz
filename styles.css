@@ -2150,35 +2150,16 @@ h3{
   gap:18px;
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
-
 @media (max-width:1180px){
-
-  .hero-inner{
-
-  width:min(760px, calc(100% - 32px));
-
-  grid-template-columns:1fr;
-
-  grid-template-areas:
-    "copy"
-    "command"
-    "logos";
-
-  gap:42px;
-}
 
   .service-grid,
   .kits-grid,
-  .value-strip,
   .cloud-shell,
-  .premium-shell,
-  .bottleneck-grid{
+  .premium-shell{
 
     grid-template-columns:1fr;
   }
+}
 
   .tools-logos{
 
