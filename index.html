@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PostOpz | On-Demand AE Solutions</title>
+  <meta name="description" content="On-demand assistant editor support and remote workflow solutions for film, television, streaming, branded content, and digital productions." />
+  <meta property="og:title" content="PostOpz | On-Demand AE Solutions" />
+  <meta property="og:description" content="Scalable AE workflow support for modern post-production teams." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://postopz.com" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#050816">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#top" aria-label="PostOpz home">
+      <img class="brand-logo" src="assets/postopz-pz-icon.png" alt="PostOpz PZ logo" />
+      <span class="brand-name">PostOpz</span>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <span class="brand-kicker">Post Operations<br>Infrastructure</span>
+    </a>
+
+    <nav class="nav" id="main-nav" aria-label="Primary navigation">
+      <a href="#pricing">Plans</a>
+      <a href="#services">Services</a>
+      <a href="#workflow-kits">Workflow Kits</a>
+      <a href="#launch-workflow" class="nav-cta">Launch Workflow</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="#services">Services</a>
+      <a href="#cloud-editorial">Cloud Editorial</a>
+      <a href="#workflow-kits">Workflow Kits</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#launch-workflow" class="mobile-nav-cta">Launch Workflow</a>
+    </nav>
+  </div>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+          <div class="hero-kicker reveal" data-delay="0">
+            ON-DEMAND ASSISTANT EDITOR SUPPORT &amp; REMOTE WORKFLOW SOLUTIONS
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-title-top reveal" data-delay="100">Keep Editors</span>
+            <span class="hero-title-bottom reveal" data-delay="200">Editing<span class="hero-dot">.</span></span>
+          </h1>
+
+          <p class="hero-subhead reveal" data-delay="300">
+            Embedded workflow operations for modern editorial teams.
+          </p>
+
+          <p class="hero-lede reveal" data-delay="400">
+            From transcodes and sync maps to exports, turnovers, and media prep, PostOpz handles the tedious assistant editor work that keeps post moving while your editors stay focused on the cut.
+          </p>
+
+          <div class="hero-actions reveal" data-delay="500">
+            <a href="#launch-workflow" class="button primary">
+              Launch Workflow
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="command-center reveal" data-delay="300" aria-label="PostOpz workflow queue">
+          <div class="command-shell">
+            <div class="command-header">
+              <div class="window-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="command-title">AE Workflow Queue</div>
+              <img class="command-logo" src="assets/postopz-pz-icon.png" alt="PostOpz logo" />
+            </div>
+
+            <div class="workflow-toolbar">
+              <div class="toolbar-left">
+                <div class="live-pill"><span></span> System Active</div>
+                <div class="toolbar-stat">18 Tasks Today</div>
+              </div>
+              <div class="toolbar-right">4 Active Productions</div>
+            </div>
+
+            <div class="production-counts">
+              <div><strong>12</strong> Deliveries</div>
+              <div><strong>48</strong> Sync Maps</div>
+              <div><strong>6</strong> Turnovers</div>
+            </div>
+
+            <div class="queue-list">
+              <article class="queue-item active">
+                <div class="queue-num">01</div>
+                <div class="queue-main">
+                  <div class="queue-label">MEDIA PREP</div>
+                  <div class="queue-top">
+                    <strong>Create Transcodes</strong>
+                    <span class="queue-status status-progress">PROCESSING</span>
+                  </div>
+                  <p>DNxHR proxies · Relink-safe workflow · Media prep</p>
+                  <div class="queue-meta">
+                    <span>Untitled True Crime</span>
+                    <span>24TB Active Media</span>
+                  </div>
+                  <div class="progress-wrap">
+                    <div class="progress-bar"><span class="progress-fill" data-width="72"></span></div>
+                    <div class="progress-percent">72%</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="queue-item ready">
+                <div class="queue-num">02</div>
+                <div class="queue-main">
+                  <div class="queue-label">MULTICAM SYNC</div>
+                  <div class="queue-top">
+                    <strong>Sync &amp; Group Footage</strong>
+                    <span class="queue-status status-ready">IN PROGRESS</span>
+                  </div>
+                  <p>Audio sync · Multicam grouping · Editor-ready bins</p>
+                  <div class="queue-meta">
+                    <span>12 Camera Angles</span>
+                    <span>2.4TB Synced</span>
+                  </div>
+                  <div class="progress-wrap">
+                    <div class="progress-bar"><span class="progress-fill" data-width="48"></span></div>
+                    <div class="progress-percent">48%</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="queue-item exporting">
+                <div class="queue-num">03</div>
+                <div class="queue-main">
+                  <div class="queue-label">REVIEW EXPORT</div>
+                  <div class="queue-top">
+                    <strong>Export Review Cut</strong>
+                    <span class="queue-status status-exporting">EXPORTING</span>
+                  </div>
+                  <p>Frame.io upload · Burn-ins · Versioning</p>
+                  <div class="queue-meta">
+                    <span>Frame.io Delivery</span>
+                    <span>v14 Review</span>
+                  </div>
+                  <div class="progress-wrap">
+                    <div class="progress-bar"><span class="progress-fill" data-width="81"></span></div>
+                    <div class="progress-percent">81%</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="queue-item delivered">
+                <div class="queue-num">04</div>
+                <div class="queue-main">
+                  <div class="queue-label">TURNOVER</div>
+                  <div class="queue-top">
+                    <strong>Prep for Color &amp; Mix</strong>
+                    <span class="queue-status status-delivered">DELIVERED</span>
+                  </div>
+                  <p>AAF export · Split tracks · Turnover prep</p>
+                  <div class="queue-meta">
+                    <span>AAF + Reference Export</span>
+                    <span>Mix Turnover</span>
+                  </div>
+                  <div class="progress-wrap">
+                    <div class="progress-bar"><span class="progress-fill" data-width="100"></span></div>
+                    <div class="progress-percent">100%</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="queue-footer">
+              <div class="footer-stat">Avg Turnaround: <strong>4.2 hrs</strong></div>
+              <div class="footer-stat">Delivery Accuracy: <strong>99.8%</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tools-strip reveal" data-delay="600">
+          <p>BUILT AROUND THE SOFTWARE ALREADY DRIVING MODERN POST PRODUCTION.</p>
+          <div class="tools-logos">
+            <div class="logo-item"><img src="assets/logos/Avid.png" alt="Avid"></div>
+            <div class="logo-item"><img src="assets/logos/logo-frame.svg" alt="Frame.io"></div>
+            <div class="logo-item"><img src="assets/logos/adobe-premiere.svg" alt="Adobe Premiere"></div>
+            <div class="logo-item"><img src="assets/logos/davinci-resolve.svg" alt="DaVinci Resolve"></div>
+            <div class="logo-item"><img src="assets/logos/lucidlink.svg" alt="LucidLink"></div>
+            <div class="logo-item"><img src="assets/logos/masv.svg" alt="MASV"></div>
+            <div class="logo-item"><img src="assets/logos/Slack.png" alt="Slack"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERATIONAL FLOW -->
+<section class="section-pad infrastructure-flow-section">
+  <div class="infrastructure-shell">
+
+    <div class="infrastructure-heading reveal">
+      <div class="eyebrow">Operational Infrastructure</div>
+
+      <h2>
+        Embedded assistant editor operations
+        for modern remote post workflows.
+      </h2>
+
+      <p>
+        PostOpz integrates directly into active productions with
+        cloud editorial systems, media coordination, workflow execution,
+        and delivery support designed for remote editorial teams.
+      </p>
+    </div>
+
+    <div class="workflow-diagram reveal">
+
+      <div class="workflow-node">
+        <span class="workflow-label">MEDIA INGEST</span>
+        <h3>Dailies + Source Media</h3>
+        <p>Camera cards, field drives, cloud uploads, and incoming production assets.</p>
+      </div>
+
+      <div class="workflow-connector"></div>
+
+      <div class="workflow-node">
+        <span class="workflow-label">SHARED STORAGE</span>
+        <h3>Cloud Editorial Systems</h3>
+        <p>Avid EOD, LucidLink, AWS infrastructure, remote workstations, and shared storage coordination.</p>
+      </div>
+
+      <div class="workflow-connector"></div>
+
+      <div class="workflow-node active-node">
+        <span class="workflow-label">POSTOPZ LAYER</span>
+        <h3>Embedded AE Operations</h3>
+        <ul>
+          <li>Sync + grouping</li>
+          <li>Media prep</li>
+          <li>Turnovers</li>
+          <li>Exports + review</li>
+          <li>Workflow coordination</li>
+        </ul>
+      </div>
+
+      <div class="workflow-connector"></div>
+
+      <div class="workflow-node">
+        <span class="workflow-label">DELIVERY</span>
+        <h3>Editorial + Finishing</h3>
+        <p>Editor support, mix prep, online turnovers, review delivery, and final outputs.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+    <!-- BOTTLENECK SECTION -->
+    <section id="problem" class="section-pad bottleneck-section">
+      <div class="bottleneck-grid">
+        <div class="bottleneck-copy">
+          <div class="eyebrow reveal">The Bottleneck</div>
+          <h2 class="reveal" data-delay="100">
+            Keep creatives focused on the cut while
+            <span class="gradient-word">PostOpz</span>
+            handles the workflow operations.
+          </h2>
+          <div class="bottleneck-divider reveal" data-delay="200"></div>
+          <p class="bottleneck-lede reveal" data-delay="300">
+            Freelance AE coverage is often inconsistent, slow to onboard, and difficult to manage across remote workflows. PostOpz gives your team repeatable execution for the operational work that keeps projects moving.
+          </p>
+        </div>
+
+        <aside class="workflow-panel reveal" data-delay="200">
+          <div class="workflow-panel-label">Operational Coverage</div>
+          <div class="workflow-panel-grid">
+          <div class="workflow-item">
+  <span class="workflow-dot"></span>
+  <div>
+    <h4>No recurring freelancer search</h4>
+    <p>
+      Consistent workflow execution without rebuilding
+      support teams every project.
+    </p>
+  </div>
+</div>
+
+<div class="workflow-item">
+  <span class="workflow-dot"></span>
+  <div>
+    <h4>No editor downtime waiting on prep</h4>
+    <p>
+      Transcodes, turnovers, sync, exports, and review
+      prep handled in parallel.
+    </p>
+  </div>
+</div>
+
+<div class="workflow-item">
+  <span class="workflow-dot"></span>
+  <div>
+    <h4>No fragmented media management</h4>
+    <p>
+      Structured delivery systems for remote editorial
+      teams and cloud workflows.
+    </p>
+  </div>
+</div>
+
+<div class="workflow-item">
+  <span class="workflow-dot"></span>
+  <div>
+    <h4>No inconsistent workflow standards</h4>
+    <p>
+      Unified folder structures, delivery specs,
+      naming conventions, and editorial organization systems.
+    </p>
+  </div>
+</div>
+
+<div class="workflow-item">
+  <span class="workflow-dot"></span>
+  <div>
+    <h4>No cloud workflow guesswork</h4>
+    <p>
+      Production-ready remote editorial systems configured,
+      deployed, and supported for active teams.
+    </p>
+  </div>
+</div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="value-strip">
+        <div class="value-item reveal" data-delay="0">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <strong>Save Valuable Editing Time</strong>
+          <p>We handle the operational workflow so editors stay focused on creative execution.</p>
+        </div>
+        <div class="value-item reveal" data-delay="100">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <strong>No Hiring or Training</strong>
+          <p>Skip onboarding cycles and plug directly into an experienced workflow system.</p>
+        </div>
+        <div class="value-item reveal" data-delay="200">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </div>
+          <strong>Flexible Terms</strong>
+          <p>Engagements designed around production schedules and evolving editorial needs.</p>
+        </div>
+        <div class="value-item reveal" data-delay="300">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <strong>Scalable as You Grow</strong>
+          <p>Expand from one editor to full production support as workflows increase.</p>
+        </div>
+      </div>
+    </section>
+<!-- =========================================
+     WORKFLOW SUPPORT PLANS
+========================================= -->
+
+<section id="pricing" class="section-pad pricing-section">
+
+  <div class="section-heading reveal">
+    <div class="eyebrow">Operational Coverage</div>
+
+    <h2>
+      Productized post-production infrastructure
+      built around active workflows.
+    </h2>
+
+    <p>
+      Flexible operational support ranging from overflow AE execution
+      to fully managed remote editorial systems.
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+
+    <div class="pricing-card reveal">
+      <span class="pricing-tier">AE Overflow</span>
+
+      <h3>$1,500<span>/mo</span></h3>
+
+      <p>
+        Embedded assistant editor coverage for productions needing
+        overflow workflow execution.
+      </p>
+
+      <ul>
+        <li>Exports + review prep</li>
+        <li>Sync + grouping</li>
+        <li>Turnovers</li>
+        <li>Media organization</li>
+        <li>1 active workflow queue</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card featured-card reveal">
+      <span class="pricing-tier">Cloud Editorial Seat</span>
+
+      <h3>$2,500<span>/mo</span></h3>
+
+      <p>
+        Production-ready remote editorial systems deployed and supported
+        for active productions.
+      </p>
+
+      <ul>
+        <li>Avid EOD deployment</li>
+        <li>Remote workstation access</li>
+        <li>AWS infrastructure</li>
+        <li>Workflow onboarding</li>
+        <li>Embedded operational support</li>
+      </ul>
+    </div>
+
+    <div class="pricing-card reveal">
+      <span class="pricing-tier">Production Infrastructure</span>
+
+      <h3>Custom</h3>
+
+      <p>
+        Multi-user remote editorial infrastructure for larger productions
+        and distributed post teams.
+      </p>
+
+      <ul>
+        <li>Shared storage systems</li>
+        <li>Multi-editor environments</li>
+        <li>Dedicated AE operations</li>
+        <li>Review pipelines</li>
+        <li>Production scaling support</li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section-pad unified-services">
+      <div class="section-heading narrow">
+        <div class="eyebrow reveal">Workflow Operations</div>
+        <h2 class="reveal" data-delay="100">Operational support designed around real post-production workflows.</h2>
+      </div>
+
+      <div class="service-grid premium-grid">
+        <article class="service-card large-card reveal" data-delay="0">
+          <span class="service-pill">Editorial Prep</span>
+          <h3>Media prep, proxies, syncs, and editor-ready organization.</h3>
+          <p>Project builds, relink-safe workflows, multicam syncs, stringouts, exports, turnovers, and operational editorial support.</p>
+        </article>
+        <article class="service-card large-card reveal" data-delay="100">
+          <span class="service-pill">Remote Collaboration</span>
+          <h3>Remote editorial systems built around existing production infrastructure.</h3>
+          <p>Jump Desktop, HP Anyware, LucidLink, shared storage coordination, review workflows, and distributed editorial support.</p>
+        </article>
+        <article class="service-card large-card featured-service reveal" data-delay="200">
+          <span class="service-pill">Cloud Editorial</span>
+          <h3>Managed cloud editorial systems powered by Avid EOD and AWS.</h3>
+          <p>Production-ready remote editorial infrastructure deployed quickly with workflow onboarding and operational support included.</p>
+        </article>
+      </div>
+    </section>
+
+  <!-- REMOTE EDITORIAL INFRASTRUCTURE -->
+<section id="cloud-editorial" class="section-pad infrastructure-section">
+
+  <div class="infrastructure-shell">
+
+    <div class="infrastructure-header reveal">
+
+      <div class="eyebrow">
+        Remote Editorial Infrastructure
+      </div>
+
+      <h2>
+        Launch fully operational remote editorial workflows
+        without building infrastructure internally.
+      </h2>
+
+      <p class="infrastructure-lede">
+        PostOpz deploys production-ready cloud editorial environments
+        powered by Avid Edit On Demand, AWS infrastructure,
+        remote workstation systems, shared storage coordination,
+        and embedded assistant editor support.
+      </p>
+
+    </div>
+
+ <div class="infrastructure-grid reveal">
+
+  <!-- CARD 1 -->
+
+  <article class="infra-card infra-primary">
+
+    <div class="infra-label">
+      Remote Editorial Seats
+    </div>
+
+    <h3>
+      Production-ready remote editor systems.
+    </h3>
+
+    <ul class="infra-list">
+      <li>Avid Edit On Demand deployment</li>
+      <li>HP Anyware + Jump Desktop access</li>
+      <li>Remote workstation configuration</li>
+      <li>Editor onboarding + workflow setup</li>
+    </ul>
+
+  </article>
+
+  <!-- CARD 2 -->
+
+  <article class="infra-card">
+
+    <div class="infra-label">
+      Shared Infrastructure
+    </div>
+
+    <h3>
+      Centralized media workflows for remote teams.
+    </h3>
+
+    <ul class="infra-list">
+      <li>Shared storage coordination</li>
+      <li>Proxy workflows + media management</li>
+      <li>Turnovers + export pipelines</li>
+      <li>Review delivery systems</li>
+    </ul>
+
+  </article>
+
+  <!-- CARD 3 -->
+
+  <article class="infra-card">
+
+    <div class="infra-label">
+      Embedded AE Support
+    </div>
+
+    <h3>
+      Dedicated operational workflow coverage.
+    </h3>
+
+    <ul class="infra-list">
+      <li>Assistant editor execution</li>
+      <li>Workflow coordination</li>
+      <li>Delivery + turnover support</li>
+      <li>Production scaling support</li>
+    </ul>
+
+  </article>
+
+</div>
+
+  </div>
+
+</section>
+    <!-- WORKFLOW KITS -->
+    <section id="workflow-kits" class="section-pad kits-section">
+      <div class="section-heading narrow">
+        <div class="eyebrow reveal">Digital Products</div>
+        <h2 class="reveal" data-delay="100">Downloadable post-production systems built from real editorial workflows.</h2>
+        <p class="reveal" data-delay="200">Production-ready folder structures, delivery templates, AE systems, naming conventions, and workflow kits designed to help editorial teams move faster.</p>
+      </div>
+
+      <div class="kits-grid">
+        <article class="kit-card reveal" data-delay="0">
+          <div class="kit-type">Documentary</div>
+          <h3>Documentary Workflow Kit</h3>
+          <p>Folder structures, sync workflows, archival organization systems, and delivery templates for documentary productions.</p>
+          <div class="kit-price">$149</div>
+        </article>
+        <article class="kit-card featured-kit reveal" data-delay="100">
+          <div class="kit-type">Remote Editorial</div>
+          <h3>Remote Editing Launch Kit</h3>
+          <p>Workflow documentation, onboarding systems, remote workstation setup guides, and collaboration templates.</p>
+          <div class="kit-price">$249</div>
+        </article>
+        <article class="kit-card reveal" data-delay="200">
+          <div class="kit-type">Creator Ops</div>
+          <h3>Creator Post Ops Kit</h3>
+          <p>Workflow systems designed for YouTube creators, branded content teams, podcasts, and digital-first editorial pipelines.</p>
+          <div class="kit-price">$99</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="launch-workflow" class="section-pad cta-section premium-cta">
+      <div class="cta-shell premium-shell">
+        <div class="cta-glow"></div>
+        <div class="cta-copy reveal">
+          <div class="eyebrow">Launch Workflow</div>
+          <h2>Deploy editorial workflows without the operational drag.</h2>
+          <p>From cloud editorial infrastructure and remote workflows to media movement and operational support, PostOpz helps productions move faster with scalable post systems.</p>
+        </div>
+        <div class="cta-action reveal" data-delay="200">
+          <a href="mailto:hello@postopz.com?subject=Launch%20Workflow" class="cta-button">
+            Launch Workflow
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img class="brand-logo" src="assets/postopz-pz-icon.png" alt="PostOpz PZ logo" />
+        <strong>PostOpz</strong>
+      </div>
+      <p>Assistant editor operations and workflow infrastructure for modern post teams.</p>
+      <div class="footer-links">
+        <a href="mailto:hello@postopz.com">hello@postopz.com</a>
+        <a href="https://x.com/postopz" target="_blank" rel="noreferrer">@postopz</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
