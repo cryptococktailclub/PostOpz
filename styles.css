@@ -1485,7 +1485,116 @@ h3 {
   font-weight: 900;
   color: var(--success);
 }
+/* =========================================
+   CLOUD EDITORIAL
+========================================= */
 
+.cloud-editorial-section{
+  position:relative;
+  padding:140px 0;
+}
+
+.cloud-shell{
+  width:min(1320px,calc(100% - 80px));
+  margin:0 auto;
+}
+
+.cloud-copy{
+  max-width:880px;
+  margin-bottom:72px;
+}
+
+.cloud-copy h2{
+  margin:0 0 28px;
+  font-size:clamp(54px,4.6vw,82px);
+  line-height:.96;
+  letter-spacing:-.06em;
+  font-weight:900;
+  color:#f5f7fb;
+  max-width:860px;
+}
+
+.cloud-lede{
+  max-width:760px;
+  margin:0;
+  font-size:20px;
+  line-height:1.8;
+  color:#aab4c8;
+  letter-spacing:-.01em;
+}
+
+.cloud-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:28px;
+}
+
+.cloud-card{
+  position:relative;
+  padding:42px 38px;
+  border-radius:32px;
+  background:
+    linear-gradient(180deg,
+      rgba(18,24,44,.92),
+      rgba(8,10,18,.98));
+  border:1px solid rgba(90,120,255,.14);
+  overflow:hidden;
+}
+
+.cloud-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at top left,
+      rgba(0,225,255,.10),
+      transparent 42%);
+  pointer-events:none;
+}
+
+.cloud-label{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 16px;
+  margin-bottom:28px;
+  border-radius:999px;
+  border:1px solid rgba(0,225,255,.26);
+  background:rgba(0,225,255,.06);
+  color:var(--cyan);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.cloud-card h3{
+  margin:0 0 18px;
+  font-size:32px;
+  line-height:1.08;
+  letter-spacing:-.045em;
+  font-weight:800;
+  color:#f5f7fb;
+}
+
+.cloud-card p{
+  margin:0;
+  font-size:17px;
+  line-height:1.75;
+  color:#9ba7bf;
+}
+
+@media (max-width:1100px){
+
+  .cloud-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cloud-copy h2{
+    font-size:clamp(42px,9vw,68px);
+  }
+
+}
 /* =========================================
    CTA
 ========================================= */
