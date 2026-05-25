@@ -1305,50 +1305,19 @@ h3{
   }
 }
 /* =========================================
-   BOTTLENECK
+   BOTTLENECK SECTION
 ========================================= */
 
-.bottleneck-grid{
+.workflow-panel{
 
-  display:grid;
+  position:relative;
 
-  grid-template-columns:
-    minmax(0,760px)
-    minmax(320px,420px);
+  padding:34px;
 
-  gap:60px;
+  border-radius:32px;
 
-  align-items:start;
-
-  max-width:1320px;
-
-  margin:0 auto 54px;
-}
-
-.gradient-word{
-
-  background:
-    linear-gradient(
-      90deg,
-      #ff5a36 0%,
-      #ff1f8f 40%,
-      #b12eff 72%,
-      #2f7cff 100%
-    );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-
-  -webkit-text-fill-color:transparent;
-}
-
-.bottleneck-panel{
-
-  padding:30px;
-
-  border-radius:28px;
-
-  border:1px solid rgba(255,255,255,.08);
+  border:
+    1px solid rgba(255,255,255,.08);
 
   background:
     linear-gradient(
@@ -1356,65 +1325,102 @@ h3{
       rgba(255,255,255,.04),
       rgba(255,255,255,.02)
     );
+
+  backdrop-filter:blur(14px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.03);
 }
 
-.feature-stack{
-  list-style:none;
+/* LABEL */
 
-  margin:0;
-  padding:0;
+.workflow-panel-label{
+
+  margin-bottom:28px;
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+
+  color:#00d9ff;
 }
 
-.feature-stack li{
+/* GRID */
+
+.workflow-panel-grid{
 
   display:flex;
-  gap:14px;
+  flex-direction:column;
 
-  padding:16px 0;
-
-  border-bottom:1px solid rgba(255,255,255,.06);
+  gap:26px;
 }
 
-.feature-stack span{
-  color:var(--success);
-}
+/* ITEM */
 
-.value-strip{
+.workflow-item{
 
   display:grid;
 
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:14px 1fr;
 
-  border-radius:30px;
+  gap:18px;
 
-  overflow:hidden;
-
-  max-width:1320px;
-
-  margin:0 auto;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(18,24,36,.92),
-      rgba(8,10,18,.96)
-    );
+  align-items:flex-start;
 }
 
-.value-item{
+.workflow-dot{
 
-  padding:36px 26px;
+  width:8px;
+  height:8px;
 
-  text-align:center;
+  margin-top:10px;
+
+  border-radius:50%;
+
+  background:#4dffb4;
+
+  box-shadow:
+    0 0 12px rgba(77,255,180,.7);
 }
 
-.value-icon{
+/* COPY */
 
-  margin-bottom:16px;
+.workflow-item h4{
 
-  font-size:34px;
+  margin:0 0 8px;
+
+  font-size:24px;
+  font-weight:700;
+
+  line-height:1.12;
+
+  letter-spacing:-.03em;
+
+  color:#f5f7fb;
+}
+
+.workflow-item p{
+
+  margin:0;
+
+  font-size:15px;
+
+  line-height:1.7;
+
+  color:rgba(230,235,245,.68);
+}
+.bottleneck-copy{
+
+  max-width:980px;
+}
+.bottleneck-copy h2{
+
+  max-width:1200px;
+
+  text-wrap:balance;
 }
 
 /* =========================================
