@@ -1657,11 +1657,6 @@ h3{
   overflow: hidden;
 }
 
-.infrastructure-shell {
-  width: min(1480px, calc(100% - 120px));
-  margin: 0 auto;
-}
-
 .infrastructure-heading {
   max-width: 920px;
   margin-bottom: 90px;
@@ -1858,18 +1853,6 @@ h3{
    INFRASTRUCTURE STATUS PANEL
 ========================================= */
 
-.infrastructure-shell{
-  display:grid;
-
-  grid-template-columns:
-    minmax(0, 760px)
-    360px;
-
-  gap:72px;
-
-  align-items:start;
-}
-
 .infrastructure-status{
   position:relative;
 
@@ -2039,10 +2022,6 @@ h3{
 .fill-4{ width:74%; }
 
 @media (max-width:1180px){
-
-  .infrastructure-shell{
-    grid-template-columns:1fr;
-  }
 
   .infrastructure-status{
     max-width:560px;
