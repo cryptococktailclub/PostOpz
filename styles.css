@@ -2648,13 +2648,35 @@ h3{
   .button { width: 100%; min-height: 54px; }
 
   .tools-strip { padding: 20px 16px; }
-  .tools-logos { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .tools-logos{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(6, minmax(0,1fr));
+
+  gap:18px 12px;
+
+  justify-items:center;
+
+  align-items:center;
+}
+  .tools-logos .logo-item:nth-child(7){
+  grid-column:3 / span 2;
+}
   .logo-item::after { display: none !important; }
 
   .section-pad{
   padding:96px 0;
 }
+.logo-item{
+  min-height:52px;
+}
 
+.tools-logos img{
+  height:22px;
+  max-width:92px;
+}
   .bottleneck-section { padding: 100px 0 80px; }
   .bottleneck-grid, .value-strip { width: calc(100% - 32px); }
   .bottleneck-copy h2 { font-size: clamp(48px, 13vw, 72px); line-height: .92; }
