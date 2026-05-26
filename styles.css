@@ -2005,21 +2005,6 @@ h3{
 
   margin:26px 0 28px;
 }
-.workflow-status-panel{
-  width:100%;
-
-  padding:34px;
-
-  border-radius:34px;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(17,24,40,.96),
-      rgba(7,10,18,.99)
-    );
 
   box-shadow:
     0 32px 90px rgba(0,0,0,.45);
