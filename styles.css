@@ -2146,16 +2146,15 @@ h3{
   color:#fff;
 }
 /* =========================================
-   UNIFIED GRID SYSTEM
+   UNIFIED INFRASTRUCTURE LAYOUT
 ========================================= */
 
 .infrastructure-shell{
   width:min(1480px, calc(100% - 120px));
-
   margin:0 auto;
 }
 
-/* TOP SECTION */
+/* TOP STATUS SECTION */
 
 .infrastructure-grid{
   display:grid;
@@ -2164,17 +2163,19 @@ h3{
     minmax(0, 1fr)
     420px;
 
-  gap:48px;
+  gap:32px;
 
-  align-items:start;
+  align-items:stretch;
 
-  margin-bottom:64px;
+  margin-bottom:32px;
 }
 
 /* STATUS PANEL */
 
-.workflow-status-panel{
+.workflow-status-panel,
+.infrastructure-status{
   width:100%;
+  height:100%;
 
   padding:34px;
 
@@ -2193,7 +2194,7 @@ h3{
     0 32px 90px rgba(0,0,0,.45);
 }
 
-/* WORKFLOW CARDS */
+/* WORKFLOW CARD ROW */
 
 .workflow-diagram{
   display:grid;
@@ -2206,16 +2207,22 @@ h3{
   align-items:stretch;
 }
 
+.workflow-node{
+  min-height:360px;
+}
+
 /* VALUE STRIP */
 
 .value-strip{
   width:100%;
 
-  margin:72px 0 0;
+  margin-top:72px;
 
   display:grid;
 
   grid-template-columns:repeat(4,1fr);
+
+  align-items:stretch;
 
   border-radius:34px;
 
@@ -2232,6 +2239,65 @@ h3{
 
   box-shadow:
     0 28px 70px rgba(0,0,0,.42);
+}
+
+.value-item{
+  min-height:260px;
+
+  padding:52px 34px 42px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:flex-start;
+
+  align-items:center;
+
+  text-align:center;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width:1180px){
+
+  .infrastructure-grid{
+    grid-template-columns:1fr;
+  }
+
+  .workflow-diagram{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .value-strip{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width:768px){
+
+  .infrastructure-shell{
+    width:calc(100% - 32px);
+  }
+
+  .workflow-diagram{
+    grid-template-columns:1fr;
+  }
+
+  .value-strip{
+    grid-template-columns:1fr;
+  }
+
+  .workflow-node,
+  .value-item{
+    min-height:auto;
+  }
 }
 /* =========================================
    RESPONSIVE
