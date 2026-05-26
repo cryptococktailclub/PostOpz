@@ -1538,9 +1538,6 @@ h3 {
   box-shadow:
     0 0 16px rgba(77,255,184,.7);
 }
-.infrastructure-grid{
-  align-items:stretch;
-}
 
 .infra-card{
   display:flex;
@@ -1573,10 +1570,6 @@ h3{
 ========================================= */
 
 @media (max-width: 1280px){
-
-  .infrastructure-grid{
-    grid-template-columns:1fr;
-  }
 
   .infra-card,
   .infra-primary{
