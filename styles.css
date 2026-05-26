@@ -1999,7 +1999,7 @@ h3{
 
 .fill-cyan{
   width:48%;
-  background:linear-gradient(90deg,#4dffb4,#00d9ff);
+  background:linear-gradient(90deg,#ff9a3d,#ff5f6d);
 }
 
 .fill-magenta{
@@ -2009,7 +2009,7 @@ h3{
 
 .fill-orange{
   width:100%;
-  background:linear-gradient(90deg,#ff8a00,#ff4fd8);
+  background:linear-gradient(90deg,#4dffb4,#54ffd6);
 }
 
 .pipeline-footer{
