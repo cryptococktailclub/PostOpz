@@ -2472,6 +2472,14 @@ h3{
 .workflow-node.active-node ul{
   margin-top:34px;
 }
+.workflow-list{
+  list-style:none;
+  padding:0;
+  margin:34px 0 0;
+}
+.workflow-node{
+  justify-content:space-between;
+}
 /* =========================================
    CTA
 ========================================= */
