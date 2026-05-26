@@ -1853,27 +1853,62 @@ h3{
   color:#f4f7ff;
 }
 
+/* =========================================
+   PIPELINE STATUS
+========================================= */
+
 .status-pipeline{
   display:flex;
-
   flex-direction:column;
-
-  gap:18px;
+  gap:22px;
+  margin-top:28px;
 }
 
-.pipeline-item span{
+.pipeline-item{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.pipeline-item > span{
   display:block;
 
-  margin-bottom:6px;
-
-  font-size:.74rem;
-  font-weight:600;
-  line-height:1.1;
-
-  letter-spacing:.08em;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.12em;
   text-transform:uppercase;
 
-  color:rgba(255,255,255,.76);
+  color:rgba(255,255,255,.58);
+}
+
+.pipeline-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.pipeline-meta strong{
+  display:block;
+
+  font-size:.98rem;
+  font-weight:600;
+  line-height:1.3;
+
+  letter-spacing:-0.02em;
+
+  color:#f4f7ff;
+}
+
+.pipeline-meta span{
+  flex-shrink:0;
+
+  font-size:.74rem;
+  font-weight:700;
+
+  letter-spacing:.08em;
+
+  color:rgba(255,255,255,.48);
 }
 
 .pipeline-bar{
@@ -1883,56 +1918,37 @@ h3{
 
   border-radius:999px;
 
-  background:rgba(255,255,255,.06);
-
   overflow:hidden;
-}
-.pipeline-meta{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
 
-  margin-bottom:8px;
-
-  font-size:.78rem;
-  line-height:1;
-
-  color:rgba(255,255,255,.92);
+  background:rgba(255,255,255,.06);
 }
 
-.pipeline-meta strong{
-  font-weight:700;
-  letter-spacing:-0.02em;
-}
-
-.pipeline-meta span{
-  font-size:.72rem;
-  font-weight:600;
-
-  letter-spacing:.08em;
-  text-transform:uppercase;
-
-  color:rgba(255,255,255,.48);
-}
 .pipeline-fill{
   height:100%;
-
   border-radius:999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #00d9ff,
-      #8b5cff,
-      #ff2fd1
-    );
 }
 
-.fill-1{ width:82%; }
-.fill-2{ width:61%; }
-.fill-3{ width:93%; }
-.fill-4{ width:74%; }
+/* INDIVIDUAL COLORS */
 
+.fill-1{
+  width:72%;
+  background:linear-gradient(90deg,#00d9ff,#6a7cff);
+}
+
+.fill-2{
+  width:48%;
+  background:linear-gradient(90deg,#ff9a3d,#ffbf4d);
+}
+
+.fill-3{
+  width:91%;
+  background:linear-gradient(90deg,#8b5cff,#ff2fd1);
+}
+
+.fill-4{
+  width:100%;
+  background:linear-gradient(90deg,#39ffb6,#53ff9d);
+}
 @media (max-width:1180px){
 
   .infrastructure-status{
