@@ -952,17 +952,18 @@ h3 {
 ========================================= */
 
 .value-strip{
-  width:min(1400px, calc(100% - 120px));
-
-  margin:72px auto 0;
 
   display:grid;
 
-  grid-template-columns:repeat(4, minmax(0, 1fr));
+  grid-template-columns:repeat(4, minmax(0,1fr));
 
-  align-items:stretch;
+  width:100%;
+
+  margin-top:72px;
 
   border-radius:34px;
+
+  overflow:hidden;
 
   border:1px solid rgba(255,255,255,.08);
 
@@ -973,17 +974,90 @@ h3 {
       rgba(7,10,18,.98)
     );
 
-  overflow:hidden;
-
   box-shadow:
     0 28px 90px rgba(0,0,0,.34);
 }
 
-/* keep cards equal width */
 .value-item{
-  width:100%;
+
+  min-height:260px;
+
+  padding:54px 40px 42px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  border-right:1px solid rgba(255,255,255,.06);
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(0,217,255,.06),
+      transparent 70%
+    );
 }
 
+.value-item:last-child{
+  border-right:none;
+}
+
+.value-icon{
+  width:72px;
+  height:72px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:28px;
+
+  border:1px solid rgba(0,217,255,.14);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,217,255,.12),
+      rgba(0,217,255,.03)
+    );
+
+  box-shadow:
+    inset 0 0 20px rgba(0,217,255,.08);
+}
+
+.value-item h4{
+
+  font-size:1.7rem;
+
+  line-height:1.12;
+
+  margin-bottom:18px;
+
+  max-width:260px;
+
+  text-wrap:balance;
+}
+
+.value-item p{
+
+  max-width:290px;
+
+  font-size:1rem;
+
+  line-height:1.75;
+
+  color:rgba(255,255,255,.60);
+
+  text-wrap:pretty;
+}
 /* =========================================
    RESPONSIVE
 ========================================= */
