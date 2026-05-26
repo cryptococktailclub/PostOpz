@@ -953,7 +953,7 @@ h3 {
 
 .value-strip{
 
-  width:min(1520px, calc(100% - 120px));
+  width:min(1410px, calc(100% - 120px));
 
   margin:72px auto 0;
 
@@ -977,7 +977,6 @@ h3 {
   box-shadow:
     0 28px 90px rgba(0,0,0,.34);
 }
-
 .value-item{
 
   min-height:260px;
