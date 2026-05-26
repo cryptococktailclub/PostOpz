@@ -953,13 +953,13 @@ h3 {
 
 .value-strip{
 
+  width:min(1520px, calc(100% - 120px));
+
+  margin:72px auto 0;
+
   display:grid;
 
   grid-template-columns:repeat(4, minmax(0,1fr));
-
-  width:100%;
-
-  margin-top:72px;
 
   border-radius:34px;
 
