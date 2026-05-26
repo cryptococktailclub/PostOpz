@@ -947,6 +947,7 @@ h3 {
 
   color:#97a2ba;
 }
+
 /* VALUE STRIP */
 
 .value-strip{
@@ -1390,13 +1391,19 @@ h3 {
 ========================================= */
 
 .infrastructure-grid{
+  width:min(1520px, calc(100% - 120px));
+
+  margin:0 auto 88px;
+
   display:grid;
 
-  grid-template-columns:1.2fr 1fr 1fr;
+  grid-template-columns:
+    minmax(0, 860px)
+    minmax(360px, 420px);
 
-  gap:28px;
+  gap:72px;
 
-  align-items:stretch;
+  align-items:start;
 }
 
 /* =========================================
@@ -1677,17 +1684,19 @@ h3{
   color: #94a0b8;
 }
 
-.workflow-diagram {
-  display: grid;
+.workflow-diagram{
+  width:min(1520px, calc(100% - 120px));
+
+  margin:0 auto;
+
+  display:grid;
+
   grid-template-columns:
-    1fr
-    60px
-    1fr
-    60px
-    1.15fr
-    60px
-    1fr;
-  align-items: stretch;
+    repeat(4, minmax(0, 1fr));
+
+  gap:22px;
+
+  align-items:stretch;
 }
 
 .workflow-connector {
@@ -2057,6 +2066,39 @@ h3{
 .fill-4{
   width:74%;
   background:linear-gradient(90deg,#ff7a18,#ff2fd1);
+}
+.status-metrics{
+  display:grid;
+
+  grid-template-columns:repeat(2, 1fr);
+
+  gap:14px;
+
+  margin:26px 0 28px;
+}
+.workflow-status-panel{
+  width:100%;
+
+  padding:34px;
+
+  border-radius:34px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17,24,40,.96),
+      rgba(7,10,18,.99)
+    );
+
+  box-shadow:
+    0 32px 90px rgba(0,0,0,.45);
+}
+.metric-card{
+  padding:18px 16px;
+
+  min-height:104px;
 }
 /* =========================================
    WORKFLOW KITS
