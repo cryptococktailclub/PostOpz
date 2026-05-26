@@ -2289,9 +2289,9 @@ h3{
 
   grid-template-columns:
     minmax(0, 1fr)
-    420px;
+    minmax(520px, 580px);
 
-  gap:56px;
+  gap:40px;
 
   align-items:start;
 
