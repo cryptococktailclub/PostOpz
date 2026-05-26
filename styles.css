@@ -3130,33 +3130,31 @@ h3{
   /* ---------------------------------
      TYPOGRAPHY
   --------------------------------- */
+.hero-title-top,
+.hero-title-bottom{
 
-  h1,
-  .hero-title-top,
-  .hero-title-bottom{
-    font-size:clamp(3.4rem, 14vw, 5.5rem) !important;
+  font-size:clamp(3.2rem, 12vw, 4.8rem) !important;
 
-    line-height:.92 !important;
+  line-height:.96 !important;
 
-    white-space:normal !important;
+  letter-spacing:-0.06em !important;
 
-    word-break:keep-all;
+  white-space:normal !important;
 
-    overflow-wrap:normal;
-  }
+  text-wrap:balance;
+}
 
-  h2,
-  .infrastructure-heading h2,
-  .bottleneck-copy h2{
-    font-size:clamp(2.9rem, 11vw, 4.6rem) !important;
+h2,
+.infrastructure-heading h2,
+.bottleneck-copy h2{
 
-    line-height:.94 !important;
+  font-size:clamp(2.6rem, 10vw, 4.2rem) !important;
 
-    letter-spacing:-0.05em !important;
+  line-height:.98 !important;
 
-    text-wrap:balance;
-  }
-
+  text-wrap:balance;
+}
+  
   h3,
   .workflow-node h3,
   .product-card h3{
@@ -3392,6 +3390,24 @@ h3{
     transform:translateZ(0);
 
     backface-visibility:hidden;
+  }
+
+}
+@media (max-width:768px){
+
+  *{
+    min-width:0;
+  }
+
+  .workflow-node,
+  .pricing-card,
+  .kit-card,
+  .value-item,
+  .workflow-panel{
+
+    overflow-wrap:break-word;
+
+    word-break:normal;
   }
 
 }
