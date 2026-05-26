@@ -354,150 +354,141 @@
     <!-- STATUS PANEL -->
     <div class="infrastructure-grid">
 
-      <div class="infrastructure-status reveal">
+     <div class="infrastructure-status reveal">
 
-        <div class="status-header">
-          <span class="status-live"></span>
-          LIVE WORKFLOW STATUS
+  <div class="status-header">
+    <span class="status-live"></span>
+    LIVE WORKFLOW STATUS
+  </div>
+
+  <div class="status-meta-row">
+
+    <div class="meta-pill">
+      <span class="meta-label">ACTIVE PRODUCTIONS</span>
+      <strong>04</strong>
+    </div>
+
+    <div class="meta-pill">
+      <span class="meta-label">WORKFLOW QUEUE</span>
+      <strong>18</strong>
+    </div>
+
+    <div class="meta-pill">
+      <span class="meta-label">DELIVERY ACCURACY</span>
+      <strong>99.8%</strong>
+    </div>
+
+  </div>
+
+  <div class="pipeline-stack">
+
+    <div class="pipeline-task">
+
+      <div class="pipeline-top">
+        <div>
+          <span class="pipeline-type">MEDIA PREP</span>
+          <h4>Create Transcodes</h4>
         </div>
 
-        <div class="status-grid">
+        <span class="pipeline-code">AE-104</span>
+      </div>
 
-          <div class="status-card">
-            <span class="status-label">Active Productions</span>
-            <strong>04</strong>
-          </div>
+      <p>
+        DNxHR proxy generation · Relink-safe workflow · Incoming media prep
+      </p>
 
-          <div class="status-card">
-            <span class="status-label">Workflow Queue</span>
-            <strong>18</strong>
-          </div>
+      <div class="pipeline-progress">
+        <div class="progress-fill fill-blue"></div>
+      </div>
 
-          <div class="status-card">
-            <span class="status-label">Avg Turnaround</span>
-            <strong>4.2h</strong>
-          </div>
-
-          <div class="status-card">
-            <span class="status-label">Delivery Accuracy</span>
-            <strong>99.8%</strong>
-          </div>
-
-        </div>
-
-        <div class="status-pipeline">
-
-          <div class="pipeline-item">
-            <span>Media Prep</span>
-            <div class="pipeline-bar">
-              <div class="pipeline-fill fill-1"></div>
-            </div>
-          </div>
-
-          <div class="pipeline-item">
-            <span>Sync + Grouping</span>
-            <div class="pipeline-bar">
-              <div class="pipeline-fill fill-2"></div>
-            </div>
-          </div>
-
-          <div class="pipeline-item">
-            <span>Turnovers</span>
-            <div class="pipeline-bar">
-              <div class="pipeline-fill fill-3"></div>
-            </div>
-          </div>
-
-          <div class="pipeline-item">
-            <span>Exports + Review Delivery</span>
-            <div class="pipeline-bar">
-              <div class="pipeline-fill fill-4"></div>
-            </div>
-          </div>
-
-        </div>
-
+      <div class="pipeline-footer">
+        <span>72% Complete</span>
+        <span>241TB Active Media</span>
       </div>
 
     </div>
 
-    <!-- WORKFLOW ROW -->
-    <div class="workflow-diagram reveal">
+    <div class="pipeline-task">
 
-      <article class="workflow-node">
+      <div class="pipeline-top">
+        <div>
+          <span class="pipeline-type">MULTICAM SYNC</span>
+          <h4>Sync + Group Footage</h4>
+        </div>
 
-        <span class="workflow-label">
-          MEDIA INGEST
-        </span>
+        <span class="pipeline-code">AE-227</span>
+      </div>
 
-        <h3>
-          Dailies + Source Media
-        </h3>
+      <p>
+        Audio waveform sync · Multicam grouping · Editor-ready bins
+      </p>
 
-        <p>
-          Backups, cloud uploads, transcoding,
-          project organization, and source media management.
-        </p>
+      <div class="pipeline-progress">
+        <div class="progress-fill fill-cyan"></div>
+      </div>
 
-      </article>
+      <div class="pipeline-footer">
+        <span>48% Complete</span>
+        <span>12 Camera Angles</span>
+      </div>
 
-      <article class="workflow-node">
+    </div>
 
-        <span class="workflow-label">
-          SHARED STORAGE
-        </span>
+    <div class="pipeline-task">
 
-        <h3>
-          Cloud Editorial Systems
-        </h3>
+      <div class="pipeline-top">
+        <div>
+          <span class="pipeline-type">REVIEW EXPORT</span>
+          <h4>Export Review Cut</h4>
+        </div>
 
-        <p>
-          Avid EOD, LucidLink, AWS infrastructure,
-          remote workstations, and shared storage coordination.
-        </p>
+        <span class="pipeline-code">AE-308</span>
+      </div>
 
-      </article>
+      <p>
+        Frame.io review upload · Burn-ins · Delivery versioning
+      </p>
 
-      <article class="workflow-node active-node">
+      <div class="pipeline-progress">
+        <div class="progress-fill fill-magenta"></div>
+      </div>
 
-        <span class="workflow-label">
-          POSTOPZ LAYER
-        </span>
+      <div class="pipeline-footer">
+        <span>81% Complete</span>
+        <span>v14 Review</span>
+      </div>
 
-        <h3>
-          Embedded AE Operations
-        </h3>
+    </div>
 
-        <ul class="workflow-list">
-          <li>Sync + grouping</li>
-          <li>Media prep</li>
-          <li>Turnovers</li>
-          <li>Exports + review</li>
-          <li>Workflow coordination</li>
-        </ul>
+    <div class="pipeline-task">
 
-      </article>
+      <div class="pipeline-top">
+        <div>
+          <span class="pipeline-type">TURNOVER</span>
+          <h4>Prep for Color + Mix</h4>
+        </div>
 
-      <article class="workflow-node">
+        <span class="pipeline-code">AE-412</span>
+      </div>
 
-        <span class="workflow-label">
-          DELIVERY
-        </span>
+      <p>
+        AAF exports · Split tracks · Online turnover prep
+      </p>
 
-        <h3>
-          Editorial + Finishing
-        </h3>
+      <div class="pipeline-progress">
+        <div class="progress-fill fill-orange"></div>
+      </div>
 
-        <p>
-          Editor support, mix prep, online turnovers,
-          review delivery, final outputs, and archival management.
-        </p>
-
-      </article>
+      <div class="pipeline-footer">
+        <span>100% Delivered</span>
+        <span>Mix + Color Ready</span>
+      </div>
 
     </div>
 
   </div>
+
+</div>
 
 </section>
 <!-- =========================================
