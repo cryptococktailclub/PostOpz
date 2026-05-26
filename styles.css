@@ -2220,7 +2220,8 @@ h3{
 /* VALUE STRIP */
 
 .value-strip{
-  width:100%;
+  width:min(1520px, calc(100% - 120px));
+  margin:72px auto 0;
 
   margin-top:72px;
 
