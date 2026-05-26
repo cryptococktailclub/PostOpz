@@ -1927,6 +1927,7 @@ h3{
 .fill-1{ width:82%; }
 .fill-2{ width:61%; }
 .fill-3{ width:93%; }
+.fill-4{ width:74%; }
 
 @media (max-width:1180px){
 
@@ -1937,6 +1938,25 @@ h3{
   .infrastructure-status{
     max-width:560px;
   }
+}
+.fill-1{
+  width:82%;
+  background:linear-gradient(90deg,#00d9ff,#6a7cff);
+}
+
+.fill-2{
+  width:61%;
+  background:linear-gradient(90deg,#00ffa3,#00d9ff);
+}
+
+.fill-3{
+  width:93%;
+  background:linear-gradient(90deg,#8b5cff,#ff2fd1);
+}
+
+.fill-4{
+  width:74%;
+  background:linear-gradient(90deg,#ff7a18,#ff2fd1);
 }
 /* =========================================
    WORKFLOW KITS
