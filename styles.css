@@ -785,20 +785,27 @@ h3 {
   overflow: hidden;
 }
 
-.bottleneck-grid {
-  width: min(1480px, calc(100% - 100px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 920px) 420px;
-  gap: 80px;
-  align-items: start;
+.bottleneck-grid{
+  width:min(1440px, calc(100% - 120px));
+
+  margin:0 auto;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0, 760px)
+    480px;
+
+  gap:88px;
+
+  align-items:start;
 }
 
 .bottleneck-copy { max-width: 920px; }
 .bottleneck-copy .eyebrow { margin-bottom: 34px; }
 
 .bottleneck-copy h2{
-  max-width: 760px;
+  max-width:720px;
 
   margin: 0;
 
@@ -882,6 +889,25 @@ h3 {
   flex-direction: column;
   gap: 28px;
 }
+.workflow-panel{
+  width:100%;
+
+  padding:42px 36px;
+
+  border-radius:34px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17,24,40,.94),
+      rgba(8,11,20,.98)
+    );
+
+  box-shadow:
+    0 32px 80px rgba(0,0,0,.42);
+}
 
 .workflow-item {
   display: grid;
@@ -919,7 +945,45 @@ h3 {
   line-height: 1.75;
   color: #9aa7bc;
 }
+.workflow-item{
+  display:grid;
 
+  grid-template-columns:18px 1fr;
+
+  gap:18px;
+
+  padding:28px 0;
+
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.workflow-item:last-child{
+  border-bottom:none;
+}
+
+.workflow-item h4{
+  margin:0 0 10px;
+
+  font-size:31px;
+
+  line-height:1.08;
+
+  letter-spacing:-.045em;
+
+  color:#fff;
+}
+
+.workflow-item p{
+  max-width:340px;
+
+  margin:0;
+
+  font-size:17px;
+
+  line-height:1.75;
+
+  color:#97a2ba;
+}
 /* VALUE STRIP */
 
 .value-strip {
