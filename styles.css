@@ -2101,6 +2101,7 @@ h3{
     flex-direction:column;
   }
 }
+
 /* =========================================
    WORKFLOW KITS
 ========================================= */
@@ -2269,255 +2270,154 @@ h3{
 ========================================= */
 
 .infrastructure-shell{
-  width:min(1480px, calc(100% - 120px));
+  width:min(1520px, calc(100% - 120px));
   margin:0 auto;
 }
 
-.infrastructure-heading{
-  max-width:1180px;
+.infrastructure-top{
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    420px;
+
+  gap:56px;
+
+  align-items:start;
+
   margin-bottom:56px;
 }
 
 .infrastructure-heading h2{
-  max-width:1200px;
 
-  margin:0 0 28px;
-
-  font-size:clamp(64px, 5vw, 92px);
-
-  line-height:.92;
-
-  letter-spacing:-.065em;
-
-  font-weight:900;
-
-  color:#f5f7fb;
+  max-width:920px;
 }
 
-.infrastructure-lede{
-  max-width:860px;
+.infrastructure-heading p{
 
-  font-size:19px;
-
-  line-height:1.85;
-
-  color:#aab4c8;
+  max-width:760px;
 }
-
-/* =========================================
-   STATUS PANEL
-========================================= */
-
-.infrastructure-grid{
-  margin-bottom:32px;
-}
-
-.infrastructure-status{
-  width:100%;
-
-  padding:34px;
-
-  border-radius:34px;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(16,22,38,.96),
-      rgba(8,10,18,.99)
-    );
-
-  box-shadow:
-    0 32px 90px rgba(0,0,0,.42);
-}
-
-/* =========================================
-   WORKFLOW DIAGRAM
-========================================= */
 
 .workflow-diagram{
+
   display:grid;
 
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
+  grid-template-columns:repeat(4, minmax(0,1fr));
 
-  gap:24px;
-
-  align-items:stretch;
+  gap:28px;
 }
 
 .workflow-node{
-  display:flex;
 
-  flex-direction:column;
+  position:relative;
 
-  min-height:340px;
+  min-height:420px;
 
-  padding:34px 30px;
+  padding:42px 34px;
 
-  border-radius:30px;
-
-  border:1px solid rgba(255,255,255,.08);
+  border-radius:32px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(18,24,36,.96),
-      rgba(10,12,18,.98)
+      rgba(12,18,30,.96),
+      rgba(7,10,18,.98)
     );
 
-  box-shadow:
-    0 24px 70px rgba(0,0,0,.34);
+  border:1px solid rgba(255,255,255,.08);
 
-  transition:
-    transform .3s ease,
-    border-color .3s ease,
-    box-shadow .3s ease;
+  overflow:hidden;
 }
 
-.workflow-node:hover{
-  transform:translateY(-4px);
+.workflow-node::after{
 
-  border-color:rgba(0,217,255,.18);
-
-  box-shadow:
-    0 36px 100px rgba(0,0,0,.42);
-}
-
-.active-node{
-  border-color:rgba(195,91,255,.26);
-
-  box-shadow:
-    0 36px 100px rgba(0,0,0,.46),
-    0 0 50px rgba(195,91,255,.08);
-}
-
-.workflow-label{
-  display:inline-flex;
-
-  align-items:center;
-
-  width:max-content;
-
-  min-height:34px;
-
-  margin-bottom:26px;
-
-  padding:0 16px;
-
-  border-radius:999px;
-
-  border:1px solid rgba(0,217,255,.18);
-
-  background:rgba(0,217,255,.05);
-
-  color:var(--cyan);
-
-  font-size:11px;
-
-  font-weight:800;
-
-  letter-spacing:.16em;
-
-  text-transform:uppercase;
-}
-
-.workflow-node h3{
-  margin:0 0 20px;
-
-  font-size:clamp(34px, 2.4vw, 48px);
-
-  line-height:.94;
-
-  letter-spacing:-.06em;
-
-  font-weight:900;
-
-  color:#fff;
-}
-
-.workflow-node p{
-  font-size:16px;
-
-  line-height:1.8;
-
-  color:#aab4c8;
-}
-
-.workflow-list{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:14px;
-
-  margin:0;
-
-  padding:0;
-
-  list-style:none;
-}
-
-.workflow-list li{
-  position:relative;
-
-  padding-left:22px;
-
-  font-size:16px;
-
-  line-height:1.7;
-
-  color:#dbe3f0;
-}
-
-.workflow-list li::before{
   content:"";
 
   position:absolute;
 
-  top:10px;
-  left:0;
+  top:50%;
 
-  width:8px;
-  height:8px;
+  right:-22px;
 
-  border-radius:50%;
+  width:44px;
 
-  background:#4dffb8;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(180,60,255,.9),
+      transparent
+    );
+}
+
+.workflow-node:last-child::after{
+  display:none;
+}
+
+.active-node{
+
+  border:1px solid rgba(185,70,255,.45);
 
   box-shadow:
-    0 0 14px rgba(77,255,184,.7);
+    0 0 60px rgba(175,70,255,.16);
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
+.workflow-label{
 
-@media (max-width:1180px){
+  display:inline-flex;
 
-  .workflow-diagram{
-    grid-template-columns:1fr 1fr;
-  }
+  align-items:center;
+
+  padding:10px 18px;
+
+  border-radius:999px;
+
+  font-size:.7rem;
+
+  letter-spacing:.24em;
+
+  font-weight:700;
+
+  color:#00d9ff;
+
+  background:
+    rgba(0,217,255,.08);
+
+  border:1px solid rgba(0,217,255,.22);
+
+  margin-bottom:28px;
 }
 
-@media (max-width:768px){
+.workflow-node h3{
 
-  .infrastructure-shell{
-    width:calc(100% - 32px);
-  }
+  font-size:3.2rem;
 
-  .workflow-diagram{
-    grid-template-columns:1fr;
-  }
+  line-height:.92;
 
-  .workflow-node{
-    min-height:auto;
-  }
+  margin-bottom:24px;
+}
 
-  .infrastructure-heading h2{
-    font-size:clamp(42px, 12vw, 64px);
-  }
+.workflow-node p,
+.workflow-node li{
+
+  font-size:1.05rem;
+
+  line-height:1.9;
+
+  color:rgba(214,221,235,.72);
+}
+
+.workflow-node ul{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:16px;
+
+  margin-top:20px;
 }
 /* =========================================
    CTA
