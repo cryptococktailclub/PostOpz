@@ -949,16 +949,30 @@ h3 {
 }
 /* VALUE STRIP */
 
-.value-strip {
-  width: min(1480px, calc(100% - 100px));
-  margin: 74px auto 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  overflow: hidden;
-  border-radius: 32px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: linear-gradient(135deg, rgba(18,24,36,.96), rgba(8,10,18,.98));
-  box-shadow: 0 24px 80px rgba(0,0,0,.3);
+.value-strip{
+  width:min(1360px, calc(100% - 180px));
+
+  margin:72px auto 0;
+
+  display:grid;
+
+  grid-template-columns:repeat(4, 1fr);
+
+  border-radius:34px;
+
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.07);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(14,20,34,.92),
+      rgba(7,10,18,.98)
+    );
+
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.42);
 }
 
 .value-item {
@@ -1009,7 +1023,9 @@ h3 {
   line-height: 1.75;
   color: #98a5ba;
 }
-
+.value-card{
+  padding:42px 34px 38px;
+}
 /* =========================================
    OPERATIONAL COVERAGE
 ========================================= */
