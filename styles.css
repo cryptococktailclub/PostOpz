@@ -786,17 +786,17 @@ h3 {
 }
 
 .bottleneck-grid{
-  width:min(1440px, calc(100% - 120px));
+  width:min(1480px, calc(100% - 120px));
 
   margin:0 auto;
 
   display:grid;
 
   grid-template-columns:
-    minmax(0, 760px)
-    480px;
+    minmax(0, 780px)
+    460px;
 
-  gap:88px;
+  gap:84px;
 
   align-items:start;
 }
@@ -892,7 +892,7 @@ h3 {
 .workflow-panel{
   width:100%;
 
-  padding:42px 36px;
+  padding:34px 34px;
 
   border-radius:34px;
 
@@ -930,55 +930,38 @@ h3 {
   box-shadow: 0 0 16px rgba(89,255,178,.6);
 }
 
-.workflow-item h4 {
-  margin: 0 0 10px;
-  font-size: 17px;
-  line-height: 1.2;
-  letter-spacing: -.04em;
-  font-weight: 800;
-  color: #fff;
-}
-
-.workflow-item p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.75;
-  color: #9aa7bc;
-}
 .workflow-item{
   display:grid;
 
-  grid-template-columns:18px 1fr;
+  grid-template-columns:14px 1fr;
 
-  gap:18px;
+  gap:16px;
 
-  padding:28px 0;
+  padding:24px 0;
 
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 
-.workflow-item:last-child{
-  border-bottom:none;
-}
-
 .workflow-item h4{
-  margin:0 0 10px;
+  margin:0 0 8px;
 
-  font-size:31px;
+  font-size:20px;
 
   line-height:1.08;
 
-  letter-spacing:-.045em;
+  letter-spacing:-.04em;
+
+  font-weight:800;
 
   color:#fff;
 }
 
 .workflow-item p{
-  max-width:340px;
+  max-width:100%;
 
   margin:0;
 
-  font-size:17px;
+  font-size:15px;
 
   line-height:1.75;
 
