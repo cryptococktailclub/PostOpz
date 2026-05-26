@@ -952,7 +952,7 @@ h3 {
 ========================================= */
 
 .value-strip{
-  width:min(1520px, calc(100% - 120px));
+  width:min(1400px, calc(100% - 120px));
 
   margin:72px auto 0;
 
