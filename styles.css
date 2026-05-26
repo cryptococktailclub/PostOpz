@@ -947,7 +947,78 @@ h3 {
 
   color:#97a2ba;
 }
+/* =========================================
+   VALUE STRIP
+========================================= */
 
+.value-strip{
+  width:min(1520px, calc(100% - 120px));
+
+  margin:72px auto 0;
+
+  display:grid;
+
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+
+  align-items:stretch;
+
+  border-radius:34px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12,18,30,.96),
+      rgba(7,10,18,.98)
+    );
+
+  overflow:hidden;
+
+  box-shadow:
+    0 28px 90px rgba(0,0,0,.34);
+}
+
+/* keep cards equal width */
+.value-item{
+  width:100%;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width:1180px){
+
+  .value-strip{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .value-item:nth-child(2){
+    border-right:none;
+  }
+
+  .value-item:nth-child(-n+2){
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+}
+
+@media (max-width:768px){
+
+  .value-strip{
+    width:calc(100% - 32px);
+
+    grid-template-columns:1fr;
+  }
+
+  .value-item{
+    border-right:none !important;
+  }
+
+  .value-item:not(:last-child){
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+}
 .value-item {
   position: relative;
   min-height: 280px;
