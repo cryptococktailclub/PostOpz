@@ -1987,94 +1987,6 @@ h3{
   min-height:104px;
 }
 /* =========================================
-   UNIFIED GRID SYSTEM
-========================================= */
-
-.infrastructure-shell{
-  width:min(1480px, calc(100% - 120px));
-
-  margin:0 auto;
-}
-
-/* TOP SECTION */
-
-.infrastructure-grid{
-  display:grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    420px;
-
-  gap:48px;
-
-  align-items:start;
-
-  margin-bottom:64px;
-}
-
-/* STATUS PANEL */
-
-.workflow-status-panel{
-  width:100%;
-
-  padding:34px;
-
-  border-radius:34px;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(17,24,40,.96),
-      rgba(7,10,18,.99)
-    );
-
-  box-shadow:
-    0 32px 90px rgba(0,0,0,.45);
-}
-
-/* WORKFLOW CARDS */
-
-.workflow-diagram{
-  display:grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap:22px;
-
-  align-items:stretch;
-}
-
-/* VALUE STRIP */
-
-.value-strip{
-  width:100%;
-
-  margin:72px 0 0;
-
-  display:grid;
-
-  grid-template-columns:repeat(4,1fr);
-
-  border-radius:34px;
-
-  overflow:hidden;
-
-  border:1px solid rgba(255,255,255,.07);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(14,20,34,.92),
-      rgba(7,10,18,.98)
-    );
-
-  box-shadow:
-    0 28px 70px rgba(0,0,0,.42);
-}
-/* =========================================
    WORKFLOW KITS
 ========================================= */
 
@@ -2237,7 +2149,94 @@ h3{
 
   color:#fff;
 }
+/* =========================================
+   UNIFIED GRID SYSTEM
+========================================= */
 
+.infrastructure-shell{
+  width:min(1480px, calc(100% - 120px));
+
+  margin:0 auto;
+}
+
+/* TOP SECTION */
+
+.infrastructure-grid{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    420px;
+
+  gap:48px;
+
+  align-items:start;
+
+  margin-bottom:64px;
+}
+
+/* STATUS PANEL */
+
+.workflow-status-panel{
+  width:100%;
+
+  padding:34px;
+
+  border-radius:34px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17,24,40,.96),
+      rgba(7,10,18,.99)
+    );
+
+  box-shadow:
+    0 32px 90px rgba(0,0,0,.45);
+}
+
+/* WORKFLOW CARDS */
+
+.workflow-diagram{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap:22px;
+
+  align-items:stretch;
+}
+
+/* VALUE STRIP */
+
+.value-strip{
+  width:100%;
+
+  margin:72px 0 0;
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  border-radius:34px;
+
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.07);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(14,20,34,.92),
+      rgba(7,10,18,.98)
+    );
+
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.42);
+}
 /* =========================================
    RESPONSIVE
 ========================================= */
