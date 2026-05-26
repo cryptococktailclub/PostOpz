@@ -2695,3 +2695,182 @@ h3{
   .progress-fill { transition: none; }
   * { transition-duration: 0.01ms !important; }
 }
+/* =========================================
+   MOBILE FIXES
+========================================= */
+
+@media (max-width: 900px){
+
+  /* -----------------------------
+     GLOBAL SECTION SPACING
+  ----------------------------- */
+
+  .section-pad{
+    padding:
+      100px 24px;
+  }
+
+  .infrastructure-shell,
+  .bottleneck-shell,
+  .products-shell{
+    width:100%;
+    max-width:100%;
+  }
+
+  /* -----------------------------
+     OPERATIONAL INFRASTRUCTURE
+  ----------------------------- */
+
+  .infrastructure-heading{
+    width:100%;
+  }
+
+  .infrastructure-heading h2{
+    font-size:clamp(3rem, 12vw, 4.8rem);
+    line-height:.95;
+    letter-spacing:-0.05em;
+    max-width:100%;
+  }
+
+  .infrastructure-heading p{
+    max-width:100%;
+    font-size:1rem;
+    line-height:1.7;
+  }
+
+  .infrastructure-top{
+    grid-template-columns:1fr;
+    gap:40px;
+    align-items:start;
+  }
+
+  .infrastructure-status{
+    width:100%;
+    max-width:100%;
+  }
+
+  .status-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .status-card{
+    min-height:110px;
+  }
+
+  /* -----------------------------
+     WORKFLOW DIAGRAM
+  ----------------------------- */
+
+  .workflow-diagram{
+    grid-template-columns:1fr;
+    gap:24px;
+    margin-top:40px;
+  }
+
+  .workflow-node{
+    min-height:auto;
+    padding:34px 30px;
+  }
+
+  .workflow-node h3{
+    font-size:2.4rem;
+    line-height:.95;
+  }
+
+  .workflow-node p,
+  .workflow-node li{
+    font-size:1rem;
+    line-height:1.8;
+  }
+
+  .workflow-node::after{
+    display:none;
+  }
+
+  /* -----------------------------
+     BOTTLENECK SECTION
+  ----------------------------- */
+
+  .bottleneck-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .bottleneck-copy h2{
+    font-size:clamp(3.4rem, 13vw, 5rem);
+    line-height:.92;
+  }
+
+  .operational-coverage{
+    width:100%;
+    max-width:100%;
+  }
+
+  /* -----------------------------
+     VALUE STRIP
+  ----------------------------- */
+
+  .value-strip{
+    grid-template-columns:1fr;
+    width:100%;
+    margin-top:40px;
+  }
+
+  .value-item{
+    min-height:240px;
+    border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+
+  .value-item:last-child{
+    border-bottom:none;
+  }
+
+  /* -----------------------------
+     DIGITAL PRODUCTS
+  ----------------------------- */
+
+  .products-grid{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .product-card{
+    min-height:auto;
+    padding:34px 30px;
+  }
+
+  .product-card h3{
+    font-size:2.5rem;
+    line-height:.95;
+  }
+
+  .product-price{
+    font-size:3rem;
+  }
+
+  /* -----------------------------
+     NAVIGATION
+  ----------------------------- */
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-cta{
+    display:none;
+  }
+
+  /* -----------------------------
+     GENERAL PANEL ROUNDING
+  ----------------------------- */
+
+  .workflow-node,
+  .product-card,
+  .value-strip,
+  .operational-coverage,
+  .infrastructure-status{
+    border-radius:28px;
+  }
+
+}
