@@ -786,7 +786,7 @@ h3 {
 }
 
 .bottleneck-grid{
-  width:min(1480px, calc(100% - 120px));
+  width:min(1520px, calc(100% - 120px));
 
   margin:0 auto;
 
@@ -794,9 +794,9 @@ h3 {
 
   grid-template-columns:
     minmax(0, 780px)
-    460px;
+    minmax(500px, 560px);
 
-  gap:84px;
+  gap:72px;
 
   align-items:start;
 }
@@ -848,51 +848,12 @@ h3 {
 
   color: #aab4c8;
 }
-.bottleneck-grid{
-  width:min(1380px, calc(100% - 120px));
-
-  margin:0 auto;
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(0, 760px)
-    360px;
-
-  gap:72px;
-
-  align-items:start;
-}
 /* WORKFLOW PANEL */
 
-.workflow-panel {
-  position: relative;
-  padding: 40px 38px;
-  border-radius: 32px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: linear-gradient(180deg, rgba(18,24,36,.96), rgba(10,12,18,.98));
-  box-shadow: 0 30px 90px rgba(0,0,0,.36);
-  backdrop-filter: blur(14px);
-}
-
-.workflow-panel-label {
-  margin-bottom: 32px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--cyan);
-}
-
-.workflow-panel-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
 .workflow-panel{
   width:100%;
 
-  padding:34px 34px;
+  padding:34px 40px;
 
   border-radius:34px;
 
@@ -907,6 +868,25 @@ h3 {
 
   box-shadow:
     0 32px 80px rgba(0,0,0,.42);
+
+  min-height:auto;
+}
+
+.workflow-panel-label {
+  margin-bottom: 32px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.workflow-panel-grid{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
 }
 
 .workflow-item {
@@ -937,7 +917,7 @@ h3 {
 
   gap:16px;
 
-  padding:24px 0;
+  padding:20px 0;
 
   border-bottom:1px solid rgba(255,255,255,.06);
 }
@@ -945,11 +925,11 @@ h3 {
 .workflow-item h4{
   margin:0 0 8px;
 
-  font-size:20px;
+  font-size:17px;
 
   line-height:1.08;
 
-  letter-spacing:-.04em;
+  letter-spacing:-.03em;
 
   font-weight:800;
 
@@ -961,9 +941,9 @@ h3 {
 
   margin:0;
 
-  font-size:15px;
+  font-size:14px;
 
-  line-height:1.75;
+  line-height:1.7;
 
   color:#97a2ba;
 }
