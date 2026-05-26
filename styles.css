@@ -2419,6 +2419,37 @@ h3{
 
   margin-top:20px;
 }
+.workflow-list{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  margin-top:28px;
+}
+
+.workflow-list li{
+  position:relative;
+  padding-left:24px;
+  color:rgba(235,240,255,.86);
+}
+
+.workflow-list li::before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  top:11px;
+
+  width:8px;
+  height:8px;
+
+  border-radius:999px;
+
+  background:#39ffb6;
+
+  box-shadow:
+    0 0 12px rgba(57,255,182,.75);
+}
 /* =========================================
    CTA
 ========================================= */
