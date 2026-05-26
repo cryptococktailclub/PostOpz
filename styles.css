@@ -2874,3 +2874,74 @@ h3{
   }
 
 }
+/* =========================================
+   DIGITAL PRODUCTS MOBILE FIX
+========================================= */
+
+@media (max-width: 900px){
+
+  .products-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .product-card{
+    height:auto !important;
+    min-height:unset !important;
+
+    padding:34px 28px 38px;
+
+    overflow:visible;
+  }
+
+  .product-card-inner{
+    height:auto !important;
+    min-height:unset !important;
+  }
+
+  .product-card h3{
+    font-size:clamp(2.2rem, 10vw, 3rem);
+
+    line-height:.95;
+
+    word-break:keep-all;
+  }
+
+  .product-card p{
+    font-size:1rem;
+    line-height:1.75;
+
+    max-width:100%;
+  }
+
+  .product-price{
+    font-size:3rem;
+    line-height:1;
+  }
+
+  .product-meta,
+  .product-features,
+  .product-footer{
+    width:100%;
+  }
+
+  .product-features{
+    gap:14px;
+  }
+
+  .product-features li{
+    font-size:.98rem;
+    line-height:1.6;
+  }
+
+  /* prevents clipping */
+  .products-section{
+    overflow:visible;
+  }
+
+  .products-shell{
+    overflow:visible;
+  }
+
+}
