@@ -1652,21 +1652,6 @@ h3{
   color: #94a0b8;
 }
 
-.workflow-diagram{
-  width:min(1520px, calc(100% - 120px));
-
-  margin:0 auto;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap:22px;
-
-  align-items:stretch;
-}
-
 .workflow-connector {
   position: relative;
 }
@@ -1796,14 +1781,6 @@ h3{
   box-shadow:
     0 0 12px rgba(55,255,177,.8);
 }
-
-@media (max-width: 1180px) {
-
-  .workflow-diagram {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
   .workflow-connector {
     display: none;
   }
