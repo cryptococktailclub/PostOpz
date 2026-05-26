@@ -2304,11 +2304,6 @@ h3{
     gap: 48px;
   }
 
-  .value-strip {
-    width: calc(100% - 48px);
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .value-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
   .value-item:nth-last-child(-n+2) { border-bottom: none; }
 
@@ -2373,7 +2368,6 @@ h3{
 
   .workflow-panel { padding: 30px 22px; }
 
-  .value-strip { grid-template-columns: 1fr; }
   .value-item { min-height: 220px; border-right: none !important; }
   .value-item:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,.06); }
 
