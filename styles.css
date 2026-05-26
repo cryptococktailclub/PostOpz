@@ -1387,26 +1387,6 @@ h3 {
 }
 
 /* =========================================
-   GRID
-========================================= */
-
-.infrastructure-grid{
-  width:min(1520px, calc(100% - 120px));
-
-  margin:0 auto 88px;
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(0, 860px)
-    minmax(360px, 420px);
-
-  gap:72px;
-
-  align-items:start;
-}
-
-/* =========================================
    CARDS
 ========================================= */
 
