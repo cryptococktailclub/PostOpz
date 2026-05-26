@@ -1968,7 +1968,7 @@ h3{
   color:#fff;
 }
 /* =========================================
-   UNIFIED INFRASTRUCTURE LAYOUT
+   OPERATIONAL INFRASTRUCTURE
 ========================================= */
 
 .infrastructure-shell{
@@ -1976,28 +1976,47 @@ h3{
   margin:0 auto;
 }
 
-/* TOP STATUS SECTION */
+.infrastructure-heading{
+  max-width:1180px;
+  margin-bottom:56px;
+}
+
+.infrastructure-heading h2{
+  max-width:1200px;
+
+  margin:0 0 28px;
+
+  font-size:clamp(64px, 5vw, 92px);
+
+  line-height:.92;
+
+  letter-spacing:-.065em;
+
+  font-weight:900;
+
+  color:#f5f7fb;
+}
+
+.infrastructure-lede{
+  max-width:860px;
+
+  font-size:19px;
+
+  line-height:1.85;
+
+  color:#aab4c8;
+}
+
+/* =========================================
+   STATUS PANEL
+========================================= */
 
 .infrastructure-grid{
-  display:grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    420px;
-
-  gap:32px;
-
-  align-items:stretch;
-
   margin-bottom:32px;
 }
 
-/* STATUS PANEL */
-
-.workflow-status-panel,
 .infrastructure-status{
   width:100%;
-  height:100%;
 
   padding:34px;
 
@@ -2008,15 +2027,17 @@ h3{
   background:
     linear-gradient(
       180deg,
-      rgba(17,24,40,.96),
-      rgba(7,10,18,.99)
+      rgba(16,22,38,.96),
+      rgba(8,10,18,.99)
     );
 
   box-shadow:
-    0 32px 90px rgba(0,0,0,.45);
+    0 32px 90px rgba(0,0,0,.42);
 }
 
-/* WORKFLOW CARD ROW */
+/* =========================================
+   WORKFLOW DIAGRAM
+========================================= */
 
 .workflow-diagram{
   display:grid;
@@ -2024,84 +2045,164 @@ h3{
   grid-template-columns:
     repeat(4, minmax(0, 1fr));
 
-  gap:22px;
+  gap:24px;
 
   align-items:stretch;
 }
 
 .workflow-node{
-  min-height:360px;
-}
-
-/* VALUE STRIP */
-
-.value-strip{
-  width:min(1520px, calc(100% - 120px));
-  margin:72px auto 0;
-
-  margin-top:72px;
-
-  display:grid;
-
-  grid-template-columns:repeat(4,1fr);
-
-  align-items:stretch;
-
-  border-radius:34px;
-
-  overflow:hidden;
-
-  border:1px solid rgba(255,255,255,.07);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(14,20,34,.92),
-      rgba(7,10,18,.98)
-    );
-
-  box-shadow:
-    0 28px 70px rgba(0,0,0,.42);
-}
-
-.value-item{
-  min-height:260px;
-
-  padding:52px 34px 42px;
-
   display:flex;
 
   flex-direction:column;
 
-  justify-content:flex-start;
+  min-height:340px;
+
+  padding:34px 30px;
+
+  border-radius:30px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,24,36,.96),
+      rgba(10,12,18,.98)
+    );
+
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.34);
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+.workflow-node:hover{
+  transform:translateY(-4px);
+
+  border-color:rgba(0,217,255,.18);
+
+  box-shadow:
+    0 36px 100px rgba(0,0,0,.42);
+}
+
+.active-node{
+  border-color:rgba(195,91,255,.26);
+
+  box-shadow:
+    0 36px 100px rgba(0,0,0,.46),
+    0 0 50px rgba(195,91,255,.08);
+}
+
+.workflow-label{
+  display:inline-flex;
 
   align-items:center;
 
-  text-align:center;
+  width:max-content;
+
+  min-height:34px;
+
+  margin-bottom:26px;
+
+  padding:0 16px;
+
+  border-radius:999px;
+
+  border:1px solid rgba(0,217,255,.18);
+
+  background:rgba(0,217,255,.05);
+
+  color:var(--cyan);
+
+  font-size:11px;
+
+  font-weight:800;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+}
+
+.workflow-node h3{
+  margin:0 0 20px;
+
+  font-size:clamp(34px, 2.4vw, 48px);
+
+  line-height:.94;
+
+  letter-spacing:-.06em;
+
+  font-weight:900;
+
+  color:#fff;
+}
+
+.workflow-node p{
+  font-size:16px;
+
+  line-height:1.8;
+
+  color:#aab4c8;
+}
+
+.workflow-list{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+  margin:0;
+
+  padding:0;
+
+  list-style:none;
+}
+
+.workflow-list li{
+  position:relative;
+
+  padding-left:22px;
+
+  font-size:16px;
+
+  line-height:1.7;
+
+  color:#dbe3f0;
+}
+
+.workflow-list li::before{
+  content:"";
+
+  position:absolute;
+
+  top:10px;
+  left:0;
+
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#4dffb8;
+
+  box-shadow:
+    0 0 14px rgba(77,255,184,.7);
 }
 
 /* =========================================
-   TABLET
+   RESPONSIVE
 ========================================= */
 
 @media (max-width:1180px){
 
-  .infrastructure-grid{
-    grid-template-columns:1fr;
-  }
-
   .workflow-diagram{
     grid-template-columns:1fr 1fr;
   }
-
-  .value-strip{
-    grid-template-columns:1fr 1fr;
-  }
 }
-
-/* =========================================
-   MOBILE
-========================================= */
 
 @media (max-width:768px){
 
@@ -2113,46 +2214,12 @@ h3{
     grid-template-columns:1fr;
   }
 
-  .value-strip{
-    grid-template-columns:1fr;
-  }
-
-  .workflow-node,
-  .value-item{
+  .workflow-node{
     min-height:auto;
   }
-}
-/* =========================================
-   RESPONSIVE
-========================================= */
 
-@media (max-width:1180px){
-
-  .kits-grid{
-    grid-template-columns:1fr;
-  }
-
-  .kit-card{
-    min-height:auto;
-  }
-}
-
-@media (max-width:768px){
-
-  .kits-grid{
-    width:calc(100% - 32px);
-  }
-
-  .kit-card{
-    padding:30px 24px;
-  }
-
-  .kit-card h3{
-    font-size:34px;
-  }
-
-  .kit-price{
-    font-size:34px;
+  .infrastructure-heading h2{
+    font-size:clamp(42px, 12vw, 64px);
   }
 }
 /* =========================================
