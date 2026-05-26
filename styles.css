@@ -1729,9 +1729,16 @@ h3{
 ========================================= */
 
 .infrastructure-status{
+
+  width:100%;
+
+  max-width:580px;
+
+  justify-self:end;
+
   position:relative;
 
-  padding:28px;
+  padding:30px;
 
   border-radius:32px;
 
