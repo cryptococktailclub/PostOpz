@@ -3086,7 +3086,7 @@ h3{
 
   letter-spacing:-0.06em !important;
 
-  white-space:normal !important;
+ white-space:unset !important;
 
   text-wrap:balance;
 }
