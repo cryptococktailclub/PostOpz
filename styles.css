@@ -1757,10 +1757,16 @@ h3{
     display: none;
   }
 
-  .workflow-node {
-    min-height: auto;
-  }
+  ..workflow-node{
+  height:100%;
+}
+.workflow-diagram{
+  align-items:stretch;
+}
 
+.workflow-node{
+  display:flex;
+  flex-direction:column;
 }
 .workflow-card p{
   max-width: 240px;
