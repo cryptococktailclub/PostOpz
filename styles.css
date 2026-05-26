@@ -2413,12 +2413,10 @@ h3{
 
 .workflow-node p,
 .workflow-node li{
-
-  font-size:1.05rem;
-
-  line-height:1.9;
-
+  font-size:1.08rem;
+  line-height:1.85;
   color:rgba(214,221,235,.72);
+  }
 }
 
 .workflow-node ul{
