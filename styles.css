@@ -3033,6 +3033,70 @@ h3{
   transform:translateZ(0);
 }
 /* =========================================
+   DESKTOP PANEL RESTORE
+========================================= */
+
+@media (min-width: 901px){
+
+  .pricing-card,
+  .kit-card,
+  .workflow-node,
+  .infra-card,
+  .value-item{
+
+    min-height:auto !important;
+    height:auto !important;
+  }
+
+  .pricing-card h3,
+  .pricing-card p{
+
+    min-height:auto !important;
+  }
+
+  .workflow-node{
+    padding:34px 30px !important;
+  }
+
+  .value-item{
+    padding:42px 32px !important;
+    min-height:220px !important;
+  }
+
+  .kit-card{
+    min-height:300px !important;
+  }
+
+}
+/* =========================================
+   DESKTOP TOOLS STRIP RESTORE
+========================================= */
+
+@media (min-width: 769px){
+
+  .tools-logos{
+
+    display:grid !important;
+
+    grid-template-columns:
+      repeat(7, 1fr) !important;
+
+    gap:0 !important;
+  }
+
+  .tools-logos .logo-item:nth-child(7){
+    grid-column:auto !important;
+  }
+
+  .tools-logos img{
+
+    height:26px !important;
+
+    max-width:110px !important;
+  }
+
+}
+/* =========================================
    TRUE MOBILE LAYOUT RESET
 ========================================= */
 
@@ -3413,8 +3477,6 @@ h2,
 
     object-fit:contain;
   }
-
-}
 .hero-subhead,
 .hero-lede{
 
@@ -3423,3 +3485,5 @@ h2,
   text-wrap:balance;
 
 }
+}
+
