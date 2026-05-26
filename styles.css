@@ -1911,8 +1911,14 @@ h3{
 }
 
 .fill-2{
-  width:61%;
-  background:linear-gradient(90deg,#00ffa3,#00d9ff);
+  width:48%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff9a3d 0%,
+      #ffbf4d 100%
+    );
 }
 
 .fill-3{
@@ -1921,8 +1927,14 @@ h3{
 }
 
 .fill-4{
-  width:74%;
-  background:linear-gradient(90deg,#ff7a18,#ff2fd1);
+  width:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #39ffb6 0%,
+      #53ff9d 100%
+    );
 }
 .status-metrics{
   display:grid;
@@ -2449,6 +2461,18 @@ h3{
 
   box-shadow:
     0 0 12px rgba(57,255,182,.75);
+}
+.workflow-node{
+  display:flex;
+  flex-direction:column;
+}
+
+.workflow-node p{
+  margin-top:auto;
+}
+
+.workflow-node.active-node ul{
+  margin-top:34px;
 }
 /* =========================================
    CTA
