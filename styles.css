@@ -1744,6 +1744,200 @@ h3{
   }
 
 }
+
+/* =========================================
+   INFRASTRUCTURE STATUS PANEL
+========================================= */
+
+.infrastructure-shell{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0, 760px)
+    360px;
+
+  gap:72px;
+
+  align-items:start;
+}
+
+.infrastructure-status{
+  position:relative;
+
+  padding:28px;
+
+  border-radius:32px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16,22,38,.92),
+      rgba(8,10,18,.96)
+    );
+
+  box-shadow:
+    0 32px 90px rgba(0,0,0,.42);
+
+  overflow:hidden;
+}
+
+.infrastructure-status::before{
+  content:"";
+
+  position:absolute;
+
+  inset:-20% auto auto -20%;
+
+  width:260px;
+  height:260px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,217,255,.10),
+      transparent 72%
+    );
+
+  pointer-events:none;
+}
+
+.status-header{
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:26px;
+
+  font-size:11px;
+
+  letter-spacing:.22em;
+
+  font-weight:800;
+
+  color:var(--cyan);
+}
+
+.status-live{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#4cffb2;
+
+  box-shadow:
+    0 0 14px rgba(76,255,178,.8);
+}
+
+.status-grid{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:14px;
+
+  margin-bottom:28px;
+}
+
+.status-card{
+  padding:18px;
+
+  border-radius:20px;
+
+  border:1px solid rgba(255,255,255,.06);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.02),
+      rgba(255,255,255,.01)
+    );
+}
+
+.status-label{
+  display:block;
+
+  margin-bottom:10px;
+
+  font-size:12px;
+
+  color:#7f8aa3;
+
+  letter-spacing:.04em;
+}
+
+.status-card strong{
+  font-size:34px;
+
+  line-height:.9;
+
+  letter-spacing:-.06em;
+
+  color:#fff;
+}
+
+.status-pipeline{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:18px;
+}
+
+.pipeline-item span{
+  display:block;
+
+  margin-bottom:8px;
+
+  font-size:13px;
+
+  color:#cfd6e6;
+}
+
+.pipeline-bar{
+  position:relative;
+
+  height:8px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,.06);
+
+  overflow:hidden;
+}
+
+.pipeline-fill{
+  height:100%;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #00d9ff,
+      #8b5cff,
+      #ff2fd1
+    );
+}
+
+.fill-1{ width:82%; }
+.fill-2{ width:61%; }
+.fill-3{ width:93%; }
+
+@media (max-width:1180px){
+
+  .infrastructure-shell{
+    grid-template-columns:1fr;
+  }
+
+  .infrastructure-status{
+    max-width:560px;
+  }
+}
 /* =========================================
    WORKFLOW KITS
 ========================================= */
