@@ -977,6 +977,10 @@ h3 {
   box-shadow:
     0 28px 90px rgba(0,0,0,.34);
 }
+.value-strip{
+  position:relative;
+  left:-6px;
+}
 .value-item{
 
   min-height:260px;
