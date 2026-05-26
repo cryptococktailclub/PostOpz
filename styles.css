@@ -948,34 +948,6 @@ h3 {
   color:#97a2ba;
 }
 
-/* VALUE STRIP */
-
-.value-strip{
-  width:min(1360px, calc(100% - 180px));
-
-  margin:72px auto 0;
-
-  display:grid;
-
-  grid-template-columns:repeat(4, 1fr);
-
-  border-radius:34px;
-
-  overflow:hidden;
-
-  border:1px solid rgba(255,255,255,.07);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(14,20,34,.92),
-      rgba(7,10,18,.98)
-    );
-
-  box-shadow:
-    0 28px 70px rgba(0,0,0,.42);
-}
-
 .value-item {
   position: relative;
   min-height: 280px;
