@@ -797,22 +797,20 @@ h3 {
 .bottleneck-copy { max-width: 920px; }
 .bottleneck-copy .eyebrow { margin-bottom: 34px; }
 
-.bottleneck-copy h2 {
-  max-width: 920px;
+.bottleneck-copy h2{
+  max-width: 760px;
 
   margin: 0;
 
-  font-size: clamp(68px, 5.2vw, 102px);
+  font-size: clamp(58px, 4.8vw, 82px);
 
   line-height: .94;
 
-  letter-spacing: -.045em;
+  letter-spacing: -.065em;
 
   font-weight: 900;
 
   color: #f5f7fb;
-
-  text-wrap: balance;
 }
 
 .gradient-word {
@@ -830,15 +828,34 @@ h3 {
   background: linear-gradient(90deg, var(--cyan), transparent);
 }
 
-.bottleneck-lede {
-  max-width: 760px;
+.bottleneck-lede{
+  max-width: 640px;
+
   margin: 0;
-  font-size: 19px;
-  line-height: 1.85;
+
+  font-size: 18px;
+
+  line-height: 1.75;
+
   letter-spacing: -.01em;
+
   color: #aab4c8;
 }
+.bottleneck-grid{
+  width:min(1380px, calc(100% - 120px));
 
+  margin:0 auto;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0, 760px)
+    360px;
+
+  gap:72px;
+
+  align-items:start;
+}
 /* WORKFLOW PANEL */
 
 .workflow-panel {
