@@ -953,7 +953,7 @@ h3 {
 
 .value-strip{
 
-  width:min(1410px, calc(100% - 120px));
+  width:100%;
 
   margin:72px auto 0;
 
@@ -977,7 +977,9 @@ h3 {
   box-shadow:
     0 28px 90px rgba(0,0,0,.34);
 }
-
+.bottleneck-section .value-strip{
+  max-width:1520px;
+}
 .value-item{
 
   min-height:260px;
