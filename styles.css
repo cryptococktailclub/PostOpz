@@ -1209,6 +1209,11 @@ h3 {
     height: 16px;
   }
 
+  .workflow-logo-jump {
+  height: 28px;
+  border-radius: 8px;
+}
+
 }
 /* =========================================
    VALUE STRIP
