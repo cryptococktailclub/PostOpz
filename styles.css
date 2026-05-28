@@ -986,7 +986,7 @@ h3 {
 ========================================= */
 
 .workflow-ecosystem-heading{
-  max-width:900px;
+  max-width:760px;
   margin:0 auto 72px;
   text-align:center;
 }
@@ -1041,7 +1041,7 @@ h3 {
 
   position:relative;
 
-  min-height:520px;
+  min-height:460px;
 
   padding:42px 32px 40px;
 
@@ -1094,13 +1094,14 @@ h3 {
 
 .ecosystem-logo-row{
 
-  display:flex;
+  display:grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
 
   align-items:center;
 
-  justify-content:space-between;
-
-  gap:18px;
+  justify-items:center;
 
   min-height:82px;
 
@@ -1124,43 +1125,40 @@ h3 {
 ----------------------------------------- */
 
 .ecosystem-logo-avid{
-  height:34px;
+  height:18px;
 }
 
 .ecosystem-logo-premiere{
-  height:42px;
-}
-
-.ecosystem-logo-resolve{
-  height:44px;
-}
-
-.ecosystem-logo-frame{
   height:30px;
 }
 
+.ecosystem-logo-resolve{
+  height:28px;
+}
+
+.ecosystem-logo-frame{
+  height:20px;
+}
+
 .ecosystem-logo-slack{
-  height:42px;
+  height:28px;
 }
 
 .ecosystem-logo-masv{
-  height:22px;
+  height:16px;
 }
 
 .ecosystem-logo-lucid{
-  height:34px;
+  height:20px;
 }
 
 .ecosystem-logo-jump{
-  height:46px;
-
-  border-radius:12px;
+  height:28px;
 }
 
 .ecosystem-logo-hp{
-  height:54px;
+  height:30px;
 }
-
 /* =========================================
    DIVIDER
 ========================================= */
@@ -1866,6 +1864,7 @@ h3 {
   color:#aab4c8;
 }
 
+
 /* =========================================
    CARDS
 ========================================= */
@@ -2089,7 +2088,63 @@ h3 {
     font-size:16px;
   }
 }
+.infrastructure-shell{
+  width:min(1480px, calc(100% - 100px));
+  margin:0 auto;
+}
 
+.infrastructure-top{
+  display:grid;
+  grid-template-columns:
+    minmax(0, 760px)
+    minmax(500px, 620px);
+
+  gap:72px;
+
+  align-items:start;
+
+  margin-bottom:72px;
+}
+
+.infrastructure-heading{
+  max-width:760px;
+}
+
+.infrastructure-heading h2{
+  margin:0 0 28px;
+
+  font-size:clamp(64px, 5vw, 92px);
+
+  line-height:.92;
+
+  letter-spacing:-.065em;
+
+  font-weight:900;
+
+  color:#fff;
+}
+
+.infrastructure-heading p{
+  max-width:680px;
+
+  font-size:18px;
+
+  line-height:1.85;
+
+  color:#aab4c8;
+}
+
+@media (max-width:1180px){
+
+  .infrastructure-top{
+    grid-template-columns:1fr;
+    gap:48px;
+  }
+
+  .infrastructure-heading{
+    max-width:none;
+  }
+}
 /* =========================================
    INFRASTRUCTURE STATUS PANEL
 ========================================= */
