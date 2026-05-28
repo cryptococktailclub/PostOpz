@@ -2297,6 +2297,104 @@ h3 {
 
   overflow:hidden;
 }
+.pipeline-coverage{
+
+  border:1px solid rgba(255,255,255,.08);
+
+  border-radius:32px;
+
+  padding:38px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(14,20,34,.92),
+      rgba(7,10,18,.96)
+    );
+}
+
+.pipeline-header{
+
+  margin-bottom:36px;
+
+  font-size:12px;
+
+  letter-spacing:.14em;
+
+  text-transform:uppercase;
+
+  color:var(--cyan);
+
+  font-weight:700;
+}
+
+.pipeline-map{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:0;
+}
+
+.pipeline-stage{
+
+  text-align:center;
+
+  max-width:120px;
+}
+
+.pipeline-dot{
+
+  display:block;
+
+  width:12px;
+  height:12px;
+
+  margin:0 auto 16px;
+
+  border-radius:50%;
+
+  background:#43ffb8;
+
+  box-shadow:
+    0 0 18px rgba(67,255,184,.7);
+}
+
+.pipeline-stage h4{
+
+  margin-bottom:8px;
+
+  font-size:14px;
+
+  color:#fff;
+}
+
+.pipeline-stage p{
+
+  font-size:12px;
+
+  line-height:1.5;
+
+  color:#8d98ae;
+}
+
+.pipeline-connector{
+
+  flex:1;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,217,255,.15),
+      rgba(0,217,255,.45),
+      rgba(0,217,255,.15)
+    );
+}
 
 .pipeline-fill{
   height:100%;
