@@ -1023,27 +1023,60 @@ h3 {
 
   align-items:center;
 
-  gap:18px;
+  justify-content:center;
 
-  min-height:42px;
+  gap:28px;
 
-  margin-bottom:34px;
+  min-height:68px;
+
+  margin-bottom:42px;
 }
 
-.ecosystem-logos img{
+.ecosystem-logo{
 
-  height:20px;
+  height:28px;
 
   width:auto;
 
   object-fit:contain;
 
-  opacity:.92;
+  opacity:.96;
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
 }
 
-.jump-mark{
-  height:28px !important;
-  border-radius:8px;
+.ecosystem-block:hover .ecosystem-logo{
+  opacity:1;
+}
+
+.ecosystem-logo:hover{
+  transform:translateY(-2px);
+}
+
+/* ---------------------------------
+   INDIVIDUAL LOGO TUNING
+--------------------------------- */
+
+.ecosystem-logo-avid{
+  height:22px;
+}
+
+.ecosystem-logo-resolve{
+  height:24px;
+}
+
+.ecosystem-logo-jump{
+  height:34px;
+
+  border-radius:10px;
+}
+
+.ecosystem-logo-hp{
+  height:34px;
+
+  border-radius:10px;
 }
 
 .ecosystem-block h3{
