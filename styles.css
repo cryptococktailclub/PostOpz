@@ -980,7 +980,121 @@ h3 {
   position:relative;
   z-index:2;
 }
+.workflow-diagram{
+  display:grid;
 
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:24px;
+
+  margin-top:60px;
+}
+
+.workflow-node{
+  padding:36px;
+
+  min-height:380px;
+
+  border-radius:32px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15,20,34,.96),
+      rgba(8,10,18,.99)
+    );
+
+  transition:
+    transform .3s ease,
+    border-color .3s ease;
+}
+
+.workflow-node:hover{
+  transform:translateY(-6px);
+
+  border-color:
+    rgba(0,217,255,.18);
+}
+
+.active-node{
+  border-color:
+    rgba(0,217,255,.24);
+
+  box-shadow:
+    0 0 40px rgba(0,217,255,.08);
+}
+
+.workflow-label{
+  display:inline-flex;
+
+  margin-bottom:24px;
+
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  background:
+    rgba(0,217,255,.06);
+
+  color:var(--cyan);
+
+  font-size:11px;
+
+  letter-spacing:.16em;
+
+  font-weight:800;
+}
+
+.workflow-node h3{
+  font-size:32px;
+
+  margin-bottom:26px;
+
+  line-height:1;
+
+  letter-spacing:-.05em;
+}
+
+.workflow-list{
+  list-style:none;
+
+  padding:0;
+
+  margin:0;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:16px;
+}
+
+.workflow-list li{
+  position:relative;
+
+  padding-left:22px;
+
+  color:#aab4c8;
+}
+
+.workflow-list li::before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  top:9px;
+
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#43ffb8;
+}
 /* =========================================
    HEADING
 ========================================= */
