@@ -2024,17 +2024,6 @@ h3 {
   flex-direction:column;
   justify-content:flex-start;
 }
-h1{
-  font-size:clamp(62px, 7vw, 96px);
-}
-
-h2{
-  font-size:clamp(44px, 5vw, 76px);
-}
-
-h3{
-  font-size:clamp(28px, 2.5vw, 44px);
-}
 
 .section-copy{
   font-size:20px;
