@@ -909,10 +909,6 @@ h3 {
   box-shadow:0 0 24px rgba(139,92,255,.8);
 }
 
-.track-step.delivery .track-icon{
-  background:#ffb84d;
-  box-shadow:0 0 24px rgba(255,184,77,.8);
-}
 .ingest .workflow-label{
   border-color:rgba(255,184,77,.25);
   color:#ffb84d;
@@ -1085,6 +1081,43 @@ h3 {
 
   box-shadow:
     0 0 40px rgba(89,255,178,.08);
+}
+.workflow-node.ingest li::before{
+  background:#ffb84d;
+  box-shadow:0 0 12px rgba(255,184,77,.8);
+}
+
+.workflow-node.prep li::before{
+  background:#00d9ff;
+  box-shadow:0 0 12px rgba(0,217,255,.8);
+}
+
+.workflow-node.editorial li::before{
+  background:#8b5cff;
+  box-shadow:0 0 12px rgba(139,92,255,.8);
+}
+
+.workflow-node.delivery li::before{
+  background:#59ffb2;
+  box-shadow:0 0 12px rgba(89,255,178,.8);
+}
+.track-step p{
+  display:none;
+}
+.track-step{
+  width:100px;
+}
+
+.pipeline-coverage{
+  padding:28px 32px;
+}
+.workflow-node.editorial{
+  transform:translateY(-12px);
+}
+.workflow-node.editorial{
+  box-shadow:
+    0 0 60px rgba(139,92,255,.18),
+    0 24px 80px rgba(0,0,0,.34);
 }
 /* =========================================
    EXPERIENCE SECTION
