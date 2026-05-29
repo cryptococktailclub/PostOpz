@@ -895,13 +895,13 @@ h3 {
     );
 }
 .track-step.ingest .track-icon{
-  background:#59ffb2;
-  box-shadow:0 0 24px rgba(89,255,178,.8);
+  background:#ffb84d;
+  box-shadow:0 0 24px rgba(255,184,77,.8);
 }
 
-.track-step.prep .track-icon{
-  background:#00d9ff;
-  box-shadow:0 0 24px rgba(0,217,255,.8);
+.track-step.delivery .track-icon{
+  background:#59ffb2;
+  box-shadow:0 0 24px rgba(89,255,178,.8);
 }
 
 .track-step.editorial .track-icon{
@@ -913,6 +913,30 @@ h3 {
   background:#ffb84d;
   box-shadow:0 0 24px rgba(255,184,77,.8);
 }
+.ingest .workflow-label{
+  border-color:rgba(255,184,77,.25);
+  color:#ffb84d;
+  background:rgba(255,184,77,.08);
+}
+
+.prep .workflow-label{
+  border-color:rgba(0,217,255,.25);
+  color:#00d9ff;
+  background:rgba(0,217,255,.08);
+}
+
+.editorial .workflow-label{
+  border-color:rgba(139,92,255,.25);
+  color:#8b5cff;
+  background:rgba(139,92,255,.08);
+}
+
+.delivery .workflow-label{
+  border-color:rgba(89,255,178,.25);
+  color:#59ffb2;
+  background:rgba(89,255,178,.08);
+}
+
 /* ------------------ */
 /* WORKFLOW CARDS */
 /* ------------------ */
@@ -1016,6 +1040,33 @@ h3 {
 
   box-shadow:
     0 0 12px rgba(89,255,178,.7);
+}
+.workflow-node.ingest{
+  border-color:rgba(255,184,77,.30);
+
+  box-shadow:
+    0 0 40px rgba(255,184,77,.08);
+}
+
+.workflow-node.prep{
+  border-color:rgba(0,217,255,.30);
+
+  box-shadow:
+    0 0 40px rgba(0,217,255,.08);
+}
+
+.workflow-node.editorial{
+  border-color:rgba(139,92,255,.35);
+
+  box-shadow:
+    0 0 40px rgba(139,92,255,.12);
+}
+
+.workflow-node.delivery{
+  border-color:rgba(89,255,178,.30);
+
+  box-shadow:
+    0 0 40px rgba(89,255,178,.08);
 }
 /* =========================================
    EXPERIENCE SECTION
