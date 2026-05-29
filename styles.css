@@ -1111,7 +1111,72 @@ h3 {
 .pipeline-coverage{
   padding:28px 32px;
 }
+.pipeline-header-wrap{
+  margin-bottom:32px;
+}
 
+.pipeline-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height:36px;
+  padding:0 18px;
+
+  border-radius:999px;
+
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+
+  color:#fff;
+
+  border:1px solid rgba(255,255,255,.12);
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff5a36 0%,
+      #ff2f92 35%,
+      #c12fff 70%,
+      #4f7dff 100%
+    );
+
+  box-shadow:
+    0 0 24px rgba(193,47,255,.18),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+.pipeline-header-wrap{
+  position:relative;
+  margin-bottom:32px;
+}
+
+.pipeline-header-wrap::before{
+  content:"";
+
+  position:absolute;
+  left:0;
+  top:50%;
+
+  width:180px;
+  height:24px;
+
+  transform:translateY(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,90,54,.20),
+      rgba(255,47,146,.18),
+      rgba(193,47,255,.18),
+      rgba(79,125,255,.18)
+    );
+
+  filter:blur(24px);
+
+  pointer-events:none;
+}
 /* =========================================
    EXPERIENCE SECTION
 ========================================= */
