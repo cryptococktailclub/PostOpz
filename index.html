@@ -231,7 +231,7 @@
       <div class="infrastructure-heading reveal">
 
         <div class="eyebrow">
-          Operational Infrastructure
+          What We Handle
         </div>
 
         <h2>
@@ -247,194 +247,131 @@
 
       </div>
 
-      <!-- RIGHT STATUS PANEL -->
-      <div class="infrastructure-status reveal">
+      <div class="workflow-diagram">
 
-        <div class="status-header">
-          <span class="status-live"></span>
-          LIVE WORKFLOW STATUS
-        </div>
+  <article class="workflow-node">
 
-        <div class="status-grid">
+    <span class="workflow-label">
+      INGEST
+    </span>
 
-          <div class="status-card">
-            <span class="status-label">Active Productions</span>
-            <strong>04</strong>
-          </div>
+    <h3>
+      Media Intake
+    </h3>
 
-          <div class="status-card">
-            <span class="status-label">Workflow Queue</span>
-            <strong>18</strong>
-          </div>
+    <ul class="workflow-list">
+      <li>Drive ingestion</li>
+      <li>Cloud uploads</li>
+      <li>Backup verification</li>
+      <li>Media audits</li>
+      <li>Storage coordination</li>
+    </ul>
 
-          <div class="status-card">
-            <span class="status-label">Avg Turnaround</span>
-            <strong>4.2h</strong>
-          </div>
+  </article>
 
-          <div class="status-card">
-            <span class="status-label">Delivery Accuracy</span>
-            <strong>99.8%</strong>
-          </div>
+  <article class="workflow-node">
 
-        </div>
+    <span class="workflow-label">
+      PREP
+    </span>
 
-        <div class="status-pipeline">
+    <h3>
+      Transcodes + Organization
+    </h3>
 
-          <div class="pipeline-item">
-            <div class="pipeline-meta">
-              <span>MEDIA PREP</span>
-              <span>72%</span>
-            </div>
+    <ul class="workflow-list">
+      <li>Proxy generation</li>
+      <li>Project setup</li>
+      <li>Bin organization</li>
+      <li>Stringouts</li>
+      <li>Relink-safe workflows</li>
+    </ul>
 
-            <div class="pipeline-submeta">
-              DNxHR proxies · Relink-safe workflow
-            </div>
+  </article>
 
-            <div class="pipeline-bar">
-              <div class="pipeline-fill fill-1"></div>
-            </div>
-          </div>
+  <article class="workflow-node active-node">
 
-          <div class="pipeline-item">
+    <span class="workflow-label">
+      EDITORIAL
+    </span>
 
-            <div class="pipeline-meta">
-              <span>SYNC + GROUPING</span>
-              <span>48%</span>
-            </div>
+    <h3>
+      Embedded AE Support
+    </h3>
 
-            <div class="pipeline-submeta">
-              12 camera groups · Multicam sync
-            </div>
+    <ul class="workflow-list">
+      <li>Sync + grouping</li>
+      <li>Multicam workflows</li>
+      <li>Review exports</li>
+      <li>Version management</li>
+      <li>Workflow troubleshooting</li>
+    </ul>
 
-            <div class="pipeline-bar">
-              <div class="pipeline-fill fill-2"></div>
-            </div>
-          </div>
+  </article>
 
-          <div class="pipeline-item">
+  <article class="workflow-node">
 
-            <div class="pipeline-meta">
-              <span>TURNOVERS</span>
-              <span>91%</span>
-            </div>
+    <span class="workflow-label">
+      DELIVERY
+    </span>
 
-            <div class="pipeline-submeta">
-              Mix prep · Color turnover
-            </div>
+    <h3>
+      Turnovers + Publishing
+    </h3>
 
-            <div class="pipeline-bar">
-              <div class="pipeline-fill fill-3"></div>
-            </div>
-          </div>
+    <ul class="workflow-list">
+      <li>Frame.io delivery</li>
+      <li>Color turnovers</li>
+      <li>Mix prep</li>
+      <li>Final exports</li>
+      <li>Project archive prep</li>
+    </ul>
 
-          <div class="pipeline-item">
+  </article>
 
-            <div class="pipeline-meta">
-              <span>EXPORTS + REVIEW</span>
-              <span>100%</span>
-            </div>
+</div>
 
-            <div class="pipeline-submeta">
-              Frame.io delivery · Burn-ins applied
-            </div>
+      <div class="pipeline-coverage reveal">
 
-            <div class="pipeline-bar">
-              <div class="pipeline-fill fill-4"></div>
-            </div>
-          </div>
+  <div class="pipeline-header">
+    Post Pipeline Coverage
+  </div>
 
-        </div>
+  <div class="pipeline-track">
 
-      </div>
-
+    <div class="track-step">
+      <div class="track-icon"></div>
+      <h4>Ingest</h4>
+      <p>Media intake</p>
     </div>
 
-    <!-- WORKFLOW DIAGRAM -->
-    <div class="workflow-diagram reveal">
+    <div class="track-line"></div>
 
-      <div class="workflow-node">
+    <div class="track-step">
+      <div class="track-icon"></div>
+      <h4>Prep</h4>
+      <p>Transcodes</p>
+    </div>
 
-        <span class="workflow-label">
-          MEDIA INGEST
-        </span>
+    <div class="track-line"></div>
 
-        <h3>
-          Dailies + Source Media
-        </h3>
+    <div class="track-step active">
+      <div class="track-icon"></div>
+      <h4>Editorial</h4>
+      <p>AE Support</p>
+    </div>
 
-       <ul class="workflow-list">
-  <li>Backups + checksum verification</li>
-  <li>Cloud uploads</li>
-  <li>Proxy transcoding</li>
-  <li>Project organization</li>
-  <li>Media management</li>
-</ul>
-      </div>
+    <div class="track-line"></div>
 
-      <div class="workflow-node">
-
-        <span class="workflow-label">
-          SHARED STORAGE
-        </span>
-
-        <h3>
-          Cloud Editorial Systems
-        </h3>
-
-        <ul class="workflow-list">
-  <li>Avid EOD systems</li>
-  <li>LucidLink workflows</li>
-  <li>AWS infrastructure</li>
-  <li>Remote workstations</li>
-  <li>Shared storage coordination</li>
-</ul>
-      </div>
-
-      <div class="workflow-node active-node">
-
-        <span class="workflow-label">
-          OPERATIONS
-        </span>
-
-        <h3>
-          Embedded AE Operations
-        </h3>
-
-  <ul class="workflow-list">
-    <li>Sync + grouping</li>
-    <li>Media prep</li>
-    <li>Turnovers</li>
-    <li>Exports + review</li>
-    <li>Workflow coordination</li>
- </ul>
-      </div>
-
-      <div class="workflow-node">
-
-        <span class="workflow-label">
-          DELIVERY
-        </span>
-
-        <h3>
-          Editorial + Finishing
-        </h3>
-
-        <ul class="workflow-list">
-  <li>Editor support</li>
-  <li>Mix prep</li>
-  <li>Online turnovers</li>
-  <li>Final outputs</li>
-  <li>Project archiving</li>
-</ul>
-
-      </div>
-
+    <div class="track-step">
+      <div class="track-icon"></div>
+      <h4>Delivery</h4>
+      <p>Turnovers</p>
     </div>
 
   </div>
 
-</section>
+</div>
 
     <!-- BOTTLENECK SECTION -->
     <section id="problem" class="section-pad bottleneck-section">
