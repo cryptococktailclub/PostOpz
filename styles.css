@@ -894,6 +894,10 @@ h3 {
       rgba(0,217,255,.12)
     );
 }
+--stage-ingest: #59ffb2;
+--stage-prep: #00d9ff;
+--stage-editorial: #8b5cff;
+--stage-delivery: #ffb84d;
 
 /* ------------------ */
 /* WORKFLOW CARDS */
@@ -1170,6 +1174,67 @@ h3 {
   line-height:1.7;
 
   color:#97a2ba;
+}
+.workflow-node.ingest {
+  border-color: rgba(89,255,178,.25);
+  box-shadow:
+    0 0 30px rgba(89,255,178,.08);
+}
+.workflow-node.prep {
+  border-color: rgba(0,217,255,.25);
+  box-shadow:
+    0 0 30px rgba(0,217,255,.08);
+}
+.workflow-node.editorial {
+  border-color: rgba(139,92,255,.35);
+  box-shadow:
+    0 0 40px rgba(139,92,255,.12);
+}
+.workflow-node.delivery {
+  border-color: rgba(255,184,77,.25);
+  box-shadow:
+    0 0 30px rgba(255,184,77,.08);
+}
+.ingest li::before {
+  background:#59ffb2;
+}
+.prep li::before {
+  background:#00d9ff;
+}
+.editorial li::before {
+  background:#8b5cff;
+}
+.delivery li::before {
+  background:#ffb84d;
+}
+.track-line{
+  position:relative;
+  overflow:hidden;
+}
+
+.track-line::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.45),
+      transparent
+    );
+
+  animation: pipelineFlow 4s linear infinite;
+}
+
+@keyframes pipelineFlow{
+  from{
+    transform:translateX(-100%);
+  }
+  to{
+    transform:translateX(100%);
+  }
 }
 /* =========================================
    VALUE STRIP
