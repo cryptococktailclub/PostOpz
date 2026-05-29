@@ -2110,7 +2110,56 @@ h3{
     flex-direction:column;
   }
 }
+.pipeline-track{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0;
+  margin-top:24px;
+}
 
+.track-step{
+  text-align:center;
+  width:120px;
+}
+
+.track-icon{
+  width:16px;
+  height:16px;
+  margin:0 auto 18px;
+  border-radius:50%;
+  background:#43ffb8;
+  box-shadow:0 0 20px rgba(67,255,184,.75);
+}
+
+.track-step.active .track-icon{
+  background:var(--cyan);
+  box-shadow:0 0 24px rgba(0,217,255,.8);
+}
+
+.track-step h4{
+  margin-bottom:6px;
+  font-size:15px;
+  color:#fff;
+}
+
+.track-step p{
+  font-size:12px;
+  color:#8f9ab0;
+}
+
+.track-line{
+  flex:1;
+  height:2px;
+  margin-bottom:38px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,217,255,.12),
+      rgba(0,217,255,.55),
+      rgba(0,217,255,.12)
+    );
+}
 /* =========================================
    WORKFLOW KITS
 ========================================= */
