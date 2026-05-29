@@ -936,7 +936,25 @@ h3 {
   color:#59ffb2;
   background:rgba(89,255,178,.08);
 }
+.ingest li::before{
+  background:#ffb84d;
+  box-shadow:0 0 12px rgba(255,184,77,.8);
+}
 
+.prep li::before{
+  background:#00d9ff;
+  box-shadow:0 0 12px rgba(0,217,255,.8);
+}
+
+.editorial li::before{
+  background:#8b5cff;
+  box-shadow:0 0 12px rgba(139,92,255,.8);
+}
+
+.delivery li::before{
+  background:#59ffb2;
+  box-shadow:0 0 12px rgba(89,255,178,.8);
+}
 /* ------------------ */
 /* WORKFLOW CARDS */
 /* ------------------ */
