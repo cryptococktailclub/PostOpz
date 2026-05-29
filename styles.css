@@ -1116,66 +1116,59 @@ h3 {
 }
 
 .pipeline-pill{
+  position:relative;
+
   display:inline-flex;
   align-items:center;
   justify-content:center;
 
-  height:36px;
+  height:38px;
   padding:0 18px;
 
   border-radius:999px;
 
+  background:#09111f;
+
+  color:#ffffff;
+
   font-size:11px;
   font-weight:800;
-  letter-spacing:.18em;
+  letter-spacing:.16em;
   text-transform:uppercase;
 
-  color:#fff;
-
-  border:1px solid rgba(255,255,255,.12);
-
-  background:
-    linear-gradient(
-      90deg,
-      #ff5a36 0%,
-      #ff2f92 35%,
-      #c12fff 70%,
-      #4f7dff 100%
-    );
-
-  box-shadow:
-    0 0 24px rgba(193,47,255,.18),
-    inset 0 1px 0 rgba(255,255,255,.12);
-}
-.pipeline-header-wrap{
-  position:relative;
-  margin-bottom:32px;
+  z-index:1;
 }
 
-.pipeline-header-wrap::before{
+.pipeline-pill::before{
   content:"";
 
   position:absolute;
-  left:0;
-  top:50%;
+  inset:0;
 
-  width:180px;
-  height:24px;
-
-  transform:translateY(-50%);
+  border-radius:999px;
+  padding:1px;
 
   background:
     linear-gradient(
       90deg,
-      rgba(255,90,54,.20),
-      rgba(255,47,146,.18),
-      rgba(193,47,255,.18),
-      rgba(79,125,255,.18)
+      #ff6a3d,
+      #ff3f92,
+      #8b5cff,
+      #00d9ff
     );
 
-  filter:blur(24px);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
 
   pointer-events:none;
+}
+.pipeline-pill{
+  box-shadow:
+    0 0 18px rgba(139,92,255,.12);
 }
 /* =========================================
    EXPERIENCE SECTION
