@@ -1214,6 +1214,34 @@ h3 {
       rgba(0,255,255,.1)
     );
 }
+.track-step.prep h4{
+  color:#00d9ff;
+}
+.track-icon{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+}
+
+.track-step.ingest .track-icon{
+  background:#ffb84d;
+  box-shadow:0 0 18px rgba(255,184,77,.5);
+}
+
+.track-step.prep .track-icon{
+  background:#00d9ff;
+  box-shadow:0 0 18px rgba(0,217,255,.5);
+}
+
+.track-step.editorial .track-icon{
+  background:#8a5cff;
+  box-shadow:0 0 18px rgba(138,92,255,.5);
+}
+
+.track-step.delivery .track-icon{
+  background:#63ffb2;
+  box-shadow:0 0 18px rgba(99,255,178,.5);
+}
 /* =========================================
    EXPERIENCE SECTION
 ========================================= */
