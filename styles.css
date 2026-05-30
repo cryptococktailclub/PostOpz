@@ -1318,6 +1318,40 @@ h3 {
   box-shadow:
     0 0 10px rgba(89,255,178,.7);
 }
+.expertise-card ul{
+  list-style:none;
+  padding:0;
+  margin:20px 0 0;
+}
+
+.expertise-card li{
+  position:relative;
+  padding-left:20px;
+  margin-bottom:16px;
+
+  color:rgba(220,225,235,.82);
+
+  font-size:18px;
+  line-height:1.4;
+}
+
+.expertise-card li::before{
+  content:"";
+
+  position:absolute;
+  left:0;
+  top:10px;
+
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:#59ffb2;
+
+  box-shadow:
+    0 0 12px rgba(89,255,178,.9);
+}
 
 /* RESPONSIVE */
 
