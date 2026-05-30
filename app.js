@@ -82,7 +82,101 @@
       bar.style.width = bar.getAttribute('data-width') + '%';
     });
   }
+const progressBars = document.querySelectorAll(".progress-fill");
 
+const progressObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const bar = entry.target;
+      const width = bar.dataset.width;
+
+      requestAnimationFrame(() => {
+        bar.style.width = width + "%";
+      });
+
+      progressObserver.unobserve(bar);
+    });
+  },
+  { threshold: 0.4 }
+);
+
+progressBars.forEach(bar => {
+  bar.style.width = "0%";
+  progressObserver.observe(bar);
+});
+
+  /* ==========================================
+   METRIC COUNTER ANIMATION
+========================================== */
+
+const metricValues = document.querySelectorAll(
+  ".metric-value[data-count]"
+);
+
+const metricObserver = new IntersectionObserver(
+  (entries) => {
+
+    entries.forEach((entry) => {
+
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target;
+
+      const target = parseInt(
+        el.dataset.count,
+        10
+      );
+
+      const suffix =
+        el.dataset.suffix || "+";
+
+      const duration = 1800;
+
+      const startTime = performance.now();
+
+      const animate = (currentTime) => {
+
+        const progress = Math.min(
+          (currentTime - startTime) / duration,
+          1
+        );
+
+        const value = Math.floor(
+          progress * target
+        );
+
+        el.textContent =
+          value + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(
+            animate
+          );
+        } else {
+          el.textContent =
+            target + suffix;
+        }
+      };
+
+      requestAnimationFrame(
+        animate
+      );
+
+      metricObserver.unobserve(el);
+
+    });
+
+  },
+  {
+    threshold: 0.4
+  }
+);
+
+metricValues.forEach((metric) => {
+  metricObserver.observe(metric);
+});
   // Smooth scroll for anchor links (enhanced)
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function (e) {
