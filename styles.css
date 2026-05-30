@@ -899,6 +899,13 @@ h3 {
   box-shadow:0 0 24px rgba(255,184,77,.8);
 }
 
+.track-step.prep .track-icon{
+  background:#00d9ff;
+  box-shadow:
+    0 0 12px rgba(0,217,255,.55),
+    0 0 24px rgba(0,217,255,.25);
+}
+
 .track-step.delivery .track-icon{
   background:#59ffb2;
   box-shadow:0 0 24px rgba(89,255,178,.8);
