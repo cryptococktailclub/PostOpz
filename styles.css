@@ -797,6 +797,9 @@ h3 {
 
 .infrastructure-heading h2{
   max-width:720px;
+
+  line-height:1.02;
+  letter-spacing:-0.055em;
 }
 
 .infrastructure-heading p{
