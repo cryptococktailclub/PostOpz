@@ -175,5 +175,93 @@ if (metricValues.length) {
         window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
+    /* ==========================================
+   ACTIVE NAV HIGHLIGHT
+========================================== */
+
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(
+  ".nav a[href^='#']"
+);
+
+const navObserver = new IntersectionObserver(
+  (entries) => {
+
+    entries.forEach((entry) => {
+
+      if (!entry.isIntersecting) return;
+
+      const id = entry.target.id;
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+
+        if (
+          link.getAttribute("href") ===
+          "#" + id
+        ) {
+          link.classList.add("active");
+        }
+      });
+
+    });
+
+  },
+  {
+    threshold: 0.35
+  }
+);
+
+sections.forEach((section) => {
+  navObserver.observe(section);
+});
+    /* ==========================================
+   PIPELINE LIGHT SEQUENCE
+========================================== */
+
+const pipelineDots =
+  document.querySelectorAll(
+    ".pipeline-track .track-icon"
+  );
+
+if (pipelineDots.length) {
+
+  let activeIndex = 0;
+
+  function animatePipeline() {
+
+    pipelineDots.forEach((dot) => {
+      dot.classList.remove(
+        "pipeline-active"
+      );
+    });
+
+    pipelineDots[
+      activeIndex
+    ].classList.add(
+      "pipeline-active"
+    );
+
+    activeIndex++;
+
+    if (
+      activeIndex >=
+      pipelineDots.length
+    ) {
+      activeIndex = 0;
+    }
+  }
+
+  animatePipeline();
+
+  setInterval(
+    animatePipeline,
+    1200
+  );
+}
+    const pipelineLines =
+  document.querySelectorAll(
+    ".track-line"
+  );
   });
 })();
