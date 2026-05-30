@@ -82,101 +82,88 @@
       bar.style.width = bar.getAttribute('data-width') + '%';
     });
   }
-const progressBars = document.querySelectorAll(".progress-fill");
 
-const progressObserver = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-
-      const bar = entry.target;
-      const width = bar.dataset.width;
-
-      requestAnimationFrame(() => {
-        bar.style.width = width + "%";
-      });
-
-      progressObserver.unobserve(bar);
-    });
-  },
-  { threshold: 0.4 }
-);
-
-progressBars.forEach(bar => {
-  bar.style.width = "0%";
-  progressObserver.observe(bar);
-});
-
-  /* ==========================================
+ /* ==========================================
    METRIC COUNTER ANIMATION
 ========================================== */
 
-const metricValues = document.querySelectorAll(
+var metricValues = document.querySelectorAll(
   ".metric-value[data-count]"
 );
 
-const metricObserver = new IntersectionObserver(
-  (entries) => {
+if (metricValues.length) {
 
-    entries.forEach((entry) => {
+  var metricObserver = new IntersectionObserver(
+    function(entries){
 
-      if (!entry.isIntersecting) return;
+      entries.forEach(function(entry){
 
-      const el = entry.target;
+        if(!entry.isIntersecting) return;
 
-      const target = parseInt(
-        el.dataset.count,
-        10
-      );
+        var el = entry.target;
 
-      const suffix =
-        el.dataset.suffix || "+";
-
-      const duration = 1800;
-
-      const startTime = performance.now();
-
-      const animate = (currentTime) => {
-
-        const progress = Math.min(
-          (currentTime - startTime) / duration,
-          1
+        var target = parseInt(
+          el.getAttribute("data-count"),
+          10
         );
 
-        const value = Math.floor(
-          progress * target
-        );
+        var suffix =
+          el.getAttribute("data-suffix") || "+";
 
-        el.textContent =
-          value + suffix;
+        var duration = 1800;
 
-        if (progress < 1) {
-          requestAnimationFrame(
-            animate
-          );
-        } else {
+        var startTime = null;
+
+        function animate(timestamp){
+
+          if(!startTime){
+            startTime = timestamp;
+          }
+
+          var progress =
+            Math.min(
+              (timestamp - startTime) /
+              duration,
+              1
+            );
+
+          var value =
+            Math.floor(
+              progress * target
+            );
+
           el.textContent =
-            target + suffix;
+            value + suffix;
+
+          if(progress < 1){
+            requestAnimationFrame(
+              animate
+            );
+          } else {
+            el.textContent =
+              target + suffix;
+          }
         }
-      };
 
-      requestAnimationFrame(
-        animate
-      );
+        requestAnimationFrame(
+          animate
+        );
 
-      metricObserver.unobserve(el);
+        metricObserver.unobserve(el);
 
-    });
+      });
 
-  },
-  {
-    threshold: 0.4
-  }
-);
+    },
+    {
+      threshold: 0.4
+    }
+  );
 
-metricValues.forEach((metric) => {
-  metricObserver.observe(metric);
-});
+  metricValues.forEach(function(metric){
+    metricObserver.observe(metric);
+  });
+
+}
   // Smooth scroll for anchor links (enhanced)
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener('click', function (e) {
