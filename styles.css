@@ -1170,6 +1170,43 @@ h3 {
   box-shadow:
     0 0 18px rgba(139,92,255,.12);
 }
+
+.track-icon {
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease,
+    opacity .4s ease;
+}
+
+.track-icon.pipeline-active {
+  transform: scale(1.25);
+
+  box-shadow:
+    0 0 8px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor;
+
+  opacity: 1;
+}
+.track-line {
+  opacity: .35;
+  transition: all .4s ease;
+}
+
+.track-line.pipeline-line-active {
+  opacity: 1;
+
+  box-shadow:
+    0 0 10px rgba(0,255,255,.5);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,255,255,.1),
+      rgba(0,255,255,.8),
+      rgba(0,255,255,.1)
+    );
+}
 /* =========================================
    EXPERIENCE SECTION
 ========================================= */
