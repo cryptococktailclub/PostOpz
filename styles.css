@@ -1353,6 +1353,11 @@ h3 {
     0 0 12px rgba(89,255,178,.9);
 }
 
+.expertise-card .workflow-list li::before,
+.expertise-card .ecosystem-list li::before{
+  background:#59ffb2;
+  box-shadow:0 0 12px rgba(89,255,178,.9);
+}
 /* RESPONSIVE */
 
 @media (max-width:1200px){
