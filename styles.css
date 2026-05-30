@@ -2732,7 +2732,11 @@ h3 {
   }
 
   h2,
-  .infrastructure-heading h2,
+  .infrastructure-heading h2{
+  font-size:clamp(3.8rem,5vw,6rem);
+  line-height:1.06;
+  letter-spacing:-0.03em;
+}
   .bottleneck-copy h2{
     font-size:clamp(2.9rem, 11vw, 4.6rem) !important;
 
