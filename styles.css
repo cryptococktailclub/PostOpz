@@ -739,10 +739,7 @@ p { color: var(--muted); line-height: 1.7; }
   max-width: 110px;
   object-fit: contain;
 }
-.command-center,
-.workflow-tools{
-  margin-left:auto;
-}
+
 /* =========================================
    GENERIC SECTIONS
 ========================================= */
