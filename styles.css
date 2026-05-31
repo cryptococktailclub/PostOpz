@@ -317,13 +317,23 @@ p { color: var(--muted); line-height: 1.7; }
 }
 
 .hero-inner {
-  width: min(1320px, calc(100% - 72px));
+  width: min(1480px, calc(100% - 120px));
+
   margin: 0 auto;
+
   display: grid;
-  grid-template-columns: minmax(0,1fr)  minmax(640px,720px);
-  grid-template-areas: "copy command" "logos logos";
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(680px,760px);
+
+  grid-template-areas:
+    "copy command"
+    "logos logos";
+
+  gap: 72px;
+
   align-items: center;
-  gap:72px;
 }
 
 .hero-copy {
@@ -676,14 +686,15 @@ p { color: var(--muted); line-height: 1.7; }
 ========================================= */
 
 .tools-strip {
-  grid-area: logos;
   padding: 20px 26px;
   border-radius: 24px;
   border: 1px solid rgba(255,255,255,.08);
   background: linear-gradient(135deg, rgba(17,24,36,.92), rgba(8,10,18,.96));
   margin-top: 10px;
+  grid-area:logos;
+  width:100%;
+  max-width:none;
 }
-
 .tools-strip p {
   margin: 0 0 22px;
   text-align: center;
