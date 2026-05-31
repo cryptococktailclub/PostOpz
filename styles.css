@@ -694,7 +694,6 @@ p { color: var(--muted); line-height: 1.7; }
   grid-area:logos;
   width:100%;
   max-width:none;
-  width:min(1480px, calc(100% - 40px));
 }
 .tools-strip p {
   margin: 0 0 22px;
