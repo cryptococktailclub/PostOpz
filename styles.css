@@ -2402,9 +2402,18 @@ h3 {
    MOBILE FIXES
 ========================================= */
 
-@media (max-width: 900px){
+ @media (max-width: 900px){
 
-  
+  .section-heading h2,
+  .infrastructure-heading h2,
+  .workflow-ecosystem-heading h2,
+  .pricing-heading h2,
+  .cta-copy h2{
+
+    text-wrap: balance;
+  }
+
+} 
   /* -----------------------------
      WORKFLOW DIAGRAM
   ----------------------------- */
