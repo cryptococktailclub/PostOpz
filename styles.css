@@ -2505,6 +2505,22 @@ h3 {
   .product-price{
     font-size:3rem;
   }
+@media (max-width: 900px){
+
+  #workflow-kits .section-heading h2{
+
+    font-size: clamp(2.2rem, 8vw, 3rem);
+
+    line-height: 1.02;
+
+    letter-spacing: -0.04em;
+
+    max-width: 100%;
+
+    text-wrap: balance;
+  }
+
+}
 
   /* -----------------------------
      NAVIGATION
