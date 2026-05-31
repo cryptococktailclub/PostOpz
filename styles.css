@@ -2995,24 +2995,25 @@ h3 {
    MOBILE SECTION HEADINGS
 ========================================== */
 
-@media (max-width: 900px){
+@media (max-width:900px){
 
-  .section-heading h2,
-  .infrastructure-heading h2,
-  .workflow-ecosystem-heading h2,
-  .pricing-heading h2,
-  .workflow-kits-heading h2,
-  .cta-copy h2{
+  /* Hero */
+  .hero h1{
+    font-size:4.5rem !important;
+  }
 
-    font-size: clamp(2.4rem, 8vw, 3.2rem);
+  /* Every section headline */
+  section h2{
+    font-size:2.7rem !important;
+    line-height:1.05 !important;
+    letter-spacing:-0.045em !important;
+  }
 
-    line-height: 1.05;
-
-    letter-spacing: -0.045em;
-
-    text-wrap: balance;
-
-    max-width: 100%;
+  /* Card titles */
+  .workflow-node h3,
+  .ecosystem-card h3,
+  .pricing-card h3{
+    font-size:1.9rem !important;
   }
 
 }
