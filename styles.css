@@ -2420,6 +2420,37 @@ h3 {
   }
 
 }
+@media (max-width: 900px){
+
+  .premium-shell{
+    width:100% !important;
+    max-width:100% !important;
+
+    padding:32px 24px !important;
+
+    border-radius:28px;
+
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+
+  .premium-shell h2{
+    font-size:clamp(2.4rem, 8vw, 3rem) !important;
+    line-height:1.05 !important;
+    letter-spacing:-0.04em;
+  }
+
+  .premium-shell p{
+    font-size:1rem;
+    line-height:1.7;
+  }
+
+  .cta-button{
+    width:100%;
+    min-height:60px;
+  }
+}
 /* =========================================
    REDUCED MOTION
 ========================================= */
@@ -2444,6 +2475,24 @@ h3 {
 
     text-wrap: balance;
   }
+   h1,
+h2,
+h3,
+.hero-title,
+.hero-subhead,
+.section-heading h2,
+.workflow-node h3,
+.pricing-card h3,
+.kit-card h3,
+.premium-shell h2{
+  text-wrap: balance;
+}
+   p,
+.hero-lede,
+.section-heading p,
+.premium-shell p{
+  text-wrap: pretty;
+}
 
 } 
   /* -----------------------------
@@ -3047,6 +3096,7 @@ h3 {
   .pricing-card h3{
     font-size:1.9rem !important;
   }
+  
 
 }
   /* ---------------------------------
@@ -3147,7 +3197,35 @@ h3 {
 
   pointer-events:none;
 }
+@media (max-width: 900px){
 
+  section h2,
+  .infrastructure-heading h2,
+  .section-heading h2,
+  .premium-shell h2{
+
+    font-size: clamp(2.4rem, 7vw, 3rem) !important;
+
+    line-height: 1.05 !important;
+
+    letter-spacing: -0.04em !important;
+
+    max-width: 100%;
+
+    text-wrap: balance;
+  }
+  @media (max-width: 900px){
+
+  .workflow-node,
+  .pricing-card,
+  .kit-card,
+  .value-item{
+    text-wrap: balance;
+  }
+
+}
+
+}
 /* ----------------------------------
    HIDE DIVIDER
 ---------------------------------- */
