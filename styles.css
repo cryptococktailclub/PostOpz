@@ -439,7 +439,7 @@ p { color: var(--muted); line-height: 1.7; }
 .command-center {
   grid-area: command;
   width: 100%;
-  max-width: 680px;
+  max-width: 640px;
   justify-self: end;
 }
 
