@@ -3034,6 +3034,83 @@ h3 {
   }
 
 }
+
+  /* ==========================================
+   COMPRESSED HEADER
+========================================== */
+
+.site-header{
+  transition:
+    height .25s ease,
+    padding .25s ease,
+    background .25s ease,
+    backdrop-filter .25s ease,
+    border-color .25s ease;
+}
+
+/* SCROLLED STATE */
+
+.site-header.scrolled{
+
+  min-height:68px;
+
+  background:rgba(5,8,22,.88);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  border-bottom:
+    1px solid rgba(255,255,255,.06);
+}
+
+/* LOGO */
+
+.brand-logo{
+  transition:height .25s ease;
+}
+
+.site-header.scrolled .brand-logo{
+  height:34px;
+}
+
+/* BRAND NAME */
+
+.brand-name{
+  transition:
+    font-size .25s ease,
+    transform .25s ease;
+}
+
+.site-header.scrolled .brand-name{
+  transform:translateY(-1px);
+}
+
+/* HIDE SMALL SUBTITLE */
+
+.brand-kicker{
+  transition:
+    opacity .2s ease,
+    width .2s ease,
+    margin .2s ease;
+}
+
+.site-header.scrolled .brand-kicker{
+  opacity:0;
+
+  width:0;
+
+  margin:0;
+
+  overflow:hidden;
+
+  pointer-events:none;
+}
+
+/* REMOVE DIVIDER */
+
+.site-header.scrolled .brand-divider{
+  opacity:0;
+}
   /* ==========================================
    MOBILE SECTION HEADINGS
 ========================================== */
