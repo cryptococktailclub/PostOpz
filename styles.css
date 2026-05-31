@@ -2991,6 +2991,31 @@ h3 {
   }
 
 }
+  /* ==========================================
+   MOBILE SECTION HEADINGS
+========================================== */
+
+@media (max-width: 900px){
+
+  .section-heading h2,
+  .infrastructure-heading h2,
+  .workflow-ecosystem-heading h2,
+  .pricing-heading h2,
+  .workflow-kits-heading h2,
+  .cta-copy h2{
+
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
+
+    line-height: 1.05;
+
+    letter-spacing: -0.045em;
+
+    text-wrap: balance;
+
+    max-width: 100%;
+  }
+
+}
   /* ---------------------------------
      REMOVE CROPPING BUGS
   --------------------------------- */
