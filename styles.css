@@ -2210,6 +2210,15 @@ h3 {
 
 .footer-links a:hover { color: var(--cyan); }
 
+.hero-inner,
+.infrastructure-shell,
+.workflow-kits-shell,
+.pricing-shell,
+.premium-shell{
+  width:min(1480px, calc(100% - 120px));
+  margin:0 auto;
+}
+
 /* =========================================
    RESPONSIVE — TABLET
 ========================================= */
