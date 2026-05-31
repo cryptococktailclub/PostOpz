@@ -320,10 +320,10 @@ p { color: var(--muted); line-height: 1.7; }
   width: min(1320px, calc(100% - 72px));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 720px) minmax(480px, 560px);
+  grid-template-columns: minmax(0,1fr)  minmax(640px,720px);
   grid-template-areas: "copy command" "logos logos";
   align-items: center;
-  gap: 40px 48px;
+  gap:72px;
 }
 
 .hero-copy {
@@ -437,7 +437,7 @@ p { color: var(--muted); line-height: 1.7; }
 .command-center {
   grid-area: command;
   width: 100%;
-  max-width: 560px;
+  max-width: 680px;
   justify-self: end;
 }
 
@@ -728,7 +728,16 @@ p { color: var(--muted); line-height: 1.7; }
   max-width: 110px;
   object-fit: contain;
 }
-
+.workflow-tools,
+.tool-strip,
+.logo-strip{
+  width:100%;
+  max-width:680px;
+}
+.command-center,
+.workflow-tools{
+  margin-left:auto;
+}
 /* =========================================
    GENERIC SECTIONS
 ========================================= */
