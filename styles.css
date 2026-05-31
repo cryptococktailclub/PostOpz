@@ -314,7 +314,7 @@ p { color: var(--muted); line-height: 1.7; }
 
   grid-template-columns:
     minmax(0,1fr)
-    minmax(680px,760px);
+    minmax(620px,680px);
 
   grid-template-areas:
     "copy command"
@@ -348,7 +348,7 @@ p { color: var(--muted); line-height: 1.7; }
 .hero-title-top,
 .hero-title-bottom {
   display: block;
-  font-size: clamp(62px, 5vw, 88px);
+  font-size: clamp(68px, 5.6vw, 96px);
   font-weight: 900;
   white-space: nowrap;
   line-height: .88;
