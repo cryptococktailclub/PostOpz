@@ -350,6 +350,9 @@ p { color: var(--muted); line-height: 1.7; }
   text-transform: uppercase;
   color: var(--cyan);
 }
+.hero-kicker-pill{
+  margin-bottom:24px;
+}
 
 .hero-title { margin: 0 0 34px; }
 
