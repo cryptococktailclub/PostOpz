@@ -694,6 +694,7 @@ p { color: var(--muted); line-height: 1.7; }
   grid-area:logos;
   width:100%;
   max-width:none;
+  width:min(1480px, calc(100% - 40px));
 }
 .tools-strip p {
   margin: 0 0 22px;
@@ -753,11 +754,11 @@ p { color: var(--muted); line-height: 1.7; }
   background: rgba(255,255,255,.08);
 }
 
-.tools-logos img {
-  width: auto;
-  height: 28px;
-  max-width: 110px;
-  object-fit: contain;
+.tools-logos img{
+  width:110px;
+  height:28px;
+
+  object-fit:contain;
 }
 
 /* =========================================
