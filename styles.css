@@ -3251,3 +3251,18 @@ h3,
 
   margin:0;
 }
+.hero .hero-title .hero-title-bottom,
+.hero .hero-title .hero-title-bottom .hero-dot {
+  background: linear-gradient(
+    90deg,
+    #ff8a00 0%,
+    #ff4d2d 20%,
+    #ff00a8 50%,
+    #8b3dff 75%,
+    #29a8ff 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
