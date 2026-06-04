@@ -365,7 +365,14 @@ p { color: var(--muted); line-height: 1.7; }
   margin-top: 18px;
   letter-spacing: -.06em;
   padding-bottom: .16em;
-  background: linear-gradient(90deg, #ff5a36 0%, #ff2f92 38%, #c12fff 72%, #4f7dff 100%);
+  background: linear-gradient(
+  90deg,
+  #ff8a00 0%,
+  #ff4d2d 20%,
+  #ff00a8 50%,
+  #8b3dff 75%,
+  #29a8ff 100%
+);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
