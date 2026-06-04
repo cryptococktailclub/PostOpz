@@ -3251,18 +3251,28 @@ h3,
 
   margin:0;
 }
-.hero .hero-title .hero-title-bottom,
-.hero .hero-title .hero-title-bottom .hero-dot {
+.hero .hero-title .hero-title-bottom {
   background: linear-gradient(
     90deg,
     #ff8a00 0%,
-    #ff4d2d 20%,
-    #ff00a8 50%,
-    #8b3dff 75%,
+    #ff4d2d 24%,
+    #ff006e 46%,
+    #d100ff 68%,
+    #29a8ff 88%,
     #29a8ff 100%
   ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
+}
+
+.hero .hero-title .hero-title-bottom .hero-dot {
+  display: inline;
+  margin-left: -.02em;
+  padding-right: .03em;
+  transform: none;
+  background: none !important;
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
 }
