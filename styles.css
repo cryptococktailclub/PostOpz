@@ -368,15 +368,17 @@ p { color: var(--muted); line-height: 1.7; }
   letter-spacing: -.06em;
   padding-bottom: .16em;
 
-  background: linear-gradient(
-    90deg,
-    #ff8a00 0%,
-    #ff4d2d 24%,
-    #ff006e 46%,
-    #d100ff 68%,
-    #29a8ff 100%
-  );
-
+ background: linear-gradient(
+  90deg,
+  #ff8a00 0%,
+  #ff5b2d 16%,
+  #ff235e 32%,
+  #ff00a8 48%,
+  #c02fff 60%,
+  #6b6cff 72%,
+  #29a8ff 88%,
+  #29a8ff 100%
+);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
