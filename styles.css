@@ -3258,4 +3258,177 @@ h3,
 
   margin:0;
 }
+/* =========================================
+   FINAL MOBILE STABILIZATION PATCH
+========================================= */
 
+@media (max-width: 900px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .site-header {
+    min-height: 64px;
+    padding: 12px 18px;
+  }
+
+  .nav {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: flex !important;
+  }
+
+  .hero,
+  .section-pad,
+  .pricing-section,
+  .kits-section,
+  .cta-section,
+  .infrastructure-section,
+  .experience-section {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .hero-inner,
+  .infrastructure-shell,
+  .experience-shell,
+  .pricing-grid,
+  .kits-grid,
+  .workflow-diagram,
+  .premium-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-inner {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos" !important;
+    gap: 42px !important;
+  }
+
+  .hero-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-top: 0 !important;
+  }
+
+  .hero-title {
+    max-width: 100%;
+    margin-bottom: 28px;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size: clamp(3.35rem, 14vw, 4.8rem) !important;
+    line-height: .92 !important;
+    letter-spacing: -.065em !important;
+    white-space: normal !important;
+    max-width: 100%;
+  }
+
+  .hero-title-bottom {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+
+  .hero-subhead,
+  .hero-lede {
+    max-width: 100% !important;
+  }
+
+  .button,
+  .cta-button {
+    width: 100% !important;
+  }
+
+  .command-center {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-self: center !important;
+  }
+
+  .command-shell {
+    width: 100% !important;
+    padding: 18px !important;
+    border-radius: 24px !important;
+  }
+
+  .command-header,
+  .workflow-toolbar,
+  .queue-top,
+  .queue-footer {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .production-counts {
+    flex-wrap: wrap;
+  }
+
+  .queue-item {
+    flex-direction: column !important;
+    padding: 18px !important;
+  }
+
+  .tools-strip {
+    width: 100% !important;
+    padding: 22px 18px !important;
+  }
+
+  .tools-logos {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  .tools-logos .logo-item:nth-child(7) {
+    grid-column: 2;
+  }
+
+  .logo-item::after {
+    display: none !important;
+  }
+
+  .infrastructure-top,
+  .experience-metrics,
+  .expertise-grid,
+  .pricing-grid,
+  .kits-grid,
+  .workflow-diagram {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pipeline-coverage,
+  .workflow-node,
+  .expertise-card,
+  .metric-card,
+  .pricing-card,
+  .kit-card,
+  .premium-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  section h2,
+  .section-heading h2,
+  .infrastructure-heading h2,
+  .experience-heading h2,
+  .pricing-section .section-heading h2,
+  .premium-shell h2 {
+    font-size: clamp(2.35rem, 10vw, 3.1rem) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.045em !important;
+  }
+}
