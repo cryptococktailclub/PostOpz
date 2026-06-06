@@ -711,40 +711,40 @@ p { color: var(--muted); line-height: 1.7; }
   color: rgba(255,255,255,.6);
 }
 
-.tools-logos{
-  display:grid;
+.tools-logos {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
 
-  grid-template-columns:
-    repeat(7, minmax(140px, 1fr));
+  width: 100%;
+  margin-top: 34px;
 
-  align-items:center;
-  justify-items:center;
+  align-items: center;
+  gap: 0;
 }
 
-.logo-item{
-  width:100%;
-  min-height:56px;
+.logo-item {
+  position: relative;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  position:relative;
+  min-height: 44px;
+  padding: 0 14px;
 }
-.logo-item:not(:last-child)::after{
-  content:"";
+.logo-item:not(:last-child)::after {
+  content: "";
 
-  position:absolute;
+  position: absolute;
+  right: 0;
+  top: 50%;
 
-  right:0;
-  top:50%;
+  width: 1px;
+  height: 34px;
 
-  transform:translateY(-50%);
+  transform: translateY(-50%);
 
-  width:1px;
-  height:32px;
-
-  background:rgba(255,255,255,.08);
+  background: rgba(255,255,255,.08);
 }
 .logo-item:hover { opacity: .7; }
 
@@ -765,7 +765,53 @@ p { color: var(--muted); line-height: 1.7; }
 
   object-fit:contain;
 }
+.logo-item img {
+  max-height: 28px;
+  max-width: 120px;
+  width: auto;
+  object-fit: contain;
 
+  opacity: .92;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.logo-item:hover img {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Jump icon needs a little more visual weight */
+
+.logo-item img[alt="Jump Desktop"] {
+  max-height: 34px;
+}
+
+/* Avid logo tends to render smaller */
+
+.logo-item img[alt="Avid"] {
+  max-height: 24px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .tools-logos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 0;
+  }
+
+  .logo-item {
+    min-height: 54px;
+  }
+
+  .logo-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .logo-item img {
+    max-height: 30px;
+  }
+}
 /* =========================================
    GENERIC SECTIONS
 ========================================= */
