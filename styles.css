@@ -1797,19 +1797,20 @@ h3 {
 }
 
 .service-title {
-  margin: 0 0 10px;
-  font-size: 38px;
-  line-height: .96;
-  letter-spacing: -.06em;
+  margin: 0 0 12px;
+  font-size: clamp(34px, 2.6vw, 44px);
+  line-height: .95;
+  letter-spacing: -.065em;
   font-weight: 900;
   color: #fff;
+  min-height: 88px;
 }
 
 .service-subtitle {
-  min-height: 44px;
-  margin-bottom: 18px;
-  font-size: 18px;
-  line-height: 1.25;
+  min-height: 46px;
+  margin-bottom: 22px;
+  font-size: 16px;
+  line-height: 1.35;
   font-weight: 800;
   color: #dce5f5;
 }
@@ -1819,41 +1820,56 @@ h3 {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 38px;
+  min-height: 36px;
   margin-bottom: 24px;
+  padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.08);
-  background: rgba(255,255,255,.035);
-  color: #9fb0ca;
-  font-size: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: #aeb9ce;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: .08em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   text-align: center;
+  white-space: nowrap;
 }
 
 .service-price {
   display: flex;
-  align-items: flex-end;
+  align-items: baseline;
   gap: 10px;
-  margin: 0 0 28px;
+  margin: 0 0 26px;
+  min-height: 66px;
 }
 
 .service-price .amount {
-  font-size: 68px;
-  line-height: .86;
+  font-size: clamp(54px, 4.2vw, 66px);
+  line-height: .9;
   font-weight: 900;
   letter-spacing: -.08em;
   color: #fff;
 }
 
 .service-price .period {
-  margin-bottom: 8px;
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 900;
   color: #8d97aa;
   text-transform: uppercase;
-  letter-spacing: .12em;
+  letter-spacing: .14em;
+  white-space: nowrap;
+}
+
+.service-icon-card p {
+  min-height: 92px;
+}
+
+.service-icon-card ul {
+  min-height: 230px;
+}
+
+.service-button {
+  margin-top: auto;
 }
 
 .service-button {
