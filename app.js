@@ -215,6 +215,28 @@ const navObserver = new IntersectionObserver(
 sections.forEach((section) => {
   navObserver.observe(section);
 });
+    
+document.querySelectorAll('.glow-card').forEach(card => {
+
+  const glow = document.createElement('div');
+  glow.classList.add('card-glow');
+
+  card.appendChild(glow);
+
+  card.addEventListener('mousemove', (e) => {
+
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    glow.style.left = `${x}px`;
+    glow.style.top = `${y}px`;
+
+  });
+
+});    
+    
     /* ==========================================
    PIPELINE LIGHT SEQUENCE
 ========================================== */
