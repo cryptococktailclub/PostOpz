@@ -2315,6 +2315,75 @@ h3 {
     gap: 32px;
   }
 
+.glow-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow {
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,217,255,.10) 0%,
+      rgba(124,60,255,.08) 35%,
+      transparent 70%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity .25s ease,
+    left .08s linear,
+    top .08s linear;
+}
+
+.glow-card:hover .card-glow {
+  opacity: 1;
+}
+
+ .card-glow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,217,255,.10) 0%,
+      rgba(80,120,255,.12) 25%,
+      rgba(180,60,255,.12) 50%,
+      rgba(255,0,150,.08) 70%,
+      transparent 85%
+    );
+} 
+
+.glow-card {
+  transition:
+    transform .25s cubic-bezier(.16,1,.3,1),
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.glow-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(0,217,255,.18);
+
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.45),
+    0 0 40px rgba(80,120,255,.08);
+}
+  
   .trust-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
