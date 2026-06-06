@@ -3286,13 +3286,12 @@ h3,
     padding: 22px 18px !important;
   }
 
-  .tools-logos {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 18px !important;
-  }
+  ..tools-logos {
+  grid-template-columns: repeat(9, minmax(100px, 1fr));
+}
 
-  .tools-logos .logo-item:nth-child(7) {
-    grid-column: 2;
+  .tools-logos .logo-item:nth-child(9) {
+    grid-column: 3;
   }
 
   .logo-item::after {
