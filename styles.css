@@ -1988,19 +1988,35 @@ h3 {
 }
 
 .product-label {
-  display: inline-flex;
-  margin-bottom: 20px;
-  padding: 9px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 36px;
+
+  margin-bottom: 24px;
+
   border-radius: 999px;
-  border: 1px solid rgba(0,217,255,.2);
-  background: rgba(0,217,255,.05);
-  color: var(--cyan);
+
+  border: 1px solid rgba(0,217,255,.20);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,217,255,.08),
+      rgba(0,217,255,.02)
+    );
+
+  color: #21d4ff;
+
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: .16em;
+  letter-spacing: .18em;
   text-transform: uppercase;
-}
 
+  text-align: center;
+}
 .bundle-card h3,
 .product-card h3 {
   margin-bottom: 18px;
