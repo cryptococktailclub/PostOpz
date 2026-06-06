@@ -2071,6 +2071,32 @@ h3 {
   color: #8d97aa;
 }
 
+.products-grid {
+  align-items: stretch;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-card p {
+  min-height: 104px;
+}
+
+.product-card ul {
+  min-height: 178px;
+}
+
+.product-price {
+  margin-top: auto;
+}
+
+.product-button {
+  margin-top: 0;
+}
+
 @media (max-width: 900px) {
   .bundle-grid,
   .products-grid {
