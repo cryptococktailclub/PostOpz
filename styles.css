@@ -1773,6 +1773,118 @@ h3 {
   color: #7f8aa3;
 }
 
+.service-icon-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: 32px;
+  padding: 0 14px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: rgba(0,217,255,.06);
+  border: 1px solid rgba(0,217,255,.18);
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.service-title {
+  margin: 0 0 10px;
+  font-size: 38px;
+  line-height: .96;
+  letter-spacing: -.06em;
+  font-weight: 900;
+  color: #fff;
+}
+
+.service-subtitle {
+  min-height: 44px;
+  margin-bottom: 18px;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 800;
+  color: #dce5f5;
+}
+
+.service-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 38px;
+  margin-bottom: 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.035);
+  color: #9fb0ca;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.service-price {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+.service-price .amount {
+  font-size: 68px;
+  line-height: .86;
+  font-weight: 900;
+  letter-spacing: -.08em;
+  color: #fff;
+}
+
+.service-price .period {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #8d97aa;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+.service-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  margin-top: auto;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1976ff, #7c3cff, #d100ff);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 900;
+  box-shadow: 0 16px 48px rgba(90,70,255,.28);
+  transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease;
+}
+
+.service-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 60px rgba(90,70,255,.38);
+}
+
+.service-icon-card ul {
+  margin-bottom: 28px;
+}
+
+.service-icon-card .pricing-note {
+  margin-bottom: 22px;
+}
+
 @media (max-width: 900px) {
   .service-icons-grid {
     width: 100%;
