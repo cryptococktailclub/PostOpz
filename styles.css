@@ -4169,3 +4169,25 @@ h3,
   }
 
 }
+/* =========================================
+   MOBILE HERO CTA CLEANUP
+========================================= */
+
+@media (max-width: 768px) {
+
+  .hero-cta-arrow {
+    display: none !important;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-cta-note {
+    text-align: center;
+    white-space: normal;
+  }
+
+}
