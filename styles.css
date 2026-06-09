@@ -3655,3 +3655,60 @@ h3,
   font-weight: 800;
   color: #fff;
 }
+/* =========================================
+   CTA INTAKE NUMBER SEQUENCE ANIMATION
+========================================= */
+
+.intake-svg-num text {
+  filter:
+    drop-shadow(0 0 6px rgba(255,255,255,.12))
+    drop-shadow(0 0 14px rgba(139,92,255,.20));
+
+  animation: intakeNumberPulse 6.4s ease-in-out infinite;
+}
+
+.intake-flow-row:nth-of-type(2) .intake-svg-num text {
+  animation-delay: 0s;
+}
+
+.intake-flow-row:nth-of-type(3) .intake-svg-num text {
+  animation-delay: 1.6s;
+}
+
+.intake-flow-row:nth-of-type(4) .intake-svg-num text {
+  animation-delay: 3.2s;
+}
+
+.intake-flow-row:nth-of-type(5) .intake-svg-num text {
+  animation-delay: 4.8s;
+}
+
+@keyframes intakeNumberPulse {
+  0%,
+  18%,
+  100% {
+    opacity: .76;
+    filter:
+      drop-shadow(0 0 6px rgba(255,255,255,.10))
+      drop-shadow(0 0 14px rgba(139,92,255,.18));
+  }
+
+  8% {
+    opacity: 1;
+    filter:
+      drop-shadow(0 0 10px rgba(255,255,255,.28))
+      drop-shadow(0 0 22px rgba(0,217,255,.34))
+      drop-shadow(0 0 34px rgba(209,0,255,.24));
+  }
+}
+
+.intake-flow-row {
+  transition:
+    border-color .35s ease,
+    transform .35s ease;
+}
+
+.intake-flow-row:hover {
+  transform: translateX(3px);
+  border-color: rgba(0,217,255,.18);
+}
