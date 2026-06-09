@@ -3907,3 +3907,59 @@ h3,
     line-height: .92 !important;
   }
 }
+/* =========================================
+   HEADER BRAND REFINEMENT
+========================================= */
+
+/* Reduce overall header height */
+.site-header,
+.header-inner {
+  min-height: 72px !important;
+}
+
+/* Smaller logo container */
+.brand,
+.logo-wrap {
+  gap: 10px !important;
+}
+
+/* Smaller PZ icon */
+.brand img,
+.site-logo,
+.logo-mark {
+  width: 34px !important;
+  height: 34px !important;
+  flex: 0 0 34px !important;
+}
+
+/* Smaller wordmark */
+.brand-text,
+.logo-text {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Slightly reduce nav size */
+.nav a {
+  font-size: 13px !important;
+  letter-spacing: .08em !important;
+}
+
+/* Tighten header spacing */
+.header-inner {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+.brand img,
+.site-logo,
+.logo-mark {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.brand-text,
+.logo-text {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
