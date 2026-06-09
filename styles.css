@@ -4243,3 +4243,69 @@ h3,
   }
 
 }
+/* =========================================
+   POSTOPZ INTAKE FLOW PILL
+   Match Workflow Coverage
+========================================= */
+
+.cta-flow-pill {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 34px;
+  padding: 0 18px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(12,18,30,.98),
+      rgba(8,14,24,.98)
+    );
+
+  color: #fff;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* Gradient border */
+.cta-flow-pill::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff8a00 0%,
+      #ff006e 35%,
+      #8b3dff 70%,
+      #00d9ff 100%
+    );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+.cta-flow-pill {
+  box-shadow:
+    0 0 14px rgba(139,61,255,.08);
+}
