@@ -4351,3 +4351,27 @@ h3,
   }
 
 }
+/* =========================================
+   MOBILE HERO EYEBROW
+========================================= */
+
+@media (max-width: 768px) {
+
+  .hero .eyebrow,
+  .hero-eyebrow,
+  .eyebrow {
+
+    max-width: 190px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: center;
+
+    line-height: 1.15;
+
+    white-space: normal !important;
+
+  }
+
+}
