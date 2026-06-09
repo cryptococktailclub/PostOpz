@@ -4191,3 +4191,16 @@ h3,
   }
 
 }
+.mobile-pill {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-pill {
+    display: none;
+  }
+
+  .mobile-pill {
+    display: block;
+  }
+}
