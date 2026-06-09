@@ -3671,11 +3671,40 @@ h3,
 }
 
 .cta-flow-item span {
-  font-size: 34px;
+  font-size: 38px;
   font-weight: 900;
-  color: var(--cyan);
+  min-width: 54px;
 
-  min-width: 44px;
+  background: linear-gradient(
+    180deg,
+    #00d9ff 0%,
+    #4f7dff 35%,
+    #a83cff 70%,
+    #ff2f92 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  letter-spacing: -.04em;
+}
+.cta-flow-item:nth-child(2) span {
+  filter: hue-rotate(-10deg);
+}
+
+.cta-flow-item:nth-child(3) span {
+  filter: hue-rotate(10deg);
+}
+
+.cta-flow-item:nth-child(4) span {
+  filter: hue-rotate(20deg);
+}
+
+.cta-flow-item:nth-child(5) span {
+  filter: hue-rotate(35deg);
 }
 
 .cta-flow-item strong {
