@@ -4204,3 +4204,42 @@ h3,
     display: block;
   }
 }
+/* =========================================
+   CTA CALENDAR ICON
+========================================= */
+
+.cta-flow-icon {
+  width: 78px;
+  height: 78px;
+
+  object-fit: contain;
+  flex: 0 0 78px;
+
+  filter:
+    drop-shadow(0 0 18px rgba(0,217,255,.18))
+    drop-shadow(0 0 24px rgba(209,0,255,.18));
+}
+@media (max-width: 768px) {
+
+  .cta-flow-icon {
+    width: 70px;
+    height: 70px;
+    flex: 0 0 70px;
+  }
+
+}
+.cta-flow-icon {
+  animation: calendarFloat 6s ease-in-out infinite;
+}
+
+@keyframes calendarFloat {
+
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+}
