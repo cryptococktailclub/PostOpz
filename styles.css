@@ -4085,3 +4085,27 @@ h3,
   text-shadow:
     0 0 14px rgba(0,217,255,.25);
 }
+/* =========================================
+   MOBILE HERO CTA ARROW
+========================================= */
+
+@media (max-width: 768px) {
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-cta-arrow {
+    display: block !important;
+    font-size: 20px;
+    line-height: 1;
+
+    transform: rotate(90deg);
+    opacity: .6;
+
+    margin: -2px 0;
+  }
+
+}
