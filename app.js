@@ -213,7 +213,88 @@
         activeIndex = 0;
       }
     }
+/* ==========================================
+   HERO QUEUE COUNTERS
+========================================== */
 
+const queueMetrics =
+  document.querySelectorAll(
+    ".queue-metric[data-count]"
+  );
+
+if (queueMetrics.length) {
+
+  const queueObserver =
+    new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (!entry.isIntersecting) return;
+
+          const el = entry.target;
+
+          const target =
+            parseInt(
+              el.dataset.count,
+              10
+            );
+
+          const duration = 1400;
+
+          let startTime = null;
+
+          function animate(ts) {
+
+            if (!startTime) {
+              startTime = ts;
+            }
+
+            const progress =
+              Math.min(
+                (ts - startTime) /
+                duration,
+                1
+              );
+
+            const value =
+              Math.floor(
+                progress * target
+              );
+
+            el.textContent = value;
+
+            if (progress < 1) {
+              requestAnimationFrame(
+                animate
+              );
+            } else {
+              el.textContent =
+                target;
+            }
+          }
+
+          requestAnimationFrame(
+            animate
+          );
+
+          queueObserver.unobserve(
+            el
+          );
+
+        });
+
+      },
+      {
+        threshold: 0.4
+      }
+    );
+
+  queueMetrics.forEach((metric) => {
+    queueObserver.observe(metric);
+  });
+
+}
     animatePipeline();
     setInterval(animatePipeline, 1200);
   }
