@@ -3694,26 +3694,31 @@ h3,
    FORCE CTA NUMBER GRADIENTS
 ========================================= */
 
+.cta-flow-item {
+  position: relative;
+  padding-left: 95px;
+}
+
 .cta-flow-item::before {
-  content: attr(data-num) !important;
+  content: attr(data-num);
 
-  position: absolute !important;
-  left: 0 !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 
-  width: 80px !important;
+  display: inline-block;
 
-  font-size: 44px !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  letter-spacing: -.06em !important;
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1;
 
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
+  color: transparent;
 
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
 }
 
 /* 01 */
@@ -3722,9 +3727,9 @@ h3,
     linear-gradient(
       90deg,
       #ff8a00 0%,
-      #ff5b2e 40%,
+      #ff5a2d 45%,
       #ff006e 100%
-    ) !important;
+    );
 }
 
 /* 02 */
@@ -3733,9 +3738,9 @@ h3,
     linear-gradient(
       90deg,
       #ff006e 0%,
-      #ff00c8 50%,
-      #a63cff 100%
-    ) !important;
+      #ff00d0 50%,
+      #9b3dff 100%
+    );
 }
 
 /* 03 */
@@ -3744,9 +3749,9 @@ h3,
     linear-gradient(
       90deg,
       #d100ff 0%,
-      #8b3dff 55%,
+      #8b3dff 50%,
       #4f7dff 100%
-    ) !important;
+    );
 }
 
 /* 04 */
@@ -3757,5 +3762,5 @@ h3,
       #4f7dff 0%,
       #29a8ff 55%,
       #00d9ff 100%
-    ) !important;
+    );
 }
