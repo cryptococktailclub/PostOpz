@@ -4352,26 +4352,32 @@ h3,
 
 }
 /* =========================================
-   MOBILE HERO EYEBROW
+   MOBILE HERO EYEBROW LINE BREAK
 ========================================= */
+
+.hero-kicker-mobile {
+  display: none;
+}
 
 @media (max-width: 768px) {
 
-  .hero .eyebrow,
-  .hero-eyebrow,
-  .eyebrow {
+  .hero-kicker-desktop {
+    display: none;
+  }
 
-    max-width: 175px;
+  .hero-kicker-mobile {
+    display: block;
+    text-align: center;
+    line-height: 1.18;
+  }
 
+  .hero-kicker-pill {
+    width: max-content;
+    max-width: 280px;
     margin-left: auto;
     margin-right: auto;
-
-    text-align: center;
-
-    line-height: 1.15;
-
-    white-space: normal !important;
-
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
 }
