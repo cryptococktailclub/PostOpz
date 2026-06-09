@@ -3771,3 +3771,61 @@ h3,
 .flow-num.num-04 {
   background: linear-gradient(90deg, #8b3dff 0%, #29a8ff 65%, #00d9ff 100%) !important;
 }
+.cta-flow-item {
+  position: relative;
+  padding-left: 78px !important;
+}
+
+.cta-flow-item span,
+.flow-num {
+  display: none !important;
+}
+
+.cta-flow-item::before {
+  content: attr(data-num);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-size: 42px;
+  line-height: .9;
+  font-weight: 900;
+  letter-spacing: -.06em;
+
+  background: linear-gradient(
+    90deg,
+    #ff8a00,
+    #ff00a8,
+    #29a8ff
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-flow-item:nth-of-type(2)::before {
+  background: linear-gradient(90deg, #ff8a00, #ff4d2d, #ff006e);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.cta-flow-item:nth-of-type(3)::before {
+  background: linear-gradient(90deg, #ff4d2d, #ff00a8, #d100ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.cta-flow-item:nth-of-type(4)::before {
+  background: linear-gradient(90deg, #ff00a8, #8b3dff, #4f7dff);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.cta-flow-item:nth-of-type(5)::before {
+  background: linear-gradient(90deg, #8b3dff, #29a8ff, #00d9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
