@@ -3600,7 +3600,7 @@ h3,
   font-size: 11px;
   font-weight: 900;
   letter-spacing: .12em;
-  text-transform: uppercase;
+  text-transform: none;
 
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.04),
@@ -3725,4 +3725,9 @@ h3,
 
 .cta-flow-item[data-num="04"]::before {
   color: #29a8ff !important;
+}
+/* Preserve PostOpz casing in CTA intake pill */
+.cta-flow-pill {
+  text-transform: none !important;
+  letter-spacing: .08em !important;
 }
