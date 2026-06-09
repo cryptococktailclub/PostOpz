@@ -3622,7 +3622,6 @@ h3,
   text-transform: none !important;
   letter-spacing: .08em !important;
 }
-
 .intake-flow-row {
   display: flex;
   align-items: center;
@@ -3636,34 +3635,18 @@ h3,
   border-top: none;
 }
 
-.intake-num {
-  display: inline-block;
-  min-width: 74px;
+.intake-svg-num {
+  width: 74px;
+  height: 52px;
+  flex: 0 0 74px;
+  overflow: visible;
+}
+
+.intake-svg-num text {
+  font-family: 'Inter', system-ui, sans-serif;
   font-size: 44px;
-  line-height: 1;
   font-weight: 900;
-  letter-spacing: -.06em;
-
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.intake-num-01 {
-  background: linear-gradient(90deg, #ff8a00 0%, #ff5a2d 45%, #ff006e 100%);
-}
-
-.intake-num-02 {
-  background: linear-gradient(90deg, #ff006e 0%, #ff00d0 50%, #9b3dff 100%);
-}
-
-.intake-num-03 {
-  background: linear-gradient(90deg, #d100ff 0%, #8b3dff 50%, #4f7dff 100%);
-}
-
-.intake-num-04 {
-  background: linear-gradient(90deg, #4f7dff 0%, #29a8ff 55%, #00d9ff 100%);
+  letter-spacing: -3px;
 }
 
 .intake-flow-row strong {
