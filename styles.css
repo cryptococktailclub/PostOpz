@@ -3709,3 +3709,33 @@ h3,
   font-weight: 800;
   color: #fff;
 }
+/* CTA intake flow numbered gradients */
+.cta-flow-item span {
+  min-width: 58px;
+  font-size: 42px;
+  line-height: .9;
+  font-weight: 900;
+  letter-spacing: -.06em;
+
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: none !important;
+}
+
+.cta-flow-item:nth-of-type(1) span {
+  background: linear-gradient(90deg, #ff8a00 0%, #ff4d2d 50%, #ff006e 100%) !important;
+}
+
+.cta-flow-item:nth-of-type(2) span {
+  background: linear-gradient(90deg, #ff4d2d 0%, #ff00a8 55%, #d100ff 100%) !important;
+}
+
+.cta-flow-item:nth-of-type(3) span {
+  background: linear-gradient(90deg, #ff00a8 0%, #8b3dff 55%, #4f7dff 100%) !important;
+}
+
+.cta-flow-item:nth-of-type(4) span {
+  background: linear-gradient(90deg, #8b3dff 0%, #29a8ff 65%, #00d9ff 100%) !important;
+}
