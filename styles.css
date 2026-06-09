@@ -4309,3 +4309,45 @@ h3,
   box-shadow:
     0 0 14px rgba(139,61,255,.08);
 }
+/* =========================================
+   MOBILE POLISH
+========================================= */
+
+@media (max-width: 768px) {
+
+  /* Hero eyebrow */
+  .hero .eyebrow,
+  .hero-eyebrow {
+    max-width: 220px;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  /* Force clean 2-line break */
+  .hero .eyebrow br,
+  .hero-eyebrow br {
+    display: block;
+  }
+
+  /* Intake Flow pill */
+  .cta-flow-pill {
+    text-align: center !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+
+    width: auto;
+    min-width: 150px;
+    margin: 0 auto;
+  }
+
+  .cta-flow-header {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+}
