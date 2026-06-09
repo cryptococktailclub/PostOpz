@@ -440,7 +440,7 @@ p { color: var(--muted); line-height: 1.7; }
   box-shadow: 0 20px 60px rgba(90,70,255,.38);
 }
 
-..workflow-note {
+.workflow-note {
   margin-top: 16px;
   font-size: 13px;
   font-weight: 700;
