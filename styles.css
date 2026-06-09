@@ -4003,3 +4003,75 @@ h3,
   }
 
 }
+/* =========================================
+   WORKFLOW KIT SUBTLE MOTION
+========================================= */
+
+.product-card,
+.bundle-card {
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform .35s cubic-bezier(.16,1,.3,1),
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+.product-card:hover,
+.bundle-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0,217,255,.18);
+  box-shadow:
+    0 34px 100px rgba(0,0,0,.46),
+    0 0 42px rgba(80,120,255,.10);
+}
+
+.product-image {
+  transition:
+    transform .45s cubic-bezier(.16,1,.3,1),
+    filter .45s ease;
+}
+
+.product-card:hover .product-image {
+  transform: translateY(-4px) scale(1.015);
+  filter:
+    drop-shadow(0 0 18px rgba(0,217,255,.10))
+    drop-shadow(0 0 26px rgba(209,0,255,.10));
+}
+
+.product-button,
+.bundle-card .product-button {
+  transition:
+    transform .25s cubic-bezier(.16,1,.3,1),
+    box-shadow .25s ease;
+}
+
+.product-button:hover,
+.bundle-card .product-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 22px 60px rgba(90,70,255,.38),
+    0 0 32px rgba(209,0,255,.18);
+}
+
+.product-card::before,
+.bundle-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(0,217,255,.10),
+      transparent 42%
+    );
+  transition: opacity .35s ease;
+}
+
+.product-card:hover::before,
+.bundle-card:hover::before {
+  opacity: 1;
+}
