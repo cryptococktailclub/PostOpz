@@ -3823,3 +3823,72 @@ h3,
 
   text-transform: none !important;
 }
+/* =========================================
+   FORCE CTA NUMBER GRADIENTS
+========================================= */
+
+.cta-flow-item::before {
+  content: attr(data-num) !important;
+
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+
+  width: 80px !important;
+
+  font-size: 44px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: -.06em !important;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* 01 */
+.cta-flow-item[data-num="01"]::before {
+  background:
+    linear-gradient(
+      90deg,
+      #ff8a00 0%,
+      #ff5b2e 40%,
+      #ff006e 100%
+    ) !important;
+}
+
+/* 02 */
+.cta-flow-item[data-num="02"]::before {
+  background:
+    linear-gradient(
+      90deg,
+      #ff006e 0%,
+      #ff00c8 50%,
+      #a63cff 100%
+    ) !important;
+}
+
+/* 03 */
+.cta-flow-item[data-num="03"]::before {
+  background:
+    linear-gradient(
+      90deg,
+      #d100ff 0%,
+      #8b3dff 55%,
+      #4f7dff 100%
+    ) !important;
+}
+
+/* 04 */
+.cta-flow-item[data-num="04"]::before {
+  background:
+    linear-gradient(
+      90deg,
+      #4f7dff 0%,
+      #29a8ff 55%,
+      #00d9ff 100%
+    ) !important;
+}
