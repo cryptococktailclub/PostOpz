@@ -3509,77 +3509,9 @@ h3,
   }
 }
 /* =========================================
-   HERO CTA ROW FINAL
+   CTA SECTION — FINAL CLEAN VERSION
 ========================================= */
 
-.hero-actions {
-  margin-top: 44px;
-}
-
-.hero-cta-row {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: nowrap;
-}
-
-.hero-cta-note {
-  font-size: 12px;
-  line-height: 1;
-  font-weight: 900;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #8f9ab2;
-  white-space: nowrap;
-}
-
-.hero-cta-arrow {
-  font-size: 28px;
-  line-height: 1;
-  color: #8f9ab2;
-  transform: translateY(-1px);
-}
-
-.hero-cta-button {
-  min-height: 58px;
-  padding: 0 34px;
-  border-radius: 16px;
-  border: none !important;
-  outline: none !important;
-  box-shadow:
-    0 16px 48px rgba(90,70,255,.28),
-    0 0 34px rgba(209,0,255,.18);
-}
-
-.hero-cta-button:hover {
-  box-shadow:
-    0 20px 60px rgba(90,70,255,.38),
-    0 0 42px rgba(209,0,255,.24);
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .hero-cta-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .hero-cta-note {
-    text-align: center;
-    font-size: 10px;
-    letter-spacing: .1em;
-    white-space: normal;
-  }
-
-  .hero-cta-arrow {
-    display: none;
-  }
-
-  .hero-cta-button {
-    width: 100%;
-  }
-}
 .premium-shell {
   grid-template-columns: minmax(0, 1fr) 360px;
   padding: 48px 56px;
@@ -3603,10 +3535,6 @@ h3,
   padding: 0 34px;
 }
 
-/* =========================================
-   CTA FLOW CARD — FINAL
-========================================= */
-
 .cta-right {
   height: 100%;
   display: flex;
@@ -3618,6 +3546,7 @@ h3,
   width: 100%;
   min-height: 390px;
   padding: 30px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3643,218 +3572,19 @@ h3,
   justify-content: space-between;
   gap: 18px;
 
-  margin-bottom: 20px;
   padding-bottom: 20px;
+  margin-bottom: 20px;
 
   border-bottom: 1px solid rgba(255,255,255,.08);
-
-  color: var(--cyan);
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: .08em;
-  text-transform: none;
 }
-
-.cta-flow-icon {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-
-  filter:
-    drop-shadow(0 0 18px rgba(0,217,255,.18))
-    drop-shadow(0 0 24px rgba(209,0,255,.18));
-}
-
-.cta-flow-item {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  padding: 20px 0;
-
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-
-.cta-flow-item:first-of-type {
-  border-top: none;
-}
-
-.cta-flow-item span {
-  min-width: 58px;
-
-  font-size: 42px;
-  line-height: .9;
-  font-weight: 900;
-  letter-spacing: -.06em;
-
-  background: linear-gradient(
-    90deg,
-    #ff8a00 0%,
-    #ff4d2d 22%,
-    #ff00a8 48%,
-    #8b3dff 72%,
-    #29a8ff 100%
-  );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-.cta-flow-item strong {
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 800;
-  color: #fff;
-}
-/* CTA intake flow numbered gradients */
-.cta-flow-item span {
-  min-width: 58px;
-  font-size: 42px;
-  line-height: .9;
-  font-weight: 900;
-  letter-spacing: -.06em;
-
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  filter: none !important;
-}
-
-.cta-flow-item:nth-of-type(1) span {
-  background: linear-gradient(90deg, #ff8a00 0%, #ff4d2d 50%, #ff006e 100%) !important;
-}
-
-.cta-flow-item:nth-of-type(2) span {
-  background: linear-gradient(90deg, #ff4d2d 0%, #ff00a8 55%, #d100ff 100%) !important;
-}
-
-.cta-flow-item:nth-of-type(3) span {
-  background: linear-gradient(90deg, #ff00a8 0%, #8b3dff 55%, #4f7dff 100%) !important;
-}
-
-.cta-flow-item:nth-of-type(4) span {
-  background: linear-gradient(90deg, #8b3dff 0%, #29a8ff 65%, #00d9ff 100%) !important;
-}
-.cta-flow-header span {
-  text-transform: none !important;
-}
-
-.flow-num {
-  min-width: 58px;
-  font-size: 42px;
-  line-height: .9;
-  font-weight: 900;
-  letter-spacing: -.06em;
-
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-.flow-num.num-01 {
-  background: linear-gradient(90deg, #ff8a00 0%, #ff4d2d 50%, #ff006e 100%) !important;
-}
-
-.flow-num.num-02 {
-  background: linear-gradient(90deg, #ff4d2d 0%, #ff00a8 55%, #d100ff 100%) !important;
-}
-
-.flow-num.num-03 {
-  background: linear-gradient(90deg, #ff00a8 0%, #8b3dff 55%, #4f7dff 100%) !important;
-}
-
-.flow-num.num-04 {
-  background: linear-gradient(90deg, #8b3dff 0%, #29a8ff 65%, #00d9ff 100%) !important;
-}
-.cta-flow-item {
-  position: relative;
-  padding-left: 78px !important;
-}
-
-.cta-flow-item span,
-.flow-num {
-  display: none !important;
-}
-
-.cta-flow-item::before {
-  content: attr(data-num);
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-
-  font-size: 42px;
-  line-height: .9;
-  font-weight: 900;
-  letter-spacing: -.06em;
-
-  background: linear-gradient(
-    90deg,
-    #ff8a00,
-    #ff00a8,
-    #29a8ff
-  );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-.cta-flow-item:nth-of-type(2)::before {
-  background: linear-gradient(90deg, #ff8a00, #ff4d2d, #ff006e);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.cta-flow-item:nth-of-type(3)::before {
-  background: linear-gradient(90deg, #ff4d2d, #ff00a8, #d100ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.cta-flow-item:nth-of-type(4)::before {
-  background: linear-gradient(90deg, #ff00a8, #8b3dff, #4f7dff);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.cta-flow-item:nth-of-type(5)::before {
-  background: linear-gradient(90deg, #8b3dff, #29a8ff, #00d9ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-/* Fix CTA intake numbers clipping */
-.cta-flow-item {
-  overflow: visible !important;
-}
-
-.cta-flow-item::before {
-  left: 2px !important;
-  width: 72px !important;
-  padding-right: 8px !important;
-  overflow: visible !important;
-  line-height: 1 !important;
-}
-
-.cta-flow-item {
-  padding-left: 88px !important;
-}
-/* Intake Flow Pill */
 
 .cta-flow-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  height: 42px;
-  padding: 0 22px;
-
+  min-height: 38px;
+  padding: 0 18px;
   border-radius: 999px;
 
   border: 1px solid rgba(0,217,255,.35);
@@ -3867,10 +3597,9 @@ h3,
     );
 
   color: #fff;
-
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
-  letter-spacing: .16em;
+  letter-spacing: .12em;
   text-transform: uppercase;
 
   box-shadow:
@@ -3878,14 +3607,85 @@ h3,
     0 0 18px rgba(0,217,255,.08);
 }
 
-.cta-flow-header {
+.cta-flow-icon {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  flex: 0 0 58px;
+
+  filter:
+    drop-shadow(0 0 18px rgba(0,217,255,.18))
+    drop-shadow(0 0 24px rgba(209,0,255,.18));
+}
+
+.cta-flow-item {
+  position: relative;
+
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
 
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  min-height: 72px;
+  padding: 18px 0 18px 88px;
 
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-top: 1px solid rgba(255,255,255,.06);
+  overflow: visible;
+}
+
+.cta-flow-item:first-of-type {
+  border-top: none;
+}
+
+.cta-flow-item::before {
+  content: attr(data-num);
+
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 76px;
+
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -.06em;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-flow-item:nth-of-type(2)::before {
+  background: linear-gradient(90deg, #ff8a00, #ff4d2d, #ff006e);
+}
+
+.cta-flow-item:nth-of-type(3)::before {
+  background: linear-gradient(90deg, #ff4d2d, #ff00a8, #d100ff);
+}
+
+.cta-flow-item:nth-of-type(4)::before {
+  background: linear-gradient(90deg, #ff00a8, #8b3dff, #4f7dff);
+}
+
+.cta-flow-item:nth-of-type(5)::before {
+  background: linear-gradient(90deg, #8b3dff, #29a8ff, #00d9ff);
+}
+
+.cta-flow-item strong {
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .premium-shell {
+    grid-template-columns: 1fr;
+    padding: 34px 24px;
+  }
+
+  .cta-flow-card {
+    min-height: auto;
+  }
 }
