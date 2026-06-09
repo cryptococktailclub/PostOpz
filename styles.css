@@ -3731,3 +3731,95 @@ h3,
   text-transform: none !important;
   letter-spacing: .08em !important;
 }
+/* =========================================
+   CTA FLOW NUMBER GRADIENTS
+========================================= */
+
+.cta-flow-item::before {
+  content: attr(data-num);
+
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 76px;
+
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -.06em;
+
+  color: transparent;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 01 Orange → Pink */
+.cta-flow-item[data-num="01"]::before {
+  background:
+    linear-gradient(
+      90deg,
+      #ff8a00 0%,
+      #ff5a36 40%,
+      #ff007a 100%
+    );
+}
+
+/* 02 Pink → Purple */
+.cta-flow-item[data-num="02"]::before {
+  background:
+    linear-gradient(
+      90deg,
+      #ff007a 0%,
+      #ff00c8 50%,
+      #9b3dff 100%
+    );
+}
+
+/* 03 Purple → Blue */
+.cta-flow-item[data-num="03"]::before {
+  background:
+    linear-gradient(
+      90deg,
+      #d000ff 0%,
+      #8b3dff 45%,
+      #4f7dff 100%
+    );
+}
+
+/* 04 Blue → Cyan */
+.cta-flow-item[data-num="04"]::before {
+  background:
+    linear-gradient(
+      90deg,
+      #4f7dff 0%,
+      #29a8ff 50%,
+      #00d9ff 100%
+    );
+}
+.cta-flow-pill {
+  height: 38px;
+  padding: 0 18px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(0,217,255,.35);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10,18,32,.95),
+      rgba(8,14,26,.95)
+    );
+
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .14em;
+
+  text-transform: none !important;
+}
