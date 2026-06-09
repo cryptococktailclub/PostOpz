@@ -4381,3 +4381,97 @@ h3,
   }
 
 }
+/* =========================================
+   TABLET LAYOUT FIX — 11" SCREENS
+========================================= */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+
+  .hero-inner,
+  .infrastructure-top,
+  .service-icons-grid,
+  .products-grid,
+  .bundle-grid,
+  .experience-metrics,
+  .expertise-grid,
+  .workflow-diagram,
+  .premium-shell {
+    grid-template-columns: 1fr !important;
+    width: calc(100% - 48px) !important;
+    max-width: 100% !important;
+  }
+
+  .hero-inner {
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos" !important;
+    gap: 44px !important;
+  }
+
+  .hero-copy,
+  .command-center {
+    max-width: 100% !important;
+    justify-self: center !important;
+    margin-top: 0 !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size: clamp(72px, 10vw, 104px) !important;
+    line-height: .94 !important;
+    letter-spacing: -.055em !important;
+    white-space: normal !important;
+  }
+
+  .hero-title-bottom {
+    padding-bottom: .14em !important;
+  }
+
+  section h2,
+  .section-heading h2,
+  .infrastructure-heading h2,
+  .experience-heading h2,
+  .premium-shell h2 {
+    font-size: clamp(46px, 7vw, 72px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.05em !important;
+    text-wrap: balance;
+  }
+
+  p,
+  .hero-lede,
+  .section-heading p,
+  .infrastructure-heading p {
+    max-width: 760px !important;
+    text-wrap: pretty;
+  }
+
+  .service-icons-grid,
+  .products-grid,
+  .bundle-grid {
+    gap: 28px !important;
+  }
+
+  .service-title,
+  .product-card h3,
+  .bundle-card h3 {
+    min-height: auto !important;
+    text-wrap: balance;
+  }
+
+  .service-icon-card p,
+  .product-card p,
+  .product-card ul {
+    min-height: auto !important;
+  }
+
+  .tools-logos {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 26px 0 !important;
+  }
+
+  .logo-item:nth-child(4)::after {
+    display: none !important;
+  }
+}
