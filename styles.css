@@ -4141,3 +4141,14 @@ h3,
   }
 
 }
+@media (max-width: 768px) {
+
+  .hero-title-top {
+    margin-bottom: 6px !important;
+  }
+
+  .hero-title-bottom {
+    margin-top: 6px !important;
+  }
+
+}
