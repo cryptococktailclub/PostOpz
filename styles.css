@@ -3712,3 +3712,98 @@ h3,
   transform: translateX(3px);
   border-color: rgba(0,217,255,.18);
 }
+/* =========================================
+   HERO PREMIUM INTRO ANIMATION
+========================================= */
+
+.hero-title-top {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroFadeUp .8s cubic-bezier(.16,1,.3,1) .15s forwards;
+}
+
+.hero-title-bottom {
+  opacity: 0;
+  transform: translateY(18px);
+  background-size: 220% 100%;
+  animation:
+    heroFadeUp .8s cubic-bezier(.16,1,.3,1) .35s forwards,
+    heroGradientSweep 2.6s ease .65s forwards;
+}
+
+.hero-subhead {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp .7s cubic-bezier(.16,1,.3,1) .75s forwards;
+}
+
+.hero-lede {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroFadeUp .7s cubic-bezier(.16,1,.3,1) .95s forwards;
+}
+
+.hero-cta-note {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: heroTypeNote 1.5s steps(42, end) 1.35s forwards;
+}
+
+.hero-cta-arrow {
+  opacity: 0;
+  animation: heroFadeIn .35s ease 2.85s forwards;
+}
+
+.hero-cta-button {
+  opacity: 0;
+  transform: translateY(10px) scale(.96);
+  animation: heroButtonIn .55s cubic-bezier(.16,1,.3,1) 3s forwards;
+}
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroGradientSweep {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes heroTypeNote {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 330px;
+  }
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroButtonIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@media (max-width: 768px) {
+  .hero-cta-note {
+    width: auto;
+    animation: heroFadeUp .6s cubic-bezier(.16,1,.3,1) 1.35s forwards;
+  }
+}
