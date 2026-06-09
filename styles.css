@@ -4152,3 +4152,20 @@ h3,
   }
 
 }
+/* =========================================
+   MOBILE HERO DESCENDER FIX
+========================================= */
+
+@media (max-width: 768px) {
+
+  .hero-title-bottom {
+    line-height: 1.05 !important;
+    padding-bottom: .12em !important;
+    overflow: visible !important;
+  }
+
+  .hero-title {
+    overflow: visible !important;
+  }
+
+}
