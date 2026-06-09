@@ -4109,3 +4109,35 @@ h3,
   }
 
 }
+/* =========================================
+   MOBILE HERO TITLE FIX
+========================================= */
+
+@media (max-width: 768px) {
+
+  .hero-title {
+    margin-bottom: 20px !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    display: block;
+    font-size: clamp(56px, 14vw, 72px) !important;
+
+    line-height: .96 !important;
+    letter-spacing: -.045em !important;
+
+    white-space: normal !important;
+  }
+
+  .hero-title-bottom {
+    margin-top: 8px !important;
+    padding-bottom: 0 !important;
+  }
+
+  .hero-title span:first-child,
+  .hero-copy h1 span:first-child {
+    margin-bottom: 0 !important;
+  }
+
+}
