@@ -3623,77 +3623,45 @@ h3,
   letter-spacing: .08em !important;
 }
 
-/* =========================================
-   FORCE CTA NUMBER GRADIENTS
-========================================= */
-
 .cta-flow-item {
-  position: relative;
-  padding-left: 95px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 72px;
+  padding: 18px 0;
+  border-top: 1px solid rgba(255,255,255,.06);
 }
 
-.cta-flow-item::before {
-  content: attr(data-num);
+.cta-flow-item:first-of-type {
+  border-top: none;
+}
 
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-
+.flow-number {
   display: inline-block;
-
+  min-width: 72px;
   font-size: 44px;
-  font-weight: 900;
   line-height: 1;
+  font-weight: 900;
+  letter-spacing: -.06em;
 
   color: transparent;
-
+  -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-
-  -webkit-text-fill-color: transparent;
 }
 
-/* 01 */
-.cta-flow-item[data-num="01"]::before {
-  background:
-    linear-gradient(
-      90deg,
-      #ff8a00 0%,
-      #ff5a2d 45%,
-      #ff006e 100%
-    );
+.flow-01 {
+  background: linear-gradient(90deg, #ff8a00 0%, #ff5a2d 45%, #ff006e 100%);
 }
 
-/* 02 */
-.cta-flow-item[data-num="02"]::before {
-  background:
-    linear-gradient(
-      90deg,
-      #ff006e 0%,
-      #ff00d0 50%,
-      #9b3dff 100%
-    );
+.flow-02 {
+  background: linear-gradient(90deg, #ff006e 0%, #ff00d0 50%, #9b3dff 100%);
 }
 
-/* 03 */
-.cta-flow-item[data-num="03"]::before {
-  background:
-    linear-gradient(
-      90deg,
-      #d100ff 0%,
-      #8b3dff 50%,
-      #4f7dff 100%
-    );
+.flow-03 {
+  background: linear-gradient(90deg, #d100ff 0%, #8b3dff 50%, #4f7dff 100%);
 }
 
-/* 04 */
-.cta-flow-item[data-num="04"]::before {
-  background:
-    linear-gradient(
-      90deg,
-      #4f7dff 0%,
-      #29a8ff 55%,
-      #00d9ff 100%
-    );
+.flow-04 {
+  background: linear-gradient(90deg, #4f7dff 0%, #29a8ff 55%, #00d9ff 100%);
 }
