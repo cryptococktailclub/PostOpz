@@ -4586,3 +4586,24 @@ h3,
   }
 
 }
+/* =========================================
+   iPAD PRO HERO CTA CLIP FIX
+========================================= */
+
+@media (min-width: 769px) and (max-width: 1366px) {
+
+  .hero-cta-note {
+    overflow: visible !important;
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: none !important;
+    line-height: 1.25 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+  }
+
+  .hero-cta-row {
+    overflow: visible !important;
+  }
+
+}
