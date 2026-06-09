@@ -4075,3 +4075,13 @@ h3,
 .bundle-card:hover::before {
   opacity: 1;
 }
+.queue-metric {
+  transition:
+    color .3s ease,
+    text-shadow .3s ease;
+}
+
+.command-center:hover .queue-metric {
+  text-shadow:
+    0 0 14px rgba(0,217,255,.25);
+}
