@@ -3829,3 +3829,19 @@ h3,
   -webkit-background-clip: text;
   background-clip: text;
 }
+/* Fix CTA intake numbers clipping */
+.cta-flow-item {
+  overflow: visible !important;
+}
+
+.cta-flow-item::before {
+  left: 2px !important;
+  width: 72px !important;
+  padding-right: 8px !important;
+  overflow: visible !important;
+  line-height: 1 !important;
+}
+
+.cta-flow-item {
+  padding-left: 88px !important;
+}
