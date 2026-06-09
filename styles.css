@@ -3635,27 +3635,6 @@ h3,
   border-top: none;
 }
 
-.cta-flow-item::before {
-  content: attr(data-num);
-
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-
-  width: 76px;
-
-  font-size: 42px;
-  line-height: 1;
-  font-weight: 900;
-  letter-spacing: -.06em;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
 .cta-flow-item:nth-of-type(2)::before {
   background: linear-gradient(90deg, #ff8a00, #ff4d2d, #ff006e);
 }
