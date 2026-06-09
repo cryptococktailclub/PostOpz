@@ -3963,3 +3963,43 @@ h3,
   font-size: 16px !important;
   font-weight: 800 !important;
 }
+/* =========================================
+   HERO BALANCE REFINEMENT
+   (15" Laptop Optimization)
+========================================= */
+
+/* Lift headline block slightly */
+.hero-copy {
+  margin-top: -18px !important;
+}
+
+/* Lower queue slightly so it doesn't fight header */
+.command-center {
+  margin-top: 28px !important;
+}
+
+/* Preserve alignment on larger screens */
+@media (min-width: 1280px) {
+
+  .hero-copy {
+    margin-top: -24px !important;
+  }
+
+  .command-center {
+    margin-top: 32px !important;
+  }
+
+}
+
+/* Keep mobile unchanged */
+@media (max-width: 768px) {
+
+  .hero-copy {
+    margin-top: 0 !important;
+  }
+
+  .command-center {
+    margin-top: 0 !important;
+  }
+
+}
