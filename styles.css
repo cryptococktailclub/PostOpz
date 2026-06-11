@@ -4607,3 +4607,116 @@ h3,
   }
 
 }
+/* =========================================
+   OPERATIONAL COVERAGE — 4 CARD LAYOUT
+========================================= */
+
+.service-icons-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  max-width: 1480px !important;
+}
+
+/* Laptop/tablet: 2 x 2 grid */
+@media (min-width: 769px) and (max-width: 1280px) {
+  .service-icons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: calc(100% - 64px) !important;
+  }
+
+  .service-title {
+    min-height: auto !important;
+  }
+}
+
+/* Mobile: stacked */
+@media (max-width: 768px) {
+  .service-icons-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+
+  .service-title,
+  .service-subtitle,
+  .service-icon-card p,
+  .service-icon-card ul {
+    min-height: auto !important;
+  }
+}
+/* =========================================
+   OPERATIONAL COVERAGE — 4 CARD POLISH
+========================================= */
+
+.service-icons-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  max-width: 1480px !important;
+  gap: 24px !important;
+}
+
+.service-icon-card {
+  min-width: 0;
+}
+
+.service-title {
+  min-height: 92px;
+  text-wrap: balance;
+}
+
+.service-subtitle {
+  min-height: 46px;
+  text-wrap: balance;
+}
+
+.service-icon-card p {
+  min-height: 118px;
+  text-wrap: pretty;
+}
+
+.service-icon-card ul {
+  min-height: 236px;
+}
+
+.service-price {
+  min-height: 66px;
+}
+
+.service-price .amount {
+  font-size: clamp(48px, 3.5vw, 62px);
+}
+
+/* laptop/tablet: 2x2 */
+@media (min-width: 769px) and (max-width: 1280px) {
+  .service-icons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: calc(100% - 64px) !important;
+  }
+
+  .service-title,
+  .service-subtitle,
+  .service-icon-card p,
+  .service-icon-card ul {
+    min-height: auto !important;
+  }
+}
+
+/* mobile: stacked */
+@media (max-width: 768px) {
+  .service-icons-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    gap: 24px !important;
+  }
+
+  .service-title,
+  .service-subtitle,
+  .service-icon-card p,
+  .service-icon-card ul,
+  .service-price {
+    min-height: auto !important;
+  }
+
+  .service-value {
+    white-space: normal !important;
+    line-height: 1.3;
+    padding: 10px 18px;
+  }
+}
