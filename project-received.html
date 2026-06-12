@@ -50,7 +50,7 @@ body{
     radial-gradient(circle at 95% 80%, rgba(0,140,255,.14), transparent 30%),
     #030816;
 
-  overflow:hidden;
+   overflow:visible;
 
   border:1px solid rgba(255,255,255,.08);
 
@@ -134,11 +134,25 @@ body{
 
   letter-spacing:-.06em;
 }
+  .confirmation-title{
+  overflow:visible !important;
+  padding-right:18px;
+}
 
-.confirmation-title span{
+.title-dot{
+  display:inline-block;
+
+  margin-left:10px;
+
+  font-size:.9em;
+
+  transform-origin:center;
+
+  animation:dotPulse 3s ease-in-out infinite;
+
   background:
     linear-gradient(
-      90deg,
+      135deg,
       #00bfff,
       #d22cff,
       #ff8c5a
@@ -722,8 +736,8 @@ body{
     </div>
 
     <h1 class="confirmation-title">
-     Your Workflow Is In Motion<span class="title-dot">.</span>
-    </h1>
+  Your Workflow Is In Motion<span class="title-dot">.</span>
+</h1>
 
     <div class="confirmation-copy">
 
