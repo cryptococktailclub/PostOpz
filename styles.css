@@ -4852,3 +4852,58 @@ h3,
     width: 100%;
   }
 }
+.confirmation-step span {
+  animation: queuePulse 4s ease-in-out infinite;
+}
+
+.confirmation-step:nth-child(2) span {
+  animation-delay: .3s;
+}
+
+.confirmation-step:nth-child(3) span {
+  animation-delay: .6s;
+}
+
+.confirmation-step:nth-child(4) span {
+  animation-delay: .9s;
+}
+
+@keyframes queuePulse {
+  0%,100% {
+    transform: translateY(0);
+    filter: brightness(1);
+  }
+
+  50% {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+  }
+}
+.status-live {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#59ffb8;
+  font-size:11px;
+  letter-spacing:.12em;
+}
+
+.status-live::before {
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#59ffb8;
+  animation:pulse 2s infinite;
+}
+.confirmation-page::before {
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0,217,255,.10), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(209,0,255,.12), transparent 35%);
+
+  animation: drift 14s ease-in-out infinite alternate;
+}
