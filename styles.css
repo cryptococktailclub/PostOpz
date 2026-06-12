@@ -4953,32 +4953,22 @@ body{
   color:#ffb347;
 }
 
-/* ==========================================
-WORKFLOW
-========================================== */
-
 .workflow-steps{
 display:grid;
 grid-template-columns:repeat(4,1fr);
 
-min-height:150px;
+border:1px solid rgba(255,255,255,.08);
 
 border-radius:22px;
 overflow:hidden;
 
-border:1px solid rgba(255,255,255,.08);
-
 margin:18px 0 24px;
-
-align-items:stretch;
 }
 
 .step{
 position:relative;
 
-min-height:150px;
-
-padding:18px 24px 20px;
+padding:18px 24px;
 
 border-right:1px solid rgba(255,255,255,.06);
 
@@ -4999,25 +4989,19 @@ transparent 60%
 );
 }
 
-/* reserve identical header space */
-
-.step-header{
-height:24px;
-}
-
 .step-status{
+height:24px;
+
 display:flex;
 align-items:center;
 gap:8px;
 
-height:24px;
+margin-bottom:8px;
 
 color:#00ff9d;
 
 font-size:.82rem;
 font-weight:700;
-
-margin-bottom:8px;
 }
 
 .step-status::before{
@@ -5029,6 +5013,8 @@ height:8px;
 border-radius:50%;
 
 background:#00ff9d;
+
+animation:pulseDot 2s infinite;
 }
 
 .step:not(.active) .step-status{
@@ -5036,8 +5022,7 @@ visibility:hidden;
 }
 
 .step-number{
-font-size:3.8rem;
-
+font-size:4rem;
 line-height:.9;
 
 font-weight:800;
@@ -5047,48 +5032,26 @@ margin-bottom:10px;
 letter-spacing:-.04em;
 }
 
-/* gradients */
-
 .step:nth-child(1) .step-number{
-background:linear-gradient(
-180deg,
-#ffb347,
-#ff2d6f
-);
-
+background:linear-gradient(180deg,#ffb347,#ff2d6f);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
 .step:nth-child(2) .step-number{
-background:linear-gradient(
-180deg,
-#ff35d0,
-#9f3dff
-);
-
+background:linear-gradient(180deg,#ff35d0,#9f3dff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
 .step:nth-child(3) .step-number{
-background:linear-gradient(
-180deg,
-#9f3dff,
-#5964ff
-);
-
+background:linear-gradient(180deg,#9f3dff,#5964ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
 .step:nth-child(4) .step-number{
-background:linear-gradient(
-180deg,
-#19c3ff,
-#1976ff
-);
-
+background:linear-gradient(180deg,#19c3ff,#1976ff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
@@ -5096,9 +5059,16 @@ background:linear-gradient(
 .step-title{
 color:#fff;
 
-font-size:.95rem;
-line-height:1.45;
+font-size:1rem;
+line-height:1.4;
 font-weight:600;
+}
+
+@keyframes pulseDot{
+50%{
+opacity:.5;
+transform:scale(1.3);
+}
 }
 
 /* ==========================================
