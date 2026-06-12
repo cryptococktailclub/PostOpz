@@ -4726,9 +4726,10 @@ h3,
 
 .confirmation-panel{
   position:relative;
-  max-width:1100px;
+  max-width:1320px;
+  width:min(1320px, 96vw);
   margin:0 auto;
-  padding:80px;
+  padding:72px;
   border-radius:32px;
   overflow:hidden;
 
@@ -4829,12 +4830,15 @@ h3,
 .confirmation-title{
   margin:0 0 42px;
 
-  font-size:clamp(3.5rem,7vw,6rem);
-  line-height:.95;
-  letter-spacing:-.05em;
+  font-size:clamp(4rem,6vw,6.5rem);
+  line-height:.92;
+
   font-weight:800;
+  letter-spacing:-0.06em;
 
   color:#fff;
+
+  white-space:nowrap;
 }
 
 .confirmation-title span{
@@ -4951,7 +4955,11 @@ h3,
 .step{
   position:relative;
 
-  padding:42px 36px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+
+  padding:28px 36px 40px;
 
   border-right:1px solid rgba(255,255,255,.06);
 }
@@ -4970,18 +4978,13 @@ h3,
 }
 
 .step-number{
+  order:2;
+
   font-size:4.5rem;
-  line-height:1;
+  line-height:.9;
 
-  font-weight:800;
-
-  letter-spacing:-.05em;
-
-  background:linear-gradient(
-    180deg,
-    #ff9b3d,
-    #ff2970
-  );
+  margin-bottom:18px;
+}
 
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -5023,16 +5026,18 @@ h3,
 }
 
 .step-status{
-  display:inline-flex;
+  order:1;
+
+  display:flex;
   align-items:center;
   gap:10px;
+
+  margin-bottom:18px;
 
   color:#00ff9d;
 
   font-size:.95rem;
   font-weight:700;
-
-  margin-bottom:16px;
 }
 
 .step-status::before{
@@ -5045,13 +5050,31 @@ h3,
 }
 
 .step-title{
+  order:3;
+
+  margin-top:auto;
+
   color:#fff;
 
   font-size:1.55rem;
-  line-height:1.5;
+  line-height:1.45;
   font-weight:600;
 }
+.workflow-steps{
+  align-items:stretch;
+}
 
+.step{
+  min-height:330px;
+}
+.step-header{
+  height:36px;
+}
+.step:not(.active)::before{
+  content:"";
+  display:block;
+  height:36px;
+}
 /* =========================
    Info Card
    ========================= */
@@ -5209,6 +5232,7 @@ h3,
   }
 
   .confirmation-title{
+    white-space:normal;
     font-size:3rem;
   }
 
