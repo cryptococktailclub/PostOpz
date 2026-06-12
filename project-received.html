@@ -12,6 +12,375 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="styles.css">
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#020611;
+  font-family:Inter,system-ui,sans-serif;
+}
+
+.confirmation-page{
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:24px;
+}
+
+.confirmation-panel{
+  position:relative;
+
+  width:min(1120px,94vw);
+  min-height:calc(100vh - 48px);
+
+  padding:42px 48px;
+
+  border-radius:30px;
+
+  background:
+    radial-gradient(circle at 10% 100%, rgba(255,0,100,.14), transparent 30%),
+    radial-gradient(circle at 95% 80%, rgba(0,140,255,.14), transparent 30%),
+    #030816;
+
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  display:flex;
+  flex-direction:column;
+}
+
+.confirmation-panel::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  border-radius:30px;
+  padding:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #00bfff,
+      #695cff,
+      #d22cff,
+      #00bfff
+    );
+
+  background-size:300% 100%;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+
+  animation:borderFlow 12s linear infinite;
+}
+
+@keyframes borderFlow{
+  from{background-position:0 0;}
+  to{background-position:300% 0;}
+}
+
+.confirmation-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  align-self:flex-start;
+
+  padding:12px 18px;
+
+  border-radius:999px;
+
+  border:1px solid rgba(0,210,255,.2);
+
+  color:#00d2ff;
+
+  font-size:.78rem;
+  font-weight:700;
+
+  letter-spacing:.12em;
+}
+
+.status-dot{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+  background:#00d2ff;
+}
+
+.confirmation-title{
+  margin:28px 0;
+
+  color:white;
+
+  font-size:5rem;
+  line-height:.92;
+
+  font-weight:800;
+
+  letter-spacing:-.06em;
+}
+
+.confirmation-title span{
+  background:
+    linear-gradient(
+      90deg,
+      #00bfff,
+      #d22cff,
+      #ff8c5a
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.confirmation-copy{
+  display:flex;
+  gap:22px;
+
+  margin-bottom:18px;
+}
+
+.timeline-line{
+  width:2px;
+  background:
+    linear-gradient(
+      to bottom,
+      #00d2ff,
+      rgba(0,210,255,.05)
+    );
+
+  position:relative;
+}
+
+.timeline-line::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:50%;
+
+  width:14px;
+  height:14px;
+
+  border-radius:50%;
+
+  background:#00d2ff;
+
+  transform:translateX(-50%);
+}
+
+.copy-content{
+  width:min(980px,100%);
+}
+
+.copy-content p{
+  margin:0 0 22px;
+
+  color:#f1f1f1;
+
+  font-size:1.22rem;
+  line-height:1.65;
+
+  font-family:Menlo,Monaco,monospace;
+}
+
+.accent-blue{color:#00d2ff;}
+.accent-purple{color:#d55cff;}
+.accent-orange{color:#ffb347;}
+
+.workflow-steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  margin:10px 0 24px;
+
+  border-radius:22px;
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.step{
+  position:relative;
+
+  min-height:155px;
+
+  padding:26px 22px 22px;
+
+  border-right:1px solid rgba(255,255,255,.06);
+}
+
+.step:last-child{
+  border-right:none;
+}
+
+.step.active{
+  background:
+    radial-gradient(
+      circle at bottom left,
+      rgba(255,80,40,.12),
+      transparent 60%
+    );
+}
+
+.step-status{
+  position:absolute;
+
+  top:12px;
+  left:22px;
+
+  color:#00ff9d;
+
+  font-size:.78rem;
+  font-weight:700;
+}
+
+.step-status::before{
+  content:"● ";
+}
+
+.step-number{
+  font-size:4.2rem;
+  line-height:.9;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.step:nth-child(1) .step-number{
+  background:linear-gradient(180deg,#ffb347,#ff2d6f);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.step:nth-child(2) .step-number{
+  background:linear-gradient(180deg,#ff35d0,#9f3dff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.step:nth-child(3) .step-number{
+  background:linear-gradient(180deg,#9f3dff,#5964ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.step:nth-child(4) .step-number{
+  background:linear-gradient(180deg,#19c3ff,#1976ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.step-title{
+  color:white;
+  font-weight:600;
+  line-height:1.45;
+}
+
+.confirmation-footer{
+  margin-top:auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.info-card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  flex:1;
+}
+
+.info-icon{
+  width:48px;
+  height:48px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,191,255,.12),
+      rgba(180,0,255,.12)
+    );
+}
+
+.info-copy h3{
+  margin:0 0 6px;
+  color:#00d2ff;
+  font-size:1rem;
+}
+
+.info-copy p{
+  margin:0;
+  color:rgba(255,255,255,.75);
+  line-height:1.5;
+}
+
+.info-copy a{
+  color:#00d2ff;
+  text-decoration:none;
+}
+
+.confirmation-cta{
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-width:240px;
+  height:54px;
+
+  padding:0 28px;
+
+  border-radius:18px;
+
+  text-decoration:none;
+  color:white;
+
+  font-weight:700;
+
+  background:
+    linear-gradient(
+      90deg,
+      #1f8cff,
+      #7a4dff,
+      #d22cff
+    );
+}
+
+.security-note{
+  flex-shrink:0;
+
+  color:rgba(255,255,255,.5);
+
+  font-size:.82rem;
+}
+
+</style>
+  
 </head>
 
 <body>
@@ -41,17 +410,14 @@
         </p>
 
         <p>
-          We'll evaluate your footage volume, editorial workflow,
-          deliverables, storage requirements, and timeline before
-          preparing a
-          <span class="accent-purple">
-            recommended scope and pricing estimate.
-          </span>
+          We'll evaluate your footage volume, editorial workflow, deliverables,
+          storage requirements, and timeline before preparing a
+          <span class="accent-purple">recommended scope and pricing estimate.</span>
         </p>
 
         <p>
-          You'll receive a response using the email address provided
-          within <span class="accent-orange">one business day.</span>
+          You'll receive a response using the email address provided within
+          <span class="accent-orange">one business day.</span>
         </p>
 
       </div>
@@ -60,60 +426,33 @@
 
     <div class="workflow-steps">
 
-  <div class="step active">
-
-  <div class="step-status">
-    ACTIVE
-  </div>
-
-  <div class="step-number">
-    01
-  </div>
-
-  <div class="step-title">
-    Submission<br>
-    Received
-  </div>
-
-</div>
-
-      <div class="step">
-
-        <div class="step-number">
-          02
-        </div>
-
+      <div class="step active">
+        <div class="step-status">ACTIVE</div>
+        <div class="step-number">01</div>
         <div class="step-title">
-          Workflow<br>
-          Analysis
+          Submission<br>Received
         </div>
-
       </div>
 
       <div class="step">
-
-        <div class="step-number">
-          03
-        </div>
-
+        <div class="step-number">02</div>
         <div class="step-title">
-          Scope &<br>
-          Estimate
+          Workflow<br>Analysis
         </div>
-
       </div>
 
       <div class="step">
-
-        <div class="step-number">
-          04
-        </div>
-
+        <div class="step-number">03</div>
         <div class="step-title">
-          Editorial<br>
-          Launch
+          Scope &<br>Estimate
         </div>
+      </div>
 
+      <div class="step">
+        <div class="step-number">04</div>
+        <div class="step-title">
+          Editorial<br>Launch
+        </div>
       </div>
 
     </div>
@@ -122,23 +461,15 @@
 
       <div class="info-card">
 
-        <div class="info-icon">
-          📎
-        </div>
+        <div class="info-icon">📎</div>
 
         <div class="info-copy">
 
-          <h3>
-            Need to add information or attachments?
-          </h3>
+          <h3>Need to add information or attachments?</h3>
 
           <p>
-            <a href="mailto:hello@postopz.com">
-              Click here
-            </a>
-
-            to include additional files, notes, or project
-            details in your review.
+            <a href="mailto:hello@postopz.com">Click here</a>
+            to add files, notes, or project details to your review.
           </p>
 
         </div>
@@ -161,4 +492,5 @@
 </main>
 
 </body>
+  
 </html>
