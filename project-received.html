@@ -291,7 +291,39 @@ body{
   font-weight:600;
   line-height:1.45;
 }
+.title-dot{
+  display:inline-block;
 
+  margin-left:2px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00bfff,
+      #d22cff,
+      #ff8c5a
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:dotPulse 3s ease-in-out infinite;
+}
+
+@keyframes dotPulse{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.15);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
 .confirmation-footer{
   margin-top:auto;
 
@@ -409,15 +441,20 @@ body{
 /* headline */
 
 .confirmation-title{
-  font-size:4.8rem !important;
+  margin:12px 0 34px;
 
-  line-height:.9 !important;
+  font-size:4.8rem;
 
-  margin:12px 0 34px !important;
+  line-height:1;
 
-  letter-spacing:-.065em;
+  letter-spacing:-.055em;
+
+  font-weight:800;
+
+  color:#fff;
+
+  overflow:visible;
 }
-
 /* copy */
 
 .confirmation-copy{
@@ -629,6 +666,44 @@ body{
     max-height:960px;
   }
 }
+  /* ==========================================
+   NUMBER ANIMATION
+   ========================================== */
+
+.step-number{
+  animation:
+    numberFloat 4s ease-in-out infinite;
+}
+
+.step:nth-child(2) .step-number{
+  animation-delay:.15s;
+}
+
+.step:nth-child(3) .step-number{
+  animation-delay:.3s;
+}
+
+.step:nth-child(4) .step-number{
+  animation-delay:.45s;
+}
+
+@keyframes numberFloat{
+
+  0%{
+    transform:translateY(0);
+    filter:brightness(1);
+  }
+
+  50%{
+    transform:translateY(-4px);
+    filter:brightness(1.15);
+  }
+
+  100%{
+    transform:translateY(0);
+    filter:brightness(1);
+  }
+}
 
 </style>
 
@@ -647,7 +722,7 @@ body{
     </div>
 
     <h1 class="confirmation-title">
-      Your Workflow Is In Motion<span>.</span>
+     Your Workflow Is In Motion<span class="title-dot">.</span>
     </h1>
 
     <div class="confirmation-copy">
