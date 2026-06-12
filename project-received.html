@@ -378,8 +378,260 @@ body{
 
   font-size:.82rem;
 }
+  <style>
+
+/* ==========================================
+   MOCKUP MATCH PATCH
+   ========================================== */
+
+/* tighter shell */
+
+.confirmation-panel{
+  min-height:auto !important;
+
+  padding:34px 38px 30px !important;
+
+  width:min(1080px,94vw) !important;
+}
+
+/* badge */
+
+.confirmation-badge{
+  padding:14px 24px !important;
+
+  font-size:.82rem !important;
+
+  letter-spacing:.14em !important;
+
+  margin-bottom:28px;
+}
+
+/* headline */
+
+.confirmation-title{
+  font-size:4.8rem !important;
+
+  line-height:.9 !important;
+
+  margin:12px 0 34px !important;
+
+  letter-spacing:-.065em;
+}
+
+/* copy */
+
+.confirmation-copy{
+  margin-bottom:30px !important;
+
+  gap:18px !important;
+}
+
+.copy-content{
+  width:100% !important;
+  max-width:1000px !important;
+}
+
+.copy-content p{
+  font-size:1.18rem !important;
+
+  line-height:1.7 !important;
+
+  margin-bottom:26px !important;
+
+  max-width:960px !important;
+}
+
+/* timeline */
+
+.timeline-line{
+  margin-top:8px;
+}
+
+.timeline-line::before{
+  width:16px !important;
+  height:16px !important;
+
+  box-shadow:
+    0 0 20px rgba(0,210,255,.5);
+}
+
+/* workflow cards */
+
+.workflow-steps{
+  margin:12px 0 36px !important;
+
+  min-height:0 !important;
+
+  height:210px;
+
+  border-radius:24px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.01),
+      rgba(255,255,255,.02)
+    );
+}
+
+.step{
+  padding:20px 28px !important;
+}
+
+.step-status{
+  position:absolute;
+
+  top:18px;
+  left:28px;
+
+  margin:0 !important;
+}
+
+.step-number{
+  margin-top:32px !important;
+
+  font-size:4.5rem !important;
+
+  margin-bottom:16px !important;
+}
+
+.step-title{
+  font-size:1rem !important;
+
+  line-height:1.5 !important;
+}
+
+/* footer divider */
+
+.confirmation-footer{
+  position:relative;
+
+  margin-top:0 !important;
+
+  padding-top:34px !important;
+
+  display:grid !important;
+
+  grid-template-columns:
+    1.2fr
+    auto
+    auto !important;
+
+  align-items:center !important;
+}
+
+.confirmation-footer::before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  top:0;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0,210,255,.15),
+      transparent
+    );
+}
+
+/* attachment section */
+
+.info-card{
+  display:grid !important;
+
+  grid-template-columns:72px 1fr !important;
+
+  gap:18px !important;
+}
+
+.info-icon{
+  width:72px !important;
+  height:72px !important;
+
+  border-radius:20px !important;
+
+  font-size:1.8rem;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.02),
+      rgba(255,255,255,.04)
+    );
+}
+
+.info-copy h3{
+  font-size:1.15rem !important;
+
+  margin-bottom:8px !important;
+}
+
+.info-copy p{
+  font-size:1rem !important;
+
+  line-height:1.65 !important;
+}
+
+/* CTA */
+
+.confirmation-cta{
+  min-width:300px !important;
+
+  height:64px !important;
+
+  padding:0 36px !important;
+
+  border-radius:20px !important;
+
+  font-size:1.05rem !important;
+
+  box-shadow:
+    0 12px 40px rgba(122,77,255,.25);
+}
+
+/* security */
+
+.security-note{
+  font-size:.95rem !important;
+
+  line-height:1.5;
+
+  opacity:.8;
+}
+
+/* remove huge dead space */
+
+.confirmation-panel{
+  justify-content:flex-start !important;
+}
+
+.confirmation-footer{
+  margin-top:0 !important;
+}
+
+/* desktop only */
+
+@media (min-width:1000px){
+
+  .confirmation-page{
+    padding:14px;
+  }
+
+  .confirmation-panel{
+    max-height:960px;
+  }
+}
 
 </style>
+
   
 </head>
 
@@ -461,7 +713,7 @@ body{
 
       <div class="info-card">
 
-        <div class="info-icon">📎</div>
+        <div class="info-icon">⌘</div>
 
         <div class="info-copy">
 
