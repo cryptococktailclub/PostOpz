@@ -38,12 +38,14 @@ body{
 .confirmation-panel{
   position:relative;
 
-  width:min(1120px,94vw);
-  min-height:calc(100vh - 48px);
+  max-width:1080px;
+  min-height:auto;
 
-  padding:42px 48px;
+  padding:38px 44px 38px;
 
   border-radius:30px;
+
+  justify-content:flex-start;
 
   background:
     radial-gradient(circle at 10% 100%, rgba(255,0,100,.14), transparent 30%),
@@ -123,16 +125,20 @@ body{
 }
 
 .confirmation-title{
-  margin:28px 0;
+  margin:26px 0 30px;
 
   color:white;
 
   font-size:5rem;
-  line-height:.92;
+  line-height:1.05;
 
   font-weight:800;
 
   letter-spacing:-.06em;
+  overflow:visible;
+  white-space:nowrap;
+  padding-right:20px;
+  
 }
   .confirmation-title{
   overflow:visible !important;
@@ -142,11 +148,16 @@ body{
 .title-dot{
   display:inline-block;
 
-  margin-left:10px;
+  margin-left:8px;;
 
   font-size:.9em;
 
   transform-origin:center;
+
+  position:relative;
+  top:-1px;
+
+  display:inline-block;
 
   animation:dotPulse 3s ease-in-out infinite;
 
@@ -233,7 +244,7 @@ body{
 .step{
   position:relative;
 
-  min-height:155px;
+  min-height:205px;
 
   padding:26px 22px 22px;
 
@@ -308,7 +319,10 @@ body{
 .title-dot{
   display:inline-block;
 
-  margin-left:2px;
+  margin-left:8px;
+
+  position:relative;
+  top:-1px;
 
   background:
     linear-gradient(
@@ -338,31 +352,66 @@ body{
     transform:scale(1);
   }
 }
-.confirmation-footer{
-  margin-top:auto;
 
-  display:flex;
+.confirmation-footer{
+  position:relative;
+
+  padding-top:30px;
+}
+
+.confirmation-footer::before{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  top:0;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0,210,255,.18),
+      transparent
+    );
+}  
+  
+.confirmation-footer{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:
+    1fr
+    auto
+    auto;
+
   align-items:center;
-  justify-content:space-between;
-  gap:24px;
+
+  gap:28px;
 }
 
 .info-card{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  flex:1;
+  display:grid;
+
+  grid-template-columns:
+    64px
+    1fr;
+
+  gap:18px;
 }
 
 .info-icon{
-  width:48px;
-  height:48px;
+  width:64px;
+  height:64px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:14px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.08);
 
   background:
     linear-gradient(
@@ -396,17 +445,20 @@ body{
   align-items:center;
   justify-content:center;
 
-  min-width:240px;
-  height:54px;
+  min-width:360px;
+  height:64px;
 
   padding:0 28px;
 
-  border-radius:18px;
+  border-radius:22px;
 
   text-decoration:none;
   color:white;
 
   font-weight:700;
+
+  box-shadow:
+    0 0 40px rgba(122,77,255,.25);
 
   background:
     linear-gradient(
@@ -509,11 +561,11 @@ body{
 /* workflow cards */
 
 .workflow-steps{
-  margin:12px 0 36px !important;
+  margin:12px 0 28px;
 
   min-height:0 !important;
 
-  height:210px;
+ height:205px;
 
   border-radius:24px !important;
 
@@ -808,9 +860,9 @@ body{
 
         <div class="info-copy">
 
-         <h3>Need to add files or notes?</h3>
+        <h3>Need to add files or notes?</h3>
 
-         <p>
+<p>
   <a href="mailto:hello@postopz.com">Click here</a>
   to add files or project updates.
 </p>
