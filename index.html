@@ -185,6 +185,65 @@
 }
 </script>
 </head>
+
+<style>
+
+@media screen and (max-width:768px){
+
+  .hero-inner{
+    display:flex !important;
+    flex-direction:column !important;
+    width:calc(100% - 32px) !important;
+    gap:24px !important;
+  }
+
+  .hero-copy{
+    width:100% !important;
+    max-width:100% !important;
+    padding-top:0 !important;
+    margin-top:0 !important;
+  }
+
+  .command-center{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+  }
+
+  .command-shell{
+    padding:18px !important;
+  }
+
+  .tools-strip{
+    width:100% !important;
+    padding:18px !important;
+  }
+
+  .tools-logos{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:18px !important;
+    margin-top:18px !important;
+  }
+
+  .logo-item{
+    min-height:52px !important;
+  }
+
+  .logo-item::after{
+    display:none !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom{
+    font-size:64px !important;
+    white-space:normal !important;
+  }
+
+}
+
+</style>
+  
 <body>
 
   <!-- HEADER -->
