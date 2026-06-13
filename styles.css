@@ -4720,3 +4720,149 @@ h3,
     padding: 10px 18px;
   }
 }
+/* ==========================================
+   POSTOPZ MOBILE HERO FIX
+   ========================================== */
+
+@media (max-width: 768px){
+
+  /* overall hero spacing */
+
+  .hero,
+  .hero-section{
+    padding-top:96px !important;
+    padding-bottom:56px !important;
+  }
+
+  /* stack columns */
+
+  .hero-grid,
+  .hero-layout{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:36px !important;
+    align-items:start !important;
+  }
+
+  /* headline */
+
+  .hero-title{
+    font-size:3.4rem !important;
+    line-height:.92 !important;
+    letter-spacing:-.055em !important;
+
+    max-width:6ch !important;
+
+    margin-bottom:20px !important;
+  }
+
+  .hero-title br{
+    display:block;
+  }
+
+  /* hero copy */
+
+  .hero-copy,
+  .hero-subtitle,
+  .hero-description{
+    font-size:1rem !important;
+    line-height:1.65 !important;
+
+    max-width:none !important;
+
+    margin-bottom:24px !important;
+  }
+
+  /* CTA buttons */
+
+  .hero-actions{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:12px !important;
+
+    width:100% !important;
+  }
+
+  .hero-actions a,
+  .hero-actions .btn,
+  .hero-actions button{
+    width:100% !important;
+    justify-content:center !important;
+  }
+
+  /* command center */
+
+  .command-center{
+    width:100% !important;
+
+    padding:18px !important;
+
+    margin-top:8px !important;
+  }
+
+  /* queue items */
+
+  .queue-item{
+    padding:12px 0 !important;
+  }
+
+  .queue-title{
+    font-size:.82rem !important;
+  }
+
+  .queue-subtitle{
+    font-size:.72rem !important;
+  }
+
+  /* stats strip */
+
+  .command-stats,
+  .hero-stats{
+    grid-template-columns:1fr 1fr !important;
+    gap:12px !important;
+  }
+
+  /* production counters */
+
+  .production-metrics{
+    grid-template-columns:repeat(3,1fr) !important;
+    gap:10px !important;
+  }
+
+  /* command center footer */
+
+  .command-footer{
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:8px !important;
+  }
+
+  /* supported workflow logos */
+
+  .tools-grid,
+  .workflow-tools{
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:16px !important;
+  }
+
+}
+
+/* ==========================================
+   SMALL PHONE FIX
+   ========================================== */
+
+@media (max-width: 480px){
+
+  .hero-title{
+    font-size:2.8rem !important;
+  }
+
+  .command-center{
+    padding:16px !important;
+  }
+
+  .production-metrics{
+    grid-template-columns:1fr !important;
+  }
+
+}
