@@ -4954,17 +4954,165 @@ h3,
   }
 
 }
+/* ==========================================
+   POSTOPZ FINAL MOBILE OVERRIDE
+   MUST BE LAST CSS IN FILE
+========================================== */
+
 @media (max-width:768px){
 
-  .tools-strip{
-    display:flex !important;
-    flex-wrap:wrap !important;
-    justify-content:center !important;
+  /* ----------------------------------
+     HERO
+  ---------------------------------- */
+
+  .hero{
+    padding-top:96px !important;
+    padding-bottom:56px !important;
+  }
+
+  .hero-inner{
+    width:calc(100% - 32px) !important;
+
+    display:grid !important;
+
+    grid-template-columns:1fr !important;
+
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos" !important;
+
+    gap:32px !important;
+  }
+
+  .hero-copy{
+    margin-top:0 !important;
+    padding-top:0 !important;
+    max-width:100% !important;
+  }
+
+  .hero-title{
+    margin-bottom:18px !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom{
+    font-size:clamp(58px,14vw,72px) !important;
+
+    line-height:.96 !important;
+
+    letter-spacing:-.05em !important;
+
+    white-space:normal !important;
+  }
+
+  .hero-title-bottom{
+    margin-top:4px !important;
+    padding-bottom:.12em !important;
+  }
+
+  .hero-subhead,
+  .hero-lede{
+    max-width:100% !important;
+  }
+
+  .hero-actions{
+    width:100% !important;
+  }
+
+  .hero-actions .button{
+    width:100% !important;
+  }
+
+  /* ----------------------------------
+     COMMAND CENTER
+  ---------------------------------- */
+
+  .command-center{
+    width:100% !important;
+    max-width:100% !important;
+
+    margin-top:0 !important;
+
+    justify-self:stretch !important;
+  }
+
+  .command-shell{
+    padding:18px !important;
+  }
+
+  .production-counts{
+    display:grid !important;
+    grid-template-columns:repeat(3,1fr) !important;
     gap:12px !important;
   }
 
-  .tools-strip > *{
-    flex:0 0 calc(50% - 6px) !important;
+  .queue-item{
+    padding:16px !important;
+  }
+
+  /* ----------------------------------
+     TOOL STRIP
+  ---------------------------------- */
+
+  .tools-strip{
+    width:100% !important;
+
+    padding:20px 16px !important;
+
+    display:block !important;
+  }
+
+  .tools-strip p{
+    margin-bottom:18px !important;
+  }
+
+  .tools-logos{
+    display:grid !important;
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr)) !important;
+
+    gap:18px !important;
+
+    width:100% !important;
+
+    margin-top:0 !important;
+  }
+
+  .logo-item{
+    min-height:52px !important;
+
+    width:100% !important;
+
+    padding:0 !important;
+
+    display:flex !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+  }
+
+  .logo-item::after{
+    display:none !important;
+  }
+
+  .logo-item:nth-child(7),
+  .logo-item:nth-child(8){
+    grid-column:auto !important;
+  }
+
+  .logo-item img{
+    max-width:100px !important;
+    max-height:26px !important;
+
+    width:auto !important;
+    height:auto !important;
+  }
+
+  .logo-item img[alt="Jump Desktop"]{
+    max-height:30px !important;
   }
 
 }
