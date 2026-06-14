@@ -776,6 +776,194 @@ body{
   
 </head>
 
+  <style>
+
+/* ==========================================
+   PROJECT RECEIVED MOBILE OVERRIDE
+   ========================================== */
+
+@media (max-width:768px){
+
+  .confirmation-page{
+    padding:12px !important;
+  }
+
+  .confirmation-panel{
+    width:100% !important;
+
+    min-height:auto !important;
+
+    padding:24px 20px !important;
+
+    border-radius:24px !important;
+  }
+
+  /* badge */
+
+  .confirmation-badge{
+    font-size:.72rem !important;
+
+    letter-spacing:.12em !important;
+
+    padding:10px 14px !important;
+
+    margin-bottom:20px !important;
+
+    justify-content:center !important;
+  }
+
+  /* title */
+
+  .confirmation-title{
+    font-size:2.9rem !important;
+
+    line-height:.95 !important;
+
+    letter-spacing:-.05em !important;
+
+    white-space:normal !important;
+
+    margin:0 0 24px !important;
+  }
+
+  .title-dot{
+    margin-left:4px !important;
+  }
+
+  /* copy */
+
+  .confirmation-copy{
+    gap:14px !important;
+
+    margin-bottom:24px !important;
+  }
+
+  .copy-content p{
+    font-size:1rem !important;
+
+    line-height:1.65 !important;
+
+    margin-bottom:18px !important;
+  }
+
+  /* workflow cards */
+
+  .workflow-steps{
+    grid-template-columns:
+      1fr
+      1fr !important;
+
+    height:auto !important;
+
+    margin:20px 0 24px !important;
+  }
+
+  .step{
+    min-height:140px !important;
+
+    padding:18px !important;
+  }
+
+  .step:nth-child(2){
+    border-right:none !important;
+  }
+
+  .step-number{
+    font-size:3.4rem !important;
+
+    margin-top:24px !important;
+  }
+
+  .step-title{
+    font-size:.9rem !important;
+  }
+
+  /* footer */
+
+  .confirmation-footer{
+    display:flex !important;
+
+    flex-direction:column !important;
+
+    align-items:stretch !important;
+
+    gap:20px !important;
+
+    padding-top:24px !important;
+  }
+
+  .info-card{
+    display:grid !important;
+
+    grid-template-columns:56px 1fr !important;
+
+    gap:14px !important;
+  }
+
+  .info-icon{
+    width:56px !important;
+    height:56px !important;
+
+    font-size:1.3rem !important;
+  }
+
+  .info-copy h3{
+    font-size:1rem !important;
+  }
+
+  .info-copy p{
+    font-size:.92rem !important;
+  }
+
+  .confirmation-cta{
+    width:100% !important;
+
+    min-width:0 !important;
+
+    height:58px !important;
+
+    justify-content:center !important;
+
+    font-size:.95rem !important;
+  }
+
+  .security-note{
+    text-align:center !important;
+
+    white-space:normal !important;
+
+    font-size:.82rem !important;
+  }
+
+}
+
+/* ==========================================
+   SMALL PHONE
+   ========================================== */
+
+@media (max-width:480px){
+
+  .confirmation-title{
+    font-size:2.4rem !important;
+  }
+
+  .workflow-steps{
+    grid-template-columns:1fr !important;
+  }
+
+  .step{
+    border-right:none !important;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+
+  .step:last-child{
+    border-bottom:none;
+  }
+
+}
+
+</style>
+
 <body>
 
 <main class="confirmation-page">
