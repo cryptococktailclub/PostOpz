@@ -5476,3 +5476,61 @@ h3,
   }
 
 }
+/* =========================================
+   PATCH: HARD DRIVE HERO TITLE
+========================================= */
+
+.hero-title-hard-drive {
+  margin-bottom: 34px !important;
+}
+
+.hero-title-hard-drive .hero-title-top,
+.hero-title-hard-drive .hero-title-bottom {
+  display: block !important;
+}
+
+.hero-title-hard-drive .hero-title-second {
+  margin-top: 8px !important;
+}
+
+.hero-title-hard-drive .hero-title-bottom {
+  margin-top: 14px !important;
+}
+
+/* Override earlier hero span tightening */
+.hero-title-hard-drive span:first-child {
+  margin-bottom: 0 !important;
+}
+
+@media (min-width: 1024px) {
+  .hero-title-hard-drive .hero-title-top,
+  .hero-title-hard-drive .hero-title-bottom {
+    font-size: clamp(72px, 4.6vw, 108px) !important;
+    line-height: .88 !important;
+    letter-spacing: -.07em !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-title-hard-drive .hero-title-top,
+  .hero-title-hard-drive .hero-title-bottom {
+    font-size: clamp(78px, 4.3vw, 112px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title-hard-drive .hero-title-top,
+  .hero-title-hard-drive .hero-title-bottom {
+    font-size: clamp(52px, 13vw, 72px) !important;
+    line-height: .94 !important;
+    white-space: normal !important;
+  }
+
+  .hero-title-hard-drive .hero-title-second {
+    margin-top: 4px !important;
+  }
+
+  .hero-title-hard-drive .hero-title-bottom {
+    margin-top: 6px !important;
+  }
+}
