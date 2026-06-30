@@ -187,138 +187,6 @@
 }
 </script>
 </head>
-
-<style>
-
-@media screen and (max-width:768px){
-
-  .hero-inner{
-    display:flex !important;
-    flex-direction:column !important;
-    width:calc(100% - 32px) !important;
-    gap:24px !important;
-  }
-
-  .hero-copy{
-    width:100% !important;
-    max-width:100% !important;
-    padding-top:0 !important;
-    margin-top:0 !important;
-  }
-
-  .command-center{
-    width:100% !important;
-    max-width:100% !important;
-    margin:0 !important;
-  }
-
-  .command-shell{
-    padding:18px !important;
-  }
-
-  .tools-strip{
-    width:100% !important;
-    padding:18px !important;
-  }
-
-  .tools-logos{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    gap:18px !important;
-    margin-top:18px !important;
-  }
-
-  .logo-item{
-    min-height:52px !important;
-  }
-
-  .logo-item::after{
-    display:none !important;
-  }
-
-  .hero-title-top,
-  .hero-title-bottom{
-    font-size:64px !important;
-    white-space:normal !important;
-  }
-  .hero-eyebrow,
-  .hero-kicker,
-  .eyebrow{
-
-    display:block !important;
-
-    white-space:normal !important;
-
-    width:100% !important;
-
-    max-width:none !important;
-
-    overflow:visible !important;
-
-    text-overflow:unset !important;
-
-    line-height:1.45 !important;
-
-    letter-spacing:.12em !important;
-
-    text-align:left !important;
-  }
-
-  /* pill container */
-
-  .hero-eyebrow-wrap,
-  .hero-eyebrow-pill,
-  .eyebrow-pill{
-
-    display:block !important;
-
-    width:fit-content !important;
-
-    max-width:100% !important;
-
-    white-space:normal !important;
-
-    padding:12px 16px !important;
-  }
-   /* all section eyebrow pills */
-
-  .hero-eyebrow,
-  .eyebrow,
-  .section-eyebrow,
-  .pill,
-  .eyebrow-pill{
-
-    display:flex !important;
-
-    align-items:center !important;
-    justify-content:center !important;
-
-    text-align:center !important;
-
-    width:auto !important;
-    max-width:100% !important;
-
-    margin-left:auto !important;
-    margin-right:auto !important;
-
-    white-space:normal !important;
-
-    line-height:1.45 !important;
-  }
-
-  /* if text is wrapped in spans */
-
-  .hero-eyebrow *,
-  .eyebrow *,
-  .section-eyebrow *,
-  .pill *{
-
-    text-align:center !important;
-  }
-}
-
-</style>
-
   
 <body>
 
@@ -361,229 +229,269 @@
 
   <main id="top">
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-glow"></div>
-      <div class="hero-inner">
+  <!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
 
-        <div class="hero-copy">
-         <div class="eyebrow hero-kicker-pill">
- MANAGED CLOUD EDITORIAL INFRASTRUCTURE
-</div>
+  <div class="hero-inner">
 
-<h1 class="hero-title hero-title-hard-drive">
-  <span class="hero-title-top reveal" data-delay="100">Your Production</span>
-  <span class="hero-title-top hero-title-second reveal" data-delay="150">Doesn’t Need</span>
-  <span class="hero-title-top hero-title-third reveal" data-delay="175">More</span>
-  <span class="hero-title-bottom reveal" data-delay="200">Hard Drives<span class="hero-dot">.</span></span>
-</h1>
+    <!-- HERO COPY -->
+    <div class="hero-copy">
 
-<p class="hero-subhead reveal" data-delay="300">
-  It needs a post system built for active productions.
-</p>
-
-<p class="hero-lede reveal" data-delay="400">
-  PostOpz builds and supports cloud editorial systems that replace scattered drives, messy handoffs, and fragmented remote workflows with structured infrastructure, managed operations, edit-ready prep, and archive strategy.
-</p>
-
-<div class="hero-actions reveal" data-delay="500">
-  <div class="hero-cta-row">
-    <span class="hero-cta-note">
-      Build the system your post team works inside.
-    </span>
-
-    <span class="hero-cta-arrow">→</span>
-
-    <a
-      href="https://tally.so/r/J9oYy7"
-      class="button primary hero-cta-button"
-      target="_blank"
-      rel="noopener"
-    >
-      Start Cloud Discovery
-    </a>
- </div>
-
-</div><!-- /.hero-copy -->
-          
-<div class="command-center reveal" data-delay="300" aria-label="PostOpz cloud editorial stack">
-  <div class="command-shell">
-    <div class="command-header">
-      <div class="window-dots" aria-hidden="true">
-        <span></span><span></span><span></span>
+      <div class="eyebrow hero-kicker-pill">
+        MANAGED CLOUD EDITORIAL INFRASTRUCTURE
       </div>
-      <div class="command-title">Cloud Editorial Stack</div>
-      <img class="command-logo" src="assets/postopz-pz-icon.png" alt="PostOpz logo" />
+
+      <h1 class="hero-title hero-title-hard-drive">
+        <span class="hero-title-top reveal" data-delay="100">Your Production</span>
+        <span class="hero-title-top hero-title-second reveal" data-delay="150">Doesn’t Need</span>
+        <span class="hero-title-top hero-title-third reveal" data-delay="175">More</span>
+        <span class="hero-title-bottom reveal" data-delay="200">Hard Drives<span class="hero-dot">.</span></span>
+      </h1>
+
+      <p class="hero-subhead reveal" data-delay="300">
+        It needs a post system built for active productions.
+      </p>
+
+      <p class="hero-lede reveal" data-delay="400">
+        PostOpz builds and supports cloud editorial systems that replace scattered drives,
+        messy handoffs, and fragmented remote workflows with structured infrastructure,
+        managed operations, edit-ready prep, and archive strategy.
+      </p>
+
+      <div class="hero-actions reveal" data-delay="500">
+        <div class="hero-cta-row">
+          <span class="hero-cta-note">
+            Build the system your post team works inside.
+          </span>
+
+          <span class="hero-cta-arrow">→</span>
+
+          <a
+            href="https://tally.so/r/J9oYy7"
+            class="button primary hero-cta-button"
+            target="_blank"
+            rel="noopener"
+          >
+            Start Cloud Discovery
+          </a>
+        </div>
+      </div>
+
     </div>
+    <!-- /HERO COPY -->
 
-            <div class="workflow-toolbar">
-              <div class="toolbar-left">
-                <div class="live-pill"><span></span> System Managed</div>
-                <div class="toolbar-stat">Cloud Post Ops</div>
-              </div>
-              <div class="toolbar-right">Remote Editorial Ready</div>
-            </div>
+    <!-- COMMAND CENTER -->
+    <div class="command-center reveal" data-delay="300" aria-label="PostOpz cloud editorial stack">
+      <div class="command-shell">
 
-          <div class="production-counts">
+        <div class="command-header">
+          <div class="window-dots" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
 
-  <div>
-    <strong
-      class="queue-metric"
-      data-count="20"
-    >0</strong>
-    Managed TB
-  </div>
+          <div class="command-title">Cloud Editorial Stack</div>
 
-  <div>
-    <strong
-      class="queue-metric"
-      data-count="5"
-    >0</strong>
-    Active Users
-  </div>
+          <img
+            class="command-logo"
+            src="assets/postopz-pz-icon.png"
+            alt="PostOpz logo"
+          >
+        </div>
 
-  <div>
-    <strong
-      class="queue-metric"
-      data-count="1"
-    >0</strong>
-    Editorial System
-  </div>
+        <div class="workflow-toolbar">
+          <div class="toolbar-left">
+            <div class="live-pill"><span></span> System Managed</div>
+            <div class="toolbar-stat">Cloud Post Ops</div>
+          </div>
 
-</div>
+          <div class="toolbar-right">Remote Editorial Ready</div>
+        </div>
 
-            <div class="queue-list">
-              <article class="queue-item active">
-                <div class="queue-num">01</div>
-                <div class="queue-main">
-                  <div class="queue-label">INFRASTRUCTURE</div>
-                  <div class="queue-top">
-                    <strong>Cloud Editorial Environment</strong>
-                    <span class="queue-status status-progress">FOUNDATION</span>
-                  </div>
-                  <p>Storage structure · user access · permissions · remote editorial setup</p>
-                  <div class="queue-meta">
-                    <span>LucidLink / iconik / Frame.io</span>
-                    <span>Client-owned or pass-through tools</span>
-                  </div>
-                  <div class="progress-wrap">
-                    <div class="progress-bar"><span class="progress-fill" data-width="82"></span></div>
-                    <div class="progress-percent">Infrastructure layer</div>
-                  </div>
-                </div>
-              </article>
+        <div class="production-counts">
+          <div>
+            <strong class="queue-metric" data-count="20">0</strong>
+            Managed TB
+          </div>
 
-              <article class="queue-item ready">
-                <div class="queue-num">02</div>
-                <div class="queue-main">
-                  <div class="queue-label">LAUNCH</div>
-                  <div class="queue-top">
-                    <strong>Project Setup + Workflow Rules</strong>
-                    <span class="queue-status status-ready">DEPLOY</span>
-                  </div>
-                  <p>Folder architecture · naming standards · templates · handoff logic</p>
-                  <div class="queue-meta">
-                    <span>7–10 business day launch target</span>
-                    <span>Scope dependent</span>
-                  </div>
-                  <div class="progress-wrap">
-                    <div class="progress-bar"><span class="progress-fill" data-width="64"></span></div>
-                    <div class="progress-percent">Launch path</div>
-                  </div>
-                </div>
-              </article>
+          <div>
+            <strong class="queue-metric" data-count="5">0</strong>
+            Active Users
+          </div>
 
-              <article class="queue-item exporting">
-                <div class="queue-num">03</div>
-                <div class="queue-main">
-                  <div class="queue-label">MANAGED SUPPORT</div>
-                  <div class="queue-top">
-                    <strong>Workflow Operations</strong>
-                    <span class="queue-status status-exporting">ONGOING</span>
-                  </div>
-                  <p>Onboarding · media structure · review flow · troubleshooting · archive planning</p>
-                  <div class="queue-meta">
-                    <span>Growth / Studio plans</span>
-                    <span>Monthly support layer</span>
-                  </div>
-                  <div class="progress-wrap">
-                    <div class="progress-bar"><span class="progress-fill" data-width="76"></span></div>
-                    <div class="progress-percent">Managed operations</div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="queue-item delivered">
-                <div class="queue-num">04</div>
-                <div class="queue-main">
-                  <div class="queue-label">ADD-ON OPERATIONS</div>
-                  <div class="queue-top">
-                    <strong>AE Ops + Asset Desk</strong>
-                    <span class="queue-status status-delivered">SCOPED</span>
-                  </div>
-                  <p>Syncing · grouping · exports · turnovers · music · archival · SFX pulls</p>
-                  <div class="queue-meta">
-                    <span>Added only when needed</span>
-                    <span>Quoted by scope</span>
-                  </div>
-                  <div class="progress-wrap">
-                    <div class="progress-bar"><span class="progress-fill" data-width="100"></span></div>
-                    <div class="progress-percent">Production support</div>
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <div class="queue-footer">
-              <div class="footer-stat">Core Offer: <strong>Cloud Infrastructure</strong></div>
-              <div class="footer-stat">Add Ons: <strong>AE Ops + Asset Desk</strong></div>
-            </div>
+          <div>
+            <strong class="queue-metric" data-count="1">0</strong>
+            Editorial System
           </div>
         </div>
 
-        <div class="tools-strip reveal" data-delay="600">
-  <p>BUILT AROUND THE TOOLS POWERING MODERN CLOUD EDITORIAL ENVIRONMENTS.</p>
+        <div class="queue-list">
 
-  <div class="tools-logos">
+          <article class="queue-item active">
+            <div class="queue-num">01</div>
 
-  <div class="logo-item">
-    <img src="assets/logos/Avid.png" alt="Avid">
+            <div class="queue-main">
+              <div class="queue-label">INFRASTRUCTURE</div>
+
+              <div class="queue-top">
+                <strong>Cloud Editorial Environment</strong>
+                <span class="queue-status status-progress">FOUNDATION</span>
+              </div>
+
+              <p>Storage structure · user access · permissions · remote editorial setup</p>
+
+              <div class="queue-meta">
+                <span>LucidLink / iconik / Frame.io</span>
+                <span>Client-owned or pass-through tools</span>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-bar">
+                  <span class="progress-fill" data-width="82"></span>
+                </div>
+                <div class="progress-percent">Infrastructure layer</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="queue-item ready">
+            <div class="queue-num">02</div>
+
+            <div class="queue-main">
+              <div class="queue-label">LAUNCH</div>
+
+              <div class="queue-top">
+                <strong>Project Setup + Workflow Rules</strong>
+                <span class="queue-status status-ready">DEPLOY</span>
+              </div>
+
+              <p>Folder architecture · naming standards · templates · handoff logic</p>
+
+              <div class="queue-meta">
+                <span>7–10 business day launch target</span>
+                <span>Scope dependent</span>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-bar">
+                  <span class="progress-fill" data-width="64"></span>
+                </div>
+                <div class="progress-percent">Launch path</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="queue-item exporting">
+            <div class="queue-num">03</div>
+
+            <div class="queue-main">
+              <div class="queue-label">MANAGED SUPPORT</div>
+
+              <div class="queue-top">
+                <strong>Workflow Operations</strong>
+                <span class="queue-status status-exporting">ONGOING</span>
+              </div>
+
+              <p>Onboarding · media structure · review flow · troubleshooting · archive planning</p>
+
+              <div class="queue-meta">
+                <span>Growth / Studio plans</span>
+                <span>Monthly support layer</span>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-bar">
+                  <span class="progress-fill" data-width="76"></span>
+                </div>
+                <div class="progress-percent">Managed operations</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="queue-item delivered">
+            <div class="queue-num">04</div>
+
+            <div class="queue-main">
+              <div class="queue-label">ADD-ON OPERATIONS</div>
+
+              <div class="queue-top">
+                <strong>AE Ops + Asset Desk</strong>
+                <span class="queue-status status-delivered">SCOPED</span>
+              </div>
+
+              <p>Syncing · grouping · exports · turnovers · music · archival · SFX pulls</p>
+
+              <div class="queue-meta">
+                <span>Added only when needed</span>
+                <span>Quoted by scope</span>
+              </div>
+
+              <div class="progress-wrap">
+                <div class="progress-bar">
+                  <span class="progress-fill" data-width="100"></span>
+                </div>
+                <div class="progress-percent">Production support</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="queue-footer">
+          <div class="footer-stat">Core Offer: <strong>Cloud Infrastructure</strong></div>
+          <div class="footer-stat">Add Ons: <strong>AE Ops + Asset Desk</strong></div>
+        </div>
+
+      </div>
+    </div>
+    <!-- /COMMAND CENTER -->
+
+    <!-- TOOLS STRIP -->
+    <div class="tools-strip reveal" data-delay="600">
+      <p>BUILT AROUND THE TOOLS POWERING MODERN CLOUD EDITORIAL ENVIRONMENTS.</p>
+
+      <div class="tools-logos">
+
+        <div class="logo-item">
+          <img src="assets/logos/Avid.png" alt="Avid">
+        </div>
+
+        <div class="logo-item">
+          <img src="assets/logos/adobe-premiere.svg" alt="Adobe Premiere">
+        </div>
+
+        <div class="logo-item">
+          <img src="assets/logos/davinci-resolve.svg" alt="DaVinci Resolve">
+        </div>
+
+        <div class="logo-item">
+          <img src="assets/logos/logo-frame.svg" alt="Frame.io">
+        </div>
+
+        <div class="logo-item">
+          <img src="assets/logos/lucidlink.svg" alt="LucidLink">
+        </div>
+
+        <div class="logo-item">
+          <img src="assets/logos/iconik-icon.png" alt="iconik">
+        </div>
+
+        <div class="logo-item">
+          <img src="assets/logos/masv.svg" alt="MASV">
+        </div>
+
+        <div class="logo-item">
+          <img src="assets/logos/Slack.png" alt="Slack">
+        </div>
+
+      </div>
+    </div>
+    <!-- /TOOLS STRIP -->
+
   </div>
+</section>
 
-  <div class="logo-item">
-    <img src="assets/logos/adobe-premiere.svg" alt="Adobe Premiere">
-  </div>
-
-  <div class="logo-item">
-    <img src="assets/logos/davinci-resolve.svg" alt="DaVinci Resolve">
-  </div>
-
-  <div class="logo-item">
-    <img src="assets/logos/logo-frame.svg" alt="Frame.io">
-  </div>
-
-  <div class="logo-item">
-    <img src="assets/logos/lucidlink.svg" alt="LucidLink">
-  </div>
-
-  <div class="logo-item">
-    <img src="assets/logos/iconik-icon.png" alt="iconik">
-  </div>
-
-  <div class="logo-item">
-    <img src="assets/logos/masv.svg" alt="MASV">
-  </div>
-
-  <div class="logo-item">
-    <img src="assets/logos/Slack.png" alt="Slack">
-  </div>
-
-  </div><!-- /.tools-logos -->
-</div><!-- /.tools-strip -->
-
-      </div><!-- /.hero-inner -->
-    </section>
-<section id="operational-infrastructure" class="section-pad infrastructure-section">
+    <section id="operational-infrastructure" class="section-pad infrastructure-section">
 
   <div class="infrastructure-shell">
 
