@@ -5174,3 +5174,209 @@ h3,
     min-height: auto;
   }
 }
+/* =========================================
+   PATCH: SERVICE OFFERING CARD FIXES
+   Keeps 4 cards clean without overflow
+========================================= */
+
+.service-icons-grid {
+  width: min(1480px, calc(100% - 80px)) !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+.service-icon-card {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  padding: 28px !important;
+}
+
+.service-icon-image {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  object-fit: cover !important;
+  border-radius: 22px !important;
+  margin-bottom: 24px !important;
+}
+
+.service-title {
+  min-height: auto !important;
+  margin-bottom: 16px !important;
+  font-size: clamp(34px, 2.6vw, 48px) !important;
+  line-height: .92 !important;
+  letter-spacing: -.065em !important;
+  text-wrap: balance !important;
+}
+
+.service-subtitle {
+  min-height: 42px !important;
+  margin-bottom: 18px !important;
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+  text-wrap: balance !important;
+}
+
+.service-value {
+  width: 100% !important;
+  min-height: auto !important;
+  margin-bottom: 22px !important;
+  padding: 10px 14px !important;
+  white-space: normal !important;
+  line-height: 1.35 !important;
+  letter-spacing: .08em !important;
+  text-wrap: balance !important;
+}
+
+.service-price {
+  min-height: auto !important;
+  margin-bottom: 22px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-end !important;
+  gap: 8px !important;
+}
+
+.service-price .amount {
+  font-size: clamp(42px, 3.4vw, 58px) !important;
+  line-height: .9 !important;
+  letter-spacing: -.075em !important;
+}
+
+.service-price .period {
+  font-size: 10px !important;
+  line-height: 1.1 !important;
+  letter-spacing: .12em !important;
+  white-space: normal !important;
+}
+
+.service-icon-card p {
+  min-height: 130px !important;
+  margin-bottom: 26px !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  text-wrap: pretty !important;
+}
+
+.service-icon-card ul {
+  min-height: 220px !important;
+  gap: 13px !important;
+  margin-bottom: 26px !important;
+}
+
+.service-icon-card li {
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+}
+
+.service-button {
+  min-height: 54px !important;
+}
+
+/* Laptop/tablet: 2x2 */
+@media (min-width: 769px) and (max-width: 1280px) {
+  .service-icons-grid {
+    width: calc(100% - 64px) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .service-icon-card p,
+  .service-icon-card ul {
+    min-height: auto !important;
+  }
+}
+
+/* Mobile: stacked */
+@media (max-width: 768px) {
+  .service-icons-grid {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .service-icon-card {
+    padding: 24px !important;
+  }
+
+  .service-icon-image {
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .service-title {
+    font-size: clamp(38px, 12vw, 56px) !important;
+  }
+
+  .service-subtitle,
+  .service-icon-card p,
+  .service-icon-card ul {
+    min-height: auto !important;
+  }
+
+  .service-price .amount {
+    font-size: clamp(44px, 14vw, 64px) !important;
+  }
+}
+/* iconik logo sizing in toolstrip */
+
+.logo-item img[alt="iconik"] {
+  max-height: 34px !important;
+  max-width: 120px !important;
+  object-fit: contain !important;
+}
+
+@media (max-width: 768px) {
+  .logo-item img[alt="iconik"] {
+    max-height: 30px !important;
+    max-width: 110px !important;
+  }
+}
+/* =========================================
+   PATCH: FRAMEWORK PRODUCT SECTION
+========================================= */
+
+.products-section .product-image {
+  width: 100% !important;
+  aspect-ratio: 4 / 5 !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  border-radius: 24px !important;
+}
+
+.products-section .bundle-card p strong {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .products-section .product-image {
+    aspect-ratio: 4 / 5 !important;
+  }
+}
+/* =========================================
+   PATCH: SERVICE STACK / WORKFLOW NODE CARDS
+========================================= */
+
+.workflow-node h3,
+.expertise-card h3 {
+  font-size: clamp(28px, 2.6vw, 42px) !important;
+  line-height: .98 !important;
+  letter-spacing: -.055em !important;
+  text-wrap: balance !important;
+}
+
+.workflow-node {
+  padding: 34px 30px !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.workflow-list li {
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+}
+
+@media (max-width: 768px) {
+  .workflow-node h3,
+  .expertise-card h3 {
+    font-size: clamp(32px, 10vw, 44px) !important;
+  }
+}
