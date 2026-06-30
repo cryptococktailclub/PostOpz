@@ -5881,3 +5881,430 @@ h3,
     width: 100% !important;
   }
 }
+/* =========================================
+   FINAL HERO REPLACEMENT RESET
+   Use with replacement hero section above.
+   Must remain last in styles.css.
+========================================= */
+
+.hero {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 118px 0 92px !important;
+  border-bottom: 1px solid rgba(255,255,255,.08) !important;
+}
+
+.hero-inner {
+  width: min(1480px, calc(100% - 120px)) !important;
+  max-width: 1480px !important;
+  margin: 0 auto !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 700px) minmax(540px, 640px) !important;
+  grid-template-areas:
+    "copy command"
+    "logos logos" !important;
+
+  column-gap: 86px !important;
+  row-gap: 64px !important;
+
+  align-items: start !important;
+  justify-content: center !important;
+}
+
+.hero-copy {
+  grid-area: copy !important;
+  width: 100% !important;
+  max-width: 700px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+
+.hero-kicker-pill {
+  margin-bottom: 28px !important;
+}
+
+.hero-title,
+.hero-copy h1 {
+  width: 100% !important;
+  max-width: 700px !important;
+  margin: 0 0 34px !important;
+
+  font-size: unset !important;
+  line-height: unset !important;
+  letter-spacing: unset !important;
+
+  overflow: visible !important;
+}
+
+.hero-title-hard-drive .hero-title-top,
+.hero-title-hard-drive .hero-title-bottom {
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  font-size: clamp(58px, 3.85vw, 82px) !important;
+  line-height: .89 !important;
+  letter-spacing: -.075em !important;
+  font-weight: 900 !important;
+
+  white-space: nowrap !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  overflow: visible !important;
+
+  transform: none;
+}
+
+.hero-title-hard-drive .hero-title-second,
+.hero-title-hard-drive .hero-title-third {
+  margin-top: 5px !important;
+}
+
+.hero-title-hard-drive .hero-title-bottom {
+  margin-top: 16px !important;
+  padding-bottom: .14em !important;
+}
+
+.hero-title-hard-drive span:first-child,
+.hero-copy h1 span:first-child {
+  margin-bottom: 0 !important;
+}
+
+.hero-subhead {
+  width: 100% !important;
+  max-width: 580px !important;
+  margin: 0 0 18px !important;
+
+  font-size: 24px !important;
+  line-height: 1.28 !important;
+  letter-spacing: -.045em !important;
+  font-weight: 850 !important;
+  color: #fff !important;
+}
+
+.hero-lede {
+  width: 100% !important;
+  max-width: 620px !important;
+  margin: 0 !important;
+
+  font-size: 18px !important;
+  line-height: 1.68 !important;
+  color: #d2d9e5 !important;
+}
+
+.hero-actions {
+  width: 100% !important;
+  max-width: 700px !important;
+  margin-top: 34px !important;
+  overflow: visible !important;
+}
+
+.hero-cta-row {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 14px !important;
+  flex-wrap: nowrap !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+.hero-cta-note {
+  display: inline-flex !important;
+  width: auto !important;
+  min-width: max-content !important;
+  max-width: none !important;
+
+  overflow: visible !important;
+  white-space: nowrap !important;
+  animation: none !important;
+
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+  color: #dce5f5 !important;
+}
+
+.hero-cta-arrow {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  transform: none !important;
+  flex: 0 0 auto !important;
+}
+
+.hero-cta-button,
+.hero-actions .button {
+  width: auto !important;
+  min-width: 200px !important;
+  max-width: none !important;
+  flex: 0 0 auto !important;
+}
+
+/* Command center */
+.command-center {
+  grid-area: command !important;
+  width: 100% !important;
+  max-width: 640px !important;
+
+  margin: 28px 0 0 !important;
+  padding: 0 !important;
+
+  align-self: start !important;
+  justify-self: end !important;
+
+  transform: none !important;
+}
+
+.command-shell {
+  width: 100% !important;
+}
+
+/* Toolstrip */
+.tools-strip {
+  grid-area: logos !important;
+  display: block !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 24px 28px !important;
+
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+.tools-strip p {
+  margin: 0 0 22px !important;
+
+  text-align: center !important;
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  letter-spacing: .22em !important;
+  text-transform: uppercase !important;
+}
+
+.tools-logos {
+  display: grid !important;
+  grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+
+  width: 100% !important;
+  margin: 0 !important;
+
+  align-items: center !important;
+  justify-items: center !important;
+}
+
+.logo-item {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+
+  padding: 0 14px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.logo-item img {
+  width: auto !important;
+  height: auto !important;
+  max-width: 108px !important;
+  max-height: 28px !important;
+  object-fit: contain !important;
+}
+
+.logo-item img[alt="iconik"] {
+  max-width: 112px !important;
+  max-height: 30px !important;
+}
+
+.logo-item img[alt="Avid"] {
+  max-height: 24px !important;
+}
+
+/* Desktop / ultrawide refinement */
+@media (min-width: 1600px) {
+  .hero-inner {
+    grid-template-columns: 700px 640px !important;
+    column-gap: 96px !important;
+  }
+
+  .hero-title-hard-drive .hero-title-top,
+  .hero-title-hard-drive .hero-title-bottom {
+    font-size: clamp(64px, 3.65vw, 86px) !important;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .hero {
+    padding-top: 110px !important;
+  }
+
+  .hero-inner {
+    width: calc(100% - 64px) !important;
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos" !important;
+    gap: 44px !important;
+  }
+
+  .hero-copy,
+  .command-center {
+    max-width: 900px !important;
+    justify-self: center !important;
+  }
+
+  .hero-title-hard-drive .hero-title-top,
+  .hero-title-hard-drive .hero-title-bottom {
+    width: auto !important;
+    white-space: normal !important;
+    font-size: clamp(58px, 8vw, 88px) !important;
+    line-height: .94 !important;
+  }
+
+  .tools-logos {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 20px 0 !important;
+  }
+
+  .logo-item:nth-child(4)::after {
+    display: none !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero {
+    padding: 96px 18px 56px !important;
+  }
+
+  .hero-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos" !important;
+
+    gap: 32px !important;
+  }
+
+  .hero-copy {
+    max-width: 100% !important;
+  }
+
+  .hero-title,
+  .hero-copy h1 {
+    max-width: 100% !important;
+    margin-bottom: 22px !important;
+  }
+
+  .hero-title-hard-drive .hero-title-top,
+  .hero-title-hard-drive .hero-title-bottom {
+    width: auto !important;
+    max-width: 100% !important;
+
+    font-size: clamp(50px, 13vw, 72px) !important;
+    line-height: .95 !important;
+    letter-spacing: -.055em !important;
+
+    white-space: normal !important;
+  }
+
+  .hero-title-hard-drive .hero-title-second,
+  .hero-title-hard-drive .hero-title-third,
+  .hero-title-hard-drive .hero-title-bottom {
+    margin-top: 4px !important;
+  }
+
+  .hero-subhead {
+    max-width: 100% !important;
+    font-size: 20px !important;
+  }
+
+  .hero-lede {
+    max-width: 100% !important;
+    font-size: 16px !important;
+  }
+
+  .hero-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .hero-cta-note {
+    width: 100% !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  .hero-cta-arrow {
+    display: none !important;
+  }
+
+  .hero-cta-button,
+  .hero-actions .button {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .command-center {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    justify-self: stretch !important;
+  }
+
+  .command-shell {
+    padding: 18px !important;
+  }
+
+  .tools-strip {
+    display: block !important;
+    width: 100% !important;
+    padding: 20px 16px !important;
+  }
+
+  .tools-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  .logo-item {
+    min-height: 52px !important;
+    padding: 0 !important;
+  }
+
+  .logo-item::after {
+    display: none !important;
+  }
+
+  .logo-item img {
+    max-width: 100px !important;
+    max-height: 26px !important;
+  }
+
+  .logo-item img[alt="iconik"] {
+    max-width: 108px !important;
+    max-height: 28px !important;
+  }
+}
