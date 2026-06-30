@@ -781,9 +781,9 @@ p { color: var(--muted); line-height: 1.7; }
   transform: translateY(-1px);
 }
 
-/* Jump icon needs a little more visual weight */
 
-.logo-item img[alt="Jump Desktop"] {
+
+.logo-item img[alt="iconik"] {
   max-height: 34px;
 }
 
