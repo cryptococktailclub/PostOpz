@@ -5380,3 +5380,99 @@ h3,
     font-size: clamp(32px, 10vw, 44px) !important;
   }
 }
+/* =========================================
+   PATCH: HERO DESKTOP / ULTRAWIDE LAYOUT FIX
+   Keeps hero copy + cloud stack aligned
+========================================= */
+
+@media (min-width: 1024px) {
+
+  .hero {
+    min-height: auto !important;
+    padding-top: 118px !important;
+    padding-bottom: 88px !important;
+  }
+
+  .hero-inner {
+    width: min(1480px, calc(100% - 120px)) !important;
+    max-width: 1480px !important;
+
+    display: grid !important;
+    grid-template-columns: minmax(0, 660px) minmax(520px, 640px) !important;
+    grid-template-areas:
+      "copy command"
+      "logos logos" !important;
+
+    column-gap: 96px !important;
+    row-gap: 56px !important;
+
+    align-items: start !important;
+    justify-content: center !important;
+
+    min-height: auto !important;
+  }
+
+  .hero-copy {
+    grid-area: copy !important;
+
+    max-width: 660px !important;
+    width: 100% !important;
+
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    transform: none !important;
+  }
+
+  .command-center {
+    grid-area: command !important;
+
+    width: 100% !important;
+    max-width: 640px !important;
+
+    align-self: start !important;
+    justify-self: end !important;
+
+    margin-top: 56px !important;
+    transform: none !important;
+  }
+
+  .tools-strip {
+    grid-area: logos !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 4px !important;
+  }
+
+}
+/* =========================================
+   PATCH: ULTRAWIDE HERO COMPRESSION
+========================================= */
+
+@media (min-width: 1600px) {
+
+  .hero-inner {
+    width: min(1520px, calc(100% - 160px)) !important;
+    max-width: 1520px !important;
+
+    grid-template-columns: 680px 640px !important;
+    column-gap: 110px !important;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size: clamp(78px, 4.8vw, 116px) !important;
+  }
+
+  .hero-subhead {
+    max-width: 620px !important;
+  }
+
+  .hero-lede {
+    max-width: 640px !important;
+  }
+
+  .command-center {
+    margin-top: 64px !important;
+  }
+
+}
