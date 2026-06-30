@@ -4744,18 +4744,6 @@ h3,
     align-items:start !important;
   }
 
-  /* headline */
-
-  .hero-title{
-    font-size:3.4rem !important;
-    line-height:.92 !important;
-    letter-spacing:-.055em !important;
-
-    max-width:6ch !important;
-
-    margin-bottom:20px !important;
-  }
-
   .hero-title br{
     display:block;
   }
