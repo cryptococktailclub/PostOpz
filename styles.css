@@ -6430,3 +6430,31 @@ h3,
     aspect-ratio: 4 / 5 !important;
   }
 }
+/* =========================================
+   PATCH: ENLARGE ICONIK LOGO IN TOOLSTRIP
+========================================= */
+
+.tools-strip .logo-item img[alt="iconik"] {
+  max-width: 150px !important;
+  max-height: 42px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  transform: scale(1.18) !important;
+  transform-origin: center center !important;
+}
+
+/* Give the iconik cell a little more breathing room */
+.tools-strip .logo-item:has(img[alt="iconik"]) {
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .tools-strip .logo-item img[alt="iconik"] {
+    max-width: 136px !important;
+    max-height: 38px !important;
+    transform: scale(1.12) !important;
+  }
+}
