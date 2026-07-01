@@ -6513,50 +6513,7 @@ h3,
 .hero-architecture-visual:hover img {
   opacity: .92 !important;
 }
-/* =========================================
-   PATCH: TOOLSTRIP BORDER MATCH HERO IMAGE
-========================================= */
 
-.tools-strip {
-  position: relative !important;
-  border: 1px solid rgba(0, 217, 255, .18) !important;
-  background:
-    linear-gradient(135deg, rgba(17,24,36,.90), rgba(8,10,18,.96)) padding-box,
-    linear-gradient(
-      90deg,
-      rgba(0,217,255,.35),
-      rgba(124,60,255,.42),
-      rgba(209,0,255,.36),
-      rgba(41,168,255,.50)
-    ) border-box !important;
-
-  box-shadow:
-    0 24px 80px rgba(0,0,0,.34),
-    0 0 34px rgba(0,217,255,.08),
-    0 0 46px rgba(209,0,255,.06) !important;
-}
-
-/* subtle image-style glow */
-.tools-strip::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(0,217,255,.18),
-      rgba(124,60,255,.12),
-      rgba(209,0,255,.10),
-      rgba(41,168,255,.16)
-    );
-
-  opacity: .45;
-  filter: blur(18px);
-  z-index: -1;
-}
 /* =========================================
    PATCH: TOOLSTRIP SUBTLE HERO-IMAGE MATCH
    Darker, softer blue/purple border
