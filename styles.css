@@ -6501,3 +6501,15 @@ h3,
     height: 18px !important;
   }
 }
+/* =========================================
+   PATCH: HERO ARCHITECTURE IMAGE TRANSPARENCY
+========================================= */
+
+.hero-architecture-visual img {
+  opacity: .82 !important;
+}
+
+/* Slightly clearer on hover */
+.hero-architecture-visual:hover img {
+  opacity: .92 !important;
+}
