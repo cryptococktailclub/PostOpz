@@ -6570,3 +6570,102 @@ h3,
 .tools-logos .logo-item:hover img {
   opacity: 1 !important;
 }
+/* =========================================
+   FINAL PATCH: HERO IMAGE TONE MATCH TOOLSTRIP
+   Darker, softer, blue-purple treatment
+========================================= */
+
+.hero-architecture-visual {
+  border-radius: 30px !important;
+  overflow: hidden !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(14, 22, 36, .72),
+      rgba(8, 10, 18, .88)
+    ) !important;
+
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, .38),
+    0 0 24px rgba(34, 154, 255, .045),
+    0 0 30px rgba(124, 60, 255, .04) !important;
+}
+
+.hero-architecture-visual img {
+  opacity: .76 !important;
+
+  filter:
+    brightness(.78)
+    contrast(.94)
+    saturate(.82)
+    hue-rotate(-4deg) !important;
+
+  border-radius: 30px !important;
+}
+
+/* Replace bright light sweep with subtle tone overlay */
+.hero-architecture-visual::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+
+  border-radius: 30px !important;
+  pointer-events: none !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8, 14, 26, .34),
+      rgba(42, 24, 74, .26) 45%,
+      rgba(8, 14, 26, .38)
+    ),
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(34, 154, 255, .05),
+      transparent 46%
+    ) !important;
+
+  mix-blend-mode: multiply !important;
+  opacity: .78 !important;
+
+  transform: none !important;
+  animation: none !important;
+  z-index: 2 !important;
+}
+
+/* Soften the glow behind the image */
+.hero-architecture-visual::before {
+  opacity: .18 !important;
+  filter: blur(22px) !important;
+
+  background:
+    radial-gradient(circle at 50% 40%, rgba(34,154,255,.12), transparent 42%),
+    radial-gradient(circle at 58% 66%, rgba(124,60,255,.10), transparent 48%) !important;
+}
+
+/* Keep hover subtle */
+.hero-architecture-visual:hover img {
+  opacity: .84 !important;
+
+  filter:
+    brightness(.84)
+    contrast(.96)
+    saturate(.88)
+    hue-rotate(-4deg) !important;
+
+  transform: translateY(-4px) scale(1.006) !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-architecture-visual,
+  .hero-architecture-visual img,
+  .hero-architecture-visual::after {
+    border-radius: 24px !important;
+  }
+
+  .hero-architecture-visual img {
+    opacity: .8 !important;
+  }
+}
