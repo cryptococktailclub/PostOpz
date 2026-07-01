@@ -6570,3 +6570,121 @@ h3,
 .tools-logos .logo-item:hover img {
   opacity: 1 !important;
 }
+/* =========================================
+   FINAL PATCH: SATURATED BLUE/PURPLE TOOLSTRIP
+========================================= */
+
+.tools-strip {
+  position: relative !important;
+  overflow: hidden !important;
+
+  border: 1px solid transparent !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(5, 12, 32, .96),
+      rgba(15, 10, 36, .96) 48%,
+      rgba(7, 14, 34, .96)
+    ) padding-box,
+    linear-gradient(
+      90deg,
+      rgba(0, 217, 255, .45),
+      rgba(41, 120, 255, .60),
+      rgba(124, 60, 255, .72),
+      rgba(209, 0, 255, .52),
+      rgba(41, 168, 255, .50)
+    ) border-box !important;
+
+  box-shadow:
+    0 26px 80px rgba(0, 0, 0, .42),
+    0 0 34px rgba(41, 120, 255, .12),
+    0 0 44px rgba(124, 60, 255, .12),
+    0 0 34px rgba(209, 0, 255, .08) !important;
+
+  backdrop-filter: blur(16px) saturate(1.45) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.45) !important;
+}
+
+/* saturated internal color wash */
+.tools-strip::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+
+  background:
+    radial-gradient(
+      circle at 12% 50%,
+      rgba(0, 217, 255, .18),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(124, 60, 255, .22),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 88% 55%,
+      rgba(209, 0, 255, .16),
+      transparent 36%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 217, 255, .035),
+      rgba(124, 60, 255, .08),
+      rgba(209, 0, 255, .04)
+    ) !important;
+
+  opacity: .95 !important;
+  filter: none !important;
+  z-index: 0 !important;
+}
+
+/* outer saturated glow, not grey/cyan wash */
+.tools-strip::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -1px !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 217, 255, .16),
+      rgba(124, 60, 255, .20),
+      rgba(209, 0, 255, .14),
+      rgba(41, 168, 255, .14)
+    ) !important;
+
+  opacity: .55 !important;
+  filter: blur(18px) !important;
+  z-index: -1 !important;
+}
+
+.tools-strip p,
+.tools-logos {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.tools-strip p {
+  color: rgba(220, 230, 255, .72) !important;
+}
+
+.tools-logos img {
+  opacity: .9 !important;
+  filter:
+    saturate(1.08)
+    brightness(.96) !important;
+}
+
+.tools-logos .logo-item:hover img {
+  opacity: 1 !important;
+  filter:
+    saturate(1.22)
+    brightness(1.08)
+    drop-shadow(0 0 12px rgba(124, 60, 255, .20)) !important;
+}
