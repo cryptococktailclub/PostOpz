@@ -6458,3 +6458,60 @@ h3,
     transform: scale(1.12) !important;
   }
 }
+/* =========================================
+   PATCH: FOOTER SOCIAL ROW
+========================================= */
+
+.footer-social-row {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  white-space: nowrap !important;
+}
+
+.footer-handle {
+  color: #aab4c8 !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+.footer-social-icon {
+  width: 28px !important;
+  height: 28px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  color: #aab4c8 !important;
+
+  transition:
+    color .25s ease,
+    transform .25s ease !important;
+}
+
+.footer-social-icon svg {
+  width: 17px !important;
+  height: 17px !important;
+
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.9 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.footer-social-icon:hover,
+.footer-handle:hover {
+  color: var(--cyan) !important;
+}
+
+.footer-social-icon:hover {
+  transform: translateY(-2px) !important;
+}
+
+@media (max-width: 768px) {
+  .footer-social-row {
+    justify-content: center !important;
+  }
+}
