@@ -6459,20 +6459,95 @@ h3,
   }
 }
 /* =========================================
-   PATCH: FOOTER SOCIAL ROW
+   FOOTER — CLEAN FINAL VERSION
 ========================================= */
 
-.footer-social-row {
+.footer {
+  border-top: 1px solid rgba(255,255,255,.08) !important;
+  background: #05070b !important;
+}
+
+.footer-inner {
+  width: min(1480px, calc(100% - 120px)) !important;
+  max-width: 1480px !important;
+  margin: 0 auto !important;
+  padding: 34px 0 !important;
+
+  display: grid !important;
+  grid-template-columns: auto minmax(340px, 1fr) auto !important;
+  align-items: center !important;
+  gap: 48px !important;
+}
+
+/* Brand */
+
+.footer-brand {
   display: inline-flex !important;
   align-items: center !important;
   gap: 12px !important;
   white-space: nowrap !important;
 }
 
+.footer-logo {
+  width: 38px !important;
+  height: 38px !important;
+  flex: 0 0 38px !important;
+}
+
+.footer-brand strong {
+  color: #fff !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  letter-spacing: -.02em !important;
+}
+
+/* Copy */
+
+.footer-copy {
+  margin: 0 !important;
+
+  color: #aab4c8 !important;
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Links */
+
+.footer-links {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 18px !important;
+  white-space: nowrap !important;
+}
+
+.footer-email,
 .footer-handle {
   color: #aab4c8 !important;
   font-size: 15px !important;
   font-weight: 600 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  transition: color .25s ease !important;
+}
+
+.footer-email:hover,
+.footer-handle:hover {
+  color: var(--cyan) !important;
+}
+
+/* Social icons */
+
+.footer-social-row {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  white-space: nowrap !important;
 }
 
 .footer-social-icon {
@@ -6491,27 +6566,93 @@ h3,
 }
 
 .footer-social-icon svg {
-  width: 17px !important;
-  height: 17px !important;
+  width: 18px !important;
+  height: 18px !important;
+  display: block !important;
+}
 
+/* X */
+
+.footer-social-icon.brand-x svg {
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+/* Medium */
+
+.footer-social-icon.brand-medium svg rect {
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+.footer-social-icon.brand-medium svg circle,
+.footer-social-icon.brand-medium svg ellipse {
+  fill: #05070b !important;
+  stroke: none !important;
+}
+
+/* Instagram */
+
+.footer-social-icon.brand-instagram svg {
   fill: none !important;
   stroke: currentColor !important;
-  stroke-width: 1.9 !important;
+  stroke-width: 1.8 !important;
   stroke-linecap: round !important;
   stroke-linejoin: round !important;
 }
 
-.footer-social-icon:hover,
-.footer-handle:hover {
-  color: var(--cyan) !important;
-}
-
 .footer-social-icon:hover {
+  color: var(--cyan) !important;
   transform: translateY(-2px) !important;
 }
 
-@media (max-width: 768px) {
-  .footer-social-row {
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .footer-inner {
+    width: calc(100% - 64px) !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    justify-items: center !important;
+    text-align: center !important;
+  }
+
+  .footer-copy {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+  }
+
+  .footer-links {
     justify-content: center !important;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .footer-inner {
+    width: calc(100% - 36px) !important;
+    padding: 30px 0 !important;
+  }
+
+  .footer-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 14px !important;
+  }
+
+  .footer-social-row {
+    gap: 10px !important;
+  }
+
+  .footer-social-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .footer-social-icon svg {
+    width: 18px !important;
+    height: 18px !important;
   }
 }
