@@ -6530,10 +6530,10 @@ h3,
     ) padding-box,
     linear-gradient(
       90deg,
-      rgba(34, 154, 255, .28),
-      rgba(124, 60, 255, .24),
-      rgba(209, 0, 255, .18),
-      rgba(34, 154, 255, .24)
+      rgba(34, 154, 255, .18),
+      rgba(124, 60, 255, .16),
+      rgba(209, 0, 255, .12),
+      rgba(34, 154, 255, .16)
     ) border-box !important;
 
   box-shadow:
