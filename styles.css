@@ -6308,3 +6308,125 @@ h3,
     max-height: 28px !important;
   }
 }
+/* =========================================
+   PATCH: FRAMEWORK SECTION FINAL STRUCTURE
+   Top: 3 volume cards
+   Bottom: 2 service cards
+========================================= */
+
+.framework-section .section-heading {
+  margin-bottom: 56px !important;
+}
+
+.framework-volume-grid {
+  width: min(1380px, calc(100% - 80px)) !important;
+  margin: 0 auto 28px !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+
+  position: relative !important;
+  z-index: 2 !important;
+  align-items: stretch !important;
+}
+
+.framework-service-grid {
+  width: min(1380px, calc(100% - 80px)) !important;
+  margin: 0 auto !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+
+  position: relative !important;
+  z-index: 2 !important;
+  align-items: stretch !important;
+}
+
+.framework-volume-card,
+.framework-service-card {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  height: 100% !important;
+}
+
+.framework-volume-card .product-image {
+  width: 100% !important;
+  aspect-ratio: 4 / 5 !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  border-radius: 24px !important;
+  margin-bottom: 28px !important;
+}
+
+.framework-volume-card h3,
+.framework-service-card h3 {
+  font-size: clamp(30px, 2.4vw, 42px) !important;
+  line-height: .96 !important;
+  letter-spacing: -.06em !important;
+  text-wrap: balance !important;
+}
+
+.framework-volume-card p {
+  min-height: 124px !important;
+}
+
+.framework-volume-card ul {
+  min-height: 210px !important;
+}
+
+.framework-volume-card .product-price,
+.framework-service-card .product-price {
+  margin-top: auto !important;
+}
+
+.framework-volume-card .product-button,
+.framework-service-card .product-button {
+  margin-top: 0 !important;
+}
+
+.framework-service-card p {
+  min-height: 132px !important;
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .framework-volume-grid,
+  .framework-service-grid {
+    width: calc(100% - 64px) !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .framework-volume-card p,
+  .framework-volume-card ul,
+  .framework-service-card p {
+    min-height: auto !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .framework-section {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .framework-volume-grid,
+  .framework-service-grid {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .framework-volume-card p,
+  .framework-volume-card ul,
+  .framework-service-card p {
+    min-height: auto !important;
+  }
+
+  .framework-volume-card .product-image {
+    aspect-ratio: 4 / 5 !important;
+  }
+}
