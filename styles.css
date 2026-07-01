@@ -6502,109 +6502,142 @@ h3,
   }
 }
 /* =========================================
-   PATCH: HERO ARCHITECTURE IMAGE TRANSPARENCY
+   FINAL TOOLSTRIP RESET
+   Dark, restrained, hero-image compatible
 ========================================= */
 
+/* Keep hero image normal — do not tint it through CSS */
 .hero-architecture-visual img {
-  opacity: .82 !important;
+  opacity: .9 !important;
+  filter: none !important;
 }
 
-/* Slightly clearer on hover */
-.hero-architecture-visual:hover img {
-  opacity: .92 !important;
-}
-
-/* =========================================
-   FINAL TOOLSTRIP CLEAN STYLE
-   Dark blue/purple glass, subtle neon edge
-========================================= */
-
+/* Main toolstrip panel */
 .tools-strip {
+  grid-area: logos !important;
+
   position: relative !important;
+  isolation: isolate !important;
   overflow: hidden !important;
 
-  border: 1px solid rgba(92, 120, 220, .32) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 24px 28px !important;
+
   border-radius: 24px !important;
+
+  border: 1px solid rgba(86, 96, 150, .24) !important;
 
   background:
     linear-gradient(
       135deg,
-      rgba(7, 14, 30, .94) 0%,
-      rgba(13, 12, 32, .96) 42%,
-      rgba(22, 12, 42, .94) 72%,
-      rgba(8, 14, 32, .95) 100%
+      rgba(5, 9, 20, .96) 0%,
+      rgba(8, 11, 28, .97) 44%,
+      rgba(13, 9, 28, .96) 72%,
+      rgba(5, 9, 20, .97) 100%
     ) !important;
 
   box-shadow:
-    0 24px 80px rgba(0, 0, 0, .42),
-    inset 0 1px 0 rgba(255, 255, 255, .045),
-    0 0 24px rgba(55, 118, 255, .08),
-    0 0 36px rgba(124, 60, 255, .08) !important;
+    0 24px 80px rgba(0, 0, 0, .46),
+    inset 0 1px 0 rgba(255, 255, 255, .035),
+    0 0 18px rgba(55, 118, 255, .035),
+    0 0 22px rgba(124, 60, 255, .035) !important;
 
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-/* remove old pseudo-element glow effects */
+/* Remove all previous glow/color wash pseudo-elements */
 .tools-strip::before,
 .tools-strip::after {
   content: none !important;
   display: none !important;
 }
 
-/* subtle internal color only, not a bright wash */
-.tools-strip {
-  background:
-    radial-gradient(
-      circle at 18% 50%,
-      rgba(0, 217, 255, .09),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 62% 45%,
-      rgba(124, 60, 255, .13),
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 92% 55%,
-      rgba(209, 0, 255, .08),
-      transparent 34%
-    ),
-    linear-gradient(
-      135deg,
-      rgba(7, 14, 30, .94) 0%,
-      rgba(13, 12, 32, .96) 44%,
-      rgba(18, 11, 38, .95) 72%,
-      rgba(8, 14, 32, .95) 100%
-    ) !important;
-}
-
-/* top label */
+/* Label */
 .tools-strip p {
   position: relative !important;
   z-index: 2 !important;
 
-  color: rgba(205, 216, 245, .62) !important;
+  margin: 0 0 22px !important;
+
+  text-align: center !important;
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  font-weight: 800 !important;
+  letter-spacing: .22em !important;
+  text-transform: uppercase !important;
+
+  color: rgba(190, 200, 230, .54) !important;
   text-shadow: none !important;
 }
 
-/* logo row */
+/* Logo grid */
 .tools-logos {
   position: relative !important;
   z-index: 2 !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+
+  width: 100% !important;
+  margin: 0 !important;
+
+  align-items: center !important;
+  justify-items: center !important;
 }
 
+/* Logo cells */
+.logo-item {
+  position: relative !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+
+  padding: 0 14px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Subtle separators */
 .logo-item:not(:last-child)::after {
-  background: rgba(140, 150, 210, .14) !important;
+  content: "" !important;
+
+  position: absolute !important;
+  right: 0 !important;
+  top: 50% !important;
+
+  width: 1px !important;
+  height: 30px !important;
+
+  transform: translateY(-50%) !important;
+
+  background: rgba(120, 130, 180, .11) !important;
 }
 
-.tools-logos img,
-.logo-item img {
-  opacity: .78 !important;
+/* Logo treatment: calmer, not glowing */
+.logo-item img,
+.tools-logos img {
+  width: auto !important;
+  height: auto !important;
+
+  max-width: 108px !important;
+  max-height: 28px !important;
+
+  object-fit: contain !important;
+
+  opacity: .66 !important;
 
   filter:
-    saturate(.9)
-    brightness(.9) !important;
+    saturate(.78)
+    brightness(.82)
+    contrast(.96) !important;
 
   transition:
     opacity .25s ease,
@@ -6612,34 +6645,95 @@ h3,
     transform .25s ease !important;
 }
 
-.logo-item:hover img {
+/* Hover only */
+.logo-item:hover {
   opacity: 1 !important;
+}
+
+.logo-item:hover img {
+  opacity: .92 !important;
 
   filter:
-    saturate(1.08)
-    brightness(1.05)
-    drop-shadow(0 0 10px rgba(92, 120, 255, .18)) !important;
+    saturate(.95)
+    brightness(.95)
+    contrast(1) !important;
 
   transform: translateY(-1px) !important;
 }
 
-/* iconik size stays larger */
-.tools-strip .logo-item img[alt="iconik"] {
-  max-width: 150px !important;
-  max-height: 42px !important;
-  transform: scale(1.12) !important;
-  transform-origin: center center !important;
+/* Avid reads small */
+.logo-item img[alt="Avid"] {
+  max-height: 24px !important;
 }
 
-/* mobile */
+/* iconik stays larger but not oversized */
+.logo-item img[alt="iconik"],
+.tools-strip .logo-item img[alt="iconik"] {
+  max-width: 136px !important;
+  max-height: 36px !important;
+  transform: none !important;
+}
+
+/* LucidLink / MASV can stay a touch clearer */
+.logo-item img[alt="LucidLink"],
+.logo-item img[alt="MASV"] {
+  opacity: .74 !important;
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .tools-strip {
+    padding: 24px !important;
+  }
+
+  .tools-logos {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px 0 !important;
+  }
+
+  .logo-item:nth-child(4)::after,
+  .logo-item:nth-child(8)::after {
+    display: none !important;
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .tools-strip {
+    width: 100% !important;
+    padding: 20px 16px !important;
     border-radius: 22px !important;
   }
 
+  .tools-strip p {
+    margin-bottom: 18px !important;
+    font-size: 9px !important;
+    letter-spacing: .18em !important;
+  }
+
+  .tools-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+
+  .logo-item {
+    min-height: 52px !important;
+    padding: 0 !important;
+  }
+
+  .logo-item::after {
+    display: none !important;
+  }
+
+  .logo-item img,
+  .tools-logos img {
+    max-width: 100px !important;
+    max-height: 26px !important;
+  }
+
+  .logo-item img[alt="iconik"],
   .tools-strip .logo-item img[alt="iconik"] {
-    max-width: 132px !important;
-    max-height: 36px !important;
-    transform: scale(1.08) !important;
+    max-width: 122px !important;
+    max-height: 32px !important;
   }
 }
