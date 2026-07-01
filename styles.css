@@ -6557,3 +6557,59 @@ h3,
   filter: blur(18px);
   z-index: -1;
 }
+/* =========================================
+   PATCH: TOOLSTRIP SUBTLE HERO-IMAGE MATCH
+   Darker, softer blue/purple border
+========================================= */
+
+.tools-strip {
+  border: 1px solid rgba(92, 117, 180, .28) !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(14, 22, 36, .72),
+      rgba(8, 10, 18, .88)
+    ) padding-box,
+    linear-gradient(
+      90deg,
+      rgba(34, 154, 255, .28),
+      rgba(124, 60, 255, .24),
+      rgba(209, 0, 255, .18),
+      rgba(34, 154, 255, .24)
+    ) border-box !important;
+
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, .34),
+    0 0 22px rgba(34, 154, 255, .045),
+    0 0 28px rgba(124, 60, 255, .04) !important;
+}
+
+/* Kill the overly bright glow from previous patch */
+.tools-strip::before {
+  opacity: .12 !important;
+  filter: blur(14px) !important;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(34, 154, 255, .12),
+      rgba(124, 60, 255, .10),
+      rgba(209, 0, 255, .07),
+      rgba(34, 154, 255, .10)
+    ) !important;
+}
+
+/* Slightly mute the inner panel so it sits behind the hero visual */
+.tools-strip {
+  backdrop-filter: blur(14px) !important;
+}
+
+/* Optional: soften the logo row a touch */
+.tools-logos img {
+  opacity: .82 !important;
+}
+
+.tools-logos .logo-item:hover img {
+  opacity: 1 !important;
+}
