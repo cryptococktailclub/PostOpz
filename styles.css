@@ -7023,3 +7023,198 @@ h3,
   34%  { opacity: 1; }
   100% { opacity: 1; }
 }
+/* =========================================
+   FIX: RESTORE ANIMATED HERO TITLE SIZE
+========================================= */
+
+.hero-title-animated {
+  width: 100% !important;
+  max-width: 720px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+
+  margin: 0 0 34px !important;
+
+  font-size: clamp(72px, 4.6vw, 96px) !important;
+  line-height: .9 !important;
+  letter-spacing: -.075em !important;
+  font-weight: 900 !important;
+
+  overflow: visible !important;
+}
+
+.hero-title-animated .title-line {
+  position: relative !important;
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  font-weight: inherit !important;
+
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+.hero-title-animated .title-base,
+.hero-title-animated .title-overlay {
+  display: block !important;
+
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  font-weight: inherit !important;
+
+  white-space: nowrap !important;
+}
+
+/* White base text */
+.hero-title-animated .title-base {
+  color: #f7f8fb !important;
+}
+
+/* Gradient overlay text */
+.hero-title-animated .title-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+
+  pointer-events: none !important;
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .hero-title-animated {
+    font-size: clamp(64px, 8vw, 88px) !important;
+  }
+
+  .hero-title-animated .title-line,
+  .hero-title-animated .title-base,
+  .hero-title-animated .title-overlay {
+    white-space: normal !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-title-animated {
+    max-width: 100% !important;
+    font-size: clamp(50px, 13vw, 72px) !important;
+    line-height: .95 !important;
+    letter-spacing: -.055em !important;
+    margin-bottom: 22px !important;
+  }
+
+  .hero-title-animated .title-line,
+  .hero-title-animated .title-base,
+  .hero-title-animated .title-overlay {
+    white-space: normal !important;
+  }
+}
+/* =========================================
+   HERO TITLE — LEFT TO RIGHT COLOR SWEEP
+========================================= */
+
+/* Make overlay reveal from left to right */
+.hero-title-animated .title-overlay {
+  opacity: 0 !important;
+
+  clip-path: inset(0 100% 0 0) !important;
+
+  background-size: 220% 100% !important;
+  background-position: 0% 50% !important;
+
+  will-change: opacity, clip-path, background-position !important;
+}
+
+/* Post Moves: white → orange/pink left-to-right → white */
+.segment-warm .title-overlay {
+  animation: titleSweepFlash 5.4s cubic-bezier(.16,1,.3,1) forwards !important;
+  animation-delay: .15s !important;
+}
+
+/* Better: white → green left-to-right → white */
+.segment-green .title-overlay {
+  animation: titleSweepFlash 5.4s cubic-bezier(.16,1,.3,1) forwards !important;
+  animation-delay: 1.35s !important;
+}
+
+/* In The Cloud: white → blue left-to-right → stays blue */
+.segment-blue .title-overlay {
+  animation: titleSweepHold 5.4s cubic-bezier(.16,1,.3,1) forwards !important;
+  animation-delay: 2.55s !important;
+}
+
+/* Sweep on, then fade back to white */
+@keyframes titleSweepFlash {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    background-position: 0% 50%;
+  }
+
+  8% {
+    opacity: 1;
+    clip-path: inset(0 100% 0 0);
+    background-position: 0% 50%;
+  }
+
+  34% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    background-position: 100% 50%;
+  }
+
+  54% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    background-position: 100% 50%;
+  }
+
+  74% {
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+    background-position: 100% 50%;
+  }
+
+  100% {
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+    background-position: 100% 50%;
+  }
+}
+
+/* Sweep on and stay */
+@keyframes titleSweepHold {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    background-position: 0% 50%;
+  }
+
+  10% {
+    opacity: 1;
+    clip-path: inset(0 100% 0 0);
+    background-position: 0% 50%;
+  }
+
+  42% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    background-position: 100% 50%;
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    background-position: 100% 50%;
+  }
+}
