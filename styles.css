@@ -6915,8 +6915,8 @@ h3,
   }
 }
 /* =========================================
-   HERO TITLE — FINAL WORKING COLOR SEQUENCE
-   Matches current HTML: .hero-title-sequence
+   HERO TITLE — FINAL WORKING WIDTH REVEAL
+   Uses current HTML: .hero-title-sequence
 ========================================= */
 
 .hero-title.hero-title-sequence {
@@ -6938,7 +6938,7 @@ h3,
   overflow: visible !important;
 }
 
-/* Force title lines to stay large and white as base state */
+/* Base white title */
 .hero-title.hero-title-sequence .hero-title-line {
   position: relative !important;
 
@@ -6968,7 +6968,7 @@ h3,
   animation: none !important;
 }
 
-/* Vertical spacing */
+/* Spacing */
 .hero-title.hero-title-sequence .hero-title-second {
   margin-top: 4px !important;
 }
@@ -6978,15 +6978,23 @@ h3,
   padding-bottom: .12em !important;
 }
 
-/* Animated gradient overlay */
+/* Gradient overlay — width-reveal instead of opacity/clip-path */
 .hero-title.hero-title-sequence .hero-title-line::after {
   content: attr(data-text) !important;
 
   position: absolute !important;
-  inset: 0 !important;
-  z-index: 3 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: 0 !important;
 
   display: block !important;
+
+  width: 0;
+  height: 100% !important;
+
+  overflow: hidden !important;
+  white-space: nowrap !important;
 
   font-size: inherit !important;
   line-height: inherit !important;
@@ -6998,32 +7006,31 @@ h3,
   background-clip: text !important;
   -webkit-background-clip: text !important;
 
-  opacity: 0 !important;
-  clip-path: inset(0 100% 0 0) !important;
+  opacity: 1 !important;
+  clip-path: none !important;
 
   background-size: 220% 100% !important;
   background-position: 0% 50% !important;
 
   pointer-events: none !important;
-  will-change: opacity, clip-path, background-position !important;
+  z-index: 3 !important;
 }
 
-/* Post Moves: white → orange/pink sweep → white */
+/* Post Moves — orange/pink sweep in, then back out */
 .hero-title.hero-title-sequence .title-warm::after {
   background-image:
     linear-gradient(
       90deg,
       #ff9a2f 0%,
-      #ff5b2d 28%,
+      #ff5b2d 30%,
       #ff2f92 68%,
       #d100ff 100%
     ) !important;
 
-  animation:
-    heroTitleSweepFlash 5.8s cubic-bezier(.16,1,.3,1) .2s forwards !important;
+  animation: heroTitleWidthFlash 5.8s cubic-bezier(.16,1,.3,1) .2s forwards !important;
 }
 
-/* Better: white → green sweep → white */
+/* Better — green sweep in, then back out */
 .hero-title.hero-title-sequence .title-green::after {
   background-image:
     linear-gradient(
@@ -7034,11 +7041,10 @@ h3,
       #00d9ff 100%
     ) !important;
 
-  animation:
-    heroTitleSweepFlash 5.8s cubic-bezier(.16,1,.3,1) 1.55s forwards !important;
+  animation: heroTitleWidthFlash 5.8s cubic-bezier(.16,1,.3,1) 1.55s forwards !important;
 }
 
-/* In The Cloud: white → blue sweep → stays blue */
+/* In The Cloud — blue sweep in and stay */
 .hero-title.hero-title-sequence .title-blue::after {
   background-image:
     linear-gradient(
@@ -7049,72 +7055,46 @@ h3,
       #00d9ff 100%
     ) !important;
 
-  animation:
-    heroTitleSweepHold 5.8s cubic-bezier(.16,1,.3,1) 2.9s forwards !important;
+  animation: heroTitleWidthHold 5.8s cubic-bezier(.16,1,.3,1) 2.9s forwards !important;
 }
 
-/* Sweep on, hold briefly, fade back to white */
-@keyframes heroTitleSweepFlash {
+/* Warm + green: reveal, hold, hide */
+@keyframes heroTitleWidthFlash {
   0% {
-    opacity: 0;
-    clip-path: inset(0 100% 0 0);
+    width: 0%;
     background-position: 0% 50%;
   }
 
-  10% {
-    opacity: 1;
-    clip-path: inset(0 100% 0 0);
-    background-position: 0% 50%;
-  }
-
-  38% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
+  34% {
+    width: 100%;
     background-position: 100% 50%;
   }
 
   62% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
-    background-position: 100% 50%;
-  }
-
-  84% {
-    opacity: 0;
-    clip-path: inset(0 0 0 0);
+    width: 100%;
     background-position: 100% 50%;
   }
 
   100% {
-    opacity: 0;
-    clip-path: inset(0 0 0 0);
+    width: 0%;
     background-position: 100% 50%;
   }
 }
 
-/* Sweep on and stay blue */
-@keyframes heroTitleSweepHold {
+/* Blue: reveal and stay */
+@keyframes heroTitleWidthHold {
   0% {
-    opacity: 0;
-    clip-path: inset(0 100% 0 0);
-    background-position: 0% 50%;
-  }
-
-  12% {
-    opacity: 1;
-    clip-path: inset(0 100% 0 0);
+    width: 0%;
     background-position: 0% 50%;
   }
 
   46% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
+    width: 100%;
     background-position: 100% 50%;
   }
 
   100% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
+    width: 100%;
     background-position: 100% 50%;
   }
 }
