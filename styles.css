@@ -6915,80 +6915,119 @@ h3,
   }
 }
 /* =========================================
-   HERO TITLE — FAST WIPE + EVEN DISSOLVE
-   Replace old title animation block with this
+   HERO TITLE — FINAL CLEAN ANIMATED VERSION
+   Fast left-to-right wipe + even dissolve
+   MUST BE LAST IN styles.css
 ========================================= */
 
-/* Keep your existing sizing if it's already correct */
 .hero-title.hero-title-sequence {
-  width: 100%;
-  max-width: 760px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 0 0 34px;
-  overflow: visible;
+  width: 100% !important;
+  max-width: 760px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+
+  margin: 0 0 34px !important;
+  padding: 0 !important;
+
+  font-size: clamp(78px, 5.15vw, 108px) !important;
+  line-height: .88 !important;
+  letter-spacing: -.075em !important;
+  font-weight: 900 !important;
+
+  overflow: visible !important;
+
+  background: none !important;
+  filter: none !important;
 }
 
-/* Base white text */
-.hero-title.hero-title-sequence .hero-title-line {
-  position: relative;
-  display: block;
-  width: max-content;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  color: #f7f8fb;
-  white-space: nowrap;
-  overflow: visible;
+/* Base white title lines */
+.hero-title.hero-title-sequence .hero-title-line,
+.hero-title.hero-title-sequence .hero-title-top,
+.hero-title.hero-title-sequence .hero-title-bottom {
+  position: relative !important;
+
+  display: block !important;
+  width: max-content !important;
+  max-width: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  font-weight: inherit !important;
+
+  color: #f7f8fb !important;
+  -webkit-text-fill-color: #f7f8fb !important;
+
+  background: none !important;
+  background-image: none !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+
+  filter: none !important;
+
+  white-space: nowrap !important;
+  overflow: visible !important;
+
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+
+  text-rendering: geometricPrecision !important;
 }
 
-/* spacing */
+/* Line spacing */
 .hero-title.hero-title-sequence .hero-title-second {
-  margin-top: 4px;
+  margin-top: 4px !important;
 }
 
 .hero-title.hero-title-sequence .title-blue {
-  margin-top: 8px;
+  margin-top: 8px !important;
+  padding-bottom: .12em !important;
 }
 
-/* -----------------------------------------
-   Gradient overlay
-   NOTE:
-   - reveal is clip-path left -> right
-   - dissolve off is opacity only
-   - extra bleed fixes white edge on right side
------------------------------------------ */
+/* Gradient overlay */
 .hero-title.hero-title-sequence .hero-title-line::after {
   content: attr(data-text);
+
   position: absolute;
   top: 0;
   left: 0;
-  right: -.05em;              /* fixes white sliver at far edge */
+  right: -.08em;
   bottom: 0;
-  padding-right: .05em;       /* extra glyph coverage */
+
   display: block;
+
+  padding-right: .08em;
+
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  font-weight: inherit;
+
   white-space: nowrap;
   overflow: visible;
-  pointer-events: none;
-  z-index: 2;
 
   color: transparent;
   -webkit-text-fill-color: transparent;
+
   background-clip: text;
   -webkit-background-clip: text;
 
   opacity: 0;
   clip-path: inset(0 100% 0 0);
 
-  will-change: clip-path, opacity;
+  pointer-events: none;
+  z-index: 5;
+
+  will-change: opacity, clip-path;
 }
 
-/* -----------------------------------------
-   GRADIENTS
------------------------------------------ */
-
-/* Post Moves: warm orange -> pink */
+/* Post Moves — warm wipe, then even dissolve */
 .hero-title.hero-title-sequence .title-warm::after {
   background-image: linear-gradient(
     90deg,
@@ -6997,10 +7036,11 @@ h3,
     #ff4fa3 68%,
     #e335ff 100%
   );
-  animation: heroWipeDissolve 4.2s cubic-bezier(.22,1,.36,1) .10s forwards;
+
+  animation: heroTitleWipeDissolve 3.2s cubic-bezier(.22, 1, .36, 1) .15s forwards;
 }
 
-/* Better: green */
+/* Better — green wipe, then even dissolve */
 .hero-title.hero-title-sequence .title-green::after {
   background-image: linear-gradient(
     90deg,
@@ -7009,10 +7049,11 @@ h3,
     #19f08d 72%,
     #0fdc72 100%
   );
-  animation: heroWipeDissolve 4.2s cubic-bezier(.22,1,.36,1) 1.00s forwards;
+
+  animation: heroTitleWipeDissolve 3.2s cubic-bezier(.22, 1, .36, 1) .95s forwards;
 }
 
-/* In The Cloud: blue and stays */
+/* In The Cloud — blue wipe and hold */
 .hero-title.hero-title-sequence .title-blue::after {
   background-image: linear-gradient(
     90deg,
@@ -7021,15 +7062,12 @@ h3,
     #34b5ff 72%,
     #16d3ff 100%
   );
-  animation: heroWipeHold 4.2s cubic-bezier(.22,1,.36,1) 1.90s forwards;
+
+  animation: heroTitleWipeHold 3.2s cubic-bezier(.22, 1, .36, 1) 1.75s forwards;
 }
 
-/* -----------------------------------------
-   KEYFRAMES
------------------------------------------ */
-
-/* reveal left->right, hold, then dissolve evenly */
-@keyframes heroWipeDissolve {
+/* Fast left-to-right wipe, then dissolve off evenly */
+@keyframes heroTitleWipeDissolve {
   0% {
     opacity: 0;
     clip-path: inset(0 100% 0 0);
@@ -7050,7 +7088,7 @@ h3,
     clip-path: inset(0 0 0 0);
   }
 
-  72% {
+  70% {
     opacity: 0;
     clip-path: inset(0 0 0 0);
   }
@@ -7061,8 +7099,8 @@ h3,
   }
 }
 
-/* reveal left->right, hold, stay blue */
-@keyframes heroWipeHold {
+/* Fast left-to-right wipe, then remain blue */
+@keyframes heroTitleWipeHold {
   0% {
     opacity: 0;
     clip-path: inset(0 100% 0 0);
@@ -7084,17 +7122,38 @@ h3,
   }
 }
 
-/* -----------------------------------------
-   MOBILE / TABLET
------------------------------------------ */
+/* Tablet */
 @media (min-width: 769px) and (max-width: 1180px) {
+  .hero-title.hero-title-sequence {
+    max-width: 900px !important;
+    font-size: clamp(64px, 8vw, 92px) !important;
+    line-height: .9 !important;
+  }
+
   .hero-title.hero-title-sequence .hero-title-line {
+    white-space: nowrap !important;
+  }
+
+  .hero-title.hero-title-sequence .hero-title-line::after {
     white-space: nowrap;
   }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
-  .hero-title.hero-title-sequence .hero-title-line,
+  .hero-title.hero-title-sequence {
+    max-width: 100% !important;
+    font-size: clamp(52px, 13vw, 74px) !important;
+    line-height: .94 !important;
+    letter-spacing: -.06em !important;
+    margin-bottom: 22px !important;
+  }
+
+  .hero-title.hero-title-sequence .hero-title-line {
+    width: auto !important;
+    white-space: normal !important;
+  }
+
   .hero-title.hero-title-sequence .hero-title-line::after {
     white-space: normal;
   }
