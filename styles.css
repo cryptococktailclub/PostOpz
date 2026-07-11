@@ -9518,45 +9518,51 @@ h3,
 
     flex:1;
 }
-/* ==========================================
-   Compress Production Card Body
-   Removes excess vertical space under titles
-========================================== */
+/* =========================================================
+   PPW CARD BODY COMPRESSION
+   Shortens the shell beneath thumbnails and removes the
+   excessive space between project titles and descriptions.
+========================================================= */
 
-.production-card .card-body,
-.production-card .card-content,
-.ppw-case-study-body,
-.ppw-case-study-content {
-
-    display: flex !important;
-    flex-direction: column !important;
-
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-
-    flex: 0 0 auto !important;
-    height: auto !important;
-    min-height: 0 !important;
-
-    gap: 14px !important;
-
-    padding: 26px 32px 26px !important;
+.ppw-card:not(.ppw-card--featured) .ppw-card-body {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 24px 28px 26px !important;
 }
 
-.production-card .card-body > *,
-.production-card .card-content > *,
-.ppw-case-study-body > *,
-.ppw-case-study-content > * {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+.ppw-card:not(.ppw-card--featured) .ppw-card-header {
+  margin-bottom: 28px !important;
 }
 
-.production-card h3,
-.ppw-case-study-content h3 {
-    margin-bottom: 10px !important;
+.ppw-card:not(.ppw-card--featured) .ppw-card-content {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: 24px !important;
 }
 
-.production-card p,
-.ppw-case-study-content p {
-    margin-top: 0 !important;
+.ppw-card:not(.ppw-card--featured) .ppw-card-content > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.ppw-card:not(.ppw-card--featured) .ppw-card-kicker,
+.ppw-card:not(.ppw-card--featured) .ppw-card-title,
+.ppw-card:not(.ppw-card--featured) .ppw-card-description {
+  margin: 0 !important;
+}
+
+.ppw-card:not(.ppw-card--featured) .ppw-card-title {
+  min-height: 0 !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.ppw-card:not(.ppw-card--featured) .ppw-capabilities {
+  margin-top: 0 !important;
 }
