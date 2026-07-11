@@ -8826,3 +8826,105 @@ h3,
     animation: none !important;
   }
 }
+/* =========================================================
+   PPW NETWORK — COMPACT DESKTOP SCALE
+   Makes the production network approximately 50% smaller
+   and returns width to the headline.
+   MUST REMAIN LAST IN STYLES.CSS
+========================================================= */
+
+@media (min-width: 1101px) {
+
+  /* Give the editorial copy substantially more room */
+  .ppw-header.ppw-header--network {
+    grid-template-columns:
+      minmax(680px, 1.4fr)
+      minmax(360px, 0.6fr) !important;
+
+    gap: clamp(30px, 3vw, 56px) !important;
+    align-items: center !important;
+
+    min-height: 660px !important;
+  }
+
+  .ppw-header-copy {
+    width: 100% !important;
+    max-width: 900px !important;
+  }
+
+  /* Restore a wider, more natural headline */
+  .ppw-header--network .ppw-title {
+    width: 100% !important;
+    max-width: 900px !important;
+
+    font-size: clamp(68px, 5.4vw, 100px) !important;
+    line-height: 0.91 !important;
+    letter-spacing: -0.066em !important;
+
+    text-wrap: balance !important;
+  }
+
+  .ppw-header--network .ppw-intro {
+    width: 100% !important;
+    max-width: 780px !important;
+
+    font-size: clamp(18px, 1.25vw, 21px) !important;
+    line-height: 1.65 !important;
+  }
+
+  /* Scale the full connected-production visual as one unit */
+  .ppw-network {
+    width: 720px !important;
+    min-width: 720px !important;
+    height: 660px !important;
+
+    justify-self: end !important;
+    align-self: center !important;
+
+    transform: scale(0.52) !important;
+    transform-origin: center right !important;
+
+    margin-left: -340px !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Slightly larger on medium desktop so details remain readable */
+@media (min-width: 1101px) and (max-width: 1450px) {
+
+  .ppw-header.ppw-header--network {
+    grid-template-columns:
+      minmax(590px, 1.3fr)
+      minmax(340px, 0.7fr) !important;
+
+    min-height: 620px !important;
+  }
+
+  .ppw-header--network .ppw-title {
+    max-width: 790px !important;
+
+    font-size: clamp(62px, 5.2vw, 82px) !important;
+  }
+
+  .ppw-network {
+    transform: scale(0.48) !important;
+    margin-left: -370px !important;
+  }
+}
+
+/* Preserve the existing stacked tablet layout */
+@media (min-width: 701px) and (max-width: 1100px) {
+
+  .ppw-header.ppw-header--network {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ppw-network {
+    width: min(100%, 760px) !important;
+    min-width: 0 !important;
+    height: 650px !important;
+
+    margin: 0 auto !important;
+    transform: none !important;
+  }
+}
