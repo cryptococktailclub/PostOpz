@@ -9464,3 +9464,34 @@ h3,
     animation: none !important;
   }
 }
+/* ==========================================
+   Production-Proven Header
+========================================== */
+
+.ppw-header-copy{
+    max-width: 820px !important;
+}
+
+.ppw-header--network .ppw-title{
+
+    max-width: 820px !important;
+
+    font-size: clamp(58px, 4.8vw, 82px) !important;
+
+    line-height: .94 !important;
+
+    letter-spacing:-0.055em !important;
+
+    margin-bottom:30px !important;
+
+    text-wrap:balance !important;
+}
+
+.ppw-header--network .ppw-intro{
+
+    max-width:700px !important;
+
+    font-size:20px !important;
+
+    line-height:1.7 !important;
+}
