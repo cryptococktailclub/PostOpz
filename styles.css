@@ -10465,3 +10465,179 @@ h3,
     min-height: 20px !important;
   }
 }
+/* =========================================================
+   FRAMEWORK VOLUME CARDS — STATUS + FOOTER COLLISION FIX
+   Must be the final block in styles.css
+========================================================= */
+
+/* Keep all three cards equal height */
+.framework-volume-grid {
+  align-items: stretch !important;
+}
+
+.framework-volume-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+/* Apply reserved height only to the main product description,
+   not to paragraphs inside the footer/status area */
+.framework-volume-card > p {
+  min-height: 124px !important;
+}
+
+/* Keep feature lists aligned */
+.framework-volume-card > ul {
+  flex: 0 0 auto !important;
+  min-height: 210px !important;
+  margin: 26px 0 36px !important;
+}
+
+/* Footer is the only element pushed to the bottom */
+.framework-volume-card .framework-card-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 0 0 auto !important;
+
+  width: 100% !important;
+
+  margin-top: auto !important;
+  padding: 0 !important;
+}
+
+/* Equal status area across all three cards */
+.framework-volume-card .framework-status {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+
+  width: 100% !important;
+  height: 82px !important;
+  min-height: 82px !important;
+
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+
+  flex: 0 0 82px !important;
+  overflow: visible !important;
+}
+
+/* CRITICAL:
+   Remove the global product-card paragraph height from
+   Launch price and Coming Soon */
+.framework-volume-card .framework-status > p {
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  margin: 8px 0 0 !important;
+  padding: 0 !important;
+
+  color: #aab4c8 !important;
+
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Price and Waitlist share the same baseline and scale */
+.framework-volume-card .framework-price-row {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 10px !important;
+
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.framework-volume-card .framework-price-old {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: rgba(255, 255, 255, 0.38) !important;
+
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  text-decoration: line-through !important;
+  text-decoration-thickness: 2px !important;
+}
+
+.framework-volume-card .framework-price-current,
+.framework-volume-card .framework-status-title {
+  display: block !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #ffffff !important;
+
+  font-size: 46px !important;
+  font-weight: 800 !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/* CTA alignment */
+.framework-volume-card .framework-card-footer .product-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  height: 56px !important;
+  min-height: 56px !important;
+
+  margin: 0 !important;
+  padding: 0 22px !important;
+
+  flex: 0 0 56px !important;
+}
+
+/* Equal note area */
+.framework-volume-card .framework-card-footer .stripe-note {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  min-height: 20px !important;
+
+  margin: 14px 0 0 !important;
+  padding: 0 !important;
+
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+}
+
+/* Mobile cards collapse naturally */
+@media (max-width: 768px) {
+  .framework-volume-card > p,
+  .framework-volume-card > ul {
+    min-height: 0 !important;
+  }
+
+  .framework-volume-card .framework-status {
+    height: 76px !important;
+    min-height: 76px !important;
+    flex-basis: 76px !important;
+  }
+
+  .framework-volume-card .framework-price-current,
+  .framework-volume-card .framework-status-title {
+    font-size: 42px !important;
+  }
+
+  .framework-volume-card .framework-price-old {
+    font-size: 20px !important;
+  }
+}
