@@ -8047,3 +8047,21 @@ h3,
     transform: none;
   }
 }
+.ppw-card-image--strongman img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+@media (min-width: 961px) {
+  .ppw-card--featured .ppw-card-image--strongman {
+    height: clamp(400px, 47vw, 620px) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .ppw-card--featured .ppw-card-image--strongman {
+    height: 260px !important;
+  }
+}
