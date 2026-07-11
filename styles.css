@@ -9644,3 +9644,22 @@ h3,
     object-position: center 58% !important;   /* move image down slightly */
     transform: scale(0.88) !important;        /* slightly smaller */
 }
+/* =========================================================
+   PPW Secondary Headline
+   Matches Hero "Systems. Support. Structure."
+========================================================= */
+
+.ppw-header-subtitle,
+.ppw-secondary-headline {
+
+    margin: 26px 0 30px !important;
+
+    max-width: 760px;
+
+    font-size: clamp(22px, 2vw, 34px) !important;
+    font-weight: 700 !important;
+    line-height: 1.08 !important;
+    letter-spacing: -.045em !important;
+
+    color: #F5F7FB;
+}
