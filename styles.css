@@ -9566,3 +9566,69 @@ h3,
 .ppw-card:not(.ppw-card--featured) .ppw-capabilities {
   margin-top: 0 !important;
 }
+/* =========================================================
+   STRONGMAN FEATURED CARD — BODY COMPRESSION
+   Removes excess space between the title and description
+   while preserving the two-column capability layout.
+========================================================= */
+
+.ppw-card--featured .ppw-card-body {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 28px 34px 30px !important;
+}
+
+.ppw-card--featured .ppw-card-header {
+  margin-bottom: 28px !important;
+}
+
+.ppw-card--featured .ppw-card-content {
+  display: grid !important;
+  grid-template-columns:
+    minmax(0, 1.5fr)
+    minmax(280px, 0.75fr) !important;
+
+  align-items: end !important;
+  gap: 48px !important;
+
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.ppw-card--featured .ppw-card-content > div:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.ppw-card--featured .ppw-card-kicker,
+.ppw-card--featured .ppw-card-title,
+.ppw-card--featured .ppw-card-description {
+  margin: 0 !important;
+}
+
+.ppw-card--featured .ppw-card-title {
+  display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.ppw-card--featured .ppw-capabilities {
+  align-self: end !important;
+  margin: 0 !important;
+}
+
+/* Stack cleanly on tablet/mobile */
+
+@media (max-width: 960px) {
+  .ppw-card--featured .ppw-card-content {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .ppw-card--featured .ppw-capabilities {
+    align-self: start !important;
+  }
+}
