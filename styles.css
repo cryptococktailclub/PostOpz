@@ -10573,3 +10573,81 @@ h3,
   opacity: 1 !important;
   visibility: visible !important;
 }
+/* ==========================================
+   FRAMEWORK CARD ALIGNMENT
+========================================== */
+
+.framework-card,
+.framework-volume-card{
+    display:flex !important;
+    flex-direction:column !important;
+}
+
+/* Push footer to bottom */
+.framework-card-footer{
+
+    margin-top:auto !important;
+
+    display:flex !important;
+    flex-direction:column !important;
+}
+
+/* Equal height status area */
+
+.framework-status{
+
+    height:92px !important;
+
+    display:flex !important;
+    flex-direction:column;
+    justify-content:flex-end;
+}
+
+/* $197 and Waitlist use same typography */
+
+.framework-price-current,
+.framework-status h3{
+
+    font-size:48px !important;
+    font-weight:800 !important;
+    line-height:1;
+    letter-spacing:-.05em;
+    margin:0;
+}
+
+/* Launch price / Coming Soon */
+
+.framework-launch-note,
+.framework-status p{
+
+    margin-top:8px !important;
+
+    font-size:17px !important;
+
+    color:#A6B0C5;
+
+    text-transform:none;
+    letter-spacing:0;
+}
+
+/* Button alignment */
+
+.product-button{
+
+    margin-top:26px !important;
+
+    width:100%;
+
+    min-height:56px;
+}
+
+/* Footer note */
+
+.stripe-note{
+
+    margin-top:14px !important;
+
+    min-height:22px;
+
+    text-align:center;
+}
