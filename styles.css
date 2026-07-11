@@ -10246,3 +10246,53 @@ h3,
       ) !important;
   }
 }
+/* ==========================================================
+   Framework Pricing
+========================================================== */
+
+.framework-pricing{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-top:28px;
+}
+
+.framework-price-row{
+    display:flex;
+    align-items:flex-end;
+    gap:16px;
+}
+
+.framework-price-old{
+
+    font-size:30px;
+    font-weight:700;
+
+    color:#8d8f98;
+
+    text-decoration:line-through;
+    text-decoration-thickness:2px;
+
+    opacity:.65;
+}
+
+.framework-price-current{
+
+    font-size:56px;
+    line-height:1;
+
+    font-weight:800;
+
+    color:#ffffff;
+}
+
+.framework-launch-note{
+
+    font-size:15px;
+    font-weight:600;
+
+    letter-spacing:.08em;
+    text-transform:uppercase;
+
+    color:#35B8FF;
+}
