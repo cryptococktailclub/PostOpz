@@ -9635,7 +9635,6 @@ h3,
 /* =========================================================
    Thumbnail Framing Adjustments
    - Center Rabid Fans artwork vertically
-   - Slightly zoom out Strongman thumbnail
 ========================================================= */
 
 /* Rabid Fans */
@@ -9644,13 +9643,4 @@ h3,
     object-fit: contain !important;
     object-position: center 58% !important;   /* move image down slightly */
     transform: scale(0.88) !important;        /* slightly smaller */
-}
-
-/* Strongman */
-.ppw-card-image--strongman img,
-.ppw-network-project--strongman .ppw-network-project-image img {
-    object-fit: cover !important;
-    object-position: center 44% !important;   /* keep title centered */
-    transform: scale(0.92) !important;        /* zoom out slightly */
-    transform-origin: center center !important;
 }
