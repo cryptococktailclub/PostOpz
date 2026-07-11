@@ -9501,3 +9501,20 @@ h3,
         minmax(700px,1fr)
         minmax(560px,.9fr) !important;
 }
+.ppw-card-body{
+
+    display:flex;
+    flex-direction:column;
+
+    height:100%;
+}
+
+.ppw-card-title{
+
+    min-height:132px;
+}
+
+.ppw-card-description{
+
+    flex:1;
+}
