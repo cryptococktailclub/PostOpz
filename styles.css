@@ -9495,3 +9495,9 @@ h3,
 
     line-height:1.7 !important;
 }
+.ppw-header.ppw-header--network{
+
+    grid-template-columns:
+        minmax(700px,1fr)
+        minmax(560px,.9fr) !important;
+}
