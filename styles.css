@@ -10362,3 +10362,151 @@ h3,
     letter-spacing:.08em;
     text-transform:uppercase;
 }
+/* =========================================================
+   FRAMEWORK CARD FOOTER — FINAL ALIGNMENT PATCH
+   - $197 matches Waitlist size
+   - Launch price matches Coming Soon style
+   - Restores CTA buttons
+========================================================= */
+
+.framework-volume-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+/* Keep feature content above the footer */
+.framework-volume-card > ul {
+  margin-bottom: 0 !important;
+}
+
+/* Price / waitlist status block */
+.framework-volume-card .product-price,
+.framework-volume-card .framework-pricing,
+.framework-volume-card .framework-status {
+  margin-top: auto !important;
+  margin-bottom: 28px !important;
+  min-height: 76px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+}
+
+/* Launch-price row */
+.framework-price-row {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 10px !important;
+}
+
+/* Regular price */
+.framework-price-old {
+  font-size: 22px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+
+  color: rgba(255, 255, 255, 0.38) !important;
+
+  text-decoration: line-through !important;
+  text-decoration-thickness: 2px !important;
+}
+
+/* $197 — same visual scale as Waitlist */
+.framework-price-current {
+  font-size: 46px !important;
+  line-height: 0.95 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+
+  color: #ffffff !important;
+}
+
+/* Match the existing Waitlist heading */
+.framework-volume-card .product-price {
+  font-size: 46px !important;
+  line-height: 0.95 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/* Launch price — same style as Coming Soon */
+.framework-launch-note,
+.framework-launch,
+.framework-volume-card .framework-status p {
+  margin: 7px 0 0 !important;
+
+  color: #aab4c8 !important;
+
+  font-size: 16px !important;
+  line-height: 1.35 !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Restore and style CTA buttons */
+.framework-volume-card .product-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  min-height: 56px !important;
+
+  margin-top: 0 !important;
+
+  padding: 0 22px !important;
+
+  border-radius: 16px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1976ff,
+      #7c3cff,
+      #d100ff
+    ) !important;
+
+  color: #ffffff !important;
+
+  font-size: 15px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+
+  box-shadow:
+    0 16px 48px rgba(90, 70, 255, 0.28) !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Keep note below button */
+.framework-volume-card .stripe-note {
+  display: block !important;
+
+  margin-top: 14px !important;
+
+  color: #8d97aa !important;
+
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .framework-price-current,
+  .framework-volume-card .product-price {
+    font-size: 42px !important;
+  }
+
+  .framework-price-old {
+    font-size: 20px !important;
+  }
+}
