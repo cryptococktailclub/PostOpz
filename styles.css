@@ -10246,53 +10246,68 @@ h3,
       ) !important;
   }
 }
-/* ==========================================================
-   Framework Pricing
-========================================================== */
+/* ==========================================
+   Framework Card Footer Alignment
+========================================== */
 
-.framework-pricing{
+.framework-card{
+
     display:flex;
     flex-direction:column;
-    gap:8px;
-    margin-top:28px;
+}
+
+.framework-card-bottom{
+
+    margin-top:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:26px;
+}
+
+.framework-status{
+
+    min-height:108px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.framework-status h3{
+
+    margin:0;
+
+    font-size:64px;
+    line-height:1;
+    font-weight:800;
 }
 
 .framework-price-row{
+
     display:flex;
     align-items:flex-end;
-    gap:16px;
+    gap:14px;
 }
 
 .framework-price-old{
 
-    font-size:30px;
-    font-weight:700;
-
-    color:#8d8f98;
-
-    text-decoration:line-through;
-    text-decoration-thickness:2px;
-
-    opacity:.65;
+    font-size:26px;
 }
 
 .framework-price-current{
 
-    font-size:56px;
+    font-size:64px;
     line-height:1;
-
-    font-weight:800;
-
-    color:#ffffff;
 }
 
-.framework-launch-note{
+.framework-launch{
 
-    font-size:15px;
-    font-weight:600;
+    margin-top:12px;
+
+    font-size:13px;
 
     letter-spacing:.08em;
     text-transform:uppercase;
-
-    color:#35B8FF;
 }
