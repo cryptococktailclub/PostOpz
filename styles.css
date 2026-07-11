@@ -9641,7 +9641,7 @@ h3,
 .ppw-card-image--rabid img,
 .ppw-network-project--rabid .ppw-network-project-image img {
     object-fit: contain !important;
-    object-position: center 58% !important;   /* move image down slightly */
+    object-position: center 60% !important;   /* move image down slightly */
     transform: scale(0.88) !important;        /* slightly smaller */
 }
 /* =========================================================
