@@ -10246,461 +10246,85 @@ h3,
       ) !important;
   }
 }
-
-/* ==========================================================
-   Framework Pricing
-========================================================== */
-
-.framework-pricing{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    margin-top:28px;
-}
-
-.framework-price-row{
-    display:flex;
-    align-items:flex-end;
-    gap:16px;
-}
-
-.framework-price-old{
-
-    font-size:30px;
-    font-weight:700;
-
-    color:#8d8f98;
-
-    text-decoration:line-through;
-    text-decoration-thickness:2px;
-
-    opacity:.65;
-}
-
-.framework-price-current{
-
-    font-size:56px;
-    line-height:1;
-
-    font-weight:800;
-
-    color:#ffffff;
-}
-
-.framework-launch-note{
-
-    font-size:15px;
-    font-weight:600;
-
-    letter-spacing:.08em;
-    text-transform:uppercase;
-
-    color:#35B8FF;
-}
-/* ==========================================
-   Framework Card Footer Alignment
-========================================== */
-
-.framework-card{
-
-    display:flex;
-    flex-direction:column;
-}
-
-.framework-card-bottom{
-
-    margin-top:auto;
-
-    display:flex;
-    flex-direction:column;
-
-    gap:26px;
-}
-
-.framework-status{
-
-    min-height:108px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
-
-.framework-status h3{
-
-    margin:0;
-
-    font-size:64px;
-    line-height:1;
-    font-weight:800;
-}
-
-.framework-price-row{
-
-    display:flex;
-    align-items:flex-end;
-    gap:14px;
-}
-
-.framework-price-old{
-
-    font-size:26px;
-}
-
-.framework-price-current{
-
-    font-size:64px;
-    line-height:1;
-}
-
-.framework-launch{
-
-    margin-top:12px;
-
-    font-size:13px;
-
-    letter-spacing:.08em;
-    text-transform:uppercase;
-}
 /* =========================================================
-   FRAMEWORK CARD FOOTER — FINAL ALIGNMENT PATCH
-   - $197 matches Waitlist size
-   - Launch price matches Coming Soon style
-   - Restores CTA buttons
+   FRAMEWORK VOLUME CARDS — CLEAN FINAL FOOTER LAYOUT
+   Replaces all previous framework pricing/footer patches.
 ========================================================= */
+
+.framework-volume-grid {
+  align-items: stretch !important;
+}
 
 .framework-volume-card {
   display: flex !important;
   flex-direction: column !important;
+
   height: 100% !important;
+  min-width: 0 !important;
 }
 
-/* Keep feature content above the footer */
+/* Keep the feature list in normal document flow */
 .framework-volume-card > ul {
-  margin-bottom: 0 !important;
-}
-
-/* Price / waitlist status block */
-.framework-volume-card .product-price,
-.framework-volume-card .framework-pricing,
-.framework-volume-card .framework-status {
-  margin-top: auto !important;
-  margin-bottom: 28px !important;
-  min-height: 76px !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-end !important;
-  align-items: flex-start !important;
-}
-
-/* Launch-price row */
-.framework-price-row {
-  display: flex !important;
-  align-items: baseline !important;
-  gap: 10px !important;
-}
-
-/* Regular price */
-.framework-price-old {
-  font-size: 22px !important;
-  line-height: 1 !important;
-  font-weight: 700 !important;
-
-  color: rgba(255, 255, 255, 0.38) !important;
-
-  text-decoration: line-through !important;
-  text-decoration-thickness: 2px !important;
-}
-
-/* $197 — same visual scale as Waitlist */
-.framework-price-current {
-  font-size: 46px !important;
-  line-height: 0.95 !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.055em !important;
-
-  color: #ffffff !important;
-}
-
-/* Match the existing Waitlist heading */
-.framework-volume-card .product-price {
-  font-size: 46px !important;
-  line-height: 0.95 !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.055em !important;
-}
-
-/* Launch price — same style as Coming Soon */
-.framework-launch-note,
-.framework-launch,
-.framework-volume-card .framework-status p {
-  margin: 7px 0 0 !important;
-
-  color: #aab4c8 !important;
-
-  font-size: 16px !important;
-  line-height: 1.35 !important;
-  font-weight: 400 !important;
-  letter-spacing: 0 !important;
-  text-transform: none !important;
-}
-
-/* Restore and style CTA buttons */
-.framework-volume-card .product-button {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  flex: 0 0 auto !important;
 
   width: 100% !important;
-  min-height: 56px !important;
+  min-height: 0 !important;
 
-  margin-top: 0 !important;
-
-  padding: 0 22px !important;
-
-  border-radius: 16px !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      #1976ff,
-      #7c3cff,
-      #d100ff
-    ) !important;
-
-  color: #ffffff !important;
-
-  font-size: 15px !important;
-  line-height: 1 !important;
-  font-weight: 800 !important;
-  text-align: center !important;
-
-  box-shadow:
-    0 16px 48px rgba(90, 70, 255, 0.28) !important;
-
-  opacity: 1 !important;
-  visibility: visible !important;
+  margin: 26px 0 38px !important;
+  padding: 0 !important;
 }
 
-/* Keep note below button */
-.framework-volume-card .stripe-note {
-  display: block !important;
-
-  margin-top: 14px !important;
-
-  color: #8d97aa !important;
-
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-  text-align: center !important;
-
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .framework-price-current,
-  .framework-volume-card .product-price {
-    font-size: 42px !important;
-  }
-
-  .framework-price-old {
-    font-size: 20px !important;
-  }
-}
-/* =========================================================
-   RESTORE PREMIERE + RESOLVE WAITLIST CTAs
-========================================================= */
-
-.framework-volume-card .product-button {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  width: 100% !important;
-  min-height: 56px !important;
-
-  margin-top: 0 !important;
-  padding: 0 22px !important;
-
-  border-radius: 16px !important;
-
-  background:
-    linear-gradient(
-      135deg,
-      #1976ff,
-      #7c3cff,
-      #d100ff
-    ) !important;
-
-  color: #ffffff !important;
-
-  font-size: 15px !important;
-  font-weight: 800 !important;
-  line-height: 1 !important;
-  text-align: center !important;
-  text-decoration: none !important;
-
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-
-  box-shadow:
-    0 16px 48px rgba(90, 70, 255, 0.28) !important;
-}
-
-.framework-volume-card .product-button:hover {
-  transform: translateY(-2px) !important;
-
-  box-shadow:
-    0 22px 60px rgba(90, 70, 255, 0.38),
-    0 0 32px rgba(209, 0, 255, 0.18) !important;
-}
-
-.framework-volume-card .stripe-note {
-  display: block !important;
-
-  margin-top: 14px !important;
-
-  color: #8d97aa !important;
-
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-  text-align: center !important;
-
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-/* ==========================================
-   FRAMEWORK CARD ALIGNMENT
-========================================== */
-
-.framework-card,
-.framework-volume-card{
-    display:flex !important;
-    flex-direction:column !important;
-}
-
-/* Push footer to bottom */
-.framework-card-footer{
-
-    margin-top:auto !important;
-
-    display:flex !important;
-    flex-direction:column !important;
-}
-
-/* Equal height status area */
-
-.framework-status{
-
-    height:92px !important;
-
-    display:flex !important;
-    flex-direction:column;
-    justify-content:flex-end;
-}
-
-/* $197 and Waitlist use same typography */
-
-.framework-price-current,
-.framework-status h3{
-
-    font-size:48px !important;
-    font-weight:800 !important;
-    line-height:1;
-    letter-spacing:-.05em;
-    margin:0;
-}
-
-/* Launch price / Coming Soon */
-
-.framework-launch-note,
-.framework-status p{
-
-    margin-top:8px !important;
-
-    font-size:17px !important;
-
-    color:#A6B0C5;
-
-    text-transform:none;
-    letter-spacing:0;
-}
-
-/* Button alignment */
-
-.product-button{
-
-    margin-top:26px !important;
-
-    width:100%;
-
-    min-height:56px;
-}
-
-/* Footer note */
-
-.stripe-note{
-
-    margin-top:14px !important;
-
-    min-height:22px;
-
-    text-align:center;
-}
-/* =========================================================
-   FRAMEWORK FOOTER ALIGNMENT — FINAL PATCH
-   Keeps status, CTA, and notes aligned across all 3 cards
-========================================================= */
-
-.framework-volume-card {
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100% !important;
-}
-
-/* Prevent the feature list from colliding with the footer */
-.framework-volume-card > ul {
-  margin-bottom: 36px !important;
-  min-height: 178px !important;
-}
-
-/* Footer becomes one protected block at bottom of each card */
+/* One protected footer block at the bottom of every card */
 .framework-card-footer {
-  display: flex !important;
-  flex-direction: column !important;
+  display: grid !important;
+  grid-template-rows:
+    82px
+    56px
+    22px !important;
+
+  gap: 14px !important;
 
   width: 100% !important;
 
   margin-top: auto !important;
+  padding-top: 0 !important;
+
+  flex: 0 0 auto !important;
 }
 
-/* Identical reserved space for price or waitlist */
+/* Status row: price or waitlist */
 .framework-status {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-end !important;
   align-items: flex-start !important;
+  justify-content: flex-end !important;
 
   width: 100% !important;
-  min-height: 92px !important;
+  height: 82px !important;
+  min-height: 82px !important;
 
-  margin: 0 0 26px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  flex: 0 0 82px !important;
 }
 
-/* $197 row */
+/* Price line */
 .framework-price-row {
   display: flex !important;
   align-items: baseline !important;
+
   gap: 10px !important;
 
+  width: 100% !important;
+
   margin: 0 !important;
+  padding: 0 !important;
 }
 
 .framework-price-old {
+  margin: 0 !important;
+
   color: rgba(255, 255, 255, 0.38) !important;
 
   font-size: 22px !important;
@@ -10714,6 +10338,7 @@ h3,
 .framework-price-current,
 .framework-status-title {
   margin: 0 !important;
+  padding: 0 !important;
 
   color: #ffffff !important;
 
@@ -10724,25 +10349,27 @@ h3,
 }
 
 /* Launch price / Coming Soon */
-.framework-status p {
+.framework-status > p {
   margin: 8px 0 0 !important;
+  padding: 0 !important;
 
   color: #aab4c8 !important;
 
   font-size: 16px !important;
   font-weight: 400 !important;
-  line-height: 1.35 !important;
+  line-height: 1.2 !important;
   letter-spacing: 0 !important;
   text-transform: none !important;
 }
 
-/* Restore and align all CTA buttons */
+/* CTA — identical position and dimensions on all cards */
 .framework-card-footer .product-button {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
 
   width: 100% !important;
+  height: 56px !important;
   min-height: 56px !important;
 
   margin: 0 !important;
@@ -10772,6 +10399,33 @@ h3,
 
   box-shadow:
     0 16px 48px rgba(90, 70, 255, 0.28) !important;
+
+  flex: 0 0 56px !important;
+}
+
+/* Footer note — identical reserved row */
+.framework-card-footer .stripe-note {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  height: 22px !important;
+  min-height: 22px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #8d97aa !important;
+
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  flex: 0 0 22px !important;
 }
 
 .framework-card-footer .product-button:hover {
@@ -10782,27 +10436,19 @@ h3,
     0 0 32px rgba(209, 0, 255, 0.18) !important;
 }
 
-/* Equal note area below every CTA */
-.framework-card-footer .stripe-note {
-  display: block !important;
-
-  min-height: 20px !important;
-
-  margin: 14px 0 0 !important;
-
-  color: #8d97aa !important;
-
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-  text-align: center !important;
-
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
+/* Mobile */
 @media (max-width: 768px) {
-  .framework-volume-card > ul {
-    min-height: auto !important;
+  .framework-card-footer {
+    grid-template-rows:
+      76px
+      56px
+      auto !important;
+  }
+
+  .framework-status {
+    height: 76px !important;
+    min-height: 76px !important;
+    flex-basis: 76px !important;
   }
 
   .framework-price-current,
@@ -10812,5 +10458,10 @@ h3,
 
   .framework-price-old {
     font-size: 20px !important;
+  }
+
+  .framework-card-footer .stripe-note {
+    height: auto !important;
+    min-height: 20px !important;
   }
 }
