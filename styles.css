@@ -10651,3 +10651,166 @@ h3,
 
     text-align:center;
 }
+/* =========================================================
+   FRAMEWORK FOOTER ALIGNMENT — FINAL PATCH
+   Keeps status, CTA, and notes aligned across all 3 cards
+========================================================= */
+
+.framework-volume-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+/* Prevent the feature list from colliding with the footer */
+.framework-volume-card > ul {
+  margin-bottom: 36px !important;
+  min-height: 178px !important;
+}
+
+/* Footer becomes one protected block at bottom of each card */
+.framework-card-footer {
+  display: flex !important;
+  flex-direction: column !important;
+
+  width: 100% !important;
+
+  margin-top: auto !important;
+}
+
+/* Identical reserved space for price or waitlist */
+.framework-status {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+
+  width: 100% !important;
+  min-height: 92px !important;
+
+  margin: 0 0 26px !important;
+}
+
+/* $197 row */
+.framework-price-row {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 10px !important;
+
+  margin: 0 !important;
+}
+
+.framework-price-old {
+  color: rgba(255, 255, 255, 0.38) !important;
+
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  text-decoration: line-through !important;
+  text-decoration-thickness: 2px !important;
+}
+
+.framework-price-current,
+.framework-status-title {
+  margin: 0 !important;
+
+  color: #ffffff !important;
+
+  font-size: 46px !important;
+  font-weight: 800 !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.055em !important;
+}
+
+/* Launch price / Coming Soon */
+.framework-status p {
+  margin: 8px 0 0 !important;
+
+  color: #aab4c8 !important;
+
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Restore and align all CTA buttons */
+.framework-card-footer .product-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  min-height: 56px !important;
+
+  margin: 0 !important;
+  padding: 0 22px !important;
+
+  border-radius: 16px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1976ff,
+      #7c3cff,
+      #d100ff
+    ) !important;
+
+  color: #ffffff !important;
+
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+
+  box-shadow:
+    0 16px 48px rgba(90, 70, 255, 0.28) !important;
+}
+
+.framework-card-footer .product-button:hover {
+  transform: translateY(-2px) !important;
+
+  box-shadow:
+    0 22px 60px rgba(90, 70, 255, 0.38),
+    0 0 32px rgba(209, 0, 255, 0.18) !important;
+}
+
+/* Equal note area below every CTA */
+.framework-card-footer .stripe-note {
+  display: block !important;
+
+  min-height: 20px !important;
+
+  margin: 14px 0 0 !important;
+
+  color: #8d97aa !important;
+
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media (max-width: 768px) {
+  .framework-volume-card > ul {
+    min-height: auto !important;
+  }
+
+  .framework-price-current,
+  .framework-status-title {
+    font-size: 42px !important;
+  }
+
+  .framework-price-old {
+    font-size: 20px !important;
+  }
+}
