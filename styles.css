@@ -10510,3 +10510,66 @@ h3,
     font-size: 20px !important;
   }
 }
+/* =========================================================
+   RESTORE PREMIERE + RESOLVE WAITLIST CTAs
+========================================================= */
+
+.framework-volume-card .product-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  min-height: 56px !important;
+
+  margin-top: 0 !important;
+  padding: 0 22px !important;
+
+  border-radius: 16px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1976ff,
+      #7c3cff,
+      #d100ff
+    ) !important;
+
+  color: #ffffff !important;
+
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+
+  box-shadow:
+    0 16px 48px rgba(90, 70, 255, 0.28) !important;
+}
+
+.framework-volume-card .product-button:hover {
+  transform: translateY(-2px) !important;
+
+  box-shadow:
+    0 22px 60px rgba(90, 70, 255, 0.38),
+    0 0 32px rgba(209, 0, 255, 0.18) !important;
+}
+
+.framework-volume-card .stripe-note {
+  display: block !important;
+
+  margin-top: 14px !important;
+
+  color: #8d97aa !important;
+
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
