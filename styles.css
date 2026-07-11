@@ -8065,3 +8065,7 @@ h3,
     height: 260px !important;
   }
 }
+.ppw-intro {
+  max-width: 760px !important;
+  text-wrap: balance !important;
+}
