@@ -303,6 +303,20 @@
       font-size: 18px;
       line-height: 1.65;
     }
+    .brand-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.brand-link:hover .brand-mark {
+  transform: scale(1.04);
+  box-shadow: 0 0 28px rgba(78, 163, 255, 0.35);
+}
+
+.brand-mark {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
     .problem-grid, .feature-grid, .manual-grid, .toolkit-grid, .faq-grid {
       display: grid;
