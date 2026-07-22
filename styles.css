@@ -10840,14 +10840,24 @@ h3,
   }
 }
 /* =========================================
-   POSTOPZ HERO LAUNCH VIDEO
+   HERO VIDEO WRAPPER
+========================================= */
+
+.hero-video-wrap {
+  width: clamp(620px, 43vw, 720px);
+  max-width: none;
+  justify-self: end;
+  align-self: start;
+}
+
+/* =========================================
+   VIDEO PLAYER
 ========================================= */
 
 .hero-video-shell {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  min-width: 0;
   overflow: hidden;
 
   background: #05070d;
@@ -10856,7 +10866,7 @@ h3,
 
   box-shadow:
     0 28px 80px rgba(0, 0, 0, 0.48),
-    0 0 60px rgba(92, 79, 255, 0.1);
+    0 0 70px rgba(92, 79, 255, 0.14);
 
   isolation: isolate;
 }
@@ -10872,7 +10882,7 @@ h3,
   background:
     linear-gradient(
       135deg,
-      rgba(50, 185, 255, 0.18),
+      rgba(50, 185, 255, 0.16),
       transparent 32%,
       transparent 68%,
       rgba(233, 52, 255, 0.16)
@@ -10891,6 +10901,10 @@ h3,
   background: #05070d;
 }
 
+/* =========================================
+   CUSTOM PLAY BUTTON
+========================================= */
+
 .hero-video-play {
   position: absolute;
   top: 50%;
@@ -10900,8 +10914,8 @@ h3,
   display: grid;
   place-items: center;
 
-  width: 76px;
-  height: 76px;
+  width: 82px;
+  height: 82px;
   padding: 0;
 
   border: 1px solid rgba(255, 255, 255, 0.42);
@@ -10943,24 +10957,36 @@ h3,
 
   width: 0;
   height: 0;
-  margin-left: 5px;
+  margin-left: 6px;
 
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  border-left: 17px solid #ffffff;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 19px solid #ffffff;
 }
 
-.hero-video-label {
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
-  z-index: 4;
+/* Hide custom button after playback begins */
 
-  display: inline-flex;
+.hero-video-shell.is-playing .hero-video-play {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* =========================================
+   LABEL BELOW VIDEO
+========================================= */
+
+.hero-video-label {
+  position: static;
+
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 
-  padding: 9px 13px;
+  width: fit-content;
+  margin: 14px auto 0;
+  padding: 10px 15px;
 
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
@@ -10976,10 +11002,9 @@ h3,
   letter-spacing: 0.08em;
   text-transform: uppercase;
 
+  opacity: 1;
+  visibility: visible;
   pointer-events: none;
-  transition:
-    opacity 180ms ease,
-    visibility 180ms ease;
 }
 
 .hero-video-label-dot {
@@ -10993,60 +11018,6 @@ h3,
   box-shadow: 0 0 12px rgba(66, 200, 255, 0.85);
 }
 
-.hero-video-shell.is-playing .hero-video-play,
-.hero-video-shell.is-playing .hero-video-label {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* Tablet and mobile */
-
-@media (max-width: 900px) {
-  .hero-video-shell {
-    margin-top: 8px;
-    border-radius: 20px;
-  }
-
-  .hero-video-play {
-    width: 68px;
-    height: 68px;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-video-shell {
-    border-radius: 16px;
-    box-shadow:
-      0 20px 50px rgba(0, 0, 0, 0.42),
-      0 0 36px rgba(92, 79, 255, 0.09);
-  }
-
-  .hero-video-play {
-    width: 60px;
-    height: 60px;
-  }
-
-  .hero-video-play-icon {
-    border-top-width: 9px;
-    border-bottom-width: 9px;
-    border-left-width: 14px;
-  }
-
-  .hero-video-label {
-    left: 12px;
-    bottom: 12px;
-    padding: 8px 11px;
-    font-size: 0.62rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-video-play,
-  .hero-video-label {
-    transition: none;
-  }
-}
 .hero-video-duration {
   display: inline-flex;
   align-items: center;
@@ -11061,4 +11032,43 @@ h3,
 .hero-video-duration::before {
   content: "—";
   color: rgba(255, 255, 255, 0.38);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .hero-video-wrap {
+    width: 100%;
+    max-width: 760px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-video-wrap {
+    width: 100%;
+  }
+
+  .hero-video-shell {
+    border-radius: 17px;
+  }
+
+  .hero-video-play {
+    width: 64px;
+    height: 64px;
+  }
+
+  .hero-video-play-icon {
+    border-top-width: 9px;
+    border-bottom-width: 9px;
+    border-left-width: 15px;
+  }
+
+  .hero-video-label {
+    margin-top: 12px;
+    padding: 9px 12px;
+    font-size: 0.62rem;
+  }
 }
