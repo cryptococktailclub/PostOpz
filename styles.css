@@ -11647,3 +11647,86 @@ h3,
     clip-path: inset(0) !important;
   }
 }
+/* =========================================
+   HERO EDITING CLIP FIX
+   Put at very bottom of styles.css
+========================================= */
+
+.hero .hero-title-bottom {
+  display: inline-block !important;
+  position: relative !important;
+
+  width: auto !important;
+  max-width: none !important;
+
+  overflow: visible !important;
+
+  /* give the gradient word more room on right + bottom */
+  padding-right: 0.08em !important;
+  padding-bottom: 0.16em !important;
+}
+
+.hero .hero-title-bottom::after {
+  /* extend gradient layer slightly beyond text bounds */
+  inset: 0 -0.04em -0.03em 0 !important;
+
+  overflow: visible !important;
+}
+/* =========================================
+   FINAL HERO VIDEO WIDTH + GAP REFINEMENT
+   Must remain at bottom of styles.css
+========================================= */
+
+@media (min-width: 1181px) {
+
+  .hero-inner {
+    /*
+      Gives slightly more width to the video
+      while preserving enough room for the title.
+    */
+    grid-template-columns:
+      minmax(0, 0.9fr)
+      minmax(0, 1.1fr) !important;
+
+    /* Previously approximately 80–96px */
+    column-gap: 48px !important;
+
+    align-items: center !important;
+  }
+
+  .hero-copy {
+    max-width: 650px !important;
+  }
+
+  .hero-video-wrap {
+    width: 100% !important;
+    max-width: 760px !important;
+
+    justify-self: start !important;
+    align-self: center !important;
+  }
+
+  .hero-video-shell {
+    width: 100% !important;
+  }
+}
+
+/* Wider desktop displays */
+
+@media (min-width: 1600px) {
+
+  .hero-inner {
+    width: min(1520px, calc(100% - 140px)) !important;
+    max-width: 1520px !important;
+
+    grid-template-columns:
+      minmax(0, 660px)
+      minmax(0, 800px) !important;
+
+    column-gap: 54px !important;
+  }
+
+  .hero-video-wrap {
+    max-width: 800px !important;
+  }
+}
