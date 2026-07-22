@@ -278,260 +278,849 @@ p { color: var(--muted); line-height: 1.7; }
 
 .hero {
   position: relative;
-  padding: 140px 0 80px;
-  border-bottom: 1px solid var(--line);
+  padding: 132px 0 72px;
+
   overflow: hidden;
+
+  border-bottom: 1px solid var(--line);
+
   background:
-    radial-gradient(ellipse 80% 60% at 75% 10%, rgba(108,66,255,.2), transparent),
-    radial-gradient(ellipse 60% 50% at 65% 25%, rgba(255,0,153,.12), transparent),
-    radial-gradient(ellipse 50% 40% at 5% 15%, rgba(0,217,255,.08), transparent),
-    linear-gradient(160deg, #041217 0%, #04060b 30%, #090611 60%, #111833 100%);
+    radial-gradient(
+      ellipse 80% 60% at 75% 10%,
+      rgba(108, 66, 255, 0.2),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 65% 25%,
+      rgba(255, 0, 153, 0.12),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 5% 15%,
+      rgba(0, 217, 255, 0.08),
+      transparent
+    ),
+    linear-gradient(
+      160deg,
+      #041217 0%,
+      #04060b 30%,
+      #090611 60%,
+      #111833 100%
+    );
 }
+
+/* =========================================
+   HERO BACKGROUND GLOW
+========================================= */
 
 .hero-glow {
   position: absolute;
   top: -200px;
   right: -100px;
+
   width: 800px;
   height: 800px;
+
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(124,60,255,.12), transparent 60%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(124, 60, 255, 0.12),
+      transparent 60%
+    );
+
   pointer-events: none;
-  animation: glow-pulse 8s ease-in-out infinite alternate;
+
+  animation:
+    hero-glow-pulse 8s
+    ease-in-out
+    infinite
+    alternate;
 }
 
-@keyframes glow-pulse {
-  0% { opacity: .6; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.15); }
+@keyframes hero-glow-pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
 }
+
+/* =========================================
+   HERO GRID
+========================================= */
 
 .hero-inner {
-  width: min(1480px, calc(100% - 120px));
+  position: relative;
+  z-index: 1;
 
+  width: min(1480px, calc(100% - 120px));
   margin: 0 auto;
 
   display: grid;
 
   grid-template-columns:
-    minmax(0,1fr)
-    minmax(620px,680px);
+    minmax(440px, 0.9fr)
+    minmax(580px, 1.1fr);
 
   grid-template-areas:
     "copy command"
     "logos logos";
 
-  gap: 72px;
+  column-gap: clamp(38px, 4vw, 64px);
+  row-gap: 58px;
 
   align-items: center;
 }
 
+/* =========================================
+   HERO COPY
+========================================= */
+
 .hero-copy {
   grid-area: copy;
-  max-width: 720px;
-  padding-top: 28px;
+
+  width: 100%;
+  max-width: 610px;
+
+  padding-top: 0;
 }
+
+/* =========================================
+   HERO KICKER
+========================================= */
 
 .hero-kicker {
   margin-bottom: 24px;
+
+  color: var(--cyan);
+
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: .2em;
+  line-height: 1;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--cyan);
-}
-.hero-kicker-pill{
-  margin-bottom:24px;
 }
 
-.hero-title { margin: 0 0 34px; }
+.hero-kicker-pill {
+  margin-bottom: 24px;
+}
+
+/* =========================================
+   HERO TITLE
+========================================= */
+
+.hero-title {
+  width: fit-content;
+  max-width: 100%;
+
+  margin: 0 0 34px;
+}
 
 .hero-title-top,
 .hero-title-bottom {
   display: block;
-  font-size: clamp(68px, 5.6vw, 96px);
+
+  width: max-content;
+  max-width: 100%;
+
+  font-size: clamp(74px, 6vw, 108px);
   font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.07em;
   white-space: nowrap;
-  line-height: .88;
-  overflow: visible;
+
   text-rendering: geometricPrecision;
 }
 
 .hero-title-top {
-  letter-spacing: -.06em;
   color: #f7f8fb;
 }
 
-.hero-title-bottom {
-  display: inline-block;
-  width: max-content;
-  margin-top: 18px;
-  letter-spacing: -.06em;
-  padding-bottom: .16em;
+/* =========================================
+   ANIMATED EDITING GRADIENT
+========================================= */
 
- background: linear-gradient(
-  90deg,
-  #ff8a00 0%,
-  #ff5b2d 16%,
-  #ff235e 32%,
-  #ff00a8 48%,
-  #c02fff 60%,
-  #6b6cff 72%,
-  #29a8ff 88%,
-  #29a8ff 100%
-);
+.hero-title-bottom {
+  position: relative;
+
+  margin-top: 18px;
+  padding-bottom: 0.12em;
+
+  color: #f7f8fb;
+
+  filter:
+    drop-shadow(
+      0 12px 30px
+      rgba(255, 71, 113, 0.12)
+    );
+}
+
+.hero-title-bottom::after {
+  content: attr(data-text);
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff9b38 0%,
+      #ff762f 25%,
+      #ff4e50 50%,
+      #ff326f 73%,
+      #ed2da5 100%
+    );
+
+  background-size: 165% 100%;
+  background-position: 100% 50%;
+
   -webkit-background-clip: text;
   background-clip: text;
+
   color: transparent;
   -webkit-text-fill-color: transparent;
 
-  filter: drop-shadow(0 12px 30px rgba(170,70,255,.14));
+  clip-path: inset(0 100% 0 0);
+
+  animation:
+    editing-gradient-reveal 950ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    1.05s
+    forwards;
+
+  pointer-events: none;
 }
 
-.hero-dot {
-  display: inline-block;
-  margin-left: -.02em;
-  transform: translateY(-.02em);
-  padding-right: .03em;
+@keyframes editing-gradient-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    background-position: 100% 50%;
+    filter: brightness(1);
+  }
+
+  68% {
+    filter: brightness(1.14);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
 }
+
+/* =========================================
+   HERO SUBHEAD
+========================================= */
 
 .hero-subhead {
   max-width: 620px;
   margin-bottom: 18px;
+
+  color: #ffffff;
+
   font-size: 20px;
-  line-height: 1.35;
   font-weight: 800;
-  letter-spacing: -.04em;
-  color: #fff;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
 }
+
+/* =========================================
+   HERO BODY COPY
+========================================= */
 
 .hero-lede {
   max-width: 560px;
+  margin: 0;
+
+  color: #d2d9e5;
+
   font-size: 17px;
   line-height: 1.72;
-  color: #d2d9e5;
 }
 
-.hero-actions { margin-top: 36px; }
+/* =========================================
+   HERO ACTIONS
+========================================= */
+
+.hero-actions {
+  margin-top: 34px;
+}
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+
   min-height: 58px;
   padding: 0 32px;
+
+  border: none;
   border-radius: 16px;
+
   font-size: 16px;
   font-weight: 800;
-  border: none;
+
   cursor: pointer;
-  transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease;
+
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
 }
 
-.button:hover { transform: translateY(-3px); }
+.button:hover {
+  transform: translateY(-3px);
+}
 
 .button.primary {
-  background: linear-gradient(135deg, #1976ff, #7c3cff, #d100ff);
-  color: #fff;
-  box-shadow: 0 16px 48px rgba(90,70,255,.28);
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1976ff,
+      #7c3cff,
+      #d100ff
+    );
+
+  box-shadow:
+    0 16px 48px
+    rgba(90, 70, 255, 0.28);
 }
 
 .button.primary:hover {
-  box-shadow: 0 20px 60px rgba(90,70,255,.38);
+  box-shadow:
+    0 20px 60px
+    rgba(90, 70, 255, 0.38);
 }
 
 .workflow-note {
   margin-top: 16px;
+
+  color: #8fa1bd;
+
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #8fa1bd;
 }
+
 /* =========================================
-   HERO ARCHITECTURE VISUAL
-   Replaces command-center stack card
+   HERO VIDEO WRAPPER
 ========================================= */
 
-.hero-architecture-visual {
-  grid-area: command !important;
+.hero-video-wrap {
+  grid-area: command;
 
-  width: 100% !important;
-  max-width: 620px !important;
+  width: 100%;
+  max-width: 700px;
+  min-width: 0;
 
-  margin: 10px 0 0 !important;
-  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  align-self: start !important;
-  justify-self: end !important;
-
-  position: relative !important;
+  justify-self: end;
+  align-self: center;
 }
 
-.hero-architecture-visual img {
-  width: 100% !important;
-  height: auto !important;
+/* =========================================
+   VIDEO LABEL ABOVE PLAYER
+========================================= */
 
-  display: block !important;
+.hero-video-label {
+  position: static;
 
-  border-radius: 30px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-  box-shadow:
-    0 34px 110px rgba(0,0,0,.46),
-    0 0 50px rgba(0,217,255,.08),
-    0 0 70px rgba(209,0,255,.08) !important;
+  width: fit-content;
+  max-width: 100%;
 
-  object-fit: contain !important;
-}
+  margin: 0 auto 14px;
+  padding: 10px 15px;
 
-/* Subtle glow behind image */
-.hero-architecture-visual::before {
-  content: "";
-  position: absolute;
-  inset: 8% 4%;
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.14);
 
-  border-radius: 34px;
+  border-radius: 999px;
 
   background:
-    radial-gradient(circle at 50% 35%, rgba(0,217,255,.16), transparent 42%),
-    radial-gradient(circle at 60% 65%, rgba(209,0,255,.14), transparent 46%);
+    rgba(5, 7, 13, 0.78);
 
-  filter: blur(34px);
-  opacity: .85;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 
-  z-index: -1;
+  color:
+    rgba(255, 255, 255, 0.92);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
   pointer-events: none;
 }
 
-/* Desktop refinement */
+.hero-video-label-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: #42c8ff;
+
+  box-shadow:
+    0 0 8px rgba(66, 200, 255, 0.9),
+    0 0 16px rgba(66, 200, 255, 0.48);
+}
+
+.hero-video-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color:
+    rgba(255, 255, 255, 0.62);
+
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.hero-video-duration::before {
+  content: "—";
+
+  color:
+    rgba(255, 255, 255, 0.35);
+}
+
+/* =========================================
+   VIDEO PLAYER
+========================================= */
+
+.hero-video-shell {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background: #05070d;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.5),
+    0 0 70px rgba(92, 79, 255, 0.14);
+}
+
+.hero-video-shell::before {
+  content: "";
+
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(50, 185, 255, 0.16),
+      transparent 32%,
+      transparent 68%,
+      rgba(233, 52, 255, 0.16)
+    );
+
+  pointer-events: none;
+}
+
+.hero-video-shell::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  border-radius: inherit;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+
+  pointer-events: none;
+}
+
+.hero-launch-video {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  background: #05070d;
+}
+
+/* =========================================
+   CUSTOM PLAY BUTTON
+========================================= */
+
+.hero-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+
+  display: grid;
+  place-items: center;
+
+  width: 82px;
+  height: 82px;
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.42);
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 183, 255, 0.98),
+      rgba(120, 74, 255, 0.98) 52%,
+      rgba(238, 48, 203, 0.98)
+    );
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.5),
+    0 0 38px rgba(110, 84, 255, 0.4);
+
+  color: #ffffff;
+  cursor: pointer;
+
+  transform:
+    translate(-50%, -50%);
+
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease,
+    visibility 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.hero-video-play:hover {
+  transform:
+    translate(-50%, -50%)
+    scale(1.08);
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.52),
+    0 0 48px rgba(110, 84, 255, 0.52);
+}
+
+.hero-video-play:active {
+  transform:
+    translate(-50%, -50%)
+    scale(1.02);
+}
+
+.hero-video-play:focus-visible {
+  outline:
+    3px solid
+    rgba(255, 255, 255, 0.9);
+
+  outline-offset: 4px;
+}
+
+.hero-video-play-icon {
+  display: block;
+
+  width: 0;
+  height: 0;
+
+  margin-left: 6px;
+
+  border-top:
+    12px solid transparent;
+
+  border-bottom:
+    12px solid transparent;
+
+  border-left:
+    19px solid #ffffff;
+}
+
+.hero-video-shell.is-playing
+.hero-video-play {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
 @media (min-width: 1600px) {
-  .hero-architecture-visual {
-    max-width: 650px !important;
-    margin-top: 0 !important;
+  .hero-inner {
+    grid-template-columns:
+      minmax(470px, 0.88fr)
+      minmax(640px, 1.12fr);
+  }
+
+  .hero-video-wrap {
+    max-width: 740px;
   }
 }
 
-/* Tablet */
-@media (min-width: 769px) and (max-width: 1180px) {
-  .hero-architecture-visual {
-    max-width: 860px !important;
-    justify-self: center !important;
-    margin-top: 0 !important;
+/* =========================================
+   TABLET / SMALL DESKTOP
+========================================= */
+
+@media (max-width: 1180px) {
+  .hero-inner {
+    width: min(
+      1120px,
+      calc(100% - 64px)
+    );
+
+    grid-template-columns:
+      minmax(390px, 0.9fr)
+      minmax(500px, 1.1fr);
+
+    column-gap: 34px;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size:
+      clamp(64px, 6vw, 88px);
+  }
+
+  .hero-video-wrap {
+    max-width: 650px;
+  }
+
+  .hero-video-play {
+    width: 76px;
+    height: 76px;
   }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .hero-architecture-visual {
-    width: 100% !important;
-    max-width: 100% !important;
+/* =========================================
+   STACKED TABLET
+========================================= */
 
-    justify-self: stretch !important;
-    margin-top: 0 !important;
+@media (max-width: 1000px) {
+  .hero {
+    padding:
+      120px 0 64px;
   }
 
-  .hero-architecture-visual img {
-    border-radius: 24px !important;
+  .hero-inner {
+    width:
+      min(
+        860px,
+        calc(100% - 40px)
+      );
+
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "copy"
+      "command"
+      "logos";
+
+    row-gap: 40px;
+  }
+
+  .hero-copy {
+    max-width: 680px;
+  }
+
+  .hero-video-wrap {
+    width: 100%;
+    max-width: 760px;
+
+    justify-self: center;
+    align-self: center;
+
+    margin-inline: auto;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .hero {
+    padding:
+      104px 0 54px;
+  }
+
+  .hero-inner {
+    width:
+      calc(100% - 28px);
+
+    row-gap: 32px;
+  }
+
+  .hero-kicker,
+  .hero-kicker-pill {
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    margin-bottom: 28px;
+  }
+
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size:
+      clamp(54px, 15vw, 76px);
+
+    line-height: 0.9;
+    letter-spacing: -0.065em;
+  }
+
+  .hero-title-bottom {
+    margin-top: 14px;
+  }
+
+  .hero-subhead {
+    font-size: 18px;
+  }
+
+  .hero-lede {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    margin-top: 28px;
+  }
+
+  .hero-video-label {
+    gap: 6px;
+
+    margin-bottom: 11px;
+    padding: 9px 12px;
+
+    font-size: 0.62rem;
+    letter-spacing: 0.065em;
+  }
+
+  .hero-video-label-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .hero-video-shell {
+    border-radius: 17px;
+
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.44),
+      0 0 38px rgba(92, 79, 255, 0.1);
+  }
+
+  .hero-video-play {
+    width: 64px;
+    height: 64px;
+  }
+
+  .hero-video-play-icon {
+    margin-left: 4px;
+
+    border-top-width: 9px;
+    border-bottom-width: 9px;
+    border-left-width: 15px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 430px) {
+  .hero-title-top,
+  .hero-title-bottom {
+    font-size:
+      clamp(47px, 14.3vw, 62px);
+  }
+
+  .hero-video-label {
+    width: auto;
+    max-width:
+      calc(100% - 20px);
+
+    padding: 8px 11px;
+
+    font-size: 0.57rem;
+    white-space: normal;
+  }
+
+  .hero-video-duration {
+    flex: 0 0 auto;
+  }
+
+  .hero-video-shell {
+    border-radius: 15px;
+  }
+
+  .hero-video-play {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow {
+    animation: none;
+  }
+
+  .hero-title-bottom::after {
+    animation: none;
+    clip-path: inset(0);
+  }
+
+  .hero-video-play {
+    transition: none;
   }
 }
 /* =========================================
@@ -10837,481 +11426,5 @@ h3,
 
   .open-sessions-copy .open-sessions-welcome {
     font-size: 10px;
-  }
-}
-/* =========================================
-   POSTOPZ HERO LAUNCH VIDEO
-   Pill above video / vertically centered
-========================================= */
-
-.hero-video-wrap {
-  width: clamp(580px, 42vw, 720px);
-  max-width: 100%;
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  justify-self: end;
-  align-self: center;
-
-  /*
-   Visually lowers the video module so it aligns
-   with the complete left-side hero content and
-   reduces empty space above the toolstrip.
-  */
-  transform: translateY(18px);
-}
-
-/* =========================================
-   VIDEO LABEL / PILL
-========================================= */
-
-.hero-video-label {
-  position: static;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  width: fit-content;
-  max-width: 100%;
-
-  margin: 0 auto 14px;
-  padding: 10px 15px;
-
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-
-  background: rgba(5, 7, 13, 0.78);
-
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-
-  color: rgba(255, 255, 255, 0.92);
-
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-align: center;
-  text-transform: uppercase;
-  white-space: nowrap;
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-
-  pointer-events: none;
-}
-
-.hero-video-label-dot {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-
-  border-radius: 50%;
-
-  background: #42c8ff;
-
-  box-shadow:
-    0 0 8px rgba(66, 200, 255, 0.9),
-    0 0 16px rgba(66, 200, 255, 0.48);
-}
-
-.hero-video-duration {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  color: rgba(255, 255, 255, 0.62);
-
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: none;
-}
-
-.hero-video-duration::before {
-  content: "—";
-
-  color: rgba(255, 255, 255, 0.35);
-}
-
-/* =========================================
-   VIDEO SHELL
-========================================= */
-
-.hero-video-shell {
-  position: relative;
-
-  width: 100%;
-  aspect-ratio: 16 / 9;
-
-  overflow: hidden;
-  isolation: isolate;
-
-  background: #05070d;
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-
-  box-shadow:
-    0 28px 80px rgba(0, 0, 0, 0.5),
-    0 0 70px rgba(92, 79, 255, 0.14);
-}
-
-.hero-video-shell::before {
-  content: "";
-
-  position: absolute;
-  inset: -1px;
-  z-index: 2;
-
-  border-radius: inherit;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(50, 185, 255, 0.16),
-      transparent 32%,
-      transparent 68%,
-      rgba(233, 52, 255, 0.16)
-    );
-
-  pointer-events: none;
-}
-
-.hero-video-shell::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-
-  border-radius: inherit;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
-
-  pointer-events: none;
-}
-
-/* =========================================
-   VIDEO
-========================================= */
-
-.hero-launch-video {
-  position: relative;
-  z-index: 1;
-
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center;
-
-  background: #05070d;
-}
-
-/* =========================================
-   CUSTOM PLAY BUTTON
-========================================= */
-
-.hero-video-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 4;
-
-  display: grid;
-  place-items: center;
-
-  width: 82px;
-  height: 82px;
-  padding: 0;
-
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  border-radius: 50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(37, 183, 255, 0.98),
-      rgba(120, 74, 255, 0.98) 52%,
-      rgba(238, 48, 203, 0.98)
-    );
-
-  box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.5),
-    0 0 38px rgba(110, 84, 255, 0.4);
-
-  color: #ffffff;
-  cursor: pointer;
-
-  transform: translate(-50%, -50%);
-
-  transition:
-    transform 180ms ease,
-    opacity 180ms ease,
-    visibility 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.hero-video-play:hover {
-  transform: translate(-50%, -50%) scale(1.08);
-
-  box-shadow:
-    0 20px 55px rgba(0, 0, 0, 0.52),
-    0 0 48px rgba(110, 84, 255, 0.52);
-}
-
-.hero-video-play:active {
-  transform: translate(-50%, -50%) scale(1.02);
-}
-
-.hero-video-play:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.9);
-  outline-offset: 4px;
-}
-
-.hero-video-play-icon {
-  display: block;
-
-  width: 0;
-  height: 0;
-
-  margin-left: 6px;
-
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-left: 19px solid #ffffff;
-}
-
-/* Hide custom play button during playback */
-
-.hero-video-shell.is-playing .hero-video-play {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* =========================================
-   LARGE TABLET
-========================================= */
-
-@media (max-width: 1180px) {
-  .hero-video-wrap {
-    width: clamp(520px, 45vw, 650px);
-    transform: translateY(12px);
-  }
-
-  .hero-video-play {
-    width: 76px;
-    height: 76px;
-  }
-}
-
-/* =========================================
-   STACKED TABLET LAYOUT
-========================================= */
-
-@media (max-width: 1000px) {
-  .hero-video-wrap {
-    width: 100%;
-    max-width: 760px;
-
-    justify-self: center;
-    align-self: center;
-
-    margin-inline: auto;
-    margin-top: 32px;
-
-    transform: none;
-  }
-
-  .hero-video-label {
-    margin-bottom: 13px;
-  }
-
-  .hero-video-shell {
-    border-radius: 21px;
-  }
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 700px) {
-  .hero-video-wrap {
-    width: 100%;
-    max-width: none;
-
-    margin-top: 26px;
-  }
-
-  .hero-video-label {
-    gap: 6px;
-
-    margin-bottom: 11px;
-    padding: 9px 12px;
-
-    font-size: 0.62rem;
-    letter-spacing: 0.065em;
-  }
-
-  .hero-video-label-dot {
-    width: 6px;
-    height: 6px;
-  }
-
-  .hero-video-shell {
-    border-radius: 17px;
-
-    box-shadow:
-      0 20px 50px rgba(0, 0, 0, 0.44),
-      0 0 38px rgba(92, 79, 255, 0.1);
-  }
-
-  .hero-video-play {
-    width: 64px;
-    height: 64px;
-  }
-
-  .hero-video-play-icon {
-    margin-left: 4px;
-
-    border-top-width: 9px;
-    border-bottom-width: 9px;
-    border-left-width: 15px;
-  }
-}
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media (max-width: 430px) {
-  .hero-video-label {
-    width: auto;
-    max-width: calc(100% - 20px);
-
-    padding: 8px 11px;
-
-    font-size: 0.57rem;
-    white-space: normal;
-  }
-
-  .hero-video-duration {
-    flex: 0 0 auto;
-  }
-
-  .hero-video-shell {
-    border-radius: 15px;
-  }
-
-  .hero-video-play {
-    width: 58px;
-    height: 58px;
-  }
-}
-
-/* =========================================
-   REDUCED MOTION
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-video-play {
-    transition: none;
-  }
-}
-/* =========================================
-   HERO SUBTITLE GRADIENT REVEAL
-========================================= */
-
-.hero-subtitle {
-  color: #ffffff;
-}
-
-/*
-  Keep the original white text underneath.
-  The gradient version wipes over it after
-  the Cloud headline animation finishes.
-*/
-
-.editing-gradient {
-  position: relative;
-  display: inline-block;
-
-  color: #ffffff;
-}
-
-.editing-gradient::after {
-  content: attr(data-text);
-
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      #765cff 0%,
-      #6278ff 30%,
-      #3fa9ff 62%,
-      #16d5ff 100%
-    );
-
-  background-size: 140% 100%;
-  background-position: 100% 50%;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-
-  clip-path: inset(0 100% 0 0);
-
-  animation:
-    editing-gradient-reveal 900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    forwards;
-
-  /*
-    Set this to the total Cloud animation:
-    Cloud delay + Cloud duration + small pause.
-  */
-  animation-delay: 1.85s;
-
-  pointer-events: none;
-}
-
-@keyframes editing-gradient-reveal {
-  0% {
-    clip-path: inset(0 100% 0 0);
-    background-position: 100% 50%;
-    filter: brightness(1);
-  }
-
-  70% {
-    filter: brightness(1.18);
-  }
-
-  100% {
-    clip-path: inset(0 0 0 0);
-    background-position: 0% 50%;
-    filter: brightness(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .editing-gradient::after {
-    animation: none;
-    clip-path: inset(0 0 0 0);
   }
 }
