@@ -10839,3 +10839,226 @@ h3,
     font-size: 10px;
   }
 }
+/* =========================================
+   POSTOPZ HERO LAUNCH VIDEO
+========================================= */
+
+.hero-video-shell {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-width: 0;
+  overflow: hidden;
+
+  background: #05070d;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.48),
+    0 0 60px rgba(92, 79, 255, 0.1);
+
+  isolation: isolate;
+}
+
+.hero-video-shell::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(50, 185, 255, 0.18),
+      transparent 32%,
+      transparent 68%,
+      rgba(233, 52, 255, 0.16)
+    );
+}
+
+.hero-launch-video {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  background: #05070d;
+}
+
+.hero-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+
+  display: grid;
+  place-items: center;
+
+  width: 76px;
+  height: 76px;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 183, 255, 0.96),
+      rgba(120, 74, 255, 0.96) 52%,
+      rgba(238, 48, 203, 0.96)
+    );
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.48),
+    0 0 35px rgba(110, 84, 255, 0.38);
+
+  color: #ffffff;
+  cursor: pointer;
+
+  transform: translate(-50%, -50%);
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease,
+    visibility 180ms ease;
+}
+
+.hero-video-play:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.hero-video-play:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.88);
+  outline-offset: 4px;
+}
+
+.hero-video-play-icon {
+  display: block;
+
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 17px solid #ffffff;
+}
+
+.hero-video-label {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 4;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 9px 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+
+  background: rgba(5, 7, 13, 0.76);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    visibility 180ms ease;
+}
+
+.hero-video-label-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+  background: #42c8ff;
+
+  box-shadow: 0 0 12px rgba(66, 200, 255, 0.85);
+}
+
+.hero-video-shell.is-playing .hero-video-play,
+.hero-video-shell.is-playing .hero-video-label {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 900px) {
+  .hero-video-shell {
+    margin-top: 8px;
+    border-radius: 20px;
+  }
+
+  .hero-video-play {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-video-shell {
+    border-radius: 16px;
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.42),
+      0 0 36px rgba(92, 79, 255, 0.09);
+  }
+
+  .hero-video-play {
+    width: 60px;
+    height: 60px;
+  }
+
+  .hero-video-play-icon {
+    border-top-width: 9px;
+    border-bottom-width: 9px;
+    border-left-width: 14px;
+  }
+
+  .hero-video-label {
+    left: 12px;
+    bottom: 12px;
+    padding: 8px 11px;
+    font-size: 0.62rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video-play,
+  .hero-video-label {
+    transition: none;
+  }
+}
+.hero-video-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.hero-video-duration::before {
+  content: "—";
+  color: rgba(255, 255, 255, 0.38);
+}
