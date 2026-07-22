@@ -10840,43 +10840,135 @@ h3,
   }
 }
 /* =========================================
-   HERO VIDEO WRAPPER
+   POSTOPZ HERO LAUNCH VIDEO
+   Pill above video / vertically centered
 ========================================= */
 
 .hero-video-wrap {
-  width: clamp(620px, 43vw, 720px);
-  max-width: none;
+  width: clamp(580px, 42vw, 720px);
+  max-width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   justify-self: end;
-  align-self: start;
+  align-self: center;
+
+  /*
+   Visually lowers the video module so it aligns
+   with the complete left-side hero content and
+   reduces empty space above the toolstrip.
+  */
+  transform: translateY(18px);
 }
 
 /* =========================================
-   VIDEO PLAYER
+   VIDEO LABEL / PILL
+========================================= */
+
+.hero-video-label {
+  position: static;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: fit-content;
+  max-width: 100%;
+
+  margin: 0 auto 14px;
+  padding: 10px 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+
+  background: rgba(5, 7, 13, 0.78);
+
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+
+  color: rgba(255, 255, 255, 0.92);
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  pointer-events: none;
+}
+
+.hero-video-label-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: #42c8ff;
+
+  box-shadow:
+    0 0 8px rgba(66, 200, 255, 0.9),
+    0 0 16px rgba(66, 200, 255, 0.48);
+}
+
+.hero-video-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: rgba(255, 255, 255, 0.62);
+
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.hero-video-duration::before {
+  content: "—";
+
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* =========================================
+   VIDEO SHELL
 ========================================= */
 
 .hero-video-shell {
   position: relative;
+
   width: 100%;
   aspect-ratio: 16 / 9;
+
   overflow: hidden;
+  isolation: isolate;
 
   background: #05070d;
+
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
 
   box-shadow:
-    0 28px 80px rgba(0, 0, 0, 0.48),
+    0 28px 80px rgba(0, 0, 0, 0.5),
     0 0 70px rgba(92, 79, 255, 0.14);
-
-  isolation: isolate;
 }
 
 .hero-video-shell::before {
   content: "";
+
   position: absolute;
   inset: -1px;
   z-index: 2;
-  pointer-events: none;
+
   border-radius: inherit;
 
   background:
@@ -10887,17 +10979,42 @@ h3,
       transparent 68%,
       rgba(233, 52, 255, 0.16)
     );
+
+  pointer-events: none;
 }
+
+.hero-video-shell::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  border-radius: inherit;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+
+  pointer-events: none;
+}
+
+/* =========================================
+   VIDEO
+========================================= */
 
 .hero-launch-video {
   position: relative;
   z-index: 1;
 
   display: block;
+
   width: 100%;
   height: 100%;
 
   object-fit: cover;
+  object-position: center;
+
   background: #05070d;
 }
 
@@ -10924,31 +11041,41 @@ h3,
   background:
     linear-gradient(
       135deg,
-      rgba(37, 183, 255, 0.96),
-      rgba(120, 74, 255, 0.96) 52%,
-      rgba(238, 48, 203, 0.96)
+      rgba(37, 183, 255, 0.98),
+      rgba(120, 74, 255, 0.98) 52%,
+      rgba(238, 48, 203, 0.98)
     );
 
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.48),
-    0 0 35px rgba(110, 84, 255, 0.38);
+    0 18px 50px rgba(0, 0, 0, 0.5),
+    0 0 38px rgba(110, 84, 255, 0.4);
 
   color: #ffffff;
   cursor: pointer;
 
   transform: translate(-50%, -50%);
+
   transition:
     transform 180ms ease,
     opacity 180ms ease,
-    visibility 180ms ease;
+    visibility 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .hero-video-play:hover {
   transform: translate(-50%, -50%) scale(1.08);
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.52),
+    0 0 48px rgba(110, 84, 255, 0.52);
+}
+
+.hero-video-play:active {
+  transform: translate(-50%, -50%) scale(1.02);
 }
 
 .hero-video-play:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.88);
+  outline: 3px solid rgba(255, 255, 255, 0.9);
   outline-offset: 4px;
 }
 
@@ -10957,6 +11084,7 @@ h3,
 
   width: 0;
   height: 0;
+
   margin-left: 6px;
 
   border-top: 12px solid transparent;
@@ -10964,7 +11092,7 @@ h3,
   border-left: 19px solid #ffffff;
 }
 
-/* Hide custom button after playback begins */
+/* Hide custom play button during playback */
 
 .hero-video-shell.is-playing .hero-video-play {
   opacity: 0;
@@ -10973,86 +11101,81 @@ h3,
 }
 
 /* =========================================
-   LABEL BELOW VIDEO
+   LARGE TABLET
 ========================================= */
 
-.hero-video-label {
-  position: static;
+@media (max-width: 1180px) {
+  .hero-video-wrap {
+    width: clamp(520px, 45vw, 650px);
+    transform: translateY(12px);
+  }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  width: fit-content;
-  margin: 14px auto 0;
-  padding: 10px 15px;
-
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-
-  background: rgba(5, 7, 13, 0.76);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  opacity: 1;
-  visibility: visible;
-  pointer-events: none;
-}
-
-.hero-video-label-dot {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-
-  border-radius: 50%;
-  background: #42c8ff;
-
-  box-shadow: 0 0 12px rgba(66, 200, 255, 0.85);
-}
-
-.hero-video-duration {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  color: rgba(255, 255, 255, 0.62);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: none;
-}
-
-.hero-video-duration::before {
-  content: "—";
-  color: rgba(255, 255, 255, 0.38);
+  .hero-video-play {
+    width: 76px;
+    height: 76px;
+  }
 }
 
 /* =========================================
-   RESPONSIVE
+   STACKED TABLET LAYOUT
 ========================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
   .hero-video-wrap {
     width: 100%;
     max-width: 760px;
+
     justify-self: center;
+    align-self: center;
+
+    margin-inline: auto;
+    margin-top: 32px;
+
+    transform: none;
+  }
+
+  .hero-video-label {
+    margin-bottom: 13px;
+  }
+
+  .hero-video-shell {
+    border-radius: 21px;
   }
 }
+
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 700px) {
   .hero-video-wrap {
     width: 100%;
+    max-width: none;
+
+    margin-top: 26px;
+  }
+
+  .hero-video-label {
+    gap: 6px;
+
+    margin-bottom: 11px;
+    padding: 9px 12px;
+
+    font-size: 0.62rem;
+    letter-spacing: 0.065em;
+  }
+
+  .hero-video-label-dot {
+    width: 6px;
+    height: 6px;
   }
 
   .hero-video-shell {
     border-radius: 17px;
+
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.44),
+      0 0 38px rgba(92, 79, 255, 0.1);
   }
 
   .hero-video-play {
@@ -11061,14 +11184,49 @@ h3,
   }
 
   .hero-video-play-icon {
+    margin-left: 4px;
+
     border-top-width: 9px;
     border-bottom-width: 9px;
     border-left-width: 15px;
   }
+}
 
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 430px) {
   .hero-video-label {
-    margin-top: 12px;
-    padding: 9px 12px;
-    font-size: 0.62rem;
+    width: auto;
+    max-width: calc(100% - 20px);
+
+    padding: 8px 11px;
+
+    font-size: 0.57rem;
+    white-space: normal;
+  }
+
+  .hero-video-duration {
+    flex: 0 0 auto;
+  }
+
+  .hero-video-shell {
+    border-radius: 15px;
+  }
+
+  .hero-video-play {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video-play {
+    transition: none;
   }
 }
