@@ -299,4 +299,34 @@ if (queueMetrics.length) {
     setInterval(animatePipeline, 1200);
   }
 
+document.querySelectorAll("[data-hero-video]").forEach((shell) => {
+  const video = shell.querySelector("video");
+  const playButton = shell.querySelector(".hero-video-play");
+
+  if (!video || !playButton) return;
+
+  playButton.addEventListener("click", async () => {
+    try {
+      await video.play();
+    } catch (error) {
+      console.warn("The hero video could not begin playing.", error);
+    }
+  });
+
+  video.addEventListener("play", () => {
+    shell.classList.add("is-playing");
+  });
+
+  video.addEventListener("pause", () => {
+    if (!video.ended) {
+      shell.classList.remove("is-playing");
+    }
+  });
+
+  video.addEventListener("ended", () => {
+    shell.classList.remove("is-playing");
+    video.currentTime = 0;
+  });
+});
+  
 })();
