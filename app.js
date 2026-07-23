@@ -217,82 +217,103 @@
    HERO QUEUE COUNTERS
 ========================================== */
 
-const queueMetrics =
-  document.querySelectorAll(
-    ".queue-metric[data-count]"
-  );
+const queueMetrics = document.querySelectorAll(
+  ".queue-metric[data-count]"
+);
 
 if (queueMetrics.length) {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-  const queueObserver =
-    new IntersectionObserver(
-      (entries) => {
+  const setFinalValue = (el) => {
+    const target = Number(el.dataset.count);
+    const prefix = el.dataset.prefix || "";
+    const suffix = el.dataset.suffix || "";
 
+    if (!Number.isFinite(target)) return;
+
+    el.textContent =
+      `${prefix}${target.toLocaleString()}${suffix}`;
+  };
+
+  const animateMetric = (el) => {
+    if (el.dataset.animated === "true") return;
+
+    const target = Number(el.dataset.count);
+    const duration = Number(el.dataset.duration) || 1400;
+    const prefix = el.dataset.prefix || "";
+    const suffix = el.dataset.suffix || "";
+
+    if (!Number.isFinite(target)) return;
+
+    el.dataset.animated = "true";
+
+    if (prefersReducedMotion) {
+      setFinalValue(el);
+      return;
+    }
+
+    let startTime = null;
+
+    const animate = (timestamp) => {
+      if (startTime === null) {
+        startTime = timestamp;
+      }
+
+      const progress = Math.min(
+        (timestamp - startTime) / duration,
+        1
+      );
+
+      const easedProgress =
+        1 - Math.pow(1 - progress, 3);
+
+      const value = Math.floor(
+        easedProgress * target
+      );
+
+      el.textContent =
+        `${prefix}${value.toLocaleString()}${suffix}`;
+
+      if (progress < 1) {
+        window.requestAnimationFrame(animate);
+      } else {
+        setFinalValue(el);
+      }
+    };
+
+    /*
+     * The final value remains in the HTML for
+     * crawlers until the element becomes visible.
+     */
+    el.textContent = `${prefix}0${suffix}`;
+
+    window.requestAnimationFrame(animate);
+  };
+
+  if ("IntersectionObserver" in window) {
+    const queueObserver = new IntersectionObserver(
+      (entries, observer) => {
         entries.forEach((entry) => {
-
           if (!entry.isIntersecting) return;
 
-          const el = entry.target;
-
-          const target =
-            parseInt(
-              el.dataset.count,
-              10
-            );
-
-          const duration = 1400;
-
-          let startTime = null;
-
-          function animate(ts) {
-
-            if (!startTime) {
-              startTime = ts;
-            }
-
-            const progress =
-              Math.min(
-                (ts - startTime) /
-                duration,
-                1
-              );
-
-            const value =
-              Math.floor(
-                progress * target
-              );
-
-            el.textContent = value;
-
-            if (progress < 1) {
-              requestAnimationFrame(
-                animate
-              );
-            } else {
-              el.textContent =
-                target;
-            }
-          }
-
-          requestAnimationFrame(
-            animate
-          );
-
-          queueObserver.unobserve(
-            el
-          );
-
+          animateMetric(entry.target);
+          observer.unobserve(entry.target);
         });
-
       },
       {
         threshold: 0.4
       }
     );
 
-  queueMetrics.forEach((metric) => {
-    queueObserver.observe(metric);
-  });
+    queueMetrics.forEach((metric) => {
+      queueObserver.observe(metric);
+    });
+  } else {
+    queueMetrics.forEach(animateMetric);
+  }
+}
 
 }
     animatePipeline();
