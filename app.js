@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  /* ==========================================
+     HEADER + MOBILE NAVIGATION
+  ========================================== */
+
   var header = document.getElementById('site-header');
   var hamburger = document.getElementById('hamburger');
   var overlay = document.getElementById('mobile-nav-overlay');
@@ -16,13 +20,17 @@
     }
   }
 
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', onScroll, {
+    passive: true
+  });
+
   onScroll();
 
   function toggleMenu() {
     if (!hamburger || !overlay) return;
 
     var open = hamburger.classList.toggle('active');
+
     overlay.classList.toggle('open', open);
     hamburger.setAttribute('aria-expanded', String(open));
     document.body.style.overflow = open ? 'hidden' : '';
@@ -41,106 +49,267 @@
     hamburger.addEventListener('click', toggleMenu);
   }
 
-  mobileLinks.forEach(function (link) {
+  Array.prototype.forEach.call(mobileLinks, function (link) {
     link.addEventListener('click', closeMenu);
   });
+
+
+  /* ==========================================
+     SCROLL REVEALS
+  ========================================== */
 
   var reveals = document.querySelectorAll('.reveal');
 
   if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var delay = parseInt(entry.target.getAttribute('data-delay') || '0', 10);
+    var revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
 
-          setTimeout(function () {
+          var delay = parseInt(
+            entry.target.getAttribute('data-delay') || '0',
+            10
+          );
+
+          window.setTimeout(function () {
             entry.target.classList.add('visible');
           }, delay);
 
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      }
+    );
 
-    reveals.forEach(function (el) {
-      observer.observe(el);
+    Array.prototype.forEach.call(reveals, function (element) {
+      revealObserver.observe(element);
     });
   } else {
-    reveals.forEach(function (el) {
-      el.classList.add('visible');
+    Array.prototype.forEach.call(reveals, function (element) {
+      element.classList.add('visible');
     });
   }
 
-  var progressBars = document.querySelectorAll('.progress-fill[data-width]');
+
+  /* ==========================================
+     PROGRESS BARS
+  ========================================== */
+
+  var progressBars = document.querySelectorAll(
+    '.progress-fill[data-width]'
+  );
 
   if ('IntersectionObserver' in window) {
-    var barObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var w = entry.target.getAttribute('data-width');
-          entry.target.style.width = w + '%';
-          barObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
+    var barObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
 
-    progressBars.forEach(function (bar) {
+          var width = entry.target.getAttribute('data-width');
+
+          entry.target.style.width = width + '%';
+          barObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.3
+      }
+    );
+
+    Array.prototype.forEach.call(progressBars, function (bar) {
       barObserver.observe(bar);
     });
   } else {
-    progressBars.forEach(function (bar) {
-      bar.style.width = bar.getAttribute('data-width') + '%';
+    Array.prototype.forEach.call(progressBars, function (bar) {
+      bar.style.width =
+        bar.getAttribute('data-width') + '%';
     });
   }
 
-  var metricValues = document.querySelectorAll('.metric-value[data-count]');
 
-  if (metricValues.length && 'IntersectionObserver' in window) {
-    var metricObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
+  /* ==========================================
+     EXPERIENCE METRIC COUNTERS
+  ========================================== */
 
-        var el = entry.target;
-        var target = parseInt(el.getAttribute('data-count'), 10);
-        var suffix = el.getAttribute('data-suffix') || '+';
-        var duration = 1800;
-        var startTime = null;
+  var metricValues = document.querySelectorAll(
+    '.metric-value[data-count]'
+  );
 
-        function animate(timestamp) {
-          if (!startTime) startTime = timestamp;
+  var prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-          var progress = Math.min((timestamp - startTime) / duration, 1);
-          var value = Math.floor(progress * target);
+  function getMetricSuffix(element) {
+    var specifiedSuffix =
+      element.getAttribute('data-suffix');
 
-          el.textContent = value + suffix;
+    if (specifiedSuffix !== null) {
+      return specifiedSuffix;
+    }
 
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          } else {
-            el.textContent = target + suffix;
-          }
+    /*
+     * Extract a suffix already present in the HTML.
+     * Examples:
+     * 10+     -> +
+     * 800TB+  -> TB+
+     */
+    var originalText = element.textContent.trim();
+    var suffixMatch = originalText.match(/[^\d,.]+$/);
+
+    return suffixMatch ? suffixMatch[0] : '+';
+  }
+
+  function setMetricFinalValue(element) {
+    var target = parseInt(
+      element.getAttribute('data-count'),
+      10
+    );
+
+    if (!Number.isFinite(target)) return;
+
+    var suffix = getMetricSuffix(element);
+
+    element.textContent =
+      target.toLocaleString() + suffix;
+  }
+
+  function animateMetric(element) {
+    if (element.getAttribute('data-animated') === 'true') {
+      return;
+    }
+
+    var target = parseInt(
+      element.getAttribute('data-count'),
+      10
+    );
+
+    if (!Number.isFinite(target)) return;
+
+    var suffix = getMetricSuffix(element);
+    var duration = parseInt(
+      element.getAttribute('data-duration') || '1800',
+      10
+    );
+
+    element.setAttribute('data-animated', 'true');
+
+    if (prefersReducedMotion) {
+      setMetricFinalValue(element);
+      return;
+    }
+
+    var startTime = null;
+
+    /*
+     * The final number should already be present in the HTML
+     * so crawlers and AI readers can access it.
+     * It changes to zero only when the browser begins animating.
+     */
+    element.textContent = '0' + suffix;
+
+    function animate(timestamp) {
+      if (startTime === null) {
+        startTime = timestamp;
+      }
+
+      var progress = Math.min(
+        (timestamp - startTime) / duration,
+        1
+      );
+
+      /*
+       * Ease-out animation.
+       */
+      var easedProgress =
+        1 - Math.pow(1 - progress, 3);
+
+      var value = Math.floor(
+        easedProgress * target
+      );
+
+      element.textContent =
+        value.toLocaleString() + suffix;
+
+      if (progress < 1) {
+        window.requestAnimationFrame(animate);
+      } else {
+        setMetricFinalValue(element);
+      }
+    }
+
+    window.requestAnimationFrame(animate);
+  }
+
+  if (metricValues.length) {
+    if ('IntersectionObserver' in window) {
+      var metricObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            animateMetric(entry.target);
+            metricObserver.unobserve(entry.target);
+          });
+        },
+        {
+          threshold: 0.4
+        }
+      );
+
+      Array.prototype.forEach.call(
+        metricValues,
+        function (metric) {
+          metricObserver.observe(metric);
+        }
+      );
+    } else {
+      Array.prototype.forEach.call(
+        metricValues,
+        function (metric) {
+          setMetricFinalValue(metric);
+        }
+      );
+    }
+  }
+
+
+  /* ==========================================
+     SMOOTH ANCHOR SCROLLING
+  ========================================== */
+
+  var anchorLinks =
+    document.querySelectorAll('a[href^="#"]');
+
+  Array.prototype.forEach.call(
+    anchorLinks,
+    function (link) {
+      link.addEventListener('click', function (event) {
+        var href = this.getAttribute('href');
+
+        if (!href || href === '#') return;
+
+        var target;
+
+        try {
+          target = document.querySelector(href);
+        } catch (error) {
+          return;
         }
 
-        requestAnimationFrame(animate);
-        metricObserver.unobserve(el);
-      });
-    }, { threshold: 0.4 });
+        if (!target) return;
 
-    metricValues.forEach(function (metric) {
-      metricObserver.observe(metric);
-    });
-  }
+        event.preventDefault();
 
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var href = this.getAttribute('href');
-      var target = document.querySelector(href);
+        var offset = header
+          ? header.offsetHeight + 20
+          : 20;
 
-      if (target) {
-        e.preventDefault();
-
-        var offset = header ? header.offsetHeight + 20 : 20;
-        var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        var top =
+          target.getBoundingClientRect().top +
+          window.pageYOffset -
+          offset;
 
         window.scrollTo({
           top: top,
@@ -148,206 +317,184 @@
         });
 
         closeMenu();
-      }
-    });
-  });
-
-  var sections = document.querySelectorAll('section[id]');
-  var navLinks = document.querySelectorAll('.nav a[href^="#"]');
-
-  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
-    var navObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-
-        var id = entry.target.id;
-
-        navLinks.forEach(function (link) {
-          link.classList.remove('active');
-
-          if (link.getAttribute('href') === '#' + id) {
-            link.classList.add('active');
-          }
-        });
       });
-    }, { threshold: 0.35 });
+    }
+  );
 
-    sections.forEach(function (section) {
-      navObserver.observe(section);
-    });
+
+  /* ==========================================
+     ACTIVE NAVIGATION STATE
+  ========================================== */
+
+  var sections =
+    document.querySelectorAll('section[id]');
+
+  var navLinks =
+    document.querySelectorAll('.nav a[href^="#"]');
+
+  if (
+    sections.length &&
+    navLinks.length &&
+    'IntersectionObserver' in window
+  ) {
+    var navObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+
+          var id = entry.target.id;
+
+          Array.prototype.forEach.call(
+            navLinks,
+            function (link) {
+              link.classList.remove('active');
+
+              if (
+                link.getAttribute('href') ===
+                '#' + id
+              ) {
+                link.classList.add('active');
+              }
+            }
+          );
+        });
+      },
+      {
+        threshold: 0.35
+      }
+    );
+
+    Array.prototype.forEach.call(
+      sections,
+      function (section) {
+        navObserver.observe(section);
+      }
+    );
   }
 
-  document.querySelectorAll('.glow-card').forEach(function (card) {
-    if (card.querySelector('.card-glow')) return;
 
-    var glow = document.createElement('div');
-    glow.classList.add('card-glow');
-    card.appendChild(glow);
+  /* ==========================================
+     CARD GLOW EFFECT
+  ========================================== */
 
-    card.addEventListener('mousemove', function (e) {
-      var rect = card.getBoundingClientRect();
+  var glowCards =
+    document.querySelectorAll('.glow-card');
 
-      var x = e.clientX - rect.left;
-      var y = e.clientY - rect.top;
+  Array.prototype.forEach.call(
+    glowCards,
+    function (card) {
+      if (card.querySelector('.card-glow')) return;
 
-      glow.style.left = x + 'px';
-      glow.style.top = y + 'px';
-    });
-  });
+      var glow = document.createElement('div');
 
-  var pipelineDots = document.querySelectorAll('.pipeline-track .track-icon');
+      glow.classList.add('card-glow');
+      card.appendChild(glow);
+
+      card.addEventListener(
+        'mousemove',
+        function (event) {
+          var rect = card.getBoundingClientRect();
+
+          var x = event.clientX - rect.left;
+          var y = event.clientY - rect.top;
+
+          glow.style.left = x + 'px';
+          glow.style.top = y + 'px';
+        }
+      );
+    }
+  );
+
+
+  /* ==========================================
+     PIPELINE ANIMATION
+  ========================================== */
+
+  var pipelineDots = document.querySelectorAll(
+    '.pipeline-track .track-icon'
+  );
 
   if (pipelineDots.length) {
     var activeIndex = 0;
 
     function animatePipeline() {
-      pipelineDots.forEach(function (dot) {
-        dot.classList.remove('pipeline-active');
-      });
+      Array.prototype.forEach.call(
+        pipelineDots,
+        function (dot) {
+          dot.classList.remove('pipeline-active');
+        }
+      );
 
-      pipelineDots[activeIndex].classList.add('pipeline-active');
+      pipelineDots[activeIndex].classList.add(
+        'pipeline-active'
+      );
 
-      activeIndex++;
+      activeIndex += 1;
 
       if (activeIndex >= pipelineDots.length) {
         activeIndex = 0;
       }
     }
-/* ==========================================
-   HERO QUEUE COUNTERS
-========================================== */
 
-const queueMetrics = document.querySelectorAll(
-  ".queue-metric[data-count]"
-);
-
-if (queueMetrics.length) {
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  const setFinalValue = (el) => {
-    const target = Number(el.dataset.count);
-    const prefix = el.dataset.prefix || "";
-    const suffix = el.dataset.suffix || "";
-
-    if (!Number.isFinite(target)) return;
-
-    el.textContent =
-      `${prefix}${target.toLocaleString()}${suffix}`;
-  };
-
-  const animateMetric = (el) => {
-    if (el.dataset.animated === "true") return;
-
-    const target = Number(el.dataset.count);
-    const duration = Number(el.dataset.duration) || 1400;
-    const prefix = el.dataset.prefix || "";
-    const suffix = el.dataset.suffix || "";
-
-    if (!Number.isFinite(target)) return;
-
-    el.dataset.animated = "true";
-
-    if (prefersReducedMotion) {
-      setFinalValue(el);
-      return;
-    }
-
-    let startTime = null;
-
-    const animate = (timestamp) => {
-      if (startTime === null) {
-        startTime = timestamp;
-      }
-
-      const progress = Math.min(
-        (timestamp - startTime) / duration,
-        1
-      );
-
-      const easedProgress =
-        1 - Math.pow(1 - progress, 3);
-
-      const value = Math.floor(
-        easedProgress * target
-      );
-
-      el.textContent =
-        `${prefix}${value.toLocaleString()}${suffix}`;
-
-      if (progress < 1) {
-        window.requestAnimationFrame(animate);
-      } else {
-        setFinalValue(el);
-      }
-    };
-
-    /*
-     * The final value remains in the HTML for
-     * crawlers until the element becomes visible.
-     */
-    el.textContent = `${prefix}0${suffix}`;
-
-    window.requestAnimationFrame(animate);
-  };
-
-  if ("IntersectionObserver" in window) {
-    const queueObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-
-          animateMetric(entry.target);
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        threshold: 0.4
-      }
-    );
-
-    queueMetrics.forEach((metric) => {
-      queueObserver.observe(metric);
-    });
-  } else {
-    queueMetrics.forEach(animateMetric);
-  }
-}
-
-}
     animatePipeline();
-    setInterval(animatePipeline, 1200);
+
+    window.setInterval(
+      animatePipeline,
+      1200
+    );
   }
 
-document.querySelectorAll("[data-hero-video]").forEach((shell) => {
-  const video = shell.querySelector("video");
-  const playButton = shell.querySelector(".hero-video-play");
 
-  if (!video || !playButton) return;
+  /* ==========================================
+     HERO VIDEO
+  ========================================== */
 
-  playButton.addEventListener("click", async () => {
-    try {
-      await video.play();
-    } catch (error) {
-      console.warn("The hero video could not begin playing.", error);
+  var heroVideoShells =
+    document.querySelectorAll('[data-hero-video]');
+
+  Array.prototype.forEach.call(
+    heroVideoShells,
+    function (shell) {
+      var video = shell.querySelector('video');
+      var playButton =
+        shell.querySelector('.hero-video-play');
+
+      if (!video || !playButton) return;
+
+      playButton.addEventListener(
+        'click',
+        function () {
+          var playPromise = video.play();
+
+          if (
+            playPromise &&
+            typeof playPromise.catch === 'function'
+          ) {
+            playPromise.catch(function (error) {
+              console.warn(
+                'The hero video could not begin playing.',
+                error
+              );
+            });
+          }
+        }
+      );
+
+      video.addEventListener('play', function () {
+        shell.classList.add('is-playing');
+      });
+
+      video.addEventListener('pause', function () {
+        if (!video.ended) {
+          shell.classList.remove('is-playing');
+        }
+      });
+
+      video.addEventListener('ended', function () {
+        shell.classList.remove('is-playing');
+        video.currentTime = 0;
+      });
     }
-  });
+  );
 
-  video.addEventListener("play", () => {
-    shell.classList.add("is-playing");
-  });
-
-  video.addEventListener("pause", () => {
-    if (!video.ended) {
-      shell.classList.remove("is-playing");
-    }
-  });
-
-  video.addEventListener("ended", () => {
-    shell.classList.remove("is-playing");
-    video.currentTime = 0;
-  });
-});
-  
 })();
