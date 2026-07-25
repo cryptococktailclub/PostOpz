@@ -41,3 +41,7 @@ Run this once only. It gives the named user administrator access to the PostOpz 
 After applying the alpha schema and confirming that you can sign in at `/console`, apply `supabase/migrations/20260725201500_console_operator_setup.sql` in a **new** SQL Editor query.
 
 This small follow-up migration lets Console administrators and operators add production records and register *pending*, read-only integration connections. It deliberately does not save any provider key, secret, token, or password in Supabase; it also does not connect to a provider or enable any migration job.
+
+## Add editorial-platform connection types
+
+Apply `supabase/migrations/20260725204500_console_editorial_providers.sql` after the two migrations above to add **LucidLink**, **Avid Media Composer**, **Adobe Premiere Pro**, and **DaVinci Resolve** to the pending-connection list. This is catalog-only: it does not provide a connector, API access, or access to workstations.

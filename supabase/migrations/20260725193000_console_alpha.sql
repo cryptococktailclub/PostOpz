@@ -6,7 +6,8 @@ create extension if not exists pgcrypto;
 
 create type public.console_role as enum ('viewer', 'operator', 'approver', 'admin');
 create type public.integration_provider as enum (
-  'iconik', 'google_drive', 'frame_io', 'masv', 'slack', 'aws_s3', 'backblaze_b2', 'wasabi'
+  'iconik', 'google_drive', 'frame_io', 'masv', 'slack', 'aws_s3', 'backblaze_b2', 'wasabi',
+  'lucidlink', 'avid_media_composer', 'adobe_premiere_pro', 'davinci_resolve'
 );
 create type public.integration_status as enum ('pending', 'healthy', 'degraded', 'disconnected');
 create type public.activity_kind as enum (
