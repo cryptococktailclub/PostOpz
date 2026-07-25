@@ -25,10 +25,11 @@ Use a password manager to distribute this credential. Rotate it immediately if a
 
 ## Required before data/integrations
 
-1. Create a Supabase project, then configure PostOpz Console redirect URLs and secrets in Netlify.
-2. Replace this shared Basic Auth gate with Supabase Auth plus organization-scoped RLS and role permissions.
-3. Create provider OAuth apps/API credentials with least-privilege, read-only access; begin with non-production/test data.
-4. Add webhook verification, idempotent ingestion, encrypted credential references, audit logs, and a durable job queue before enabling any migration workflow.
+1. Create a Supabase project, then configure `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, and `SUPABASE_SECRET_KEY` in Netlify as Functions-scoped secrets. Set Preview values first; add Production values only when the Supabase-backed release is approved.
+2. Apply the schema in `supabase/migrations/20260725193000_console_alpha.sql` through Supabase SQL Editor. The operational instructions are in `supabase/README.md`.
+3. Replace this shared Basic Auth gate with Supabase Auth plus organization-scoped RLS and role permissions.
+4. Create provider OAuth apps/API credentials with least-privilege, read-only access; begin with non-production/test data.
+5. Add webhook verification, idempotent ingestion, encrypted credential references, audit logs, and a durable job queue before enabling any migration workflow.
 
 ## Migration policy for alpha
 
