@@ -35,3 +35,9 @@ join auth.users on auth.users.email = 'YOUR-CONSOLE-EMAIL@example.com';
 ```
 
 Run this once only. It gives the named user administrator access to the PostOpz organization.
+
+## Enable the Console operator setup screen
+
+After applying the alpha schema and confirming that you can sign in at `/console`, apply `supabase/migrations/20260725201500_console_operator_setup.sql` in a **new** SQL Editor query.
+
+This small follow-up migration lets Console administrators and operators add production records and register *pending*, read-only integration connections. It deliberately does not save any provider key, secret, token, or password in Supabase; it also does not connect to a provider or enable any migration job.
