@@ -11,7 +11,12 @@ The migration creates the Console data model, organization-scoped Row Level Secu
 
 ## Create the first Console user
 
-Do this only after the Console sign-in page has been added in a later pull request. The preferred route is an email invitation through Supabase Authentication. Do not create credentials or share API keys through source control.
+1. In Supabase, open **Authentication** → **Users**.
+2. Select **Add user** → **Create new user**.
+3. Use the operator's email address and a unique password from a password manager. Enable automatic confirmation if Supabase presents that option.
+4. Save the user, then continue with the organization bootstrap query below.
+
+The Console sign-in page is still protected by the separate Netlify private-access gate. Do not create credentials or share API keys through source control.
 
 ## Bootstrap the PostOpz organization
 
