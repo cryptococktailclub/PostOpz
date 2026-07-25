@@ -1,2 +1,17 @@
 [build]
   publish = "."
+
+# Keep the internal Console on its permanent route while serving it through a
+# server-side function. The function fails closed until its password secret is
+# configured in Netlify.
+[[redirects]]
+  from = "/console"
+  to = "/.netlify/functions/console"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/console/"
+  to = "/.netlify/functions/console"
+  status = 200
+  force = true
