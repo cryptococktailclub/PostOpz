@@ -15,3 +15,12 @@
   to = "/.netlify/functions/console"
   status = 200
   force = true
+
+# Frame.io requires a public HTTPS receiver for signed webhook deliveries.
+# This endpoint is protected by strict timestamp and HMAC verification in the
+# function itself; it is not a browser-accessible Console page.
+[[redirects]]
+  from = "/console/webhooks/frameio"
+  to = "/.netlify/functions/frameio-webhook"
+  status = 200
+  force = true
