@@ -38,7 +38,25 @@
   force = true
 
 [[redirects]]
-  from = "/console/frameio/select-workspace"
-  to = "/.netlify/functions/frameio-oauth?mode=select"
-  status = 200
-  force = true
+from = "/console/frameio/select-workspace"
+to = "/.netlify/functions/frameio-oauth?mode=select"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/connect"
+to = "/.netlify/functions/google-drive-oauth?mode=start"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/callback"
+to = "/.netlify/functions/google-drive-oauth?mode=callback"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/index"
+to = "/.netlify/functions/google-drive-oauth?mode=index"
+status = 200
+force = true

@@ -1,0 +1,121 @@
+const crypto = require('crypto');
+
+const SESSION_COOKIE = 'postopz_console_access';
+const STATE_COOKIE = 'postopz_google_drive_oauth_state';
+const TOKEN_COOKIE = 'postopz_google_drive_oauth_token';
+const COOKIE_SECONDS = 600;
+const DRIVE_METADATA_SCOPE = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+const securityHeaders = {
+  'Cache-Control': 'private, no-store, max-age=0',
+  'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",
+  'Referrer-Policy': 'no-referrer',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-Robots-Tag': 'noindex, nofollow, noarchive'
+};
+
+function response(statusCode, body, headers = {}) { return { statusCode, headers: { ...securityHeaders, ...headers }, body }; }
+function textResponse(statusCode, body, headers = {}) { return response(statusCode, body, { 'Content-Type': 'text/plain; charset=utf-8', ...headers }); }
+function escapeHtml(value) { return String(value || '').replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character])); }
+function header(headers, name) { return headers[name] || headers[name.toLowerCase()] || headers[name.toUpperCase()] || ''; }
+function safeEqual(actual, expected) { const a = Buffer.from(String(actual), 'utf8'); const b = Buffer.from(String(expected), 'utf8'); return a.length === b.length && crypto.timingSafeEqual(a, b); }
+function readCookies(headers) { return (header(headers, 'cookie') || '').split(';').reduce((result, part) => { const index = part.indexOf('='); if (index >= 0) result[part.slice(0, index).trim()] = decodeURIComponent(part.slice(index + 1).trim()); return result; }, {}); }
+function cookie(name, value, maxAge = COOKIE_SECONDS) { return `${name}=${encodeURIComponent(value)}; Path=/console/google; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`; }
+function clearCookie(name) { return cookie(name, '', 0); }
+function encryptionKey(password) { return crypto.createHash('sha256').update(password, 'utf8').digest(); }
+function seal(value, password) { const iv = crypto.randomBytes(12); const cipher = crypto.createCipheriv('aes-256-gcm', encryptionKey(password), iv); const encrypted = Buffer.concat([cipher.update(JSON.stringify(value), 'utf8'), cipher.final()]); return Buffer.concat([iv, cipher.getAuthTag(), encrypted]).toString('base64url'); }
+function unseal(value, password) { try { const data = Buffer.from(value, 'base64url'); const decipher = crypto.createDecipheriv('aes-256-gcm', encryptionKey(password), data.subarray(0, 12)); decipher.setAuthTag(data.subarray(12, 28)); return JSON.parse(Buffer.concat([decipher.update(data.subarray(28)), decipher.final()]).toString('utf8')); } catch (_) { return null; } }
+function requestToken(tokenCookie, password) { return crypto.createHmac('sha256', password).update(tokenCookie, 'utf8').digest('base64url'); }
+
+function hasPrivateGate(event, password) {
+  const authorization = header(event.headers || {}, 'authorization');
+  if (!authorization.startsWith('Basic ')) return false;
+  try { const decoded = Buffer.from(authorization.slice(6), 'base64').toString('utf8'); const index = decoded.indexOf(':'); return index >= 0 && safeEqual(decoded.slice(0, index), 'operator') && safeEqual(decoded.slice(index + 1), password); } catch (_) { return false; }
+}
+
+function config() {
+  const privateGatePassword = process.env.POSTOPZ_CONSOLE_ALPHA_PASSWORD;
+  const clientId = process.env.POSTOPZ_GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.POSTOPZ_GOOGLE_CLIENT_SECRET;
+  const redirectUri = process.env.POSTOPZ_GOOGLE_REDIRECT_URI;
+  const connectionId = process.env.POSTOPZ_GOOGLE_CONNECTION_ID;
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_PUBLISHABLE_KEY;
+  const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
+  if (!privateGatePassword || !clientId || !clientSecret || !redirectUri || !connectionId || !supabaseUrl || !supabaseKey || !supabaseSecretKey) return null;
+  return { privateGatePassword, clientId, clientSecret, redirectUri, connectionId, supabaseUrl: supabaseUrl.replace(/\/$/, ''), supabaseKey, supabaseSecretKey };
+}
+
+async function supabase(configured, path, options = {}) {
+  const result = await fetch(`${configured.supabaseUrl}${path}`, { method: options.method || 'GET', headers: { apikey: options.accessToken ? configured.supabaseKey : configured.supabaseSecretKey, Authorization: `Bearer ${options.accessToken || configured.supabaseSecretKey}`, ...(options.headers || {}) }, body: options.body });
+  const text = await result.text(); let data = null; try { data = text ? JSON.parse(text) : null; } catch (_) { data = null; }
+  return { ok: result.ok, status: result.status, data };
+}
+
+async function currentUser(configured, accessToken) { const result = await supabase(configured, '/auth/v1/user', { accessToken }); return result.ok ? result.data : null; }
+async function googleFiles(accessToken) {
+  const params = new URLSearchParams({ pageSize: '50', orderBy: 'modifiedTime desc', q: 'trashed = false', fields: 'files(id,name,mimeType,modifiedTime,createdTime,size,webViewLink)' });
+  const result = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`, { headers: { Authorization: `Bearer ${accessToken}` } });
+  const text = await result.text(); let data = null; try { data = text ? JSON.parse(text) : null; } catch (_) { data = null; }
+  return { ok: result.ok, data };
+}
+
+function page(title, contents) {
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><title>${escapeHtml(title)}</title><style>:root{color-scheme:dark;--bg:#05070b;--panel:#111827;--line:rgba(255,255,255,.12);--text:#f7f9fe;--muted:#a7afbe;--cyan:#00d9ff;--blue:#1976ff;--red:#ff8d8d}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 84% 0,rgba(25,118,255,.2),transparent 30rem),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,sans-serif}.card{width:min(620px,calc(100% - 32px));padding:32px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,rgba(23,31,47,.96),rgba(10,13,20,.98))}.brand{color:var(--cyan);font-size:.75rem;font-weight:800;letter-spacing:.09em}h1{margin:18px 0 9px;font-size:1.8rem;letter-spacing:-.04em}p{color:var(--muted)}button{margin-top:22px;padding:11px 14px;border:0;border-radius:9px;background:linear-gradient(135deg,var(--blue),#7c3cff);color:#fff;font:700 15px inherit;cursor:pointer}.warning{padding:12px;border:1px solid rgba(255,141,141,.35);border-radius:10px;background:rgba(255,141,141,.08);color:var(--red)}</style></head><body><main class="card"><div class="brand">POSTOPZ CONSOLE · INTERNAL ALPHA</div>${contents}</main></body></html>`;
+}
+
+async function authorizedConnection(configured, user) {
+  const connection = await supabase(configured, `/rest/v1/integration_connections?id=eq.${encodeURIComponent(configured.connectionId)}&provider=eq.google_drive&select=id,organization_id,configuration`);
+  if (!connection.ok || !Array.isArray(connection.data) || connection.data.length !== 1) return null;
+  const membership = await supabase(configured, `/rest/v1/organization_members?organization_id=eq.${encodeURIComponent(connection.data[0].organization_id)}&user_id=eq.${encodeURIComponent(user.id)}&select=role`);
+  if (!membership.ok || !Array.isArray(membership.data) || !membership.data.some((item) => ['operator', 'admin'].includes(item.role))) return null;
+  return connection.data[0];
+}
+
+async function recordSnapshot(configured, connection, user, files) {
+  const observedAt = new Date().toISOString();
+  const resources = files.map((file) => ({ organization_id: connection.organization_id, integration_connection_id: connection.id, provider: 'google_drive', external_id: file.id, resource_type: file.mimeType === 'application/vnd.google-apps.document' ? 'google_document' : 'drive_file', name: String(file.name || 'Untitled file').slice(0, 240), external_url: file.webViewLink || null, metadata: { mime_type: file.mimeType || null, modified_time: file.modifiedTime || null, created_time: file.createdTime || null, size_bytes: file.size || null }, observed_at: observedAt }));
+  if (resources.length) {
+    const upsert = await supabase(configured, '/rest/v1/external_resources?on_conflict=organization_id,provider,external_id,resource_type', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify(resources) });
+    if (!upsert.ok) throw new Error('resource-index');
+  }
+  const sourceEventId = crypto.randomUUID();
+  const event = await supabase(configured, '/rest/v1/source_events', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ id: sourceEventId, organization_id: connection.organization_id, integration_connection_id: connection.id, provider: 'google_drive', provider_event_id: `google-drive:snapshot:${observedAt}`, occurred_at: observedAt, payload: { indexed_resource_count: resources.length, scope: 'drive.metadata.readonly' }, payload_sha256: crypto.createHash('sha256').update(resources.map((item) => item.external_id).join('|')).digest('hex') }) });
+  if (!event.ok) throw new Error('source-event');
+  const activity = await supabase(configured, '/rest/v1/activity_items', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: connection.organization_id, source_event_id: sourceEventId, kind: 'document_changed', title: 'Google Drive metadata indexed', detail: `${resources.length} accessible file records indexed (metadata only).`, severity: 'info', occurred_at: observedAt }) });
+  if (!activity.ok) throw new Error('activity');
+  await Promise.all([
+    supabase(configured, `/rest/v1/integration_connections?id=eq.${encodeURIComponent(connection.id)}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'healthy', last_synced_at: observedAt, last_error_at: null, last_error_summary: null, configuration: { ...(connection.configuration || {}), access_mode: 'metadata_readonly', last_snapshot_count: resources.length } }) }),
+    supabase(configured, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: connection.organization_id, actor_id: user.id, action: 'google_drive.snapshot.indexed', entity_type: 'integration_connection', entity_id: connection.id, metadata: { indexed_resource_count: resources.length } }) })
+  ]);
+}
+
+exports.handler = async (event) => {
+  const configured = config();
+  if (!configured) return textResponse(503, 'Google Drive setup is waiting for its Netlify connection values.');
+  if (!hasPrivateGate(event, configured.privateGatePassword)) return textResponse(401, 'Authentication is required.', { 'WWW-Authenticate': 'Basic realm="PostOpz Console", charset="UTF-8"' });
+  const cookies = readCookies(event.headers || {}); const user = await currentUser(configured, cookies[SESSION_COOKIE]);
+  if (!user) return textResponse(401, 'Sign in to Console before connecting Google Drive.');
+  const mode = (event.queryStringParameters || {}).mode || 'start';
+  if (mode === 'start') {
+    const state = crypto.randomBytes(32).toString('base64url'); const authorize = new URL('https://accounts.google.com/o/oauth2/v2/auth');
+    authorize.searchParams.set('client_id', configured.clientId); authorize.searchParams.set('redirect_uri', configured.redirectUri); authorize.searchParams.set('response_type', 'code'); authorize.searchParams.set('scope', DRIVE_METADATA_SCOPE); authorize.searchParams.set('access_type', 'online'); authorize.searchParams.set('prompt', 'select_account'); authorize.searchParams.set('state', state);
+    return response(303, '', { Location: authorize.toString(), 'Set-Cookie': cookie(STATE_COOKIE, state) });
+  }
+  if (mode === 'callback') {
+    const query = event.queryStringParameters || {}; if (!query.code || !query.state || !cookies[STATE_COOKIE] || !safeEqual(query.state, cookies[STATE_COOKIE])) return textResponse(400, 'Google authorization could not be verified. Start again from Console.');
+    const tokenResponse = await fetch('https://oauth2.googleapis.com/token', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ code: query.code, client_id: configured.clientId, client_secret: configured.clientSecret, redirect_uri: configured.redirectUri, grant_type: 'authorization_code' }).toString() });
+    const token = await tokenResponse.json().catch(() => null); if (!tokenResponse.ok || !token || !token.access_token) return response(400, page('Google authorization failed', '<h1>Authorization failed</h1><p class="warning">Google did not return a usable access token. Confirm the OAuth client and redirect URI, then try again.</p>'), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': clearCookie(STATE_COOKIE) });
+    const tokenCookie = seal({ accessToken: token.access_token, expiresAt: Date.now() + COOKIE_SECONDS * 1000 }, configured.privateGatePassword); const formToken = requestToken(tokenCookie, configured.privateGatePassword);
+    return response(200, page('Google Drive connected for a snapshot', `<h1>Index read-only Google Drive metadata</h1><p>Console will read file and Google Doc names, types, modified times, sizes, and Drive links. It will not read document content, create files, move files, edit files, or delete anything.</p><form method="post" action="/console/google/index"><input type="hidden" name="request_token" value="${escapeHtml(formToken)}"><button type="submit">Index current metadata</button></form>`), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': cookie(TOKEN_COOKIE, tokenCookie) });
+  }
+  if (mode === 'index' && event.httpMethod === 'POST') {
+    const raw = event.isBase64Encoded ? Buffer.from(event.body || '', 'base64').toString('utf8') : (event.body || ''); const form = Object.fromEntries(new URLSearchParams(raw)); const tokenCookie = cookies[TOKEN_COOKIE]; const token = tokenCookie && unseal(tokenCookie, configured.privateGatePassword);
+    if (!token || token.expiresAt < Date.now() || !safeEqual(form.request_token || '', requestToken(tokenCookie, configured.privateGatePassword))) return textResponse(400, 'Google authorization has expired. Start again from Console.');
+    const connection = await authorizedConnection(configured, user); if (!connection) return textResponse(403, 'This Console account cannot update the Google Drive connection.');
+    const drive = await googleFiles(token.accessToken); if (!drive.ok) return response(400, page('Google Drive snapshot failed', '<h1>Metadata snapshot failed</h1><p class="warning">Google Drive did not return accessible metadata. Confirm that this Google account has Drive access, then start again.</p>'), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': clearCookie(TOKEN_COOKIE) });
+    try { await recordSnapshot(configured, connection, user, Array.isArray(drive.data && drive.data.files) ? drive.data.files : []); } catch (_) { return textResponse(500, 'Console could not record the Google Drive metadata snapshot.'); }
+    return response(200, page('Google Drive metadata indexed', `<h1>Metadata index complete</h1><p>${Array.isArray(drive.data && drive.data.files) ? drive.data.files.length : 0} accessible file records were indexed. Console stored metadata only; no Google file or document content was read or changed.</p><p><a href="/console">Return to Console</a></p>`), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': clearCookie(TOKEN_COOKIE) });
+  }
+  return textResponse(404, 'Not found.');
+};
