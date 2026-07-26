@@ -248,6 +248,9 @@ async function googleDriveBrowser(headers, password, query = {}) {
   if (Number(token.expiresAt || 0) < Date.now()) return { state: 'expired' };
   const folderId = validGoogleId(query.folder_id) ? String(query.folder_id || 'root') : 'root';
   const documentId = validGoogleId(query.doc_id) && query.doc_id !== 'root' ? String(query.doc_id) : '';
+  const filter = ['all', 'docs', 'files'].includes(String(query.filter || '')) ? String(query.filter) : 'all';
+  const sort = ['name_asc', 'name_desc', 'size_desc', 'size_asc'].includes(String(query.sort || '')) ? String(query.sort) : 'name_asc';
+  const search = String(query.q || '').trim().slice(0, 120);
   const googleRequest = async (url) => {
     const response = await fetch(url, { headers: { Authorization: `Bearer ${token.accessToken}` } });
     const text = await response.text();
@@ -262,16 +265,24 @@ async function googleDriveBrowser(headers, password, query = {}) {
       const document = await googleRequest(`https://docs.googleapis.com/v1/documents/${encodeURIComponent(documentId)}`);
       if (!document.ok || !document.data) return { state: 'error', message: 'Google Docs could not return that document.' };
       const text = (document.data.body && document.data.body.content || []).flatMap((element) => (element.paragraph && element.paragraph.elements || []).map((part) => part.textRun && part.textRun.content || '')).join('').slice(0, 100000);
-      return { state: 'connected', folderId, document: { ...file.data, text }, files: [] };
+      return { state: 'connected', folderId, filter, sort, search, document: { ...file.data, text }, files: [] };
     }
     const queryValue = `'${folderId.replace(/'/g, "\\'")}' in parents and trashed = false`;
     const params = new URLSearchParams({ q: queryValue, pageSize: '100', orderBy: 'folder,name', fields: 'files(id,name,mimeType,modifiedTime,size,webViewLink,parents)' });
     const result = await googleRequest(`https://www.googleapis.com/drive/v3/files?${params}`);
     if (!result.ok) return { state: 'error', message: 'Google Drive could not load this folder.' };
-    return { state: 'connected', folderId, files: Array.isArray(result.data && result.data.files) ? result.data.files : [] };
+    return { state: 'connected', folderId, filter, sort, search, files: Array.isArray(result.data && result.data.files) ? result.data.files : [] };
   } catch (_) {
     return { state: 'error', message: 'Console could not reach Google Drive just now.' };
   }
+}
+
+function fileSize(value) {
+  const bytes = Number(value || 0);
+  if (!Number.isFinite(bytes) || bytes <= 0) return 'Size not reported';
+  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+  const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+  return `${(bytes / 1024 ** index).toFixed(index ? 1 : 0)} ${units[index]}`;
 }
 
 function googleMediaPage(google) {
@@ -282,14 +293,31 @@ function googleMediaPage(google) {
     const parentId = google.document.parents && google.document.parents[0] || google.folderId || 'root';
     return `<section class="page-heading"><p class="eyebrow">Google Drive · Read only</p><h1>${escapeHtml(google.document.name || 'Google Doc')}</h1><p>Viewing live document content in Console. This reading session expires automatically and document text is not retained here.</p></section><div class="drive-toolbar"><a href="/console?view=media&folder_id=${encodeURIComponent(parentId)}">← Back to folder</a>${google.document.webViewLink ? `<a href="${escapeHtml(google.document.webViewLink)}" target="_blank" rel="noopener noreferrer">Open in Google Docs ↗</a>` : ''}</div><article class="document-panel"><pre>${escapeHtml(google.document.text || 'This document has no readable text.')}</pre></article>`;
   }
-  const folders = (google.files || []).filter((file) => file.mimeType === 'application/vnd.google-apps.folder');
-  const files = (google.files || []).filter((file) => file.mimeType !== 'application/vnd.google-apps.folder');
-  const folderCards = folders.length ? folders.map((file) => `<a class="drive-item folder" href="/console?view=media&folder_id=${encodeURIComponent(file.id)}"><span class="file-icon">□</span><strong>${escapeHtml(file.name || 'Untitled folder')}</strong><small>Folder</small></a>`).join('') : '';
+  const matches = (google.files || []).filter((file) => {
+    const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
+    const isDocument = file.mimeType === 'application/vnd.google-apps.document';
+    const nameMatches = !google.search || String(file.name || '').toLocaleLowerCase().includes(google.search.toLocaleLowerCase());
+    return nameMatches && (google.filter === 'all' || (google.filter === 'docs' && isDocument) || (google.filter === 'files' && !isFolder && !isDocument));
+  }).sort((left, right) => {
+    if (google.sort === 'size_desc' || google.sort === 'size_asc') {
+      const direction = google.sort === 'size_desc' ? -1 : 1;
+      return direction * (Number(left.size || -1) - Number(right.size || -1)) || String(left.name || '').localeCompare(String(right.name || ''));
+    }
+    const direction = google.sort === 'name_desc' ? -1 : 1;
+    return direction * String(left.name || '').localeCompare(String(right.name || ''));
+  });
+  const folders = matches.filter((file) => file.mimeType === 'application/vnd.google-apps.folder');
+  const files = matches.filter((file) => file.mimeType !== 'application/vnd.google-apps.folder');
+  const filterOption = (value, label) => `<option value="${value}"${google.filter === value ? ' selected' : ''}>${label}</option>`;
+  const sortOption = (value, label) => `<option value="${value}"${google.sort === value ? ' selected' : ''}>${label}</option>`;
+  const controls = `<form class="drive-controls" method="get" action="/console"><input type="hidden" name="view" value="media"><input type="hidden" name="folder_id" value="${escapeHtml(google.folderId)}"><label>Find by filename<input name="q" value="${escapeHtml(google.search)}" placeholder="Search this folder"></label><label>Show<select name="filter">${filterOption('all', 'Everything')}${filterOption('docs', 'Google Docs')}${filterOption('files', 'Drive files')}</select></label><label>Sort<select name="sort">${sortOption('name_asc', 'Filename A–Z')}${sortOption('name_desc', 'Filename Z–A')}${sortOption('size_desc', 'Largest first')}${sortOption('size_asc', 'Smallest first')}</select></label><button class="button secondary" type="submit">Apply</button></form>${matches.length ? '' : '<div class="empty-state compact drive-empty"><span class="empty-icon">⌕</span><strong>No matching items</strong><p>Try a different filename, content type, or sort.</p></div>'}`;
+  const folderCards = `${controls}${folders.length ? folders.map((file) => `<a class="drive-item folder" href="/console?view=media&folder_id=${encodeURIComponent(file.id)}"><span class="file-icon">□</span><strong>${escapeHtml(file.name || 'Untitled folder')}</strong><small>Folder</small></a>`).join('') : ''}`;
   const fileCards = files.length ? files.map((file) => {
     const isDocument = file.mimeType === 'application/vnd.google-apps.document';
     const href = isDocument ? `/console?view=media&folder_id=${encodeURIComponent(google.folderId)}&doc_id=${encodeURIComponent(file.id)}` : (file.webViewLink || '#');
     const target = isDocument ? '' : ' target="_blank" rel="noopener noreferrer"';
-    return `<a class="drive-item" href="${escapeHtml(href)}"${target}><span class="file-icon ${isDocument ? 'doc' : ''}">${isDocument ? '≡' : '·'}</span><strong>${escapeHtml(file.name || 'Untitled file')}</strong><small>${isDocument ? 'Google Doc' : escapeHtml(file.mimeType || 'Drive file')} · ${escapeHtml(shortDate(file.modifiedTime))}</small></a>`;
+    const details = isDocument ? `Google Doc · ${escapeHtml(shortDate(file.modifiedTime))}` : `${escapeHtml(fileSize(file.size))} · ${escapeHtml(shortDate(file.modifiedTime))}`;
+    return `<a class="drive-item" href="${escapeHtml(href)}"${target}><span class="file-icon ${isDocument ? 'doc' : ''}">${isDocument ? '≡' : '·'}</span><strong>${escapeHtml(file.name || 'Untitled file')}</strong><small>${details}</small></a>`;
   }).join('') : '';
   return `<section class="page-heading"><p class="eyebrow">Google Drive · Read only</p><h1>Media</h1><p>Browsing ${google.folderId === 'root' ? 'your Drive root folder' : 'a Drive folder'} in Console. Select a folder to navigate, or a Google Doc to read it here.</p></section><div class="drive-toolbar"><a href="/console?view=media&folder_id=root">⌂ Drive root</a><a href="/console/google/connect">Refresh session</a></div><section class="drive-browser">${folderCards || fileCards ? `${folderCards}${fileCards}` : '<div class="empty-state compact"><span class="empty-icon">□</span><strong>This folder is empty</strong><p>No accessible folders or files were returned by Google Drive.</p></div>'}</section>`;
 }
@@ -334,10 +362,11 @@ function responsePage(body, headers = {}) {
   const officialLogo = '<img src="/assets/postopz-console-icon.png" alt="" style="position:absolute;top:50%;left:50%;width:320%;height:auto;max-width:none;transform:translate(-50%,-50%)">';
   const logoMarkStyle = 'style="position:relative;overflow:hidden;background:#071220;border:0;box-shadow:0 4px 12px rgba(0,0,0,.22)"';
   const driveStyles = '<style>.drive-connect{display:flex;align-items:center;gap:18px;max-width:720px;padding:28px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(20,28,42,.88),rgba(12,17,26,.92))}.drive-connect.error{border-color:rgba(255,141,154,.35)}.drive-logo{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#4285f4,#34a853);color:white;font-weight:900;font-size:1.25rem}.drive-connect h2{margin:0;font-size:1.1rem}.drive-connect p{margin:6px 0 15px;color:var(--muted);font-size:.82rem}.drive-toolbar{display:flex;justify-content:space-between;gap:12px;margin:0 0 13px}.drive-toolbar a{color:var(--cyan);font-size:.78rem;font-weight:750}.drive-browser{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}.drive-item{display:grid;gap:8px;min-height:136px;padding:16px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(180deg,rgba(20,28,42,.88),rgba(12,17,26,.92));transition:border-color .15s ease,transform .15s ease}.drive-item:hover{border-color:rgba(55,217,255,.55);transform:translateY(-2px)}.file-icon{display:grid;place-items:center;width:29px;height:29px;border-radius:8px;background:rgba(125,132,151,.15);color:#b7c2d4;font-size:1.1rem}.file-icon.doc{background:rgba(66,133,244,.18);color:#77a7ff}.drive-item.folder .file-icon{background:rgba(255,191,91,.15);color:var(--amber)}.drive-item strong{overflow:hidden;font-size:.82rem;text-overflow:ellipsis;white-space:nowrap}.drive-item small{overflow:hidden;color:var(--muted);font-size:.69rem;text-overflow:ellipsis;white-space:nowrap}.document-panel{padding:0;border:1px solid var(--line);border-radius:13px;background:#fbfcfe;color:#152032;box-shadow:0 18px 50px rgba(0,0,0,.18)}.document-panel pre{max-width:100%;min-height:440px;margin:0;padding:clamp(24px,5vw,58px);overflow:auto;white-space:pre-wrap;font:15px/1.7 ui-serif,Georgia,serif}@media(max-width:760px){.drive-connect{align-items:flex-start;padding:20px}.drive-browser{grid-template-columns:1fr 1fr}.drive-toolbar{flex-wrap:wrap}}@media(max-width:420px){.drive-browser{grid-template-columns:1fr}}</style>';
+  const driveControlStyles = '<style>.drive-controls{display:grid;grid-template-columns:minmax(180px,1fr) minmax(120px,.55fr) minmax(140px,.65fr) auto;grid-column:1/-1;gap:9px;align-items:end;padding:13px;border:1px solid var(--line);border-radius:12px;background:rgba(7,12,20,.5)}.drive-controls label{display:grid;gap:4px;color:var(--muted);font-size:.68rem;font-weight:750}.drive-controls input,.drive-controls select{width:100%;min-height:35px;border:1px solid var(--line);border-radius:7px;padding:7px 8px;background:#090e17;color:var(--text);font:inherit;font-size:.76rem}.drive-controls .button{min-height:35px}@media(max-width:760px){.drive-controls{grid-template-columns:1fr 1fr}.drive-controls label:first-of-type{grid-column:1/-1}.drive-controls .button{grid-column:1/-1}.drive-empty{grid-column:1/-1}}</style>';
   const brandedBody = String(body)
     .replaceAll('<span class="brand-mark">PZ</span>', `<span class="brand-mark" ${logoMarkStyle}>${officialLogo}</span>`)
     .replaceAll('<span class="mark">PZ</span>', `<span class="mark" ${logoMarkStyle}>${officialLogo}</span>`)
-    .replace('</head>', `${driveStyles}</head>`);
+    .replace('</head>', `${driveStyles}${driveControlStyles}</head>`);
   return { statusCode: 200, headers: { ...securityHeaders, 'Content-Type': 'text/html; charset=utf-8', ...headers }, body: brandedBody };
 }
 
