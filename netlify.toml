@@ -72,3 +72,15 @@ from = "/console/google/download"
 to = "/.netlify/functions/google-drive-download"
 status = 200
 force = true
+
+[[redirects]]
+from = "/console/workspace-files/upload"
+to = "/.netlify/functions/workspace-files-upload"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/workspace-files/download"
+to = "/.netlify/functions/workspace-files-download"
+status = 200
+force = true
