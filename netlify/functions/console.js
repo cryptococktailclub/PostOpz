@@ -259,10 +259,11 @@ function consolePage(user, dashboard, notice = '', requestToken = '', selectedVi
 }
 
 function responsePage(body, headers = {}) {
-  const officialLogo = '<img src="/assets/postopz-pz-icon.png" alt="PostOpz" style="width:100%;height:100%;display:block;object-fit:cover;border-radius:50%;background:#080b12">';
+  const officialLogo = '<span aria-label="PostOpz" style="font:900 12px/1 Arial,sans-serif;letter-spacing:-1.2px;background:linear-gradient(180deg,#3be6f4 0%,#1687ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent">PZ</span>';
+  const logoMarkStyle = 'style="background:#071220;border:1px solid rgba(58,214,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 4px 12px rgba(0,0,0,.22)"';
   const brandedBody = String(body)
-    .replaceAll('<span class="brand-mark">PZ</span>', `<span class="brand-mark">${officialLogo}</span>`)
-    .replaceAll('<span class="mark">PZ</span>', `<span class="mark">${officialLogo}</span>`);
+    .replaceAll('<span class="brand-mark">PZ</span>', `<span class="brand-mark" ${logoMarkStyle}>${officialLogo}</span>`)
+    .replaceAll('<span class="mark">PZ</span>', `<span class="mark" ${logoMarkStyle}>${officialLogo}</span>`);
   return { statusCode: 200, headers: { ...securityHeaders, 'Content-Type': 'text/html; charset=utf-8', ...headers }, body: brandedBody };
 }
 
