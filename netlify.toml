@@ -45,30 +45,30 @@ force = true
 
 [[redirects]]
 from = "/console/google/connect"
-to = "/.netlify/functions/google-drive-oauth?mode=start"
+to = "/.netlify/functions/google-drive-start"
 status = 200
 force = true
 
 [[redirects]]
 from = "/console/google/callback"
-to = "/.netlify/functions/google-drive-oauth?mode=callback"
+to = "/.netlify/functions/google-drive-callback"
 status = 200
 force = true
 
 [[redirects]]
 from = "/console/google/index"
-to = "/.netlify/functions/google-drive-oauth?mode=index"
+to = "/.netlify/functions/google-drive-index"
 status = 200
 force = true
 
 [[redirects]]
 from = "/console/google/document"
-to = "/.netlify/functions/google-drive-oauth?mode=document"
+to = "/.netlify/functions/google-drive-document"
 status = 200
 force = true
 
 [[redirects]]
 from = "/console/google/download"
-to = "/.netlify/functions/google-drive-oauth?mode=download"
+to = "/.netlify/functions/google-drive-download"
 status = 200
 force = true
