@@ -119,17 +119,25 @@ async function recordSnapshot(configured, connection, user, files) {
 exports.handler = async (event) => {
   const configured = config();
   if (!configured) return textResponse(503, 'Google Drive setup is waiting for its Netlify connection values.');
-  if (!hasPrivateGate(event, configured.privateGatePassword)) return textResponse(401, 'Authentication is required.', { 'WWW-Authenticate': 'Basic realm="PostOpz Console", charset="UTF-8"' });
-  const cookies = readCookies(event.headers || {}); const user = await currentUser(configured, cookies[SESSION_COOKIE]);
-  if (!user) return textResponse(401, 'Sign in to Console before connecting Google Drive.');
+  const cookies = readCookies(event.headers || {});
   const mode = (event.queryStringParameters || {}).mode || 'start';
+  // Browsers do not consistently resend cached Basic Auth credentials after an
+  // external OAuth redirect. The encrypted, short-lived state cookie can carry
+  // this single Drive session through its callback/read-only actions; starting
+  // a flow still requires Basic Auth and every action still requires the active
+  // Console session below.
+  const oauthState = cookies[STATE_COOKIE] && unseal(cookies[STATE_COOKIE], configured.privateGatePassword);
+  const activeGoogleFlow = mode !== 'start' && oauthState && typeof oauthState.state === 'string';
+  if (!hasPrivateGate(event, configured.privateGatePassword) && !activeGoogleFlow) return textResponse(401, 'Authentication is required.', { 'WWW-Authenticate': 'Basic realm="PostOpz Console", charset="UTF-8"' });
+  const user = await currentUser(configured, cookies[SESSION_COOKIE]);
+  if (!user) return textResponse(401, 'Sign in to Console before connecting Google Drive.');
   if (mode === 'start') {
     const state = crypto.randomBytes(32).toString('base64url'); const authorize = new URL('https://accounts.google.com/o/oauth2/v2/auth');
     authorize.searchParams.set('client_id', configured.clientId); authorize.searchParams.set('redirect_uri', configured.redirectUri); authorize.searchParams.set('response_type', 'code'); authorize.searchParams.set('scope', GOOGLE_READ_SCOPES.join(' ')); authorize.searchParams.set('access_type', 'online'); authorize.searchParams.set('prompt', 'select_account'); authorize.searchParams.set('state', state);
-    return response(303, '', { Location: authorize.toString(), 'Set-Cookie': cookie(STATE_COOKIE, state) });
+    return response(303, '', { Location: authorize.toString(), 'Set-Cookie': cookie(STATE_COOKIE, seal({ state }, configured.privateGatePassword)) });
   }
   if (mode === 'callback') {
-    const query = event.queryStringParameters || {}; if (!query.code || !query.state || !cookies[STATE_COOKIE] || !safeEqual(query.state, cookies[STATE_COOKIE])) return textResponse(400, 'Google authorization could not be verified. Start again from Console.');
+    const query = event.queryStringParameters || {}; if (!query.code || !query.state || !oauthState || !safeEqual(query.state, oauthState.state)) return textResponse(400, 'Google authorization could not be verified. Start again from Console.');
     const tokenResponse = await fetch('https://oauth2.googleapis.com/token', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ code: query.code, client_id: configured.clientId, client_secret: configured.clientSecret, redirect_uri: configured.redirectUri, grant_type: 'authorization_code' }).toString() });
     const token = await tokenResponse.json().catch(() => null); if (!tokenResponse.ok || !token || !token.access_token) return response(400, page('Google authorization failed', '<h1>Authorization failed</h1><p class="warning">Google did not return a usable access token. Confirm the OAuth client and redirect URI, then try again.</p>'), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': clearCookie(STATE_COOKIE) });
     const tokenCookie = seal({ accessToken: token.access_token, expiresAt: Date.now() + COOKIE_SECONDS * 1000 }, configured.privateGatePassword); const formToken = requestToken(tokenCookie, configured.privateGatePassword); const drive = await googleFiles(token.access_token);
