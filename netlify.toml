@@ -60,3 +60,15 @@ from = "/console/google/index"
 to = "/.netlify/functions/google-drive-oauth?mode=index"
 status = 200
 force = true
+
+[[redirects]]
+from = "/console/google/document"
+to = "/.netlify/functions/google-drive-oauth?mode=document"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/download"
+to = "/.netlify/functions/google-drive-oauth?mode=download"
+status = 200
+force = true

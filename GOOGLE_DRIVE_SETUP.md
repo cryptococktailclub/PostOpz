@@ -2,11 +2,12 @@
 
 ## What this enables
 
-Console can perform an operator-initiated, **read-only metadata snapshot** of
-the most recently modified Google Drive files accessible to the authorized
-Google account. It records names, file types, modified times, optional sizes,
-and Drive links. It does not read document contents, create files, edit files,
-move files, download media, or delete anything.
+Console can perform an operator-initiated, **read-only Drive session** for the
+most recently modified files accessible to the authorized Google account. It
+records names, file types, modified times, optional sizes, and Drive links. In
+that short session an operator can read Google Doc text or download a file (up
+to 25 MB); document text and tokens are not retained by Console. It cannot
+create files, edit files, move files, or delete anything.
 
 OAuth access exists only in an encrypted short-lived browser cookie while the
 operator performs the snapshot. Console does not retain a Google OAuth token
@@ -52,18 +53,20 @@ in that Functions context.
 
 1. Open the current private Console preview.
 2. Select **Connect Google Drive / Docs**.
-3. Choose the configured Google account and consent only to Drive metadata
-   access.
-4. Review the metadata-only explanation, then select **Index current
-   metadata**.
+3. Choose the configured Google account and consent only to Google Drive and
+   Google Docs **read-only** access.
+4. Read a Google Doc, download a noncritical file (up to 25 MB), or select
+   **Index current metadata**.
 5. Return to Console and confirm the normalized activity item appears.
 
 ## Safety boundaries
 
-- The only requested Google permission is `drive.metadata.readonly`.
+- The only requested Google permissions are `drive.readonly` and
+  `documents.readonly`.
 - No Google OAuth or refresh token is retained after the ten-minute setup
   session.
-- The snapshot does not process file content or send Google data to an AI
-  service.
+- Document content is shown only in the active browser response and is not sent
+  to an AI service or retained in Console.
+- Editing, moving, creating, and deleting remain unavailable in this alpha.
 - Scheduled polling and Drive change notifications are deliberately deferred
   until the token-vault and consent-refresh workflow are reviewed.
