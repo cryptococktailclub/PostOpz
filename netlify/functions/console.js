@@ -259,7 +259,11 @@ function consolePage(user, dashboard, notice = '', requestToken = '', selectedVi
 }
 
 function responsePage(body, headers = {}) {
-  return { statusCode: 200, headers: { ...securityHeaders, 'Content-Type': 'text/html; charset=utf-8', ...headers }, body };
+  const officialLogo = '<img src="/assets/postopz-pz-icon.png" alt="PostOpz" style="width:100%;height:100%;display:block;object-fit:cover;border-radius:50%;background:#080b12">';
+  const brandedBody = String(body)
+    .replaceAll('<span class="brand-mark">PZ</span>', `<span class="brand-mark">${officialLogo}</span>`)
+    .replaceAll('<span class="mark">PZ</span>', `<span class="mark">${officialLogo}</span>`);
+  return { statusCode: 200, headers: { ...securityHeaders, 'Content-Type': 'text/html; charset=utf-8', ...headers }, body: brandedBody };
 }
 
 exports.handler = async (event) => {
