@@ -20,22 +20,26 @@ Add the following as **secret, Functions-scoped** Netlify variables. Use the Pre
 | --- | --- |
 | `POSTOPZ_FRAMEIO_CONNECTION_ID` | The `integration_connections.id` value from the Frame.io pending connection row. This is an identifier, not a credential. |
 | `POSTOPZ_FRAMEIO_WEBHOOK_SECRET` | The one-time signing secret returned by Frame.io when you create the webhook. |
+| `POSTOPZ_FRAMEIO_CLIENT_ID` | Client ID from the Adobe Developer Console OAuth Web App credential. |
+| `POSTOPZ_FRAMEIO_CLIENT_SECRET` | Client secret from that credential. Mark this as a secret. |
+| `POSTOPZ_FRAMEIO_REDIRECT_URI` | Exact Console callback URL, for example `https://YOUR-NETLIFY-DEPLOY-URL/console/frameio/callback`. |
+| `POSTOPZ_FRAMEIO_OAUTH_SCOPES` | Optional: scopes shown as available by the Adobe credential. Default is `openid`; use `openid,offline_access` only if Adobe lists offline access as available. |
 
 `SUPABASE_URL` and `SUPABASE_SECRET_KEY` must already be present in the same Functions context. The webhook uses the Supabase secret key only inside the Netlify Function to write verified events.
 
-## Create the Frame.io webhook
+## Connect and create the Frame.io webhook
 
-1. In Adobe Developer Console, create or open a project with the Frame.io V4 API and an OAuth Web App credential. Use a least-privilege user/service account that has access only to the intended Frame.io workspace.
-2. Use Frame.io’s V4 API to create a webhook for the intended account and workspace, with the URL:
+1. In Adobe Developer Console, create or open a project, add the Frame.io V4 API, then create an **OAuth Web App** credential. Use this exact Redirect URI:
 
    ```text
-   https://YOUR-NETLIFY-DEPLOY-URL/console/webhooks/frameio
+   https://YOUR-NETLIFY-DEPLOY-URL/console/frameio/callback
    ```
 
-   Use the current Netlify Deploy Preview URL for an alpha test. Use `https://postopz.com/console/webhooks/frameio` only after the production Console release and production environment variables are ready.
-
-3. Start with a small event list, such as file creation, comments, approval, and proxy/transcode completion. The Frame.io webhook creation response returns the signing secret **once**; copy it directly into `POSTOPZ_FRAMEIO_WEBHOOK_SECRET` in Netlify. Do not commit it, put it in Supabase, or share it in chat.
-4. Trigger a noncritical test event in Frame.io and confirm it appears in the Console activity feed.
+   Use the current Netlify Deploy Preview URL for alpha. Use the `postopz.com` URL only after the production release is ready.
+2. Add the Client ID, Client Secret, and Redirect URI to Netlify using the table above. Set all values to **Functions** scope and **Deploy Previews** context first.
+3. Return to Console and select **Connect Frame.io with Adobe**. Sign in and consent through Adobe, choose the intended Frame.io workspace, then let Console create the protected webhook.
+4. Console displays the signing secret once. Copy it directly to `POSTOPZ_FRAMEIO_WEBHOOK_SECRET` in Netlify. Do not commit it, put it in Supabase, or share it in chat.
+5. Trigger a noncritical file upload or comment in Frame.io and confirm it appears in the Console activity feed.
 
 Frame.io documents its V4 webhook endpoints, required OAuth tokens, signing procedure, retries, and event catalog in its [webhook guide](https://developer.adobe.com/frameio/guides/Webhooks/).
 

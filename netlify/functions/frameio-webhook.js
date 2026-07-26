@@ -74,15 +74,17 @@ function normalizedEvent(payload, raw) {
   const resource = payload.resource || payload.data || {};
   const resourceId = firstText(resource.id, payload.resource_id, payload.file_id, payload.comment_id, payload.project_id);
   const resourceName = firstText(resource.name, resource.title, payload.resource_name, payload.file_name, payload.project_name);
-  const projectId = firstText(payload.project_id, resource.project_id, resource.projectId);
+  const projectId = firstText(payload.project_id, payload.project && payload.project.id, resource.project_id, resource.projectId);
   const digest = crypto.createHash('sha256').update(raw, 'utf8').digest('hex');
   const providerEventId = firstText(payload.event_id, payload.id, payload.delivery_id) || digest;
   const lowered = eventType.toLowerCase();
   let kind = 'asset_created';
   let title = `Frame.io event: ${eventType}`;
-  if (lowered.includes('comment')) { kind = 'review_commented'; title = 'Frame.io comment added'; }
+  if (lowered === 'comment.completed') { kind = 'review_commented'; title = 'Frame.io comment completed'; }
+  else if (lowered.includes('comment')) { kind = 'review_commented'; title = 'Frame.io comment added'; }
   else if (lowered.includes('approv')) { kind = 'review_approved'; title = 'Frame.io review approved'; }
-  else if (lowered.includes('transcod') || lowered.includes('proxy')) { kind = 'proxy_ready'; title = 'Frame.io proxy ready'; }
+  else if (lowered === 'file.ready' || lowered.includes('transcod') || lowered.includes('proxy')) { kind = 'proxy_ready'; title = 'Frame.io file ready'; }
+  else if (lowered === 'file.upload.completed') { kind = 'media_available'; title = 'Frame.io upload completed'; }
   else if (lowered.includes('file')) { title = 'Frame.io file created'; }
   else if (lowered.includes('project')) { title = 'Frame.io project updated'; }
   return {

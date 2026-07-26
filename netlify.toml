@@ -24,3 +24,21 @@
   to = "/.netlify/functions/frameio-webhook"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/console/frameio/connect"
+  to = "/.netlify/functions/frameio-oauth?mode=start"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/console/frameio/callback"
+  to = "/.netlify/functions/frameio-oauth?mode=callback"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/console/frameio/select-workspace"
+  to = "/.netlify/functions/frameio-oauth?mode=select"
+  status = 200
+  force = true
