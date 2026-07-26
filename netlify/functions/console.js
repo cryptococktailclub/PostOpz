@@ -259,8 +259,11 @@ function consolePage(user, dashboard, notice = '', requestToken = '', selectedVi
 }
 
 function responsePage(body, headers = {}) {
-  const officialLogo = '<span aria-label="PostOpz" style="font:900 12px/1 Arial,sans-serif;letter-spacing:-1.2px;background:linear-gradient(180deg,#3be6f4 0%,#1687ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent">PZ</span>';
-  const logoMarkStyle = 'style="background:#071220;border:1px solid rgba(58,214,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 4px 12px rgba(0,0,0,.22)"';
+  // The official circular mark is deliberately cropped to its PZ letterforms
+  // here. It preserves the original lettering and cyan-to-blue treatment in
+  // the compact rounded-square Console app frame.
+  const officialLogo = '<img src="/assets/postopz-pz-icon.png" alt="" style="position:absolute;top:50%;left:50%;width:170%;height:auto;max-width:none;transform:translate(-50%,-50%)">';
+  const logoMarkStyle = 'style="position:relative;overflow:hidden;background:#071220;border:1px solid rgba(58,214,255,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 4px 12px rgba(0,0,0,.22)"';
   const brandedBody = String(body)
     .replaceAll('<span class="brand-mark">PZ</span>', `<span class="brand-mark" ${logoMarkStyle}>${officialLogo}</span>`)
     .replaceAll('<span class="mark">PZ</span>', `<span class="mark" ${logoMarkStyle}>${officialLogo}</span>`);
