@@ -185,6 +185,9 @@ exports.handler = async (event) => {
     authorize.searchParams.set('scope', configured.scopes);
     authorize.searchParams.set('state', state);
     authorize.searchParams.set('response_type', 'code');
+    // Make the operator choose the Adobe identity tied to the beta-user entry
+    // rather than silently reusing a stale browser session.
+    authorize.searchParams.set('prompt', 'login');
     return response(303, '', { Location: authorize.toString(), 'Set-Cookie': cookie(STATE_COOKIE, state) });
   }
 
