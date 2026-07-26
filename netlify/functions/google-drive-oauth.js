@@ -24,7 +24,7 @@ function escapeHtml(value) { return String(value || '').replace(/[&<>'"]/g, (cha
 function header(headers, name) { return headers[name] || headers[name.toLowerCase()] || headers[name.toUpperCase()] || ''; }
 function safeEqual(actual, expected) { const a = Buffer.from(String(actual), 'utf8'); const b = Buffer.from(String(expected), 'utf8'); return a.length === b.length && crypto.timingSafeEqual(a, b); }
 function readCookies(headers) { return (header(headers, 'cookie') || '').split(';').reduce((result, part) => { const index = part.indexOf('='); if (index >= 0) result[part.slice(0, index).trim()] = decodeURIComponent(part.slice(index + 1).trim()); return result; }, {}); }
-function cookie(name, value, maxAge = COOKIE_SECONDS) { return `${name}=${encodeURIComponent(value)}; Path=/console/google; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`; }
+function cookie(name, value, maxAge = COOKIE_SECONDS) { return `${name}=${encodeURIComponent(value)}; Path=/console; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAge}`; }
 function clearCookie(name) { return cookie(name, '', 0); }
 function encryptionKey(password) { return crypto.createHash('sha256').update(password, 'utf8').digest(); }
 function seal(value, password) { const iv = crypto.randomBytes(12); const cipher = crypto.createCipheriv('aes-256-gcm', encryptionKey(password), iv); const encrypted = Buffer.concat([cipher.update(JSON.stringify(value), 'utf8'), cipher.final()]); return Buffer.concat([iv, cipher.getAuthTag(), encrypted]).toString('base64url'); }
@@ -140,9 +140,11 @@ exports.handler = async (event) => {
     const query = event.queryStringParameters || {}; if (!query.code || !query.state || !oauthState || !safeEqual(query.state, oauthState.state)) return textResponse(400, 'Google authorization could not be verified. Start again from Console.');
     const tokenResponse = await fetch('https://oauth2.googleapis.com/token', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ code: query.code, client_id: configured.clientId, client_secret: configured.clientSecret, redirect_uri: configured.redirectUri, grant_type: 'authorization_code' }).toString() });
     const token = await tokenResponse.json().catch(() => null); if (!tokenResponse.ok || !token || !token.access_token) return response(400, page('Google authorization failed', '<h1>Authorization failed</h1><p class="warning">Google did not return a usable access token. Confirm the OAuth client and redirect URI, then try again.</p>'), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': clearCookie(STATE_COOKIE) });
-    const tokenCookie = seal({ accessToken: token.access_token, expiresAt: Date.now() + COOKIE_SECONDS * 1000 }, configured.privateGatePassword); const formToken = requestToken(tokenCookie, configured.privateGatePassword); const drive = await googleFiles(token.access_token);
+    const tokenCookie = seal({ accessToken: token.access_token, expiresAt: Date.now() + COOKIE_SECONDS * 1000 }, configured.privateGatePassword); const drive = await googleFiles(token.access_token);
     const files = drive.ok && Array.isArray(drive.data && drive.data.files) ? drive.data.files : [];
-    return response(200, page('Google Drive read-only session', `<h1>Read and download safely</h1><p>Console can read Google Doc text and download accessible Drive files for this session. It cannot create, edit, move, or delete anything.</p><form method="post" action="/console/google/index"><input type="hidden" name="request_token" value="${escapeHtml(formToken)}"><button type="submit">Index current metadata</button></form>${actionList(files)}`), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': cookie(TOKEN_COOKIE, tokenCookie) });
+    const connection = await authorizedConnection(configured, user);
+    if (connection && drive.ok) { try { await recordSnapshot(configured, connection, user, files); } catch (_) { /* Browsing remains available if metadata indexing is temporarily unavailable. */ } }
+    return response(303, '', { Location: '/console?view=media&google=connected', 'Set-Cookie': cookie(TOKEN_COOKIE, tokenCookie) });
   }
   if (mode === 'document' || mode === 'download') {
     const tokenCookie = cookies[TOKEN_COOKIE]; const token = tokenCookie && unseal(tokenCookie, configured.privateGatePassword); const fileId = String((event.queryStringParameters || {}).file_id || '');
