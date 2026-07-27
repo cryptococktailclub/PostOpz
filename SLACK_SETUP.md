@@ -46,8 +46,7 @@ In Netlify → **Site configuration → Environment variables**, add these with 
 | `POSTOPZ_SLACK_REDIRECT_URI` | `https://deploy-preview-2--postopz.netlify.app/console/slack/callback` | No |
 | `POSTOPZ_SLACK_CONNECTION_ID` | The Slack row UUID from `integration_connections` | No |
 | `POSTOPZ_SLACK_SIGNING_SECRET` | Slack app Signing Secret | Yes |
-
-Do **not** add `POSTOPZ_SLACK_BOT_TOKEN` yet. Console will show it once, after the OAuth connection step.
+| `POSTOPZ_SLACK_BOT_TOKEN` | Bot User OAuth Token from Slack → **Install App** | Yes |
 
 After saving these values, trigger a fresh Deploy Preview so the Functions receive them.
 
@@ -57,7 +56,7 @@ After saving these values, trigger a fresh Deploy Preview so the Functions recei
 2. In Console → **Integrations**, choose **Connect Slack**.
 3. Approve the Slack screen and select up to five public channels.
 4. In Slack, add the newly installed app to each chosen channel. Console will not add itself. This is also what constrains where Console can post.
-5. The final Console screen displays a one-time token. Copy it into Netlify as `POSTOPZ_SLACK_BOT_TOKEN`, mark it secret, and scope it to Functions / Deploy Previews.
+5. Console returns directly to the Slack workspace view. It never displays a provider token in the browser.
 
 ## 6. Enable signed real-time events
 

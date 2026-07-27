@@ -534,7 +534,12 @@ exports.handler = async (event) => {
   const user = await currentUser(config, accessToken);
   if (!user) return responsePage(loginPage());
   const selectedView = String((event.queryStringParameters || {}).view || 'overview');
-  const queryNotice = (event.queryStringParameters || {}).uploaded === '1' ? 'Workspace file uploaded and stored privately.' : '';
+  const query = event.queryStringParameters || {};
+  const queryNotice = query.uploaded === '1'
+    ? 'Workspace file uploaded and stored privately.'
+    : query.connected && selectedView === 'slack'
+      ? String(query.connected).slice(0, 180)
+      : '';
   let dashboard = await dashboardData(config, accessToken);
   const googleDrive = selectedView === 'media'
     ? await googleDriveBrowser(event.headers || {}, expectedPassword, event.queryStringParameters || {})
