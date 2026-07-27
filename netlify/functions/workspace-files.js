@@ -19,7 +19,7 @@ function cookies(headers) { return (header(headers, 'cookie') || '').split(';').
 function safeEqual(actual, expected) { const left = Buffer.from(String(actual || ''), 'utf8'); const right = Buffer.from(String(expected || ''), 'utf8'); return left.length === right.length && crypto.timingSafeEqual(left, right); }
 function formToken(accessToken, password) { return crypto.createHmac('sha256', password).update(accessToken, 'utf8').digest('base64url'); }
 function basicGate(event, password) { const authorization = header(event.headers || {}, 'authorization'); if (!authorization.startsWith('Basic ')) return false; try { const decoded = Buffer.from(authorization.slice(6), 'base64').toString('utf8'); const index = decoded.indexOf(':'); return index >= 0 && safeEqual(decoded.slice(0, index), 'operator') && safeEqual(decoded.slice(index + 1), password); } catch (_) { return false; } }
-function config() { const password = process.env.POSTOPZ_CONSOLE_ALPHA_PASSWORD; const url = process.env.SUPABASE_URL; const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY; const secretKey = process.env.SUPABASE_SECRET_KEY; return password && url && publishableKey && secretKey ? { password, url: url.replace(/\/$/, ''), publishableKey, secretKey } : null; }
+function config() { const password = process.env.POSTOPZ_CONSOLE_ALPHA_PASSWORD; const url = process.env.SUPABASE_URL; const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY; const secretKey = process.env.SUPABASE_SECRET_KEY; const slackBotToken = process.env.POSTOPZ_SLACK_BOT_TOKEN || null; return password && url && publishableKey && secretKey ? { password, url: url.replace(/\/$/, ''), publishableKey, secretKey, slackBotToken } : null; }
 
 async function supabase(configured, path, options = {}) {
   const key = options.accessToken ? configured.publishableKey : configured.secretKey;
@@ -47,6 +47,25 @@ function parseMultipart(event) {
   return { fields, file };
 }
 
+async function notifySlackWorkspaceFileUpload(configured, organizationId, user, file) {
+  if (!configured.slackBotToken) return;
+  try {
+    const connection = await supabase(configured, `/rest/v1/integration_connections?organization_id=eq.${encodeURIComponent(organizationId)}&provider=eq.slack&select=id,configuration&limit=1`);
+    const record = connection.ok && Array.isArray(connection.data) && connection.data[0];
+    const configuration = record && record.configuration || {};
+    const alerts = configuration.alerts || {};
+    const allowed = Array.isArray(configuration.selected_channel_ids) ? configuration.selected_channel_ids : [];
+    const channelId = alerts.workspace_file_uploaded_channel_id;
+    if (!record || !alerts.workspace_file_uploaded || !allowed.includes(channelId)) return;
+    const label = String(file.document_type || 'other').replaceAll('_', ' ');
+    const message = `PostOpz Console: ${user.email || 'A Console operator'} uploaded ${file.file_name} (${label}${file.version_label ? ` · ${file.version_label}` : ''}) to Workspace Files.`;
+    const posted = await fetch('https://slack.com/api/chat.postMessage', { method: 'POST', headers: { Authorization: `Bearer ${configured.slackBotToken}`, 'Content-Type': 'application/json; charset=utf-8' }, body: JSON.stringify({ channel: channelId, text: message }) });
+    const result = await posted.json().catch(() => null);
+    if (!posted.ok || !result || !result.ok) return;
+    await supabase(configured, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: organizationId, actor_id: user.id, action: 'slack.workspace_file_alert.posted', entity_type: 'workspace_file', entity_id: file.id, metadata: { channel_id: channelId, message_ts: result.ts || null } }) });
+  } catch (_) { /* A notification failure must not affect the uploaded document. */ }
+}
+
 async function upload(configured, event, user, accessToken) {
   const form = parseMultipart(event); if (!form || !form.file) return text(400, 'Choose a document to upload.');
   if (!safeEqual(form.fields.form_token || '', formToken(accessToken, configured.password))) return text(403, 'Invalid upload request. Refresh Workspace Files and try again.');
@@ -64,6 +83,7 @@ async function upload(configured, event, user, accessToken) {
   const saved = await supabase(configured, '/rest/v1/workspace_files', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=representation' }, body: JSON.stringify({ organization_id: organizationId, production_id: productionId || null, storage_path: storagePath, file_name: name, content_type: form.file.contentType, size_bytes: form.file.data.length, document_type: documentType, version_label: versionLabel || null, uploaded_by: user.id }) });
   if (!saved.ok || !Array.isArray(saved.data) || !saved.data[0]) return text(500, 'The document was stored but its Console record could not be created. Contact an administrator before uploading it again.');
   await supabase(configured, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: organizationId, actor_id: user.id, action: 'workspace_file.uploaded', entity_type: 'workspace_file', entity_id: saved.data[0].id, metadata: { file_name: name, document_type: documentType, size_bytes: form.file.data.length } }) });
+  await notifySlackWorkspaceFileUpload(configured, organizationId, user, saved.data[0]);
   return response(303, '', { Location: '/console?view=media&uploaded=1' });
 }
 

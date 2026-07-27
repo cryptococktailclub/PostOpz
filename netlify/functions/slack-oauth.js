@@ -26,7 +26,7 @@ exports.handler = async (event) => {
     const authorize = new URL('https://slack.com/oauth/v2/authorize');
     authorize.searchParams.set('client_id', configured.clientId);
     authorize.searchParams.set('redirect_uri', configured.redirectUri);
-    authorize.searchParams.set('scope', 'channels:read,channels:history');
+    authorize.searchParams.set('scope', 'channels:read,channels:history,chat:write');
     authorize.searchParams.set('state', state);
     return response(303, '', { Location: authorize.toString(), 'Set-Cookie': shared.cookie(STATE_COOKIE, shared.seal({ state }, configured.privateGatePassword)) });
   }

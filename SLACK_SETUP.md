@@ -1,6 +1,6 @@
 # Slack — Console alpha setup
 
-This connector is deliberately read-only. It observes activity from up to five **public channels** that you select. It does not post, edit, delete, invite, join channels, access direct messages, access private channels, or retain Slack message text.
+This connector observes activity from up to five **public channels** that you select. Console Operators and Admins can also post a message or thread reply from the Console. It does not edit or delete Slack messages, invite or join channels, access direct messages, access private channels, or retain Slack message text.
 
 ## 1. Apply the database migration
 
@@ -29,8 +29,9 @@ Then click **Run**. This only adds the normalized `message_received` activity ty
 
    - `channels:read`
    - `channels:history`
+   - `chat:write`
 
-6. Save changes. Do not add `chat:write`, file-write, channel-management, DM, or private-channel scopes.
+6. Save changes. Do not add file-write, channel-management, DM, or private-channel scopes.
 7. Open **Basic Information** and copy the **Client ID**, **Client Secret**, and **Signing Secret**. Treat the last two as secrets.
 
 ## 4. Add Netlify environment variables
@@ -54,7 +55,7 @@ After saving these values, trigger a fresh Deploy Preview so the Functions recei
 1. In Slack’s **OAuth & Permissions** page, choose **Install to Workspace** (or **Reinstall to Workspace** after adding scopes).
 2. In Console → **Integrations**, choose **Connect Slack**.
 3. Approve the Slack screen and select up to five public channels.
-4. In Slack, add the newly installed app to each chosen channel. Console will not add itself.
+4. In Slack, add the newly installed app to each chosen channel. Console will not add itself. This is also what constrains where Console can post.
 5. The final Console screen displays a one-time token. Copy it into Netlify as `POSTOPZ_SLACK_BOT_TOKEN`, mark it secret, and scope it to Functions / Deploy Previews.
 
 ## 6. Enable signed real-time events
@@ -68,6 +69,12 @@ After saving these values, trigger a fresh Deploy Preview so the Functions recei
 4. Under **Subscribe to bot events**, add `message.channels`.
 5. Save changes and **Reinstall to Workspace** if Slack prompts you.
 6. Post a non-sensitive test message in a selected channel. It should appear as a normalized activity in Console; its text remains in Slack.
+
+## Posting and automatic alerts
+
+- On Console → **Slack**, Operators and Admins can compose messages or reply to a visible thread. Each post is limited to an approved channel and recorded in the Console audit log.
+- The same page has an **Automated alerts** setting. Enable **Workspace Files** alerts and choose one approved Slack channel if you want Console to post whenever a user uploads production paperwork.
+- Posting is never available to Viewer or Approver-only roles. Console does not automatically post until an Operator or Admin explicitly enables an alert rule.
 
 ## Fallback polling
 
