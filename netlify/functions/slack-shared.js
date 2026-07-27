@@ -68,7 +68,7 @@ async function channelsForToken(token) {
   const channels = [];
   let cursor = '';
   for (let page = 0; page < 4; page += 1) {
-    const result = await slackRequest(token, 'conversations.list', { types: 'public_channel', exclude_archived: 'true', limit: '200', cursor });
+    const result = await slackRequest(token, 'conversations.list', { types: 'public_channel,private_channel', exclude_archived: 'true', limit: '200', cursor });
     if (!result.ok) return { ok: false, channels: [] };
     channels.push(...(Array.isArray(result.data.channels) ? result.data.channels : []).filter((channel) => channel && channel.id && !channel.is_archived));
     cursor = result.data.response_metadata && result.data.response_metadata.next_cursor || '';
@@ -130,7 +130,7 @@ async function indexSlackActivity(configured, record, token, channels, actorId =
     const activity = await supabase(configured, '/rest/v1/activity_items?on_conflict=source_event_id', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify(activities) });
     if (!activity.ok) throw new Error('activity-index');
   }
-  await supabase(configured, `/rest/v1/integration_connections?id=eq.${encodeURIComponent(record.id)}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'healthy', last_synced_at: observedAt, last_error_at: null, last_error_summary: null, configuration: { ...(record.configuration || {}), access_mode: 'public_channel_metadata_and_activity_readonly', selected_channel_ids: selected.map((channel) => channel.id), selected_channel_names: selected.map((channel) => channel.name || channel.id), last_snapshot_message_count: messages.length } }) });
+  await supabase(configured, `/rest/v1/integration_connections?id=eq.${encodeURIComponent(record.id)}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'healthy', last_synced_at: observedAt, last_error_at: null, last_error_summary: null, configuration: { ...(record.configuration || {}), access_mode: 'selected_channel_metadata_and_activity_readonly', selected_channel_ids: selected.map((channel) => channel.id), selected_channel_names: selected.map((channel) => channel.name || channel.id), last_snapshot_message_count: messages.length } }) });
   await supabase(configured, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: record.organization_id, actor_id: actorId, action: 'slack.activity.indexed', entity_type: 'integration_connection', entity_id: record.id, metadata: { selected_channel_count: selected.length, observed_message_count: messages.length, refreshed_message_count: indexed.length } }) });
   return { selectedChannelCount: selected.length, observedMessageCount: messages.length, refreshedMessageCount: indexed.length };
 }

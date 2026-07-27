@@ -26,7 +26,7 @@ exports.handler = async (event) => {
     const authorize = new URL('https://slack.com/oauth/v2/authorize');
     authorize.searchParams.set('client_id', configured.clientId);
     authorize.searchParams.set('redirect_uri', configured.redirectUri);
-    authorize.searchParams.set('scope', 'channels:read,channels:history,chat:write,users:read');
+    authorize.searchParams.set('scope', 'channels:read,channels:history,groups:read,groups:history,chat:write,users:read');
     authorize.searchParams.set('state', state);
     return response(303, '', { Location: authorize.toString(), 'Set-Cookie': shared.cookie(STATE_COOKIE, shared.seal({ state }, configured.privateGatePassword)) });
   }
@@ -38,10 +38,10 @@ exports.handler = async (event) => {
     const token = await tokenResponse.json().catch(() => null);
     if (!tokenResponse.ok || !token || !token.ok || !token.access_token) return response(400, page('Slack authorization failed', '<h1>Authorization failed</h1><p class="warning">Slack did not return a usable bot token. Confirm the OAuth redirect URL and reinstall the Slack app after saving its bot scopes.</p>'), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': shared.clearCookie(STATE_COOKIE) });
     const available = await shared.channelsForToken(token.access_token);
-    if (!available.ok) return response(400, page('Slack channels unavailable', '<h1>Slack channels could not be listed</h1><p class="warning">Confirm that the Slack app was installed with <code>channels:read</code> and <code>channels:history</code> bot scopes, then try again.</p>'), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': shared.clearCookie(STATE_COOKIE) });
+    if (!available.ok) return response(400, page('Slack channels unavailable', '<h1>Slack channels could not be listed</h1><p class="warning">Confirm that the Slack app was installed with the selected-channel read scopes, then try again.</p>'), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': shared.clearCookie(STATE_COOKIE) });
     const tokenCookie = shared.seal({ accessToken: token.access_token, teamId: token.team && token.team.id || null, teamName: token.team && token.team.name || null, expiresAt: Date.now() + shared.COOKIE_SECONDS * 1000 }, configured.privateGatePassword);
-    const options = available.channels.map((channel) => `<option value="${escapeHtml(channel.id)}">#${escapeHtml(channel.name || channel.id)}${channel.is_member ? '' : ' — add the app before indexing messages'}</option>`).join('');
-    return response(200, page('Choose Slack channels', `<h1>Choose Slack channels</h1><p>Choose up to five public channels. Console displays selected-channel messages and retains their activity excerpts for your PostOpz workspace. It does not access DMs or private channels.</p><p>Add the PostOpz Console Slack app to each selected channel so Slack can provide its history and real-time events.</p><form method="post" action="/console/slack/select-channels"><input type="hidden" name="request_token" value="${escapeHtml(shared.requestToken(tokenCookie, configured.privateGatePassword))}"><label>Public channels <select name="channel_ids" multiple required>${options}</select></label><button type="submit">Connect selected channels</button></form>`), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': shared.cookie(TOKEN_COOKIE, tokenCookie) });
+    const options = available.channels.map((channel) => `<option value="${escapeHtml(channel.id)}">#${escapeHtml(channel.name || channel.id)}${channel.is_private ? ' — private' : ''}${channel.is_member ? '' : ' — add the app before indexing messages'}</option>`).join('');
+    return response(200, page('Choose Slack channels', `<h1>Choose Slack channels</h1><p>Choose up to five approved channels. Private channels appear only after a member invites the PostOpz Console app. Assign a private channel to its production in Console to keep it out of the general Slack workspace view.</p><p>Console does not access DMs. It can only read channels that you select and where the app is a member.</p><form method="post" action="/console/slack/select-channels"><input type="hidden" name="request_token" value="${escapeHtml(shared.requestToken(tokenCookie, configured.privateGatePassword))}"><label>Approved channels <select name="channel_ids" multiple required>${options}</select></label><button type="submit">Connect selected channels</button></form>`), { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': shared.cookie(TOKEN_COOKIE, tokenCookie) });
   }
 
   if (mode === 'select' && event.httpMethod === 'POST') {
@@ -51,13 +51,13 @@ exports.handler = async (event) => {
     const token = tokenCookie && shared.unseal(tokenCookie, configured.privateGatePassword);
     if (!token || !token.accessToken || token.expiresAt < Date.now() || !shared.safeEqual(params.get('request_token') || '', shared.requestToken(tokenCookie, configured.privateGatePassword))) return textResponse(400, 'The Slack authorization has expired. Start again from Console.');
     const channelIds = [...new Set(params.getAll('channel_ids').filter((id) => /^[CG][A-Z0-9]{6,20}$/.test(id)))].slice(0, 5);
-    if (!channelIds.length) return textResponse(400, 'Choose at least one public Slack channel.');
+    if (!channelIds.length) return textResponse(400, 'Choose at least one approved Slack channel.');
     const available = await shared.channelsForToken(token.accessToken);
     const selected = available.channels.filter((channel) => channelIds.includes(channel.id));
     if (!selected.length) return textResponse(400, 'The selected Slack channels are no longer available. Start again.');
     const record = await shared.authorizedConnection(configured, user);
     if (!record) return textResponse(403, 'This Console account cannot configure the Slack connection.');
-    const updatedConfiguration = { ...(record.configuration || {}), team_id: token.teamId, team_name: token.teamName, selected_channel_ids: selected.map((channel) => channel.id), selected_channel_names: selected.map((channel) => channel.name || channel.id), access_mode: 'public_channel_metadata_and_activity_readonly' };
+    const updatedConfiguration = { ...(record.configuration || {}), team_id: token.teamId, team_name: token.teamName, selected_channel_ids: selected.map((channel) => channel.id), selected_channel_names: selected.map((channel) => channel.name || channel.id), selected_channel_is_private: selected.map((channel) => Boolean(channel.is_private)), access_mode: 'selected_channel_metadata_and_activity_readonly' };
     await shared.supabase(configured, `/rest/v1/integration_connections?id=eq.${encodeURIComponent(record.id)}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'pending', configuration: updatedConfiguration }) });
     const refreshed = { ...record, configuration: updatedConfiguration };
     let index = null; try { index = await shared.indexSlackActivity(configured, refreshed, token.accessToken, selected, user.id); } catch (_) { /* The connection can be completed after Slack token setup even if its first snapshot is unavailable. */ }

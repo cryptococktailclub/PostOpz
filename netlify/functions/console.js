@@ -451,11 +451,17 @@ async function slackBrowser(dashboard, query = {}) {
   const configuration = connection && connection.configuration || {};
   const channelIds = Array.isArray(configuration.selected_channel_ids) ? configuration.selected_channel_ids : [];
   const channelNames = Array.isArray(configuration.selected_channel_names) ? configuration.selected_channel_names : [];
-  const channels = channelIds.map((id, index) => ({ id, name: channelNames[index] || id })).filter((channel) => /^[CG][A-Z0-9]{6,20}$/.test(channel.id));
+  const channelIsPrivate = Array.isArray(configuration.selected_channel_is_private) ? configuration.selected_channel_is_private : [];
+  const productionPrivateChannelIds = new Set((dashboard.productionLinks || [])
+    .filter((link) => link.provider === 'slack')
+    .map((link) => link.external_id));
+  const channels = channelIds.map((id, index) => ({ id, name: channelNames[index] || id, isPrivate: Boolean(channelIsPrivate[index]) }))
+    .filter((channel) => /^[CG][A-Z0-9]{6,20}$/.test(channel.id))
+    .filter((channel) => !(channel.isPrivate && productionPrivateChannelIds.has(channel.id)));
   const canPost = Boolean(connection && operatorOrganizations(dashboard).some((organization) => organization.id === connection.organization_id));
   if (!connection) return { state: 'unregistered', channels: [] };
   if (!token) return { state: 'waiting', channels };
-  if (!channels.length) return { state: 'choose_channels', channels: [] };
+  if (!channels.length) return { state: 'production_scoped', channels: [] };
   const selectedId = String(query.channel_id || channels[0].id);
   const selected = channels.find((channel) => channel.id === selectedId) || channels[0];
   const search = String(query.q || '').trim().slice(0, 100);
@@ -490,10 +496,11 @@ async function slackBrowser(dashboard, query = {}) {
 }
 
 function slackPage(slack, requestToken) {
-  const intro = '<section class="page-heading"><p class="eyebrow">Slack · Channel workspace</p><h1>Team activity</h1><p>Browse selected public Slack channels inside Console. Selected-channel message excerpts are retained in the private operational timeline.</p></section>';
+  const intro = '<section class="page-heading"><p class="eyebrow">Slack · Channel workspace</p><h1>Team activity</h1><p>Browse approved Slack channels inside Console. Private channels assigned to a production are visible only in that production workspace.</p></section>';
   if (slack.state === 'unregistered') return `${intro}<section class="drive-connect"><span class="drive-logo">S</span><div><h2>Register Slack first</h2><p>Add a Slack connection in Integrations, then configure its read-only app credentials.</p><a class="button primary" href="/console?view=integrations">Open Integrations</a></div></section>`;
   if (slack.state === 'waiting') return `${intro}<section class="drive-connect"><span class="drive-logo">S</span><div><h2>Slack needs its secure runtime token</h2><p>Finish the Console Slack connection once to add the read-only bot token to Netlify. Console cannot read any messages until that token exists.</p><a class="button primary" href="/console/slack/connect">Finish Slack setup</a></div></section>`;
-  if (slack.state === 'choose_channels') return `${intro}<section class="drive-connect"><span class="drive-logo">S</span><div><h2>Choose channels to monitor</h2><p>Connect Slack and select up to five public channels. You control exactly what Console can read.</p><a class="button primary" href="/console/slack/connect">Choose Slack channels</a></div></section>`;
+  if (slack.state === 'choose_channels') return `${intro}<section class="drive-connect"><span class="drive-logo">S</span><div><h2>Choose channels to monitor</h2><p>Connect Slack and select up to five approved channels. You control exactly what Console can read.</p><a class="button primary" href="/console/slack/connect">Choose Slack channels</a></div></section>`;
+  if (slack.state === 'production_scoped') return `${intro}<section class="drive-connect"><span class="drive-logo">S</span><div><h2>Slack is scoped to productions</h2><p>All approved private channels have been assigned to production workspaces, so none are displayed in this general Slack view.</p><a class="button primary" href="/console?view=productions">Open Productions</a></div></section>`;
   const options = slack.channels.map((channel) => `<option value="${escapeHtml(channel.id)}"${channel.id === slack.selected.id ? ' selected' : ''}>#${escapeHtml(channel.name)}</option>`).join('');
   const control = `<form class="slack-controls" method="get" action="/console"><input type="hidden" name="view" value="slack"><label>Channel<select name="channel_id">${options}</select></label><label>Find in loaded messages<input name="q" value="${escapeHtml(slack.search || '')}" placeholder="Search message text"></label><button class="button secondary" type="submit">View</button></form>`;
   if (slack.state === 'error') return `${intro}${control}<section class="drive-connect error"><span class="drive-logo">!</span><div><h2>Slack needs attention</h2><p>${escapeHtml(slack.message)}</p><a class="button primary" href="/console/slack/connect">Refresh Slack connection</a></div></section>`;
