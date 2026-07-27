@@ -31,6 +31,7 @@ async function supabase(configured, path, options = {}) {
 async function currentUser(configured, accessToken) { const result = await supabase(configured, '/auth/v1/user', { accessToken }); return result.ok && result.data && result.data.id ? result.data : null; }
 async function canOperate(configured, organizationId, userId) { const result = await supabase(configured, `/rest/v1/organization_members?organization_id=eq.${encodeURIComponent(organizationId)}&user_id=eq.${encodeURIComponent(userId)}&select=role`); return result.ok && Array.isArray(result.data) && result.data.some((member) => ['operator', 'admin'].includes(member.role)); }
 async function canAccessProduction(configured, productionId, userId) { if (!productionId) return false; const result = await supabase(configured, `/rest/v1/production_members?production_id=eq.${encodeURIComponent(productionId)}&user_id=eq.${encodeURIComponent(userId)}&select=role`); return result.ok && Array.isArray(result.data) && result.data.length > 0; }
+async function canEditProduction(configured, productionId, userId) { if (!productionId) return false; const result = await supabase(configured, `/rest/v1/production_members?production_id=eq.${encodeURIComponent(productionId)}&user_id=eq.${encodeURIComponent(userId)}&role=eq.editor&select=role`); return result.ok && Array.isArray(result.data) && result.data.length > 0; }
 function safeFileName(value) { return String(value || 'upload').replace(/[^A-Za-z0-9._ -]/g, '_').replace(/\s+/g, ' ').trim().slice(0, 180) || 'upload'; }
 function objectPath(path) { return path.split('/').map(encodeURIComponent).join('/'); }
 
@@ -73,7 +74,10 @@ async function upload(configured, event, user, accessToken) {
   const organizationId = String(form.fields.organization_id || ''); const productionId = String(form.fields.production_id || ''); const documentType = String(form.fields.document_type || 'other'); const versionLabel = String(form.fields.version_label || '').trim().slice(0, 80);
   if (!/^[0-9a-f-]{36}$/i.test(organizationId) || !DOCUMENT_TYPES.has(documentType)) return text(400, 'Choose a workspace and document type.');
   if (productionId && !/^[0-9a-f-]{36}$/i.test(productionId)) return text(400, 'Invalid production selection.');
-  if (!await canOperate(configured, organizationId, user.id)) return text(403, 'This Console account cannot upload to that workspace.');
+  const isOperator = await canOperate(configured, organizationId, user.id);
+  const isProductionEditor = productionId && await canEditProduction(configured, productionId, user.id);
+  if (!isOperator && !isProductionEditor) return text(403, 'This Console account cannot upload to that workspace. Ask an Operator to grant Editor access to this production.');
+  if (!isOperator && !productionId) return text(403, 'Production Editors must assign uploads to their production.');
   if (form.file.data.length < 1 || form.file.data.length > MAX_UPLOAD_BYTES) return text(413, 'Workspace Files accepts documents up to 5 MB in this alpha.');
   const name = safeFileName(form.file.filename); const extension = name.includes('.') ? name.split('.').pop().toLowerCase() : '';
   if (!ALLOWED_EXTENSIONS.has(extension)) return text(415, 'This alpha accepts PDF, text, CSV, EDL, XML, JSON, Word, and Excel documents only.');
@@ -85,7 +89,7 @@ async function upload(configured, event, user, accessToken) {
   if (!saved.ok || !Array.isArray(saved.data) || !saved.data[0]) return text(500, 'The document was stored but its Console record could not be created. Contact an administrator before uploading it again.');
   await supabase(configured, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: organizationId, actor_id: user.id, action: 'workspace_file.uploaded', entity_type: 'workspace_file', entity_id: saved.data[0].id, metadata: { file_name: name, document_type: documentType, size_bytes: form.file.data.length } }) });
   await notifySlackWorkspaceFileUpload(configured, organizationId, user, saved.data[0]);
-  return response(303, '', { Location: '/console?view=media&uploaded=1' });
+  return response(303, '', { Location: productionId ? `/console?view=productions&production_id=${encodeURIComponent(productionId)}&uploaded=1` : '/console?view=media&uploaded=1' });
 }
 
 async function download(configured, event, user) {

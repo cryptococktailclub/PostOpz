@@ -15,6 +15,24 @@ been applied:
 
 `supabase/migrations/20260727170000_production_workspace.sql`
 
+## Enable production workspace tools
+
+To enable the approval queue and Editor capabilities, run the complete
+contents of:
+
+`supabase/migrations/20260727190000_production_workspace_tools.sql`
+
+Roles in this alpha:
+
+- **Viewer** — sees only the assigned production’s paperwork, approvals, and
+  mapped Slack activity; can download assigned paperwork.
+- **Editor** — has all Viewer access plus may upload paperwork assigned to
+  that production, request approvals, and post to its mapped Slack channel.
+- **Operator/Admin** — may map channels, grant production access, and make
+  approval decisions.
+
+No role can delete source media, provider files, or workspace paperwork.
+
 ## Create the alternate sign-in
 
 In Supabase **Authentication → Users**, create or invite the alternate email
