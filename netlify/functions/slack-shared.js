@@ -81,7 +81,28 @@ function messageRows(channel, messages) {
   return (Array.isArray(messages) ? messages : [])
     .filter((message) => message && message.type === 'message' && message.ts)
     .slice(0, 20)
-    .map((message) => ({ channelId: channel.id, channelName: channel.name || channel.id, ts: String(message.ts), userId: message.user || message.bot_id || null, subtype: message.subtype || null, textDigest: crypto.createHash('sha256').update(String(message.text || ''), 'utf8').digest('hex'), hasText: Boolean(message.text) }));
+    .map((message) => {
+      const text = String(message.text || '');
+      const textExcerpt = text.replace(/\s+/g, ' ').trim();
+      return { channelId: channel.id, channelName: channel.name || channel.id, ts: String(message.ts), userId: message.user || message.bot_id || null, subtype: message.subtype || null, textDigest: crypto.createHash('sha256').update(text, 'utf8').digest('hex'), hasText: Boolean(textExcerpt), textExcerpt: textExcerpt.slice(0, 4000), textTruncated: textExcerpt.length > 4000 };
+    });
+}
+
+async function slackUserNames(token, userIds) {
+  const ids = [...new Set((userIds || []).filter(Boolean))].slice(0, 100);
+  const entries = await Promise.all(ids.map(async (id) => {
+    const result = await slackRequest(token, 'users.info', { user: id });
+    const user = result.ok && result.data && result.data.user;
+    const name = user && (user.profile && (user.profile.display_name || user.profile.real_name) || user.real_name || user.name);
+    return [id, name || 'Slack member'];
+  }));
+  return new Map(entries);
+}
+
+function activityTitle(message) { return `${message.authorName || 'Slack member'} in #${message.channelName}`; }
+function activityDetail(message, realTime = false) {
+  if (message.textExcerpt) return message.textTruncated ? `${message.textExcerpt}…` : message.textExcerpt;
+  return realTime ? 'A Slack system event was received.' : 'A Slack system event was indexed.';
 }
 
 async function indexSlackActivity(configured, record, token, channels, actorId = null) {
@@ -89,27 +110,29 @@ async function indexSlackActivity(configured, record, token, channels, actorId =
   const selected = channels.slice(0, 5);
   const histories = await Promise.all(selected.map(async (channel) => ({ channel, result: await slackRequest(token, 'conversations.history', { channel: channel.id, limit: '20' }) })));
   const messages = histories.flatMap(({ channel, result }) => result.ok ? messageRows(channel, result.data.messages) : []);
+  const names = await slackUserNames(token, messages.map((message) => message.userId));
+  messages.forEach((message) => { message.authorName = names.get(message.userId) || 'Slack member'; });
   const resources = selected.map((channel) => ({ organization_id: record.organization_id, integration_connection_id: record.id, provider: 'slack', external_id: channel.id, resource_type: 'slack_channel', name: String(channel.name || channel.id).slice(0, 240), external_url: record.configuration && record.configuration.team_id ? `https://app.slack.com/client/${encodeURIComponent(record.configuration.team_id)}/${encodeURIComponent(channel.id)}` : null, metadata: { is_private: Boolean(channel.is_private), member_count: channel.num_members || null }, observed_at: observedAt }));
   if (resources.length) await supabase(configured, '/rest/v1/external_resources?on_conflict=organization_id,provider,external_id,resource_type', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify(resources) });
-  const events = messages.map((message) => ({ organization_id: record.organization_id, integration_connection_id: record.id, provider: 'slack', provider_event_id: `slack:${message.channelId}:${message.ts}`, occurred_at: new Date(Number(message.ts) * 1000).toISOString(), payload: { channel_id: message.channelId, channel_name: message.channelName, sender_id: message.userId, subtype: message.subtype, has_text: message.hasText, text_sha256: message.textDigest }, payload_sha256: message.textDigest }));
-  let inserted = [];
+  const events = messages.map((message) => ({ organization_id: record.organization_id, integration_connection_id: record.id, provider: 'slack', provider_event_id: `slack:${message.channelId}:${message.ts}`, occurred_at: new Date(Number(message.ts) * 1000).toISOString(), payload: { channel_id: message.channelId, channel_name: message.channelName, sender_id: message.userId, author_name: message.authorName, subtype: message.subtype, has_text: message.hasText, text_excerpt: message.textExcerpt, text_truncated: message.textTruncated, text_sha256: message.textDigest }, payload_sha256: message.textDigest }));
+  let indexed = [];
   if (events.length) {
-    const write = await supabase(configured, '/rest/v1/source_events?on_conflict=organization_id,provider,provider_event_id', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=ignore-duplicates,return=representation' }, body: JSON.stringify(events) });
+    const write = await supabase(configured, '/rest/v1/source_events?on_conflict=organization_id,provider,provider_event_id', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=representation' }, body: JSON.stringify(events) });
     if (!write.ok) throw new Error('source-event-index');
-    inserted = Array.isArray(write.data) ? write.data : [];
+    indexed = Array.isArray(write.data) ? write.data : [];
   }
-  if (inserted.length) {
+  if (indexed.length) {
     const byId = new Map(messages.map((message) => [`slack:${message.channelId}:${message.ts}`, message]));
-    const activities = inserted.map((event) => {
+    const activities = indexed.map((event) => {
       const message = byId.get(event.provider_event_id);
-      return { organization_id: record.organization_id, source_event_id: event.id, kind: 'message_received', title: `Slack message in #${message.channelName}`, detail: 'Message activity indexed. Message text remains in Slack.', severity: 'info', occurred_at: event.occurred_at };
+      return { organization_id: record.organization_id, source_event_id: event.id, kind: 'message_received', title: activityTitle(message), detail: activityDetail(message), severity: 'info', occurred_at: event.occurred_at };
     });
-    const activity = await supabase(configured, '/rest/v1/activity_items', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify(activities) });
+    const activity = await supabase(configured, '/rest/v1/activity_items?on_conflict=source_event_id', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify(activities) });
     if (!activity.ok) throw new Error('activity-index');
   }
   await supabase(configured, `/rest/v1/integration_connections?id=eq.${encodeURIComponent(record.id)}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'healthy', last_synced_at: observedAt, last_error_at: null, last_error_summary: null, configuration: { ...(record.configuration || {}), access_mode: 'public_channel_metadata_and_activity_readonly', selected_channel_ids: selected.map((channel) => channel.id), selected_channel_names: selected.map((channel) => channel.name || channel.id), last_snapshot_message_count: messages.length } }) });
-  await supabase(configured, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: record.organization_id, actor_id: actorId, action: 'slack.activity.indexed', entity_type: 'integration_connection', entity_id: record.id, metadata: { selected_channel_count: selected.length, observed_message_count: messages.length, newly_indexed_message_count: inserted.length } }) });
-  return { selectedChannelCount: selected.length, observedMessageCount: messages.length, newlyIndexedCount: inserted.length };
+  await supabase(configured, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: record.organization_id, actor_id: actorId, action: 'slack.activity.indexed', entity_type: 'integration_connection', entity_id: record.id, metadata: { selected_channel_count: selected.length, observed_message_count: messages.length, refreshed_message_count: indexed.length } }) });
+  return { selectedChannelCount: selected.length, observedMessageCount: messages.length, refreshedMessageCount: indexed.length };
 }
 
 async function indexSlackEvent(configured, record, eventId, event, teamId) {
@@ -119,13 +142,19 @@ async function indexSlackEvent(configured, record, eventId, event, teamId) {
   const channelIds = record.configuration && record.configuration.selected_channel_ids || [];
   if (channelIds.length && !channelIds.includes(event.channel)) return { ignored: true };
   const channelName = channelNames[channelIds.indexOf(event.channel)] || event.channel;
-  const textDigest = crypto.createHash('sha256').update(String(event.text || ''), 'utf8').digest('hex');
-  const providerEventId = String(eventId || `slack:${event.channel}:${event.ts}`);
-  const source = await supabase(configured, '/rest/v1/source_events?on_conflict=organization_id,provider,provider_event_id', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=ignore-duplicates,return=representation' }, body: JSON.stringify({ organization_id: record.organization_id, integration_connection_id: record.id, provider: 'slack', provider_event_id: providerEventId, occurred_at: new Date(Number(event.ts) * 1000).toISOString(), payload: { team_id: teamId || null, channel_id: event.channel, channel_name: channelName, sender_id: event.user || event.bot_id || null, subtype: event.subtype || null, has_text: Boolean(event.text), text_sha256: textDigest }, payload_sha256: textDigest }) });
+  const text = String(event.text || '');
+  const textExcerpt = text.replace(/\s+/g, ' ').trim();
+  const textDigest = crypto.createHash('sha256').update(text, 'utf8').digest('hex');
+  const names = await slackUserNames(configured.botToken, [event.user || event.bot_id]);
+  const message = { channelName, userId: event.user || event.bot_id || null, authorName: names.get(event.user || event.bot_id) || 'Slack member', textExcerpt: textExcerpt.slice(0, 4000), textTruncated: textExcerpt.length > 4000 };
+  // Use the same durable ID as the polling snapshot so an event and a later
+  // refresh update one timeline item instead of creating two.
+  const providerEventId = `slack:${event.channel}:${event.ts}`;
+  const source = await supabase(configured, '/rest/v1/source_events?on_conflict=organization_id,provider,provider_event_id', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=representation' }, body: JSON.stringify({ organization_id: record.organization_id, integration_connection_id: record.id, provider: 'slack', provider_event_id: providerEventId, occurred_at: new Date(Number(event.ts) * 1000).toISOString(), payload: { team_id: teamId || null, channel_id: event.channel, channel_name: channelName, sender_id: message.userId, author_name: message.authorName, subtype: event.subtype || null, has_text: Boolean(textExcerpt), text_excerpt: message.textExcerpt, text_truncated: message.textTruncated, text_sha256: textDigest }, payload_sha256: textDigest }) });
   if (!source.ok) throw new Error('source-event');
-  const inserted = Array.isArray(source.data) && source.data[0];
-  if (!inserted) return { duplicate: true };
-  const activity = await supabase(configured, '/rest/v1/activity_items', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: record.organization_id, source_event_id: inserted.id, kind: 'message_received', title: `Slack message in #${channelName}`, detail: 'Real-time message activity indexed. Message text remains in Slack.', severity: 'info', occurred_at: inserted.occurred_at }) });
+  const indexed = Array.isArray(source.data) && source.data[0];
+  if (!indexed) throw new Error('source-event-result');
+  const activity = await supabase(configured, '/rest/v1/activity_items?on_conflict=source_event_id', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify({ organization_id: record.organization_id, source_event_id: indexed.id, kind: 'message_received', title: activityTitle(message), detail: activityDetail(message, true), severity: 'info', occurred_at: indexed.occurred_at }) });
   if (!activity.ok) throw new Error('activity');
   await supabase(configured, `/rest/v1/integration_connections?id=eq.${encodeURIComponent(record.id)}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ status: 'healthy', last_synced_at: observedAt, last_error_at: null, last_error_summary: null }) });
   return { indexed: true };

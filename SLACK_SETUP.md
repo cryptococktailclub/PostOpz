@@ -1,6 +1,6 @@
 # Slack — Console alpha setup
 
-This connector observes activity from up to five **public channels** that you select. Console Operators and Admins can also post a message or thread reply from the Console. It does not edit or delete Slack messages, invite or join channels, access direct messages, access private channels, or retain Slack message text.
+This connector observes activity from up to five **public channels** that you select. Console Operators and Admins can also post a message or thread reply from the Console. To make the Console timeline useful, it retains the text of messages from those selected channels as activity excerpts, visible only to members of the matching PostOpz workspace. It does not edit or delete Slack messages, invite or join channels, access direct messages, or access private channels.
 
 ## 1. Apply the database migration
 
@@ -69,7 +69,7 @@ After saving these values, trigger a fresh Deploy Preview so the Functions recei
 3. Wait for Slack to verify the URL. The function checks each request with the Signing Secret before accepting it.
 4. Under **Subscribe to bot events**, add `message.channels`.
 5. Save changes and **Reinstall to Workspace** if Slack prompts you.
-6. Post a non-sensitive test message in a selected channel. It should appear as a normalized activity in Console; its text remains in Slack.
+6. Post a non-sensitive test message in a selected channel. It should appear in the Console timeline with its author, channel, and message excerpt.
 
 ## Posting and automatic alerts
 
