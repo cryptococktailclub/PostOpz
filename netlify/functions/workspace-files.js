@@ -30,6 +30,7 @@ async function supabase(configured, path, options = {}) {
 
 async function currentUser(configured, accessToken) { const result = await supabase(configured, '/auth/v1/user', { accessToken }); return result.ok && result.data && result.data.id ? result.data : null; }
 async function canOperate(configured, organizationId, userId) { const result = await supabase(configured, `/rest/v1/organization_members?organization_id=eq.${encodeURIComponent(organizationId)}&user_id=eq.${encodeURIComponent(userId)}&select=role`); return result.ok && Array.isArray(result.data) && result.data.some((member) => ['operator', 'admin'].includes(member.role)); }
+async function canAccessProduction(configured, productionId, userId) { if (!productionId) return false; const result = await supabase(configured, `/rest/v1/production_members?production_id=eq.${encodeURIComponent(productionId)}&user_id=eq.${encodeURIComponent(userId)}&select=role`); return result.ok && Array.isArray(result.data) && result.data.length > 0; }
 function safeFileName(value) { return String(value || 'upload').replace(/[^A-Za-z0-9._ -]/g, '_').replace(/\s+/g, ' ').trim().slice(0, 180) || 'upload'; }
 function objectPath(path) { return path.split('/').map(encodeURIComponent).join('/'); }
 
@@ -89,8 +90,9 @@ async function upload(configured, event, user, accessToken) {
 
 async function download(configured, event, user) {
   const id = String((event.queryStringParameters || {}).id || ''); if (!/^[0-9a-f-]{36}$/i.test(id)) return text(400, 'Invalid workspace file.');
-  const file = await supabase(configured, `/rest/v1/workspace_files?id=eq.${encodeURIComponent(id)}&select=id,organization_id,storage_path,file_name`); if (!file.ok || !Array.isArray(file.data) || file.data.length !== 1) return text(404, 'Workspace file not found.');
-  if (!await canOperate(configured, file.data[0].organization_id, user.id)) return text(403, 'This Console account cannot download that workspace file.');
+  const file = await supabase(configured, `/rest/v1/workspace_files?id=eq.${encodeURIComponent(id)}&select=id,organization_id,production_id,storage_path,file_name`); if (!file.ok || !Array.isArray(file.data) || file.data.length !== 1) return text(404, 'Workspace file not found.');
+  const canDownload = await canOperate(configured, file.data[0].organization_id, user.id) || await canAccessProduction(configured, file.data[0].production_id, user.id);
+  if (!canDownload) return text(403, 'This Console account cannot download that workspace file.');
   const signed = await supabase(configured, `/storage/v1/object/sign/console-workspace-files/${objectPath(file.data[0].storage_path)}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ expiresIn: 60, download: file.data[0].file_name }) });
   if (!signed.ok || !signed.data || !signed.data.signedURL) return text(502, 'Console could not prepare that download.');
   return response(303, '', { Location: `${configured.url}/storage/v1${signed.data.signedURL}` });
