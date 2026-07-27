@@ -70,6 +70,8 @@ After saving these values, trigger a fresh Deploy Preview so the Functions recei
 5. Save changes and **Reinstall to Workspace** if Slack prompts you.
 6. Post a non-sensitive test message in a selected channel. It should appear in the Console timeline with its author, channel, and message excerpt.
 
+If the request URL does not show **Verified**, check that `POSTOPZ_SLACK_SIGNING_SECRET` in Netlify is marked secret, scoped to **Functions / Deploy Previews**, and exactly matches the Signing Secret in Slack’s **Basic Information** page. During preview testing, Operators can also use **Refresh Slack activity** in Console as a manual fallback.
+
 ## Posting and automatic alerts
 
 - On Console → **Slack**, Operators and Admins can compose messages or reply to a visible thread. Each post is limited to an approved channel and recorded in the Console audit log.
@@ -78,6 +80,6 @@ After saving these values, trigger a fresh Deploy Preview so the Functions recei
 
 ## Fallback polling
 
-`slack-poll` runs every 15 minutes **only on a published production deployment**. Netlify Scheduled Functions do not automatically run on Deploy Previews. During preview testing, reconnecting Slack triggers a fresh safe snapshot.
+`slack-poll` runs every 15 minutes **only on a published production deployment**. Netlify Scheduled Functions do not automatically run on Deploy Previews. During preview testing, **Refresh Slack activity** triggers a fresh safe snapshot.
 
 When Console moves to production, create production-scoped Netlify values and change both Slack URLs to `https://postopz.com/console/slack/callback` and `https://postopz.com/console/webhooks/slack`, then reinstall the Slack app.
