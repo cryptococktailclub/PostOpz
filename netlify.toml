@@ -84,3 +84,30 @@ from = "/console/workspace-files/download"
 to = "/.netlify/functions/workspace-files-download"
 status = 200
 force = true
+
+[[redirects]]
+from = "/console/slack/connect"
+to = "/.netlify/functions/slack-oauth-start"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/slack/callback"
+to = "/.netlify/functions/slack-oauth-callback"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/slack/select-channels"
+to = "/.netlify/functions/slack-oauth-select"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/webhooks/slack"
+to = "/.netlify/functions/slack-events"
+status = 200
+force = true
+
+[functions."slack-poll"]
+schedule = "*/15 * * * *"
