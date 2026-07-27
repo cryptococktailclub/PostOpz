@@ -60,15 +60,16 @@ After saving these values, trigger a fresh Deploy Preview so the Functions recei
 
 ## 6. Enable signed real-time events
 
-1. In Slack app settings, open **Event Subscriptions** and turn on **Enable Events**.
-2. Set **Request URL** to:
+1. In Slack app settings, open **Socket Mode** and turn it **off**. Console receives HTTPS events through Netlify; it does not run a persistent Slack socket connection.
+2. Open **Event Subscriptions** and turn on **Enable Events**.
+3. Set **Request URL** to:
 
    `https://deploy-preview-2--postopz.netlify.app/console/webhooks/slack`
 
-3. Wait for Slack to verify the URL. The function checks each request with the Signing Secret before accepting it.
-4. Under **Subscribe to bot events**, add `message.channels`.
-5. Save changes and **Reinstall to Workspace** if Slack prompts you.
-6. Post a non-sensitive test message in a selected channel. It should appear in the Console timeline with its author, channel, and message excerpt.
+4. Wait for Slack to verify the URL. The function checks each request with the Signing Secret before accepting it.
+5. Under **Subscribe to bot events**, add `message.channels`.
+6. Save changes and **Reinstall to Workspace** if Slack prompts you.
+7. Post a non-sensitive test message in a selected channel. It should appear in the Console timeline with its author, channel, and message excerpt.
 
 If the request URL does not show **Verified**, check that `POSTOPZ_SLACK_SIGNING_SECRET` in Netlify is marked secret, scoped to **Functions / Deploy Previews**, and exactly matches the Signing Secret in Slack’s **Basic Information** page. During preview testing, Operators can also use **Refresh Slack activity** in Console as a manual fallback.
 
