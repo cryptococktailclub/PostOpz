@@ -30,6 +30,7 @@ Then click **Run**. This only adds the normalized `message_received` activity ty
    - `channels:read`
    - `channels:history`
    - `chat:write`
+   - `users:read` (displays Slack member names instead of internal IDs)
 
 6. Save changes. Do not add file-write, channel-management, DM, or private-channel scopes.
 7. Open **Basic Information** and copy the **Client ID**, **Client Secret**, and **Signing Secret**. Treat the last two as secrets.

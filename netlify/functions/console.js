@@ -409,10 +409,19 @@ async function slackBrowser(dashboard, query = {}) {
       ? await slackRequest('conversations.replies', { channel: selected.id, ts: threadTs, limit: '100' })
       : await slackRequest('conversations.history', { channel: selected.id, limit: '100' });
     if (!result.ok) return { state: 'error', channels, selected, search, threadTs, message: 'Slack could not return this channel. Confirm the app has been added to the channel and still has its read-only scopes.' };
-    const messages = (Array.isArray(result.data.messages) ? result.data.messages : [])
+    const rawMessages = (Array.isArray(result.data.messages) ? result.data.messages : [])
       .filter((message) => message && message.type === 'message' && !message.hidden)
       .filter((message) => !search || String(message.text || '').toLocaleLowerCase().includes(search.toLocaleLowerCase()))
-      .map((message) => ({ ts: String(message.ts || ''), threadTs: message.thread_ts || null, replyCount: Number(message.reply_count || 0), user: message.user || message.bot_id || 'Slack user', subtype: message.subtype || null, text: String(message.text || '').slice(0, 6000) }));
+      .slice(0, 100);
+    const userIds = [...new Set(rawMessages.map((message) => message.user || message.bot_id).filter((id) => /^[UW][A-Z0-9]{6,20}$/.test(id)))].slice(0, 30);
+    const identities = await Promise.all(userIds.map(async (id) => {
+      const profile = await slackRequest('users.info', { user: id });
+      const user = profile.ok && profile.data && profile.data.user;
+      return [id, user && (user.profile && (user.profile.display_name || user.profile.real_name) || user.real_name || user.name) || null];
+    }));
+    const names = new Map(identities.filter(([, name]) => name));
+    const friendlyText = (value) => String(value || '').replace(/<@([UW][A-Z0-9]{6,20})>/g, (_, id) => names.has(id) ? `@${names.get(id)}` : '@Slack member').slice(0, 6000);
+    const messages = rawMessages.map((message) => { const userId = message.user || message.bot_id || ''; return { ts: String(message.ts || ''), threadTs: message.thread_ts || null, replyCount: Number(message.reply_count || 0), user: names.get(userId) || 'Slack member', subtype: message.subtype || null, text: friendlyText(message.text) }; });
     return { state: 'ready', channels, selected, messages, search, threadTs, teamId: configuration.team_id || '', canPost, alerts: configuration.alerts || {} };
   } catch (_) {
     return { state: 'error', channels, selected, search, threadTs, message: 'Console could not reach Slack right now.' };
