@@ -151,8 +151,7 @@ async function dashboardData(config, accessToken) {
       supabaseRequest(config, '/rest/v1/production_source_links?select=id,organization_id,production_id,integration_connection_id,provider,external_id,label,created_at&order=created_at.desc&limit=100', { accessToken }),
       supabaseRequest(config, '/rest/v1/source_events?select=id,organization_id,provider,payload,occurred_at&order=occurred_at.desc&limit=160', { accessToken }),
       supabaseRequest(config, '/rest/v1/production_members?select=production_id,user_id,role,created_at', { accessToken }),
-      supabaseRequest(config, '/rest/v1/production_access_invites?select=id,organization_id,production_id,email,role,accepted_by,accepted_at,created_at&order=created_at.desc', { accessToken }),
-      supabaseRequest(config, '/rest/v1/production_approval_requests?select=id,organization_id,production_id,title,detail,status,requested_by,reviewed_by,review_note,created_at,reviewed_at&order=created_at.desc&limit=100', { accessToken })
+      supabaseRequest(config, '/rest/v1/production_access_invites?select=id,organization_id,production_id,email,role,accepted_by,accepted_at,created_at&order=created_at.desc', { accessToken })
     ]);
 
     return {
@@ -166,11 +165,10 @@ async function dashboardData(config, accessToken) {
       productionLinks: requests[7].ok ? requests[7].data : [],
       sourceEvents: requests[8].ok ? requests[8].data : [],
       productionMemberships: requests[9].ok ? requests[9].data : [],
-      productionInvites: requests[10].ok ? requests[10].data : [],
-      productionApprovals: requests[11].ok ? requests[11].data : []
+      productionInvites: requests[10].ok ? requests[10].data : []
     };
   } catch (_) {
-    return { organizations: [], productions: [], integrations: [], activity: [], recommendations: [], memberships: [], workspaceFiles: [], productionLinks: [], sourceEvents: [], productionMemberships: [], productionInvites: [], productionApprovals: [] };
+    return { organizations: [], productions: [], integrations: [], activity: [], recommendations: [], memberships: [], workspaceFiles: [], productionLinks: [], sourceEvents: [], productionMemberships: [], productionInvites: [] };
   }
 }
 
@@ -195,10 +193,6 @@ function productionMemberRole(dashboard, productionId, userId) {
 
 function canEditProduction(dashboard, production, user) {
   return Boolean(production && (operatorOrganizations(dashboard).some((organization) => organization.id === production.organization_id) || productionMemberRole(dashboard, production.id, user.id) === 'editor'));
-}
-
-function canReviewProduction(dashboard, production) {
-  return Boolean(production && globalConsoleOrganizations(dashboard).some((organization) => organization.id === production.organization_id));
 }
 
 async function postSlackMessage(config, dashboard, user, form) {
@@ -355,40 +349,6 @@ async function updateProductionMemberRole(config, accessToken, dashboard, form) 
     method: 'PATCH', accessToken, headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ role })
   });
   return member.ok && invite.ok ? { ok: true, message: `${invitation.email} is now a ${role} for ${production.name}.` } : { ok: false, message: 'Console could not update that production role.' };
-}
-
-async function requestProductionApproval(config, accessToken, dashboard, user, form) {
-  const productionId = String(form.production_id || '');
-  const title = String(form.title || '').trim();
-  const detail = String(form.detail || '').trim();
-  const production = (dashboard.productions || []).find((item) => item.id === productionId);
-  if (!production || !canEditProduction(dashboard, production, user)) return { ok: false, message: 'Only a production Editor or Console Operator can request an approval.' };
-  if (title.length < 3 || title.length > 160 || detail.length > 2000) return { ok: false, message: 'Add an approval title (3–160 characters) and an optional concise note.' };
-  const result = await supabaseRequest(config, '/rest/v1/production_approval_requests', {
-    method: 'POST', accessToken,
-    headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-    body: JSON.stringify({ organization_id: production.organization_id, production_id: production.id, title, detail: detail || null, requested_by: user.id })
-  });
-  if (!result.ok) return { ok: false, message: 'Console could not create that approval request. Apply the Production Workspace Tools SQL migration, then try again.' };
-  await supabaseServiceRequest(config, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: production.organization_id, actor_id: user.id, action: 'production.approval.requested', entity_type: 'production', entity_id: production.id, metadata: { title } }) });
-  return { ok: true, message: 'Approval request added to this production workspace.' };
-}
-
-async function reviewProductionApproval(config, accessToken, dashboard, user, form) {
-  const approvalId = String(form.approval_id || '');
-  const status = String(form.status || '');
-  const reviewNote = String(form.review_note || '').trim().slice(0, 1200);
-  const approval = (dashboard.productionApprovals || []).find((item) => item.id === approvalId);
-  const production = approval && (dashboard.productions || []).find((item) => item.id === approval.production_id);
-  if (!approval || !production || !canReviewProduction(dashboard, production)) return { ok: false, message: 'Only a Console Operator, Approver, or Admin can decide this request.' };
-  if (!['approved', 'changes_requested'].includes(status)) return { ok: false, message: 'Choose Approve or Request changes.' };
-  const result = await supabaseRequest(config, `/rest/v1/production_approval_requests?id=eq.${encodeURIComponent(approval.id)}&status=eq.pending`, {
-    method: 'PATCH', accessToken, headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-    body: JSON.stringify({ status, reviewed_by: user.id, reviewed_at: new Date().toISOString(), review_note: reviewNote || null })
-  });
-  if (!result.ok) return { ok: false, message: 'Console could not record that approval decision.' };
-  await supabaseServiceRequest(config, '/rest/v1/audit_log', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ organization_id: production.organization_id, actor_id: user.id, action: `production.approval.${status}`, entity_type: 'production_approval_request', entity_id: approval.id, metadata: { production_id: production.id } }) });
-  return { ok: true, message: status === 'approved' ? 'Approval recorded.' : 'Changes were requested and recorded.' };
 }
 
 async function registerIntegration(config, accessToken, dashboard, form) {
@@ -656,7 +616,6 @@ function productionWorkspaceView(dashboard, requestToken, productionId, user) {
   const organization = (dashboard.organizations || []).find((item) => item.id === production.organization_id);
   const canManage = operatorOrganizations(dashboard).some((workspace) => workspace.id === production.organization_id);
   const canEdit = canEditProduction(dashboard, production, user);
-  const canReview = canReviewProduction(dashboard, production);
   const links = (dashboard.productionLinks || []).filter((item) => item.production_id === production.id);
   const files = (dashboard.workspaceFiles || []).filter((item) => item.production_id === production.id);
   const requiredDocumentTypes = [
@@ -677,12 +636,6 @@ function productionWorkspaceView(dashboard, requestToken, productionId, user) {
   const activityRows = activity.length
     ? `<div class="event-list production-events">${activity.slice(0, 12).map((item) => `<article class="event"><span class="event-dot ${escapeHtml(item.severity || 'info')}"></span><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.detail || 'No additional details')}</p></div><time>${escapeHtml(shortDate(item.occurred_at))}</time></article>`).join('')}</div>`
     : '<div class="empty-state compact"><span class="empty-icon">↗</span><strong>No linked activity yet</strong><p>Assign an approved Slack channel below, or add production paperwork, to start this production’s record.</p></div>';
-  const approvals = (dashboard.productionApprovals || []).filter((item) => item.production_id === production.id);
-  const pendingApprovals = approvals.filter((item) => item.status === 'pending');
-  const approvalRows = approvals.length
-    ? `<div class="approval-list">${approvals.slice(0, 12).map((item) => `<article><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.detail || 'No additional note.')}</p><small>${escapeHtml(item.status.replaceAll('_', ' '))} · ${escapeHtml(shortDate(item.reviewed_at || item.created_at))}</small>${item.review_note ? `<p class="approval-note">${escapeHtml(item.review_note)}</p>` : ''}</div><span class="status-pill ${item.status === 'approved' ? 'healthy' : item.status === 'changes_requested' ? 'degraded' : 'pending'}">${escapeHtml(item.status.replaceAll('_', ' '))}</span>${canReview && item.status === 'pending' ? `<form method="post" action="/console?view=productions&production_id=${encodeURIComponent(production.id)}"><input type="hidden" name="action" value="review_production_approval"><input type="hidden" name="form_token" value="${escapeHtml(requestToken)}"><input type="hidden" name="approval_id" value="${escapeHtml(item.id)}"><label>Decision note <span>(optional)</span><input name="review_note" maxlength="1200" placeholder="Optional context"></label><div><button class="text-button" type="submit" name="status" value="approved">Approve</button><button class="text-button danger-text" type="submit" name="status" value="changes_requested">Request changes</button></div></form>` : ''}</article>`).join('')}</div>`
-    : '<div class="empty-state compact"><span class="empty-icon">✓</span><strong>No approval requests</strong><p>Request a review for a brief, turnover, delivery, or any production decision.</p></div>';
-  const approvalRequest = canEdit ? `<form class="approval-request-form" method="post" action="/console?view=productions&production_id=${encodeURIComponent(production.id)}"><input type="hidden" name="action" value="request_production_approval"><input type="hidden" name="form_token" value="${escapeHtml(requestToken)}"><input type="hidden" name="production_id" value="${escapeHtml(production.id)}"><label>Request title<input name="title" maxlength="160" placeholder="e.g. Approve final turnover package" required></label><label>Context <span>(optional)</span><textarea name="detail" maxlength="2000" placeholder="What needs a decision, and by when?"></textarea></label><button class="button secondary" type="submit">Request approval</button></form>` : '<p class="quiet">An Editor or Operator can request a decision here. You can review the status of requests below.</p>';
   const linkedSources = links.length
     ? `<div class="production-link-list">${links.map((link) => `<article><div><span class="source-mark">${escapeHtml(providerName(link.provider).slice(0, 1))}</span><strong>${escapeHtml(link.label)}</strong><p>${escapeHtml(providerName(link.provider))} context</p></div>${canManage ? `<form method="post" action="/console?view=productions&production_id=${encodeURIComponent(production.id)}"><input type="hidden" name="action" value="unlink_production_source"><input type="hidden" name="form_token" value="${escapeHtml(requestToken)}"><input type="hidden" name="production_id" value="${escapeHtml(production.id)}"><input type="hidden" name="link_id" value="${escapeHtml(link.id)}"><button class="text-button" type="submit">Remove</button></form>` : ''}</article>`).join('')}</div>`
     : '<p class="quiet">No source context has been assigned yet.</p>';
@@ -701,8 +654,8 @@ function productionWorkspaceView(dashboard, requestToken, productionId, user) {
   const inviteList = invitations.length ? `<div class="invite-list">${invitations.map((invite) => invite.accepted_at && invite.accepted_by
     ? `<form method="post" action="/console?view=productions&production_id=${encodeURIComponent(production.id)}"><input type="hidden" name="action" value="update_production_member_role"><input type="hidden" name="form_token" value="${escapeHtml(requestToken)}"><input type="hidden" name="production_id" value="${escapeHtml(production.id)}"><input type="hidden" name="invitation_id" value="${escapeHtml(invite.id)}"><strong>${escapeHtml(invite.email)}</strong><label>Role<select name="role"><option value="viewer"${invite.role === 'viewer' ? ' selected' : ''}>Viewer</option><option value="editor"${invite.role === 'editor' ? ' selected' : ''}>Editor</option></select></label><button class="text-button" type="submit">Save role</button></form>`
     : `<p><strong>${escapeHtml(invite.email)}</strong><span>Pending sign-in · ${escapeHtml(invite.role)}</span></p>`).join('')}</div>` : '';
-  const memberAccess = canManage ? `<section class="production-member-panel panel"><div><p class="eyebrow">Production access</p><h2>Invite a production member</h2><p class="quiet">Viewers can review this workspace. Editors can also upload paperwork, request approvals, and post only to its mapped Slack channel.</p></div><form method="post" action="/console?view=productions&production_id=${encodeURIComponent(production.id)}"><input type="hidden" name="action" value="invite_production_member"><input type="hidden" name="form_token" value="${escapeHtml(requestToken)}"><input type="hidden" name="production_id" value="${escapeHtml(production.id)}"><label>Email<input type="email" name="email" required placeholder="producer@example.com"></label><label>Role<select name="role"><option value="viewer">Viewer</option><option value="editor">Editor</option></select></label><button class="button primary" type="submit">Grant production access</button></form>${inviteList}</section>` : '';
-  return `<section class="production-workspace-heading">${canManage ? '<a class="back-link" href="/console?view=productions">← All productions</a>' : ''}<div class="production-title-row"><div><p class="eyebrow">Production workspace · ${escapeHtml(organization && organization.name || 'PostOpz')}</p><h1>${escapeHtml(production.name)}</h1><p>Focused operational context. Assignments organize Console’s view only; they never alter provider content.</p></div><span class="status-pill neutral">${escapeHtml(production.status)}</span></div></section><section class="production-metrics"><article><p>Readiness</p><strong>${completeDocuments}<em> / ${requiredDocumentTypes.length}</em></strong><span>core paperwork types available</span></article><article><p>Workspace Files</p><strong>${files.length}</strong><span>${files.length === 1 ? 'private production document' : 'private production documents'}</span></article><article><p>Approvals</p><strong>${pendingApprovals.length}</strong><span>${pendingApprovals.length === 1 ? 'decision awaiting review' : 'decisions awaiting review'}</span></article><article><p>Activity</p><strong>${activity.length}</strong><span>recent matched items</span></article></section><section class="production-context-grid"><article class="panel"><div class="panel-heading"><div><p class="eyebrow">Readiness</p><h2>Paperwork coverage</h2></div><span class="count-badge">${completeDocuments}/${requiredDocumentTypes.length}</span></div><ul class="readiness-list">${readiness}</ul><p class="quiet">Coverage is an indicator, not a delivery approval. Upload files below when they are ready for the team.</p></article><article class="panel"><div class="panel-heading"><div><p class="eyebrow">Source context</p><h2>Slack and connected work</h2></div>${canManage ? '<a href="/console?view=slack">Open Slack</a>' : ''}</div>${linkedSources}${slackAssignment}<p class="source-note">Google Drive remains browseable in Workspace Files; document uploads assigned below are already production-specific.</p></article></section>${slackComposer}<section class="production-tools-grid"><article class="panel"><div class="panel-heading"><div><p class="eyebrow">Approvals</p><h2>Requests and decisions</h2></div><span class="count-badge">${pendingApprovals.length}</span></div>${approvalRequest}${approvalRows}</article></section>${memberAccess}<section class="production-activity-panel panel"><div class="panel-heading"><div><p class="eyebrow">Production activity</p><h2>What changed for this work</h2></div><span class="status-pill healthy"><i></i> Context scoped</span></div>${activityRows}</section><section class="production-files-section"><div class="panel-heading production-files-heading"><div><p class="eyebrow">Production paperwork</p><h2>Files for ${escapeHtml(production.name)}</h2></div>${canManage ? '<a href="/console?view=media">Open Workspace Files</a>' : ''}</div>${workspaceFilesPanel(dashboard, requestToken, production.id, true, user)}</section>`;
+  const memberAccess = canManage ? `<section class="production-member-panel panel"><div><p class="eyebrow">Production access</p><h2>Invite a production member</h2><p class="quiet">Viewers can review this workspace. Editors can upload paperwork and post only to its mapped Slack channel.</p></div><form method="post" action="/console?view=productions&production_id=${encodeURIComponent(production.id)}"><input type="hidden" name="action" value="invite_production_member"><input type="hidden" name="form_token" value="${escapeHtml(requestToken)}"><input type="hidden" name="production_id" value="${escapeHtml(production.id)}"><label>Email<input type="email" name="email" required placeholder="producer@example.com"></label><label>Role<select name="role"><option value="viewer">Viewer</option><option value="editor">Editor</option></select></label><button class="button primary" type="submit">Grant production access</button></form>${inviteList}</section>` : '';
+  return `<section class="production-workspace-heading">${canManage ? '<a class="back-link" href="/console?view=productions">← All productions</a>' : ''}<div class="production-title-row"><div><p class="eyebrow">Production workspace · ${escapeHtml(organization && organization.name || 'PostOpz')}</p><h1>${escapeHtml(production.name)}</h1><p>Focused operational context. Team correspondence stays in this production’s mapped Slack channel.</p></div><span class="status-pill neutral">${escapeHtml(production.status)}</span></div></section><section class="production-metrics"><article><p>Readiness</p><strong>${completeDocuments}<em> / ${requiredDocumentTypes.length}</em></strong><span>core paperwork types available</span></article><article><p>Workspace Files</p><strong>${files.length}</strong><span>${files.length === 1 ? 'private production document' : 'private production documents'}</span></article><article><p>Linked sources</p><strong>${links.length}</strong><span>project-specific provider context</span></article><article><p>Activity</p><strong>${activity.length}</strong><span>recent matched items</span></article></section><section class="production-context-grid"><article class="panel"><div class="panel-heading"><div><p class="eyebrow">Readiness</p><h2>Paperwork coverage</h2></div><span class="count-badge">${completeDocuments}/${requiredDocumentTypes.length}</span></div><ul class="readiness-list">${readiness}</ul><p class="quiet">Coverage is an indicator, not a client approval. Upload files below when they are ready for the team.</p></article><article class="panel"><div class="panel-heading"><div><p class="eyebrow">Source context</p><h2>Slack and connected work</h2></div>${canManage ? '<a href="/console?view=slack">Open Slack</a>' : ''}</div>${linkedSources}${slackAssignment}<p class="source-note">Google Drive remains browseable in Workspace Files; document uploads assigned below are already production-specific.</p></article></section>${slackComposer}${memberAccess}<section class="production-activity-panel panel"><div class="panel-heading"><div><p class="eyebrow">Production activity</p><h2>What changed for this work</h2></div><span class="status-pill healthy"><i></i> Context scoped</span></div>${activityRows}</section><section class="production-files-section"><div class="panel-heading production-files-heading"><div><p class="eyebrow">Production paperwork</p><h2>Files for ${escapeHtml(production.name)}</h2></div>${canManage ? '<a href="/console?view=media">Open Workspace Files</a>' : ''}</div>${workspaceFilesPanel(dashboard, requestToken, production.id, true, user)}</section>`;
 }
 
 function consolePage(user, dashboard, notice = '', requestToken = '', selectedView = 'overview', googleSession = { state: 'disconnected' }, slackSession = { state: 'unregistered' }, selectedProductionId = '', productionOnly = false) {
@@ -836,8 +789,6 @@ exports.handler = async (event) => {
     if (form.action === 'register_production') result = await registerProduction(config, accessToken, dashboard, form);
     else if (form.action === 'invite_production_member') result = await inviteProductionMember(config, accessToken, dashboard, user, form);
     else if (form.action === 'update_production_member_role') result = await updateProductionMemberRole(config, accessToken, dashboard, form);
-    else if (form.action === 'request_production_approval') result = await requestProductionApproval(config, accessToken, dashboard, user, form);
-    else if (form.action === 'review_production_approval') result = await reviewProductionApproval(config, accessToken, dashboard, user, form);
     else if (form.action === 'link_production_slack_channel') result = await linkProductionSlackChannel(config, accessToken, dashboard, user, form);
     else if (form.action === 'unlink_production_source') result = await unlinkProductionSource(config, accessToken, dashboard, user, form);
     else if (form.action === 'register_integration') result = await registerIntegration(config, accessToken, dashboard, form);
