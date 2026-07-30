@@ -28,6 +28,11 @@ The warning about new tables is expected. This migration creates Console metadat
    - your display name, for example `Michael Newton`
 5. Select **Save pairing and send now**. Leave the panel open while editing; it reports once per minute.
 
+If the one-time token is lost before the panel is paired, return to the
+production's **Premiere Presence** section and select **Reissue token** next to
+that workstation. This immediately replaces the old token with a new one; the
+original token is intentionally never stored in readable form.
+
 ## Operational model
 
 Each editor workstation reports its own presence. A standard `.prproj` does not itself reveal who has it open elsewhere, so this approach is intentionally explicit and production-scoped. Console treats a heartbeat as **active** for two minutes, then displays it as **away** until the next report.
