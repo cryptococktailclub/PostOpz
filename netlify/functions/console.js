@@ -399,6 +399,25 @@ async function createPremierePresenceAgent(config, accessToken, dashboard, user,
   return { ok: true, message: `Premiere pairing created for ${label}. Copy now — workstation ID: ${agent.id} · pairing token: ${token}` };
 }
 
+async function revokePremierePresenceAgent(config, accessToken, dashboard, user, form) {
+  const productionId = String(form.production_id || '');
+  const agentId = String(form.agent_id || '');
+  const production = (dashboard.productions || []).find((item) => item.id === productionId);
+  const agent = (dashboard.premierePresenceAgents || []).find((item) => item.id === agentId && item.production_id === productionId);
+  if (!production || !agent || !operatorOrganizations(dashboard).some((organization) => organization.id === production.organization_id)) {
+    return { ok: false, message: 'Only a PostOpz Operator or Admin can revoke a Premiere workstation pairing.' };
+  }
+  const result = await supabaseRequest(config, `/rest/v1/premiere_presence_agents?id=eq.${encodeURIComponent(agentId)}`, {
+    method: 'DELETE', accessToken, headers: { Prefer: 'return=minimal' }
+  });
+  if (!result.ok) return { ok: false, message: 'Console could not revoke that Premiere pairing.' };
+  await supabaseServiceRequest(config, '/rest/v1/audit_log', {
+    method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+    body: JSON.stringify({ organization_id: production.organization_id, actor_id: user.id, action: 'premiere.presence.revoked', entity_type: 'production', entity_id: production.id, metadata: { agent_id: agent.id, label: agent.label } })
+  });
+  return { ok: true, message: `Premiere pairing for ${agent.label} was revoked. This workstation can no longer report to Console.` };
+}
+
 function setupPanel(dashboard, notice = '', requestToken = '') {
   const operatorWorkspaces = operatorOrganizations(dashboard);
   if (!operatorWorkspaces.length) return '';
@@ -741,7 +760,7 @@ function productionWorkspaceView(dashboard, requestToken, productionId, user) {
     }).join('')
     : '<div class="empty-state compact"><span class="empty-icon">Pr</span><strong>No editor workstations are reporting</strong><p>Pair a workstation, then load the PostOpz Presence panel in Premiere.</p></div>';
   const pairedRows = premiereAgents.length
-    ? `<div class="premiere-paired-list">${premiereAgents.map((agent) => { const report = presenceByAgent.get(agent.id); return `<p><strong>${escapeHtml(agent.label)}</strong><span>${report ? `Last heartbeat ${escapeHtml(shortDate(report.last_heartbeat_at))}` : 'Awaiting first heartbeat'}</span></p>`; }).join('')}</div>`
+    ? `<div class="premiere-paired-list">${premiereAgents.map((agent) => { const report = presenceByAgent.get(agent.id); return `<form method="post" action="/console?view=productions&production_id=${encodeURIComponent(production.id)}"><input type="hidden" name="action" value="revoke_premiere_presence_agent"><input type="hidden" name="form_token" value="${escapeHtml(requestToken)}"><input type="hidden" name="production_id" value="${escapeHtml(production.id)}"><input type="hidden" name="agent_id" value="${escapeHtml(agent.id)}"><p><strong>${escapeHtml(agent.label)}</strong><span>${report ? `Last heartbeat ${escapeHtml(shortDate(report.last_heartbeat_at))}` : 'Awaiting first heartbeat'}</span></p><button class="text-button" type="submit">Revoke pairing</button></form>`; }).join('')}</div>`
     : '';
   const premierePresencePanel = `<section class="panel premiere-presence-panel"><div><p class="eyebrow">Premiere Presence</p><h2>Editors active in ${escapeHtml(production.name)}</h2><p class="quiet">Reports only editor, project, sequence, Premiere version, and last activity. No footage, project contents, paths, or Adobe credentials leave the workstation.</p></div><div class="premiere-presence-list">${presenceRows}</div>${canManage ? `<form class="premiere-pair-form" method="post" action="/console?view=productions&production_id=${encodeURIComponent(production.id)}"><input type="hidden" name="action" value="create_premiere_presence_agent"><input type="hidden" name="form_token" value="${escapeHtml(requestToken)}"><input type="hidden" name="production_id" value="${escapeHtml(production.id)}"><label>Workstation label<input name="label" maxlength="120" placeholder="e.g. Michael — Edit Bay" required></label><button class="button secondary" type="submit">Create Premiere pairing</button></form>${pairedRows}` : ''}</section>`;
   return `<section class="production-workspace-heading">${canManage ? '<a class="back-link" href="/console?view=productions">← All productions</a>' : ''}<div class="production-title-row"><div><p class="eyebrow">Production workspace · ${escapeHtml(organization && organization.name || 'PostOpz')}</p><h1>${escapeHtml(production.name)}</h1><p>Focused operational context. Team correspondence stays in this production’s mapped Slack channel.</p></div><span class="status-pill neutral">${escapeHtml(production.status)}</span></div></section><section class="production-metrics"><article><p>Readiness</p><strong>${completeDocuments}<em> / ${requiredDocumentTypes.length}</em></strong><span>core paperwork types available</span></article><article><p>Workspace Files</p><strong>${files.length}</strong><span>${files.length === 1 ? 'private production document' : 'private production documents'}</span></article><article><p>Editors active</p><strong>${activePremiereEditors.length}</strong><span>Premiere workstations reporting</span></article><article><p>Activity</p><strong>${activity.length}</strong><span>recent matched items</span></article></section><section class="production-context-grid"><article class="panel"><div class="panel-heading"><div><p class="eyebrow">Readiness</p><h2>Paperwork coverage</h2></div><span class="count-badge">${completeDocuments}/${requiredDocumentTypes.length}</span></div><ul class="readiness-list">${readiness}</ul><p class="quiet">Coverage is an indicator, not a client approval. Upload files below when they are ready for the team.</p></article><article class="panel"><div class="panel-heading"><div><p class="eyebrow">Source context</p><h2>Slack and connected work</h2></div>${canManage ? '<a href="/console?view=slack">Open Slack</a>' : ''}</div>${linkedSources}${slackAssignment}<p class="source-note">Google Drive remains browseable in Workspace Files; document uploads assigned below are already production-specific.</p></article></section>${premierePresencePanel}${slackComposer}${productionSlackTranscript}${memberAccess}<section class="production-activity-panel panel"><div class="panel-heading"><div><p class="eyebrow">Production activity</p><h2>What changed for this work</h2></div><span class="status-pill healthy"><i></i> Context scoped</span></div>${activityRows}</section><section class="production-files-section"><div class="panel-heading production-files-heading"><div><p class="eyebrow">Production paperwork</p><h2>Files for ${escapeHtml(production.name)}</h2></div>${canManage ? '<a href="/console?view=media">Open Workspace Files</a>' : ''}</div>${workspaceFilesPanel(dashboard, requestToken, production.id, true, user)}</section>`;
@@ -897,6 +916,7 @@ exports.handler = async (event) => {
     else if (form.action === 'link_production_slack_channel') result = await linkProductionSlackChannel(config, accessToken, dashboard, user, form);
     else if (form.action === 'unlink_production_source') result = await unlinkProductionSource(config, accessToken, dashboard, user, form);
     else if (form.action === 'create_premiere_presence_agent') result = await createPremierePresenceAgent(config, accessToken, dashboard, user, form);
+    else if (form.action === 'revoke_premiere_presence_agent') result = await revokePremierePresenceAgent(config, accessToken, dashboard, user, form);
     else if (form.action === 'register_integration') result = await registerIntegration(config, accessToken, dashboard, form);
     else if (form.action === 'post_slack_message') result = await postSlackMessage(config, dashboard, user, form);
     else if (form.action === 'refresh_slack_activity') result = await refreshSlackActivity(dashboard, user);
