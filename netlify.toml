@@ -109,5 +109,13 @@ to = "/.netlify/functions/slack-events"
 status = 200
 force = true
 
+# The Premiere companion has no browser session. Every heartbeat is instead
+# authenticated by a production-scoped, one-time pairing secret.
+[[redirects]]
+from = "/console/premiere/presence"
+to = "/.netlify/functions/premiere-presence"
+status = 200
+force = true
+
 [functions."slack-poll"]
 schedule = "*/15 * * * *"
