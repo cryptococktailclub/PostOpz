@@ -1,5 +1,4 @@
 /* global require */
-const form = document.getElementById('pairing-form');
 const statusNode = document.getElementById('status');
 const contextNode = document.getElementById('context');
 const fields = {
@@ -62,14 +61,17 @@ async function sendPresence() {
   }
 }
 
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
+async function savePairing() {
   const current = pairing();
   localStorage.setItem('postopz-premiere-presence', JSON.stringify(current));
   await sendPresence();
-});
+}
+document.getElementById('save-pairing').addEventListener('click', savePairing);
 document.getElementById('send-now').addEventListener('click', sendPresence);
-setInterval(sendPresence, 60 * 1000);
+setInterval(() => {
+  const current = pairing();
+  if (/^https:\/\//.test(current.endpoint) && current.agentId && current.token.length >= 32 && current.editorName) sendPresence();
+}, 60 * 1000);
 premiereContext().then((context) => {
   contextNode.textContent = context.project_name ? `Open project: ${context.project_name}` : 'Open a Premiere project, then pair this panel to Console.';
 });
