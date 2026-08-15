@@ -1,0 +1,27 @@
+{
+  "manifestVersion": 5,
+  "id": "com.postopz.console.premierepresence",
+  "name": "PostOpz Premiere Presence",
+  "version": "0.1.0",
+  "main": "index.html",
+  "host": {
+    "app": "premierepro",
+    "minVersion": "26.3.0"
+  },
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "postopzPremierePresence",
+      "label": {
+        "default": "PostOpz Presence"
+      }
+    }
+  ],
+  "requiredPermissions": {
+    "network": {
+      "domains": [
+        "https://*.netlify.app"
+      ]
+    }
+  }
+}

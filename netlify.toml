@@ -1,2 +1,121 @@
 [build]
   publish = "."
+
+# Keep the internal Console on its permanent route while serving it through a
+# server-side function. The function fails closed until its password secret is
+# configured in Netlify.
+[[redirects]]
+  from = "/console"
+  to = "/.netlify/functions/console"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/console/"
+  to = "/.netlify/functions/console"
+  status = 200
+  force = true
+
+# Frame.io requires a public HTTPS receiver for signed webhook deliveries.
+# This endpoint is protected by strict timestamp and HMAC verification in the
+# function itself; it is not a browser-accessible Console page.
+[[redirects]]
+  from = "/console/webhooks/frameio"
+  to = "/.netlify/functions/frameio-webhook"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/console/frameio/connect"
+  to = "/.netlify/functions/frameio-oauth?mode=start"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/console/frameio/callback"
+  to = "/.netlify/functions/frameio-oauth?mode=callback"
+  status = 200
+  force = true
+
+[[redirects]]
+from = "/console/frameio/select-workspace"
+to = "/.netlify/functions/frameio-oauth?mode=select"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/connect"
+to = "/.netlify/functions/google-drive-start"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/callback"
+to = "/.netlify/functions/google-drive-callback"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/index"
+to = "/.netlify/functions/google-drive-index"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/document"
+to = "/.netlify/functions/google-drive-document"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/google/download"
+to = "/.netlify/functions/google-drive-download"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/workspace-files/upload"
+to = "/.netlify/functions/workspace-files-upload"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/workspace-files/download"
+to = "/.netlify/functions/workspace-files-download"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/slack/connect"
+to = "/.netlify/functions/slack-oauth-start"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/slack/callback"
+to = "/.netlify/functions/slack-oauth-callback"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/slack/select-channels"
+to = "/.netlify/functions/slack-oauth-select"
+status = 200
+force = true
+
+[[redirects]]
+from = "/console/webhooks/slack"
+to = "/.netlify/functions/slack-events"
+status = 200
+force = true
+
+# The Premiere companion has no browser session. Every heartbeat is instead
+# authenticated by a production-scoped, one-time pairing secret.
+[[redirects]]
+from = "/console/premiere/presence"
+to = "/.netlify/functions/premiere-presence"
+status = 200
+force = true
+
+[functions."slack-poll"]
+schedule = "*/15 * * * *"
