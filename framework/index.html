@@ -3,635 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The PostOpz Framework Vol. 1 | Avid Media Composer Edition</title>
-  <meta name="description" content="A professional Avid assistant editor workflow system for documentary, unscripted, and long-form post-production. Includes a 75-page manual and implementation toolkit." />
+  <title>The PostOpz Framework Vol. 1 + PostOpz Guide | Avid Media Composer</title>
+  <meta name="description" content="The PostOpz Framework Vol. 1 for Avid Media Composer includes a 75-page professional workflow manual, implementation toolkit, and the interactive PostOpz Guide with Framework-grounded AI workflow assistance." />
+  <link rel="canonical" href="https://postopz.com/framework/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PostOpz" />
+  <meta property="og:title" content="The PostOpz Framework Vol. 1 + PostOpz Guide" />
+  <meta property="og:description" content="Manual. Toolkit. Interactive Guide. A production-tested Avid assistant editor workflow system built for real post teams." />
+  <meta property="og:url" content="https://postopz.com/framework/" />
+  <meta property="og:image" content="https://postopz.com/assets/postopz-framework-vol1-cover.png" />
 
-  <!-- Replace with your live SendOwl checkout URL -->
   <script>
     const SENDOWL_CHECKOUT_URL = "https://sowl.co/p/hdFFJ";
   </script>
 
   <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '3191312404412316');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=3191312404412316&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code --><!-- Optional Meta Pixel placeholder. Paste your pixel code here before launching ads. -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '3191312404412316');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3191312404412316&ev=PageView&noscript=1" /></noscript>
+  <!-- End Meta Pixel Code -->
 
   <style>
-    :root {
-      --bg: #070B12;
-      --bg-2: #0B0F17;
-      --card: rgba(255,255,255,0.055);
-      --card-2: rgba(255,255,255,0.085);
-      --line: rgba(255,255,255,0.13);
-      --text: #FFFFFF;
-      --muted: #A0A8B8;
-      --soft: #D7DCE7;
-      --orange: #FF7A18;
-      --pink: #FF4FD8;
-      --purple: #6F4BF2;
-      --blue: #4EA3FF;
-      --green: #2EFF6A;
-      --max: 1180px;
-      --radius: 28px;
-      --shadow: 0 30px 90px rgba(0,0,0,0.45);
+    :root{
+      --bg:#05070d;
+      --bg2:#090e16;
+      --panel:#0c121c;
+      --panel2:#101826;
+      --line:rgba(255,255,255,.11);
+      --line2:rgba(255,255,255,.16);
+      --text:#f6f8fc;
+      --soft:#d2d8e3;
+      --muted:#8794a7;
+      --orange:#ff7a18;
+      --pink:#ef2bbd;
+      --purple:#793cff;
+      --blue:#389cff;
+      --green:#36d59b;
+      --max:1180px;
+      --shadow:0 30px 90px rgba(0,0,0,.42);
     }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at 15% 0%, rgba(78,163,255,0.16), transparent 30%),
-        radial-gradient(circle at 85% 10%, rgba(255,79,216,0.13), transparent 28%),
-        linear-gradient(180deg, #05070D 0%, #0B0F17 42%, #070B12 100%);
-      color: var(--text);
-      overflow-x: hidden;
+        radial-gradient(circle at 12% 0%,rgba(56,156,255,.12),transparent 28%),
+        radial-gradient(circle at 88% 8%,rgba(239,43,189,.10),transparent 26%),
+        linear-gradient(180deg,#04070c 0%,#090e16 46%,#05070d 100%);
+      overflow-x:hidden;
     }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent 80%);
-      z-index: -1;
+    body:before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+      background-size:56px 56px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,.5),transparent 80%);
     }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    h1,h2,h3,p{margin-top:0}
+    .page-edge{position:fixed;left:0;top:0;bottom:0;width:5px;z-index:40;background:linear-gradient(180deg,var(--orange),var(--pink),var(--purple),var(--blue))}
+    .nav{position:sticky;top:0;z-index:30;background:rgba(4,7,12,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav-inner{width:min(var(--max),calc(100% - 40px));margin:0 auto;min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:820}
+    .brand img{width:36px;height:36px}
+    .brand-copy{display:grid;gap:2px}
+    .brand-copy strong{font-size:14px}.brand-copy span{font-size:10px;color:var(--muted);letter-spacing:.04em}
+    .nav-links{display:flex;gap:22px;color:#a4afbe;font-size:13px;font-weight:650}
+    .nav-links a:hover{color:#fff}
+    .cta{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:13px;border:1px solid transparent;background:linear-gradient(90deg,var(--orange),var(--pink),var(--purple));color:#fff;font-weight:800;letter-spacing:-.01em;box-shadow:0 15px 44px rgba(121,60,255,.24);transition:transform .18s ease,border-color .18s ease,background .18s ease}
+    .cta:hover{transform:translateY(-2px)}
+    .cta.secondary{background:rgba(255,255,255,.045);border-color:var(--line2);box-shadow:none;color:var(--soft)}
+    .section{width:min(var(--max),calc(100% - 40px));margin:0 auto;padding:86px 0}
+    .hero{width:min(1240px,calc(100% - 40px));margin:0 auto;min-height:calc(100svh - 72px);padding:72px 0;display:grid;grid-template-columns:.94fr 1.06fr;gap:54px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--line2);border-radius:999px;background:rgba(255,255,255,.045);font-size:11px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:#cbd3df}
+    .eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 16px rgba(54,213,155,.55)}
+    h1{margin:22px 0 20px;font-size:clamp(50px,6.2vw,88px);line-height:.94;letter-spacing:-.07em}
+    h2{margin-bottom:16px;font-size:clamp(34px,4.4vw,58px);line-height:1.02;letter-spacing:-.055em}
+    h3{letter-spacing:-.03em}
+    .gradient-text{background:linear-gradient(90deg,var(--orange),var(--pink),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy,.lead,.section-head p{color:var(--soft);font-size:18px;line-height:1.65}
+    .hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .price-pill{display:inline-flex;align-items:center;gap:9px;padding:12px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.045);color:#aab4c2;font-size:12px;font-weight:700}.price-pill strong{color:#fff;font-size:18px}
+    .trust-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.trust-row span{padding:8px 10px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.035);color:#8794a7;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .hero-visual{position:relative}.hero-visual:before{content:"";position:absolute;inset:10%;background:linear-gradient(135deg,rgba(255,122,24,.17),rgba(239,43,189,.16),rgba(56,156,255,.17));filter:blur(70px);z-index:-1}
+    .hero-image,.image-card{overflow:hidden;border-radius:26px;border:1px solid var(--line2);background:rgba(255,255,255,.035);box-shadow:var(--shadow)}
+    .section-head{max-width:820px;margin-bottom:36px}.section-kicker{margin-bottom:13px;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+    .grid{display:grid;gap:18px}.problem-grid{grid-template-columns:repeat(3,1fr)}.bundle-grid{grid-template-columns:repeat(3,1fr)}.toolkit-grid{grid-template-columns:repeat(3,1fr)}.faq-grid{grid-template-columns:repeat(2,1fr)}
+    .card{padding:25px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));box-shadow:0 18px 58px rgba(0,0,0,.22)}
+    .card h3{margin-bottom:9px;font-size:20px}.card p,.card li{color:#929eaf;font-size:14px;line-height:1.6}.card ul{margin:0;padding-left:18px}
+    .icon{width:42px;height:42px;margin-bottom:15px;display:grid;place-items:center;border-radius:13px;border:1px solid var(--line2);background:linear-gradient(135deg,rgba(255,122,24,.22),rgba(239,43,189,.18),rgba(56,156,255,.22));font-size:12px;font-weight:900}
+    .split{display:grid;grid-template-columns:.95fr 1.05fr;gap:44px;align-items:center}
+    .list-stack{display:grid;gap:11px;margin-top:23px}.check-item{display:flex;gap:11px;align-items:flex-start;padding:13px 14px;border:1px solid rgba(255,255,255,.09);border-radius:15px;background:rgba(255,255,255,.035);color:#cbd3df;font-size:14px;line-height:1.5}.check{width:21px;height:21px;flex:0 0 21px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--blue));font-size:11px;font-weight:900}
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    .guide-launch{padding-top:96px;padding-bottom:96px}
+    .guide-owner-note{margin-top:12px;color:#77869a;font-size:12px;line-height:1.55}
+    .guide-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:24px}
+    .guide-preview{position:relative;border:1px solid #223047;border-radius:22px;background:#070d15;box-shadow:0 28px 90px rgba(0,0,0,.48);overflow:hidden;min-height:480px}
+    .guide-preview:before{content:"";position:absolute;inset:-20% 38% 52% -10%;background:radial-gradient(circle,rgba(56,156,255,.15),transparent 66%);pointer-events:none}
+    .guide-preview-top{height:58px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #172332;background:#080e17;color:#8c9aad;font-size:10px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+    .guide-preview-brand{display:flex;align-items:center;gap:9px;color:#e7ecf3;font-size:11px;letter-spacing:0;text-transform:none}.guide-preview-mark{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;border:2px solid transparent;background:linear-gradient(#080e17,#080e17) padding-box,linear-gradient(135deg,var(--orange),var(--pink),var(--blue)) border-box;color:#31bfff;font-weight:900}
+    .live-dot{display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:var(--green);box-shadow:0 0 11px rgba(54,213,155,.55)}
+    .guide-preview-body{position:relative;padding:28px}.guide-preview-kicker{color:var(--blue);font-size:9px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}.guide-preview h3{margin:10px 0 6px;font-size:26px;line-height:1.08}.guide-preview-sub{color:#7f8da0;font-size:12px;line-height:1.55}.guide-preview-step{margin:24px 0 18px;padding:18px;border:1px solid #1b2a3d;border-radius:14px;background:#0a121e}.guide-preview-step small{color:#728299;font-size:8px;font-weight:850;letter-spacing:.14em;text-transform:uppercase}.guide-preview-step strong{display:block;margin-top:7px;font-size:16px;line-height:1.3}.guide-preview-complete{margin-top:13px;padding-left:10px;border-left:2px solid var(--green);color:#a8b5c6;font-size:10px;line-height:1.5}.guide-preview-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.guide-preview-tool{padding:12px;border:1px solid #1a293b;border-radius:11px;background:#09111b}.guide-preview-tool strong{display:block;margin-bottom:4px;font-size:10px;color:#e5eaf1}.guide-preview-tool span{color:#728299;font-size:9px;line-height:1.35}.guide-preview-foot{display:flex;align-items:center;justify-content:space-between;margin-top:19px;color:#6f7e91;font-size:9px}.guide-preview-progress{width:54%;height:5px;border-radius:999px;background:#152031;overflow:hidden}.guide-preview-progress span{display:block;width:42%;height:100%;background:linear-gradient(90deg,var(--orange),var(--pink),var(--purple))}
 
-    .page-edge {
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 6px;
-      background: linear-gradient(180deg, var(--orange), var(--pink), var(--purple), var(--blue));
-      z-index: 10;
-    }
+    .offer-wrap{display:grid;grid-template-columns:1.08fr .92fr;gap:38px;align-items:center}.offer{padding:34px;border-radius:28px;border:1px solid var(--line2);background:radial-gradient(circle at top left,rgba(239,43,189,.13),transparent 38%),radial-gradient(circle at bottom right,rgba(56,156,255,.12),transparent 36%),rgba(255,255,255,.045);box-shadow:var(--shadow)}.offer-price{margin:12px 0 8px;font-size:clamp(56px,7vw,82px);font-weight:950;line-height:1;letter-spacing:-.075em}.fine{color:#78869a;font-size:12px;line-height:1.6}.license{margin-top:17px;padding:14px;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:rgba(255,255,255,.035);color:#aeb8c7;font-size:12px;line-height:1.55}
+    .band{width:min(var(--max),calc(100% - 40px));margin:35px auto;padding:38px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,rgba(255,122,24,.10),transparent 24%),linear-gradient(315deg,rgba(56,156,255,.10),transparent 26%),rgba(255,255,255,.035);display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:center}.band p{margin-bottom:0;color:#b6bfcc;line-height:1.65}.band .cta{justify-self:end}
+    .footer{padding:46px 0;border-top:1px solid var(--line);color:#77869a}.footer-inner{width:min(var(--max),calc(100% - 40px));margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;line-height:1.6}.sticky-cta{display:none;position:fixed;left:14px;right:14px;bottom:14px;z-index:45}.sticky-cta .cta{width:100%;min-height:55px}
 
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 9;
-      backdrop-filter: blur(16px);
-      background: rgba(5,7,13,0.72);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav-inner {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 0;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 14px;
-      font-weight: 900;
-      color: #19B9FF;
-      background: linear-gradient(#0B0F17, #0B0F17) padding-box,
-                  linear-gradient(135deg, var(--orange), var(--pink), var(--blue)) border-box;
-      border: 2px solid transparent;
-      box-shadow: 0 0 25px rgba(78,163,255,0.25);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 650;
-    }
-
-    .nav-links a:hover { color: white; }
-
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52px;
-      padding: 0 24px;
-      border-radius: 999px;
-      color: white;
-      font-weight: 850;
-      letter-spacing: -0.01em;
-      background: linear-gradient(90deg, var(--orange), var(--pink), var(--purple), var(--blue));
-      box-shadow: 0 16px 40px rgba(111,75,242,0.35);
-      border: 0;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .cta:hover { transform: translateY(-2px); box-shadow: 0 20px 50px rgba(255,79,216,0.36); }
-    .cta.secondary {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid var(--line);
-      box-shadow: none;
-      color: var(--soft);
-    }
-
-    .section {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      padding: 86px 0;
-    }
-
-    .hero {
-      width: min(1240px, calc(100% - 40px));
-      min-height: calc(100svh - 74px);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      align-items: center;
-      gap: 48px;
-      padding: 74px 0 72px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 14px;
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.055);
-      color: var(--soft);
-      font-size: 13px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 18px rgba(46,255,106,0.7);
-    }
-
-    h1, h2, h3, p { margin-top: 0; }
-    h1 {
-      margin: 24px 0 22px;
-      font-size: clamp(48px, 6vw, 88px);
-      line-height: 0.94;
-      letter-spacing: -0.075em;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, var(--orange), var(--pink), var(--purple), var(--blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-copy {
-      color: var(--soft);
-      font-size: clamp(18px, 2vw, 22px);
-      line-height: 1.55;
-      max-width: 670px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-      margin-top: 30px;
-    }
-
-    .price-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.055);
-      color: var(--soft);
-      font-size: 14px;
-      font-weight: 750;
-    }
-
-    .price-pill strong { color: white; font-size: 18px; }
-
-    .trust-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 26px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 720;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .trust-row span {
-      padding: 9px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.09);
-    }
-
-    .hero-visual {
-      position: relative;
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 8% 8%;
-      background: linear-gradient(135deg, rgba(255,122,24,0.24), rgba(255,79,216,0.2), rgba(78,163,255,0.22));
-      filter: blur(80px);
-      opacity: 0.8;
-      z-index: -1;
-    }
-
-    .hero-image {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: var(--shadow);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .section-head {
-      max-width: 820px;
-      margin-bottom: 38px;
-    }
-
-    .section-kicker {
-      color: var(--blue);
-      font-size: 13px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 14px;
-    }
-
-    h2 {
-      font-size: clamp(34px, 4.4vw, 58px);
-      line-height: 1.02;
-      letter-spacing: -0.055em;
-      margin-bottom: 16px;
-    }
-
-    .section-head p, .lead {
-      color: var(--soft);
-      font-size: 18px;
-      line-height: 1.65;
-    }
-    .brand-link {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.brand-link:hover .brand-mark {
-  transform: scale(1.04);
-  box-shadow: 0 0 28px rgba(78, 163, 255, 0.35);
-}
-
-.brand-mark {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-    .problem-grid, .feature-grid, .manual-grid, .toolkit-grid, .faq-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .problem-grid { grid-template-columns: repeat(3, 1fr); }
-    .feature-grid { grid-template-columns: repeat(4, 1fr); }
-    .manual-grid { grid-template-columns: repeat(2, 1fr); }
-    .toolkit-grid { grid-template-columns: repeat(3, 1fr); }
-    .faq-grid { grid-template-columns: repeat(2, 1fr); }
-
-    .card {
-      padding: 26px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.035));
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.25);
-    }
-
-    .card h3 {
-      font-size: 22px;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-
-    .card p, .card li {
-      color: var(--muted);
-      line-height: 1.58;
-      font-size: 15px;
-    }
-
-    .card ul { padding-left: 18px; margin-bottom: 0; }
-    .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 16px;
-      color: white;
-      font-weight: 950;
-      background: linear-gradient(135deg, rgba(255,122,24,0.28), rgba(255,79,216,0.24), rgba(78,163,255,0.28));
-      border: 1px solid rgba(255,255,255,0.16);
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 42px;
-      align-items: center;
-    }
-
-    .image-card {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      box-shadow: var(--shadow);
-    }
-
-    .list-stack {
-      display: grid;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .check-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 15px 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.11);
-      background: rgba(255,255,255,0.045);
-      color: var(--soft);
-      line-height: 1.5;
-    }
-
-    .check {
-      flex: 0 0 auto;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: white;
-      background: linear-gradient(135deg, var(--pink), var(--blue));
-      font-size: 13px;
-      font-weight: 950;
-      margin-top: 1px;
-    }
-
-    .band {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 40px auto;
-      padding: 42px;
-      border-radius: 34px;
-      background:
-        linear-gradient(135deg, rgba(255,122,24,0.15), transparent 24%),
-        linear-gradient(315deg, rgba(78,163,255,0.15), transparent 25%),
-        rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.13);
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .band h2 { margin-bottom: 10px; }
-    .band p { color: var(--soft); line-height: 1.6; margin-bottom: 0; }
-
-    .offer {
-      padding: 36px;
-      border-radius: 32px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background:
-        radial-gradient(circle at top left, rgba(255,79,216,0.17), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(78,163,255,0.16), transparent 34%),
-        rgba(255,255,255,0.06);
-      box-shadow: var(--shadow);
-    }
-
-    .offer-price {
-      font-size: clamp(54px, 7vw, 82px);
-      font-weight: 950;
-      letter-spacing: -0.075em;
-      line-height: 1;
-      margin: 12px 0 8px;
-    }
-
-    .strike { color: var(--muted); text-decoration: line-through; font-size: 22px; font-weight: 700; }
-    .fine { color: var(--muted); font-size: 13px; line-height: 1.55; }
-
-    .guarantee {
-      margin-top: 18px;
-      color: var(--soft);
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 18px;
-      padding: 16px;
-      line-height: 1.55;
-      font-size: 14px;
-    }
-
-    .footer {
-      padding: 52px 0 44px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: var(--muted);
-    }
-
-    .footer-inner {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .sticky-cta {
-      display: none;
-      position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      z-index: 20;
-    }
-
-    .sticky-cta .cta { width: 100%; min-height: 56px; }
-
-    .band .cta {
-  justify-self: end;
-  white-space: nowrap;
-}
-
-@media (max-width: 980px) {
-  .band .cta {
-    justify-self: start;
-  }
-}
-
-    @media (max-width: 980px) {
-      .hero, .split, .band { grid-template-columns: 1fr; }
-      .hero { padding-top: 48px; min-height: unset; }
-      .problem-grid, .feature-grid, .manual-grid, .toolkit-grid, .faq-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-    }
-
-    @media (max-width: 650px) {
-      .section { padding: 64px 0; }
-      .hero { width: min(100% - 26px, 1240px); gap: 30px; padding-bottom: 44px; }
-      .nav-inner { width: min(100% - 26px, var(--max)); }
-      .problem-grid, .feature-grid, .manual-grid, .toolkit-grid, .faq-grid { grid-template-columns: 1fr; }
-      .card { padding: 22px; }
-      .band { padding: 26px; width: min(100% - 26px, var(--max)); }
-      h1 { font-size: 50px; }
-      .hero-copy { font-size: 17px; }
-      .hero-actions .cta, .hero-actions .cta.secondary { width: 100%; }
-      .sticky-cta { display: block; }
-      body { padding-bottom: 82px; }
-    }
+    @media(max-width:980px){.hero,.split,.offer-wrap,.band{grid-template-columns:1fr}.hero{min-height:0;padding-top:54px}.problem-grid,.bundle-grid,.toolkit-grid,.faq-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.band .cta{justify-self:start}.guide-preview{min-height:440px}}
+    @media(max-width:650px){body{padding-bottom:80px}.section{width:min(100% - 26px,var(--max));padding:62px 0}.hero{width:min(100% - 26px,1240px);padding:44px 0}.nav-inner{width:min(100% - 26px,var(--max))}.problem-grid,.bundle-grid,.toolkit-grid,.faq-grid{grid-template-columns:1fr}.card{padding:21px}h1{font-size:49px}.hero-copy,.lead,.section-head p{font-size:16px}.hero-actions .cta{width:100%}.guide-actions .cta{width:100%}.guide-preview-body{padding:20px}.guide-preview-tools{grid-template-columns:1fr}.guide-preview{min-height:0}.band{width:min(100% - 26px,var(--max));padding:25px}.sticky-cta{display:block}}
   </style>
 </head>
 <body>
   <div class="page-edge"></div>
 
   <header class="nav">
-  <div class="nav-inner">
+    <div class="nav-inner">
+      <a href="https://postopz.com/" class="brand" aria-label="Return to PostOpz homepage">
+        <img src="/assets/postopz-pz-icon.png" alt="PostOpz" />
+        <div class="brand-copy"><strong>The PostOpz Framework</strong><span>Vol. 1 · Avid Media Composer</span></div>
+      </a>
+      <nav class="nav-links" aria-label="Framework navigation">
+        <a href="#manual">Manual</a>
+        <a href="#toolkit">Toolkit</a>
+        <a href="#guide">Guide</a>
+        <a href="#included">Included</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="cta checkout-link" href="https://sowl.co/p/hdFFJ">Get Vol. 1</a>
+    </div>
+  </header>
 
-    <a href="https://postopz.com/" class="brand brand-link" aria-label="Return to PostOpz homepage">
-      <div class="brand-mark">PZ</div>
-      <div>
-        <div class="brand-name">The PostOpz</div>
-        <div class="brand-subtitle">Framework</div>
-      </div>
-    </a>
-
-    <nav class="nav-links" aria-label="Landing page navigation">
-      <a href="#manual">Manual</a>
-      <a href="#toolkit">Toolkit</a>
-      <a href="#included">Included</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-
-    <a class="cta checkout-link" href="https://sowl.co/p/hdFFJ">
-      Get Framework
-    </a>
-
-  </div>
-</header>
   <main id="top">
     <section class="hero">
       <div>
-        <div class="eyebrow">Avid Media Composer Edition</div>
+        <div class="eyebrow">Avid Media Composer Edition · Available Now</div>
         <h1>The assistant editor workflow system built for <span class="gradient-text">real deadlines.</span></h1>
-        <p class="hero-copy">
-          The PostOpz Framework Vol. 1 is a professional post-production operations manual and implementation toolkit for Avid-based documentary, unscripted, branded, and long-form editorial workflows.
-        </p>
+        <p class="hero-copy">The PostOpz Framework Vol. 1 combines a production-tested 75-page operations manual, implementation toolkit, and the interactive PostOpz Guide for Avid-based documentary, unscripted, branded, and long-form editorial workflows.</p>
         <div class="hero-actions">
-          <a class="cta checkout-link" href="#checkout">Buy Now</a>
+          <a class="cta checkout-link" href="#checkout">Get Framework + Guide</a>
           <a class="cta secondary" href="#included">See What’s Included</a>
-          <span class="price-pill"><span>Launch Price</span> <strong>$197</strong></span>
+          <span class="price-pill"><span>Launch Price</span><strong>$197</strong></span>
         </div>
         <div class="trust-row">
-          <span>Organized Media</span>
-          <span>Reliable Workflows</span>
-          <span>Clean Turnovers</span>
-          <span>Keep Editors Editing</span>
+          <span>75-page manual</span><span>Implementation toolkit</span><span>PostOpz Guide</span><span>AI Workflow Assistant</span>
         </div>
       </div>
       <div class="hero-visual">
-        <div class="hero-image">
-          <img src="assets/framework-toolkit-thumbnail.png" alt="The PostOpz Framework and Implementation Toolkit product bundle" />
-        </div>
+        <div class="hero-image"><img src="assets/framework-toolkit-thumbnail.png" alt="The PostOpz Framework Vol. 1 and implementation toolkit" /></div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="included">
       <div class="section-head">
-        <div class="section-kicker">The problem</div>
-        <h2>Knowing Avid is not the same as knowing post-production.</h2>
-        <p>
-          Most new assistant editors learn the software before they understand the system around the software. This framework closes that gap with a practical, production-tested approach to organization, communication, version control, review exports, and turnovers.
-        </p>
+        <div class="section-kicker">One complete system</div>
+        <h2>Learn the workflow. Deploy the structure. Use the Guide while you work.</h2>
+        <p>Vol. 1 is designed as more than a PDF. The manual explains the methodology, the Toolkit gives you implementation assets, and the PostOpz Guide helps you move through the system step by step.</p>
       </div>
-      <div class="problem-grid">
-        <article class="card">
-          <div class="icon">01</div>
-          <h3>Project setup gets messy fast.</h3>
-          <p>Camera originals, proxies, archival, scripts, graphics, music, and exports need clear homes before editorial pressure hits.</p>
-        </article>
-        <article class="card">
-          <div class="icon">02</div>
-          <h3>Editors need consistency.</h3>
-          <p>Sequences, bins, naming, markers, review exports, and turnovers should feel predictable across the entire production.</p>
-        </article>
-        <article class="card">
-          <div class="icon">03</div>
-          <h3>Turnovers expose weak workflows.</h3>
-          <p>Mix and color turnovers reveal whether the project was organized with finishing in mind from the beginning.</p>
-        </article>
+      <div class="grid bundle-grid">
+        <article class="card"><div class="icon">01</div><h3>Framework Manual</h3><p>A 75-page professional operations manual covering project setup, organization, editorial prep, review, turnovers, and assistant editor standards.</p></article>
+        <article class="card"><div class="icon">02</div><h3>Implementation Toolkit</h3><p>Project structure, bins, sequence templates, reference instructions, naming standards, and checklists built to support the workflow.</p></article>
+        <article class="card"><div class="icon">03</div><h3>PostOpz Guide</h3><p>A secure interactive companion with chapter-by-chapter guidance, progress tracking, and a Framework-grounded AI Workflow Assistant.</p></article>
       </div>
     </section>
 
     <section class="section split" id="manual">
-      <div class="image-card">
-        <img src="assets/postopz-framework-cover.png" alt="The PostOpz Framework Vol. 1 cover" />
-      </div>
+      <div class="image-card"><img src="assets/postopz-framework-cover.png" alt="The PostOpz Framework Vol. 1 cover" /></div>
       <div>
         <div class="section-kicker">75-page manual</div>
         <h2>A professional operations manual for Avid-based editorial.</h2>
-        <p class="lead">
-          The manual walks through the assistant editor workflow from project creation through final delivery support. It is designed as a real-world reference for AEs, editors, post PAs, freelancers, and small post teams who need structure before production pressure arrives.
-        </p>
+        <p class="lead">The manual walks through the assistant editor workflow from project creation through final delivery support. It is built as a real-world reference for AEs, editors, post PAs, freelancers, and small post teams who need structure before production pressure arrives.</p>
         <div class="list-stack">
           <div class="check-item"><span class="check">✓</span><span>Project creation, media management, proxy separation, and folder standards.</span></div>
           <div class="check-item"><span class="check">✓</span><span>Sequence templates, timeline structure, sync maps, grouping, multigroups, and ScriptSync prep.</span></div>
@@ -641,141 +193,121 @@ src="https://www.facebook.com/tr?id=3191312404412316&ev=PageView&noscript=1"
       </div>
     </section>
 
-    <section class="section" id="included">
-      <div class="section-head">
-        <div class="section-kicker">Manual features</div>
-        <h2>What the Framework covers.</h2>
-        <p>Every chapter is designed around real post-production decisions that affect editors, producers, finishing teams, and delivery.</p>
-      </div>
-      <div class="manual-grid">
-        <article class="card"><h3>Foundation</h3><p>Project creation, media management, folder structure, camera originals, proxy separation, and professional naming standards.</p></article>
-        <article class="card"><h3>Editorial prep</h3><p>Timeline structure, sequence templates, sync maps, grouping, multigroups, transcripts, ScriptSync, and stringouts.</p></article>
-        <article class="card"><h3>Asset organization</h3><p>Archival footage, images, graphics, music, sound effects, source vendors, licensing logic, and searchable bins.</p></article>
-        <article class="card"><h3>Review & turnover</h3><p>Review exports, slate standards, BITC, version naming, mix prep, color prep, turnover packages, and communication standards.</p></article>
-      </div>
-    </section>
-
     <section class="section split" id="toolkit">
       <div>
         <div class="section-kicker">Implementation toolkit</div>
         <h2>Start with the system already built.</h2>
-        <p class="lead">
-          The toolkit gives you deployable implementation assets to support the workflow taught in the manual. Instead of rebuilding the structure from scratch, you can start from a professional PostOpz template system and adapt it to your production.
-        </p>
+        <p class="lead">The Toolkit provides implementation assets that support the workflow taught in the manual, so you can begin from a professional PostOpz structure and adapt it to your production instead of rebuilding everything from scratch.</p>
         <div class="list-stack">
-          <div class="check-item"><span class="check">✓</span><span><strong>PostOpz project template system</strong> for Avid-based workflow setup.</span></div>
-          <div class="check-item"><span class="check">✓</span><span><strong>Folder and bin structures</strong> for organized media, sequences, exports, docs, graphics, audio, and turnovers.</span></div>
-          <div class="check-item"><span class="check">✓</span><span><strong>Sequence templates</strong> for editorial organization, review, sync maps, stringouts, mix, and color prep.</span></div>
-          <div class="check-item"><span class="check">✓</span><span><strong>Export preset references, workflow checklists, naming standards, and turnover prep tools.</strong></span></div>
+          <div class="check-item"><span class="check">✓</span><span><strong>PostOpz project template system</strong> for Avid workflow setup.</span></div>
+          <div class="check-item"><span class="check">✓</span><span><strong>Folder and bin structures</strong> for media, sequences, exports, docs, graphics, audio, and turnovers.</span></div>
+          <div class="check-item"><span class="check">✓</span><span><strong>Sequence templates</strong> supporting editorial organization, sync maps, stringouts, mix, and color prep.</span></div>
+          <div class="check-item"><span class="check">✓</span><span><strong>Export preset reference instructions, workflow checklists, naming standards, and turnover prep tools.</strong></span></div>
         </div>
       </div>
-      <div class="image-card">
-        <img src="assets/postopz-toolkit.png" alt="PostOpz Toolkit package with bin structures, sequence templates, export presets, checklists, naming standards, and project organization" />
+      <div class="image-card"><img src="assets/postopz-toolkit.png" alt="The PostOpz Framework implementation toolkit" /></div>
+    </section>
+
+    <section class="section split guide-launch" id="guide">
+      <div>
+        <div class="section-kicker">New · Included with Vol. 1</div>
+        <h2>Meet the PostOpz Guide.</h2>
+        <p class="lead">The PostOpz Guide turns the Framework into an interactive workflow companion. Move through all 18 chapters, save your progress, verify each step, and use the AI Workflow Assistant when you need clarification or troubleshooting.</p>
+        <div class="list-stack">
+          <div class="check-item"><span class="check">✓</span><span><strong>Guide Me</strong> through the Framework chapter by chapter with clear completion conditions.</span></div>
+          <div class="check-item"><span class="check">✓</span><span><strong>AI Workflow Assistant</strong> for Framework-grounded guidance, verification, and troubleshooting.</span></div>
+          <div class="check-item"><span class="check">✓</span><span><strong>Source-aware answers</strong> that distinguish PostOpz methodology from supplemental general Avid context.</span></div>
+          <div class="check-item"><span class="check">✓</span><span><strong>Track progress</strong> and resume at the next incomplete workflow step.</span></div>
+        </div>
+        <div class="guide-actions">
+          <a class="cta" href="https://guide.postopz.com" target="_blank" rel="noopener">Framework Owners: Open Guide</a>
+          <a class="cta secondary checkout-link" href="https://sowl.co/p/hdFFJ">Get Vol. 1 + Guide</a>
+        </div>
+        <p class="guide-owner-note">PostOpz Guide access is included with Vol. 1. Sign in using the email associated with your Framework access.</p>
+      </div>
+
+      <div class="guide-preview" aria-label="PostOpz Guide interface preview">
+        <div class="guide-preview-top">
+          <div class="guide-preview-brand"><span class="guide-preview-mark">PZ</span><span>PostOpz Guide</span></div>
+          <span><span class="live-dot"></span>Live retrieval</span>
+        </div>
+        <div class="guide-preview-body">
+          <div class="guide-preview-kicker">Framework Vol. 1 · Avid</div>
+          <h3>Workflow guidance inside the system.</h3>
+          <div class="guide-preview-sub">The Guide stays anchored to the active chapter and workflow step so help arrives with context, not as generic software advice.</div>
+          <div class="guide-preview-step">
+            <small>Chapter 05 · Sync Map Workflow</small>
+            <strong>Verify sync at the beginning, middle, and end before building downstream assets.</strong>
+            <div class="guide-preview-complete">Complete when: sync remains accurate across clip duration, not only at the slate.</div>
+          </div>
+          <div class="guide-preview-tools">
+            <div class="guide-preview-tool"><strong>Guide Me</strong><span>Move through each workflow step.</span></div>
+            <div class="guide-preview-tool"><strong>AI Workflow Assistant</strong><span>Ask, verify, and troubleshoot.</span></div>
+            <div class="guide-preview-tool"><strong>Track Progress</strong><span>Pick up where you left off.</span></div>
+          </div>
+          <div class="guide-preview-foot"><span>18 chapters · progress saved</span><div class="guide-preview-progress"><span></span></div></div>
+        </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-head">
-        <div class="section-kicker">Toolkit contents</div>
-        <h2>Included implementation assets.</h2>
-      </div>
-      <div class="toolkit-grid">
+      <div class="section-head"><div class="section-kicker">Toolkit contents</div><h2>Included implementation assets.</h2></div>
+      <div class="grid toolkit-grid">
         <article class="card"><div class="icon">01</div><h3>Bin Structures</h3><p>Professional bin organization for editorial, media, sequences, archival, GFX, music, SFX, exports, and turnovers.</p></article>
         <article class="card"><div class="icon">02</div><h3>Sequence Templates</h3><p>Reusable timeline structures for sync maps, stringouts, editor support, review exports, mix prep, and color prep.</p></article>
-        <article class="card"><div class="icon">03</div><h3>Export Preset Instructions</h3><p>Reference standards for review exports, web outputs, producer reviews, and professional delivery support.</p></article>
+        <article class="card"><div class="icon">03</div><h3>Export Preset Instructions</h3><p>Reference instructions for review exports, web outputs, producer reviews, and professional delivery support.</p></article>
         <article class="card"><div class="icon">04</div><h3>Workflow Checklists</h3><p>Daily AE, sync map, multigroup, ScriptSync, stringout, export, and turnover checklists.</p></article>
         <article class="card"><div class="icon">05</div><h3>Naming Standards</h3><p>Project, sequence, scene, shot, take, export, and turnover naming conventions built for clarity.</p></article>
-        <article class="card"><div class="icon">06</div><h3>Project Organization</h3><p>A repeatable structure for keeping production media, documentation, exports, audio, graphics, and finishing assets organized.</p></article>
+        <article class="card"><div class="icon">06</div><h3>Project Organization</h3><p>A repeatable structure for keeping media, documentation, exports, audio, graphics, and finishing assets organized.</p></article>
       </div>
     </section>
 
     <section class="band">
-  <div>
-    <div class="section-kicker">Who it’s for</div>
-    <h2>Built for assistant editors, editors, and post teams.</h2>
-    <p>
-      Ideal for post PAs moving into AE roles, new assistant editors, editors who want cleaner project systems, film school graduates, freelancers, documentary teams, unscripted post teams, branded content teams, and small production companies building repeatable editorial workflows.
-    </p>
-  </div>
+      <div><div class="section-kicker">Who it’s for</div><h2>Built for assistant editors, editors, and post teams.</h2><p>Ideal for post PAs moving into AE roles, new assistant editors, editors who want cleaner project systems, film school graduates, freelancers, documentary teams, unscripted post teams, branded content teams, and small production companies building repeatable editorial workflows.</p></div>
+      <a class="cta checkout-link" href="https://sowl.co/p/hdFFJ">Get Instant Access</a>
+    </section>
 
-  <div style="display:flex; justify-content:flex-end; align-items:center;">
-    <a class="cta checkout-link" href="https://sowl.co/p/hdFFJ">
-      Get Instant Access
-    </a>
-  </div>
-</section>
-    <section class="section split" id="checkout">
+    <section class="section offer-wrap" id="checkout">
       <div>
         <div class="section-kicker">The offer</div>
-        <h2>Get the complete Framework + Toolkit bundle.</h2>
-        <p class="lead">
-          A professional workflow manual plus practical implementation assets designed to help you work with more structure, confidence, and consistency in Avid-based post-production.
-        </p>
-        <div class="feature-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 26px;">
+        <h2>Get the complete Framework + Toolkit + Guide.</h2>
+        <p class="lead">One purchase gives you the professional manual, practical implementation assets, and secure access to the PostOpz Guide so you can learn the workflow and apply it with support.</p>
+        <div class="grid bundle-grid" style="margin-top:24px">
           <article class="card"><h3>Manual</h3><p>75-page PostOpz Framework Vol. 1 — Avid Media Composer Edition.</p></article>
-          <article class="card"><h3>Toolkit</h3><p>Project templates, bin structures, sequence templates, export references, checklists, and naming standards.</p></article>
+          <article class="card"><h3>Toolkit</h3><p>Project structure, bins, sequence templates, reference instructions, checklists, and naming standards.</p></article>
+          <article class="card"><h3>Guide</h3><p>Interactive chapter guidance, saved progress, and the Framework-grounded AI Workflow Assistant.</p></article>
         </div>
       </div>
       <div class="offer">
-        <div class="eyebrow">Launch Bundle</div>
+        <div class="eyebrow">Vol. 1 Complete Bundle</div>
         <div class="offer-price gradient-text">$197</div>
-        <p class="lead" style="margin-bottom: 24px;">Instant digital access after checkout.</p>
-        <a class="cta checkout-link" href="https://sowl.co/p/hdFFJ" style="width:100%;">Buy Now</a>
-        <div class="guarantee">
-          <strong>License notice:</strong> Licensed for individual professional use only. Redistribution, resale, uploading, sharing, or inclusion in paid or unpaid training materials is prohibited without written permission from PostOpz.
-        </div>
-        <p class="fine" style="margin-top: 16px;">For team licensing, education, facility use, or internal training, contact hello@postopz.com.</p>
+        <p class="lead" style="margin-bottom:22px">Instant digital download plus secure PostOpz Guide access.</p>
+        <a class="cta checkout-link" href="https://sowl.co/p/hdFFJ" style="width:100%">Get Framework Vol. 1</a>
+        <div class="license"><strong>License notice:</strong> Licensed for individual professional use only. Redistribution, resale, uploading, sharing, or inclusion in paid or unpaid training materials is prohibited without written permission from PostOpz.</div>
+        <p class="fine" style="margin-top:14px">For team licensing, education, facility use, or internal training, contact hello@postopz.com.</p>
       </div>
     </section>
 
     <section class="section" id="faq">
-      <div class="section-head">
-        <div class="section-kicker">FAQ</div>
-        <h2>Common questions.</h2>
-      </div>
-      <div class="faq-grid">
-        <article class="card">
-          <h3>Is this just an Avid tutorial?</h3>
-          <p>No. This is a post-production operations framework. It teaches the workflow around Avid: organization, sync maps, grouping, transcripts, stringouts, exports, communication, and turnovers.</p>
-        </article>
-        <article class="card">
-          <h3>Do I need to be an experienced assistant editor?</h3>
-          <p>No. It is useful for post PAs, new AEs, working AEs, editors, and small teams who want a cleaner, more professional workflow foundation.</p>
-        </article>
-        <article class="card">
-          <h3>What kind of productions is it built for?</h3>
-          <p>Documentary, unscripted, branded, reality, long-form, digital, and editorial teams using Avid Media Composer workflows.</p>
-        </article>
-        <article class="card">
-          <h3>Can teams use it?</h3>
-          <p>The standard purchase is for individual professional use. For team, school, facility, or internal training use, contact hello@postopz.com for licensing.</p>
-        </article>
+      <div class="section-head"><div class="section-kicker">FAQ</div><h2>Common questions.</h2></div>
+      <div class="grid faq-grid">
+        <article class="card"><h3>What is the PostOpz Guide?</h3><p>It is the interactive companion to Framework Vol. 1. It walks through the same 18-chapter workflow, tracks progress, and adds an AI Workflow Assistant for Framework-grounded guidance and troubleshooting.</p></article>
+        <article class="card"><h3>Is the Guide included with Vol. 1?</h3><p>Yes. PostOpz Guide access is included with the Vol. 1 bundle at the current $197 price. Use the email associated with your Framework access to sign in.</p></article>
+        <article class="card"><h3>Is the AI Assistant just giving generic Avid answers?</h3><p>No. The Guide is designed to ground PostOpz methodology in Framework Vol. 1 and clearly distinguish it from supplemental general Avid context when the Framework does not define a specific situation.</p></article>
+        <article class="card"><h3>Is this just an Avid tutorial?</h3><p>No. This is a post-production operations framework. It teaches the workflow around Avid: organization, sync maps, grouping, transcripts, stringouts, exports, communication, and turnovers.</p></article>
+        <article class="card"><h3>Do I need to be an experienced assistant editor?</h3><p>No. It is useful for post PAs, new AEs, working AEs, editors, and small teams who want a cleaner, more professional workflow foundation.</p></article>
+        <article class="card"><h3>Can teams use it?</h3><p>The standard purchase is for individual professional use. For team, school, facility, or internal training use, contact hello@postopz.com for licensing.</p></article>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div>
-        <strong style="color:white;">PostOpz</strong><br />
-        Keep Editors Editing.
-      </div>
-      <div>
-        © 2026 PostOpz. All rights reserved.<br />
-        hello@postopz.com · postopz.com
-      </div>
-    </div>
-  </footer>
+  <footer class="footer"><div class="footer-inner"><div><strong style="color:#fff">PostOpz</strong><br />Keep Editors Editing.</div><div>© 2026 PostOpz. All rights reserved.<br />hello@postopz.com · postopz.com</div></div></footer>
 
-  <div class="sticky-cta">
-    <a class="cta checkout-link" href="#checkout">Get Framework + Toolkit</a>
-  </div>
+  <div class="sticky-cta"><a class="cta checkout-link" href="#checkout">Get Framework + Toolkit + Guide</a></div>
 
   <script>
     document.querySelectorAll('.checkout-link').forEach(link => {
-      if (SENDOWL_CHECKOUT_URL && !SENDOWL_CHECKOUT_URL.includes('YOUR-SENDOWL')) {
-        link.setAttribute('href', SENDOWL_CHECKOUT_URL);
-      }
+      if (SENDOWL_CHECKOUT_URL && !SENDOWL_CHECKOUT_URL.includes('YOUR-SENDOWL')) link.setAttribute('href', SENDOWL_CHECKOUT_URL);
     });
   </script>
 </body>
