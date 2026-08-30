@@ -7,7 +7,7 @@ const cssMarker = '    /* Keep customer-facing copy visually intentional: balanc
 const galleryCss = `    /* Compact selectable PostOpz Guide screenshot gallery. */
     .guide-gallery-shell{display:grid;gap:12px;min-width:0}
     .guide-gallery-frame{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid #223047;border-radius:22px;background:#05070d;box-shadow:0 28px 90px rgba(0,0,0,.48)}
-    .guide-gallery-sprite{position:absolute;left:0;top:0;width:100%;height:auto;max-width:none;transition:transform .32s cubic-bezier(.2,.7,.2,1);will-change:transform}
+    .guide-gallery-sprite{position:absolute;inset:0 auto auto 0;width:100%;height:300%;max-width:none;object-fit:fill;display:block;transition:transform .32s cubic-bezier(.2,.7,.2,1);will-change:transform}
     .guide-gallery-frame[data-panel="0"] .guide-gallery-sprite{transform:translateY(0)}
     .guide-gallery-frame[data-panel="1"] .guide-gallery-sprite{transform:translateY(-33.333333%)}
     .guide-gallery-frame[data-panel="2"] .guide-gallery-sprite{transform:translateY(-66.666667%)}
@@ -33,7 +33,7 @@ if (start < 0 || end < 0) throw new Error('Framework Guide preview block not fou
 
 const galleryHtml = `      <div class="guide-gallery-shell" aria-label="PostOpz Guide interface screenshots">
         <div class="guide-gallery-frame" data-panel="0">
-          <img class="guide-gallery-sprite" src="assets/guide-gallery-sprite.webp" alt="PostOpz Guide screens showing Guide Me, Workflow Assistant, and Methodology" loading="lazy" decoding="async" />
+          <img class="guide-gallery-sprite" src="/framework/assets/guide-gallery-sprite.webp" alt="PostOpz Guide screens showing Guide Me, Workflow Assistant, and Methodology" loading="eager" decoding="async" fetchpriority="high" />
         </div>
         <div class="guide-gallery-tabs" role="tablist" aria-label="PostOpz Guide screenshots">
           <button class="guide-gallery-tab is-active" type="button" role="tab" aria-selected="true" data-guide-panel="0" data-caption="Guide Me · Chapter-by-chapter workflow guidance with active step context.">Guide Me</button>
