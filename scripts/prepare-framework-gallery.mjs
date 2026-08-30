@@ -1,38 +1,60 @@
 import fs from 'node:fs/promises';
 
 const file = new URL('../framework/index.html', import.meta.url);
-const spriteFile = new URL('../framework/assets/guide-gallery-sprite.webp', import.meta.url);
+const screenshots = [
+  {
+    file: new URL('../framework/assets/guide-cover.webp', import.meta.url),
+    src: '/framework/assets/guide-cover.webp?v=20260830e',
+    alt: 'PostOpz Framework Vol. 1 Guide cover screen',
+  },
+  {
+    file: new URL('../framework/assets/guide-me.webp', import.meta.url),
+    src: '/framework/assets/guide-me.webp?v=20260830e',
+    alt: 'PostOpz Guide Me screen showing Sync Map Workflow guidance',
+  },
+  {
+    file: new URL('../framework/assets/workflow-assistant.webp', import.meta.url),
+    src: '/framework/assets/workflow-assistant.webp?v=20260830e',
+    alt: 'PostOpz Workflow Assistant showing a Framework-grounded response',
+  },
+  {
+    file: new URL('../framework/assets/methodology.webp', import.meta.url),
+    src: '/framework/assets/methodology.webp?v=20260830e',
+    alt: 'PostOpz Framework methodology map',
+  },
+];
+
 let html = await fs.readFile(file, 'utf8');
 
-// Fail the Netlify build instead of shipping another silent/broken preview asset.
-const spriteData = await fs.readFile(spriteFile);
-const riff = spriteData.subarray(0, 4).toString('ascii');
-const webp = spriteData.subarray(8, 12).toString('ascii');
-if (spriteData.length < 10000 || riff !== 'RIFF' || webp !== 'WEBP') {
-  throw new Error(`Guide gallery sprite is invalid (${spriteData.length} bytes, ${riff}/${webp}).`);
+// Fail the Netlify build instead of publishing missing, truncated, or undersized previews.
+for (const screenshot of screenshots) {
+  const data = await fs.readFile(screenshot.file);
+  const riff = data.subarray(0, 4).toString('ascii');
+  const webp = data.subarray(8, 12).toString('ascii');
+  if (data.length < 20000 || riff !== 'RIFF' || webp !== 'WEBP') {
+    throw new Error(`Guide gallery image is invalid: ${screenshot.file.pathname} (${data.length} bytes, ${riff}/${webp}).`);
+  }
 }
-const spriteSrc = '/framework/assets/guide-gallery-sprite.webp?v=20260830d';
-const coverSrc = '/framework/assets/postopz-framework-cover.png';
 
 const cssMarker = '    /* Keep customer-facing copy visually intentional: balanced display text and prettier body wraps prevent one-word last lines. */';
-const galleryCss = `    /* Larger selectable PostOpz Guide gallery with Framework cover. */
-    .guide-launch{width:min(1360px,calc(100% - 40px));grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:56px}
+const galleryCss = `    /* Selectable PostOpz Guide gallery using independent, full-resolution screenshots. */
+    .guide-launch{width:min(1420px,calc(100% - 40px));grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);gap:52px}
     .guide-gallery-shell{display:grid;gap:12px;min-width:0}
     .guide-gallery-frame{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid #223047;border-radius:22px;background:#05070d;box-shadow:0 28px 90px rgba(0,0,0,.48)}
-    .guide-gallery-cover,.guide-gallery-sprite{position:absolute;display:block;transition:opacity .24s ease,top .32s cubic-bezier(.2,.7,.2,1);will-change:opacity,top}
-    .guide-gallery-cover{inset:0;width:100%;height:100%;padding:16px;object-fit:contain;background:radial-gradient(circle at 50% 42%,rgba(56,156,255,.08),transparent 58%);opacity:0}
-    .guide-gallery-sprite{left:-17%;top:-17%;width:134%;height:auto;max-width:none;opacity:0}
-    .guide-gallery-frame[data-panel="0"] .guide-gallery-cover{opacity:1}
-    .guide-gallery-frame[data-panel="1"] .guide-gallery-sprite{opacity:1;top:-17%}
-    .guide-gallery-frame[data-panel="2"] .guide-gallery-sprite{opacity:1;top:-151%}
-    .guide-gallery-frame[data-panel="3"] .guide-gallery-sprite{opacity:1;top:-285%}
+    .guide-gallery-image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;opacity:0;visibility:hidden;transition:opacity .24s ease;will-change:opacity}
+    .guide-gallery-frame[data-panel="0"] .guide-gallery-image[data-image="0"],
+    .guide-gallery-frame[data-panel="1"] .guide-gallery-image[data-image="1"],
+    .guide-gallery-frame[data-panel="2"] .guide-gallery-image[data-image="2"],
+    .guide-gallery-frame[data-panel="3"] .guide-gallery-image[data-image="3"]{opacity:1;visibility:visible}
     .guide-gallery-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
     .guide-gallery-tab{appearance:none;min-height:43px;padding:9px 10px;border:1px solid rgba(255,255,255,.10);border-radius:12px;background:rgba(255,255,255,.03);color:#8996a8;font:inherit;font-size:11px;font-weight:780;line-height:1.2;text-wrap:balance;cursor:pointer;transition:color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease}
     .guide-gallery-tab:hover{color:#fff;border-color:rgba(255,255,255,.20);transform:translateY(-1px)}
+    .guide-gallery-tab:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
     .guide-gallery-tab.is-active{color:#fff;border-color:transparent;background:linear-gradient(#0a111b,#0a111b) padding-box,linear-gradient(90deg,var(--orange),var(--pink),var(--purple)) border-box;border:1px solid transparent}
     .guide-gallery-caption{margin:0;color:#738196;font-size:10px;line-height:1.45;text-align:center;text-wrap:pretty}
-    @media(max-width:980px){.guide-launch{width:min(var(--max),calc(100% - 40px));grid-template-columns:1fr;gap:38px}}
-    @media(max-width:650px){.guide-gallery-tabs{display:flex;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.guide-gallery-tabs::-webkit-scrollbar{display:none}.guide-gallery-tab{flex:1 0 122px}.guide-gallery-frame{border-radius:16px}.guide-gallery-sprite{left:-22%;width:144%}.guide-gallery-frame[data-panel="1"] .guide-gallery-sprite{top:-22%}.guide-gallery-frame[data-panel="2"] .guide-gallery-sprite{top:-166%}.guide-gallery-frame[data-panel="3"] .guide-gallery-sprite{top:-310%}}
+    @media(max-width:1120px){.guide-launch{width:min(var(--max),calc(100% - 40px));grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:38px}}
+    @media(max-width:980px){.guide-launch{grid-template-columns:1fr;gap:38px}}
+    @media(max-width:650px){.guide-gallery-tabs{display:flex;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}.guide-gallery-tabs::-webkit-scrollbar{display:none}.guide-gallery-tab{flex:1 0 122px}.guide-gallery-frame{border-radius:16px}}
 
 `;
 
@@ -47,10 +69,13 @@ const start = html.indexOf(previewStart);
 const end = html.indexOf(sectionEndMarker, start);
 if (start < 0 || end < 0) throw new Error('Framework Guide preview block not found.');
 
+const galleryImages = screenshots.map((screenshot, index) =>
+  `          <img class="guide-gallery-image" data-image="${index}" src="${screenshot.src}" alt="${screenshot.alt}" loading="${index === 1 ? 'eager' : 'lazy'}" decoding="async"${index === 1 ? ' fetchpriority="high"' : ''} />`
+).join('\n');
+
 const galleryHtml = `      <div class="guide-gallery-shell" aria-label="PostOpz Framework and Guide screenshots">
         <div class="guide-gallery-frame" data-panel="1">
-          <img class="guide-gallery-cover" src="${coverSrc}" alt="The PostOpz Framework Vol. 1 front cover" loading="eager" decoding="async" />
-          <img class="guide-gallery-sprite" src="${spriteSrc}" alt="PostOpz Guide screens showing Guide Me, Workflow Assistant, and Methodology" loading="eager" decoding="async" fetchpriority="high" />
+${galleryImages}
         </div>
         <div class="guide-gallery-tabs" role="tablist" aria-label="PostOpz Framework and Guide screenshots">
           <button class="guide-gallery-tab" type="button" role="tab" aria-selected="false" data-guide-panel="0" data-caption="Framework Cover · The PostOpz Framework Vol. 1 — Avid Media Composer Edition.">Framework Cover</button>
@@ -88,4 +113,4 @@ const galleryJs = `
 
 html = html.slice(0, scriptIndex) + galleryJs + html.slice(scriptIndex);
 await fs.writeFile(file, html);
-console.log(`Prepared enlarged PostOpz Guide gallery with Framework cover and validated ${spriteData.length}-byte WebP asset.`);
+console.log(`Prepared PostOpz Guide gallery with ${screenshots.length} validated full-resolution screenshots.`);
