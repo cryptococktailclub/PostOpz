@@ -1,7 +1,10 @@
 import fs from 'node:fs/promises';
 
 const file = new URL('../framework/index.html', import.meta.url);
+const spriteFile = new URL('../framework/assets/guide-gallery-sprite.webp', import.meta.url);
 let html = await fs.readFile(file, 'utf8');
+const spriteData = await fs.readFile(spriteFile);
+const spriteSrc = `data:image/webp;base64,${spriteData.toString('base64')}`;
 
 const cssMarker = '    /* Keep customer-facing copy visually intentional: balanced display text and prettier body wraps prevent one-word last lines. */';
 const galleryCss = `    /* Compact selectable PostOpz Guide screenshot gallery. */
@@ -33,7 +36,7 @@ if (start < 0 || end < 0) throw new Error('Framework Guide preview block not fou
 
 const galleryHtml = `      <div class="guide-gallery-shell" aria-label="PostOpz Guide interface screenshots">
         <div class="guide-gallery-frame" data-panel="0">
-          <img class="guide-gallery-sprite" src="/framework/assets/guide-gallery-sprite.webp" alt="PostOpz Guide screens showing Guide Me, Workflow Assistant, and Methodology" loading="eager" decoding="async" fetchpriority="high" />
+          <img class="guide-gallery-sprite" src="${spriteSrc}" alt="PostOpz Guide screens showing Guide Me, Workflow Assistant, and Methodology" decoding="async" />
         </div>
         <div class="guide-gallery-tabs" role="tablist" aria-label="PostOpz Guide screenshots">
           <button class="guide-gallery-tab is-active" type="button" role="tab" aria-selected="true" data-guide-panel="0" data-caption="Guide Me · Chapter-by-chapter workflow guidance with active step context.">Guide Me</button>
@@ -70,4 +73,4 @@ const galleryJs = `
 
 html = html.slice(0, scriptIndex) + galleryJs + html.slice(scriptIndex);
 await fs.writeFile(file, html);
-console.log('Prepared compact PostOpz Guide screenshot gallery for Netlify publish.');
+console.log('Prepared compact PostOpz Guide screenshot gallery for Netlify publish with embedded imagery.');
