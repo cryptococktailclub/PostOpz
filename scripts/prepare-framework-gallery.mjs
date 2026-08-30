@@ -70,20 +70,20 @@ const end = html.indexOf(sectionEndMarker, start);
 if (start < 0 || end < 0) throw new Error('Framework Guide preview block not found.');
 
 const galleryImages = screenshots.map((screenshot, index) =>
-  `          <img class="guide-gallery-image" data-image="${index}" src="${screenshot.src}" alt="${screenshot.alt}" loading="${index === 1 ? 'eager' : 'lazy'}" decoding="async"${index === 1 ? ' fetchpriority="high"' : ''} />`
+  `          <img class="guide-gallery-image" data-image="${index}" src="${screenshot.src}" alt="${screenshot.alt}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async"${index === 0 ? ' fetchpriority="high"' : ''} />`
 ).join('\n');
 
 const galleryHtml = `      <div class="guide-gallery-shell" aria-label="PostOpz Framework and Guide screenshots">
-        <div class="guide-gallery-frame" data-panel="1">
+        <div class="guide-gallery-frame" data-panel="0">
 ${galleryImages}
         </div>
         <div class="guide-gallery-tabs" role="tablist" aria-label="PostOpz Framework and Guide screenshots">
-          <button class="guide-gallery-tab" type="button" role="tab" aria-selected="false" data-guide-panel="0" data-caption="Framework Cover · The PostOpz Framework Vol. 1 — Avid Media Composer Edition.">Framework Cover</button>
-          <button class="guide-gallery-tab is-active" type="button" role="tab" aria-selected="true" data-guide-panel="1" data-caption="Guide Me · Chapter-by-chapter workflow guidance with active step context.">Guide Me</button>
+          <button class="guide-gallery-tab is-active" type="button" role="tab" aria-selected="true" data-guide-panel="0" data-caption="Framework Cover · The PostOpz Framework Vol. 1 — Avid Media Composer Edition.">Framework Cover</button>
+          <button class="guide-gallery-tab" type="button" role="tab" aria-selected="false" data-guide-panel="1" data-caption="Guide Me · Chapter-by-chapter workflow guidance with active step context.">Guide Me</button>
           <button class="guide-gallery-tab" type="button" role="tab" aria-selected="false" data-guide-panel="2" data-caption="Workflow Assistant · Framework-grounded guidance, verification, and troubleshooting.">Workflow Assistant</button>
           <button class="guide-gallery-tab" type="button" role="tab" aria-selected="false" data-guide-panel="3" data-caption="Methodology · The full production-ready workflow mapped from project creation through final turnover.">Methodology</button>
         </div>
-        <p class="guide-gallery-caption" aria-live="polite">Guide Me · Chapter-by-chapter workflow guidance with active step context.</p>
+        <p class="guide-gallery-caption" aria-live="polite">Framework Cover · The PostOpz Framework Vol. 1 — Avid Media Composer Edition.</p>
       </div>`;
 
 html = html.slice(0, start) + galleryHtml + html.slice(end);
