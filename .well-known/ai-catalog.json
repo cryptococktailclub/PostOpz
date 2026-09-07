@@ -1,0 +1,60 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "PostOpz",
+    "identifier": "postopz.com",
+    "documentationUrl": "https://postopz.com/framework/agent/"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:postopz.com:api:framework-agent",
+      "displayName": "PostOpz Framework Agent API",
+      "type": "application/vnd.oai.openapi;version=3.1",
+      "url": "https://api.postopz.com/openapi.yaml",
+      "description": "Professional Avid Media Composer workflow knowledge for AI agents. Supports annual licensed retrieval and autonomous x402 pay-per-call workflow guidance, checklists, and project audits without exposing the underlying Framework corpus.",
+      "tags": [
+        "Avid Media Composer",
+        "assistant editor",
+        "documentary post production",
+        "unscripted television",
+        "project architecture",
+        "media management",
+        "bin organization",
+        "sync maps",
+        "multigroups",
+        "ScriptSync",
+        "stringouts",
+        "review exports",
+        "editorial turnovers",
+        "archive",
+        "x402"
+      ],
+      "capabilities": [
+        "professional Avid workflow guidance",
+        "assistant-editor workflow checklists",
+        "structured editorial workflow audits",
+        "project and bin architecture guidance",
+        "sync and grouping workflow guidance",
+        "turnover and handoff guidance"
+      ],
+      "representativeQueries": [
+        "How should I organize an Avid Media Composer project for a feature documentary?",
+        "Create an assistant-editor QC checklist for a documentary sync-map handoff.",
+        "Audit this Avid project structure before I hand it to an editor.",
+        "What is the professional workflow for multigroups and ScriptSync in long-form unscripted editorial?",
+        "How should I prepare an Avid sequence and media organization for mix, color, and archive turnover?"
+      ],
+      "version": "0.2.0",
+      "updatedAt": "2026-09-07T15:58:00Z",
+      "metadata": {
+        "provider": "PostOpz",
+        "edition": "avid-vol1",
+        "licenseScope": "retrieval-only",
+        "annualLicenses": "https://postopz.com/framework/agent/#pricing",
+        "autonomousCommerce": "x402-v2",
+        "autonomousDiscovery": "https://api.postopz.com/v1/discover",
+        "modelTrainingRights": false
+      }
+    }
+  ]
+}
