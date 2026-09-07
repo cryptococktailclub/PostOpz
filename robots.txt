@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://postopz.com/sitemap.xml
+Agentmap: https://postopz.com/.well-known/ai-catalog.json
