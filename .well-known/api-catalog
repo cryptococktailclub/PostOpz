@@ -1,0 +1,35 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://api.postopz.com/v1",
+      "service-desc": [
+        {
+          "href": "https://api.postopz.com/openapi.yaml",
+          "type": "application/yaml"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://api.postopz.com/v1/health",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://postopz.com/framework/agent/quickstart/",
+          "type": "text/html"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://api.postopz.com/v1/discover",
+          "type": "application/json"
+        },
+        {
+          "href": "https://postopz.com/.well-known/ai-catalog.json",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}
