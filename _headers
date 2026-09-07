@@ -1,0 +1,19 @@
+/.well-known/api-catalog
+  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"
+  Cache-Control: public, max-age=300
+
+/.well-known/ai-catalog.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/.well-known/postopz-agent.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/.well-known/agent.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300
