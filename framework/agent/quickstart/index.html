@@ -22,10 +22,10 @@
   <section class="section">
     <h2>1. Discover the product</h2>
     <div class="grid">
-      <div class="card"><h3>Public API discovery</h3><p><code>GET https://postopz-agent-api.onrender.com/v1/discover</code></p></div>
+      <div class="card"><h3>Public API discovery</h3><p><code>GET https://api.postopz.com/v1/discover</code></p></div>
       <div class="card"><h3>Machine-readable manifest</h3><p><a href="https://postopz.com/.well-known/postopz-agent.json">/.well-known/postopz-agent.json</a></p></div>
     </div>
-    <pre>curl https://postopz-agent-api.onrender.com/v1/discover</pre>
+    <pre>curl https://api.postopz.com/v1/discover</pre>
   </section>
 
   <section class="section">
@@ -36,7 +36,7 @@
 
   <section class="section">
     <h2>3. Query workflow guidance</h2>
-    <pre>curl -X POST https://postopz-agent-api.onrender.com/v1/workflow/query \
+    <pre>curl -X POST https://api.postopz.com/v1/workflow/query \
   -H "Authorization: Bearer $POSTOPZ_AGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -79,7 +79,8 @@
       <li>Do not use systematic queries to reconstruct, mirror, train on, or redistribute the Framework corpus.</li>
       <li>For model-training, OEM, high-volume, or redistribution rights, contact <a href="mailto:hello@postopz.com">hello@postopz.com</a> for an Enterprise / Model License.</li>
     </ul>
-    <p>Full contract: <a href="https://postopz-agent-api.onrender.com/openapi.yaml">OpenAPI 3.1 specification</a> · <a href="/framework/agent/license/">Commercial license scope</a></p>
+    <p>Full contract: <a href="https://api.postopz.com/openapi.yaml">OpenAPI 3.1 specification</a> · <a href="/framework/agent/license/">Commercial license scope</a></p>
+    <p>Production fallback hostname: <code>https://postopz-agent-api.onrender.com</code>.</p>
   </section>
 </main>
 <footer class="footer"><div class="wrap">PostOpz Framework Agent API · Avid Media Composer Vol. 1 · hello@postopz.com</div></footer>
