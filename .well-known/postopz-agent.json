@@ -6,6 +6,8 @@
   "license_scope": "https://postopz.com/framework/agent/license/",
   "contact": "hello@postopz.com",
   "status": "live",
+  "commerce_status": "verified",
+  "commerce_flow": ["stripe_checkout","webhook_processing","license_creation","api_key_issuance","email_delivery"],
   "domain": "professional post-production workflow knowledge",
   "editions": [
     {
