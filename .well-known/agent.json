@@ -1,0 +1,32 @@
+{
+  "name": "PostOpz Framework Agent Edition",
+  "provider": "PostOpz",
+  "status": "live",
+  "homepage": "https://postopz.com/framework/agent/",
+  "api": {
+    "base_url": "https://postopz-agent-api.onrender.com/v1",
+    "openapi": "https://postopz-agent-api.onrender.com/openapi.yaml",
+    "authentication": "bearer"
+  },
+  "edition": "avid-vol1",
+  "license_scope": "retrieval_only",
+  "model_training_rights": false,
+  "plans": [
+    {
+      "id": "developer",
+      "annual_usd": 799,
+      "monthly_queries": 500,
+      "checkout_url": "https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"
+    },
+    {
+      "id": "studio",
+      "annual_usd": 3500,
+      "monthly_queries": 5000,
+      "checkout_url": "https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"
+    }
+  ],
+  "enterprise": {
+    "contact": "hello@postopz.com",
+    "model_training_or_oem_requires_separate_written_license": true
+  }
+}
