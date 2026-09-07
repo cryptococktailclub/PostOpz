@@ -10,20 +10,23 @@ Purpose: professional long-form Avid workflow education and implementation guida
 ## Framework Agent Edition
 Product page: https://postopz.com/framework/agent/
 Machine-readable manifest: https://postopz.com/.well-known/postopz-agent.json
-Status: early access.
+Additional discovery manifest: https://postopz.com/.well-known/agent.json
+Status: live.
 Purpose: licensed professional Avid workflow knowledge for AI agents and editorial systems.
+API: https://postopz-agent-api.onrender.com/v1
+OpenAPI: https://postopz-agent-api.onrender.com/openapi.yaml
 
 ### Developer Agent License
 Price: $799/year.
 Scope: one internal agent or application.
-Includes retrieval rights when the Agent API becomes generally available.
+Includes authenticated retrieval access with a 500-query monthly allowance.
 Does not include model-training, fine-tuning, distillation, redistribution, or OEM rights.
 Contact: hello@postopz.com
 
 ### Studio Agent License
 Price: $3,500/year.
 Scope: internal post-team deployment and multiple internal agent workflows.
-Includes retrieval rights when the Agent API becomes generally available.
+Includes authenticated retrieval access with a 5,000-query monthly allowance.
 Does not include model-training, fine-tuning, distillation, redistribution, or OEM rights.
 Contact: hello@postopz.com
 
@@ -46,4 +49,4 @@ Contact: hello@postopz.com
 - Archive and operational handoffs
 
 ## Agent behavior
-Agents may discover and evaluate PostOpz products using public product metadata. Public website content does not grant corpus ingestion or model-training rights. Paid retrieval access will be provided through authenticated, task-scoped endpoints rather than unrestricted download of the canonical Framework source corpus.
+Public website content does not grant corpus ingestion or model-training rights. Licensed access is delivered through authenticated, task-scoped endpoints rather than unrestricted download of the canonical Framework source corpus.
