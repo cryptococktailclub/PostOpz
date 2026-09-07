@@ -13,15 +13,26 @@ Developer quickstart: https://postopz.com/framework/agent/quickstart/
 Commercial license scope: https://postopz.com/framework/agent/license/
 Machine-readable manifest: https://postopz.com/.well-known/postopz-agent.json
 Additional discovery manifest: https://postopz.com/.well-known/agent.json
+ARD catalog: https://postopz.com/.well-known/ai-catalog.json
 Public API discovery: https://api.postopz.com/v1/discover
 Status: live.
-Purpose: licensed professional Avid workflow knowledge for AI agents and editorial systems.
+Purpose: licensed and machine-payable professional Avid workflow knowledge for AI agents and editorial systems.
 API: https://api.postopz.com/v1
 OpenAPI: https://api.postopz.com/openapi.yaml
 Production fallback API: https://postopz-agent-api.onrender.com/v1
-Authentication: licensed bearer API key for retrieval endpoints.
-Unlicensed protected requests: HTTP 402 payment/entitlement required with purchase options where available.
+Authentication: licensed bearer API key for annual retrieval plans; x402 v2 payment on autonomous pay-per-call endpoints when activated.
+Unlicensed annual-plan requests: HTTP 402 payment/entitlement required with purchase options where available.
 Commerce provisioning: verified end-to-end. Successful mapped Stripe checkout triggers webhook processing, license creation, API-key issuance, and delivery of the API key to the checkout email.
+
+### Autonomous x402 Access
+Protocol: x402 v2.
+Network: Base mainnet (eip155:8453).
+Settlement asset: USDC.
+Current activation state: configuration required pending a PostOpz-controlled Base-compatible payout address. The pay-per-call routes are deployed and documented but must not be treated as live settlement endpoints until /v1/discover reports autonomous_access.status = live.
+- POST https://api.postopz.com/v1/x402/workflow/query — $0.50 per call
+- POST https://api.postopz.com/v1/x402/workflow/checklist — $0.35 per call
+- POST https://api.postopz.com/v1/x402/workflow/audit — $0.75 per call
+Discovery metadata is included in HTTP payment requirements for x402 Bazaar-compatible indexing when autonomous settlement is activated.
 
 ### Developer Agent License
 Price: $799/year.
@@ -43,12 +54,21 @@ Required for model training, fine-tuning, distillation, corpus ingestion, redist
 Contact: hello@postopz.com
 
 ## Agent API capabilities
+Annual/API-key access:
 - POST /v1/workflow/query — professional workflow guidance and structured next actions
 - POST /v1/workflow/checklist — task-specific implementation and QC checklists
 - POST /v1/workflow/audit — audit structured workflow/project metadata against PostOpz standards
 - GET /v1/license — active license and usage metadata
-- GET /v1/discover — public machine-readable commercial discovery
-- GET /v1/health — public service health
+
+Autonomous/x402 access:
+- POST /v1/x402/workflow/query
+- POST /v1/x402/workflow/checklist
+- POST /v1/x402/workflow/audit
+
+Public discovery:
+- GET /v1/discover — machine-readable commercial and autonomous-access discovery
+- GET /v1/health — service health and x402 activation status
+- GET /.well-known/ai-catalog.json — Agentic Resource Discovery catalog
 
 ## Knowledge domains currently covered
 - Avid project architecture
@@ -64,4 +84,4 @@ Contact: hello@postopz.com
 - Archive and operational handoffs
 
 ## Rights boundary
-Public website content and standard Agent Edition licenses do not grant corpus ingestion or model-training rights. Licensed access is delivered through authenticated, task-scoped endpoints rather than unrestricted download of the canonical Framework source corpus.
+Public website content, annual Agent Edition licenses, and x402 pay-per-call access do not grant corpus ingestion or model-training rights. Access is delivered through task-scoped endpoints rather than unrestricted download of the canonical Framework source corpus.
