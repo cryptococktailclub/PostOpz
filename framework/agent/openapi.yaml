@@ -1,121 +1,171 @@
 openapi: 3.1.0
 info:
   title: PostOpz Framework Agent API
-  version: 0.1.0
+  version: 0.2.0
   termsOfService: https://postopz.com/framework/agent/license/
   contact:
     name: PostOpz
     email: hello@postopz.com
     url: https://postopz.com/framework/agent/
-  description: >-
-    Authenticated, task-scoped retrieval from the PostOpz Framework professional
-    editorial workflow knowledge base. Standard Developer and Studio licenses grant
-    retrieval rights only and do not grant model-training, fine-tuning, corpus-ingestion,
-    redistribution, or OEM rights.
+  description: Licensed and pay-per-call task-scoped retrieval from The PostOpz Framework Vol. 1 — Avid Media Composer Edition. Developer and Studio licenses grant retrieval rights only. x402 endpoints provide autonomous per-call access. Neither access path includes model-training, fine-tuning, distillation, corpus ingestion, redistribution, or OEM rights.
 externalDocs:
-  description: Developer quickstart
+  description: Developer and autonomous-agent quickstart
   url: https://postopz.com/framework/agent/quickstart/
 servers:
-  - url: https://api.postopz.com/v1
+  - url: https://api.postopz.com
     description: Canonical production service
-  - url: https://postopz-agent-api.onrender.com/v1
+  - url: https://postopz-agent-api.onrender.com
     description: Production fallback hostname
-security:
-  - bearerAuth: []
 paths:
-  /health:
-    get:
-      security: []
-      operationId: getHealth
-      summary: Check Agent API health and configured capabilities
-      responses:
-        '200': {description: Service health}
-  /discover:
+  /v1/discover:
     get:
       security: []
       operationId: discoverAgentProduct
-      summary: Discover the Agent Edition, purchase options, and license boundary
+      summary: Discover annual plans, autonomous x402 access, pricing, and license scope
       responses:
-        '200': {description: Public machine-readable product discovery}
-  /license:
+        '200': {description: Product and machine-commerce discovery metadata}
+  /v1/health:
+    get:
+      security: []
+      operationId: getHealth
+      summary: Service health and configured capabilities
+      responses:
+        '200': {description: Healthy service}
+  /v1/license:
     get:
       operationId: getLicense
-      summary: Inspect the active license and usage for the supplied API key
+      summary: Inspect the active annual license and current usage
+      security:
+        - bearerAuth: []
       responses:
-        '200': {description: Active license metadata}
+        '200': {description: License metadata}
         '401': {description: Invalid, expired, or inactive API key}
-        '402': {description: Active entitlement required}
-  /workflow/query:
+        '402': {description: Active license purchase required}
+  /v1/workflow/query:
     post:
       operationId: queryWorkflow
-      summary: Retrieve professional workflow guidance
+      summary: Retrieve professional Avid workflow guidance using an annual API license
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/WorkflowQuery'}
+            schema: {$ref: '#/components/schemas/WorkflowRequest'}
       responses:
-        '200': {description: Licensed workflow guidance}
+        '200': {description: Grounded PostOpz workflow answer}
         '401': {description: Invalid, expired, or inactive API key}
-        '402': {description: Payment or active entitlement required; purchase options may be returned}
-        '429': {description: Monthly allowance or burst-rate limit exceeded}
+        '402': {description: Active license purchase required; purchase and autonomous-access options may be returned}
+        '429': {description: Included usage or burst limit reached}
         '503': {description: Retrieval capacity or model configuration temporarily unavailable}
-  /workflow/checklist:
+  /v1/workflow/checklist:
     post:
       operationId: getChecklist
-      summary: Generate a task-specific editorial checklist
+      summary: Generate a task-specific Framework checklist using an annual API license
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/ChecklistQuery'}
+            schema: {$ref: '#/components/schemas/WorkflowRequest'}
       responses:
-        '200': {description: Workflow checklist}
+        '200': {description: Structured checklist}
         '401': {description: Invalid, expired, or inactive API key}
-        '402': {description: Payment or active entitlement required}
-        '429': {description: Monthly allowance or burst-rate limit exceeded}
+        '402': {description: Active license purchase required}
+        '429': {description: Included usage or burst limit reached}
         '503': {description: Retrieval capacity or model configuration temporarily unavailable}
-  /workflow/audit:
+  /v1/workflow/audit:
     post:
       operationId: auditWorkflow
-      summary: Evaluate supplied workflow metadata against PostOpz standards
+      summary: Audit supplied workflow metadata against PostOpz standards using an annual API license
+      security:
+        - bearerAuth: []
       requestBody:
         required: true
         content:
           application/json:
-            schema: {$ref: '#/components/schemas/AuditQuery'}
+            schema: {$ref: '#/components/schemas/AuditRequest'}
       responses:
-        '200': {description: Audit findings and next actions}
+        '200': {description: Structured findings and next actions}
         '401': {description: Invalid, expired, or inactive API key}
-        '402': {description: Payment or active entitlement required}
-        '429': {description: Monthly allowance or burst-rate limit exceeded}
+        '402': {description: Active license purchase required}
+        '429': {description: Included usage or burst limit reached}
         '503': {description: Retrieval capacity or model configuration temporarily unavailable}
+  /v1/x402/workflow/query:
+    post:
+      operationId: queryWorkflowX402
+      summary: Pay per call for professional Avid workflow guidance using x402 v2
+      description: First request without PAYMENT-SIGNATURE returns HTTP 402 with PAYMENT-REQUIRED. An x402-capable agent authorizes USDC and retries with PAYMENT-SIGNATURE. Successful settlement is returned in PAYMENT-RESPONSE.
+      security:
+        - x402Payment: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/WorkflowRequest'}
+      responses:
+        '200': {description: Paid grounded workflow answer}
+        '402': {description: x402 payment required}
+        '429': {description: Burst limit reached}
+        '503': {description: x402 configuration or retrieval temporarily unavailable}
+  /v1/x402/workflow/checklist:
+    post:
+      operationId: getChecklistX402
+      summary: Pay per call for an Avid implementation or QC checklist using x402 v2
+      security:
+        - x402Payment: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/WorkflowRequest'}
+      responses:
+        '200': {description: Paid structured checklist}
+        '402': {description: x402 payment required}
+        '429': {description: Burst limit reached}
+        '503': {description: x402 configuration or retrieval temporarily unavailable}
+  /v1/x402/workflow/audit:
+    post:
+      operationId: auditWorkflowX402
+      summary: Pay per call to audit Avid workflow metadata against PostOpz standards using x402 v2
+      security:
+        - x402Payment: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/AuditRequest'}
+      responses:
+        '200': {description: Paid structured audit findings}
+        '402': {description: x402 payment required}
+        '429': {description: Burst limit reached}
+        '503': {description: x402 configuration or retrieval temporarily unavailable}
 components:
+  schemas:
+    WorkflowRequest:
+      type: object
+      required: [task]
+      properties:
+        edition: {type: string, enum: [avid-vol1], default: avid-vol1}
+        task: {type: string, maxLength: 6000}
+        desired_output: {type: string, enum: [answer, diagnostic, next_action, structured_steps], default: structured_steps}
+        context: {type: object, additionalProperties: true}
+    AuditRequest:
+      type: object
+      properties:
+        edition: {type: string, enum: [avid-vol1], default: avid-vol1}
+        task: {type: string, maxLength: 6000}
+        workflow_stage: {type: string}
+        project_metadata: {type: object, additionalProperties: true}
+        context: {type: object, additionalProperties: true}
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: PostOpz API key
-  schemas:
-    WorkflowQuery:
-      type: object
-      required: [edition, task]
-      properties:
-        edition: {type: string, enum: [avid-vol1]}
-        task: {type: string, maxLength: 6000}
-        context: {type: object, additionalProperties: true}
-        desired_output: {type: string, enum: [answer, diagnostic, next_action, structured_steps], default: structured_steps}
-    ChecklistQuery:
-      type: object
-      required: [edition, workflow_stage]
-      properties:
-        edition: {type: string, enum: [avid-vol1]}
-        workflow_stage: {type: string}
-        context: {type: object, additionalProperties: true}
-    AuditQuery:
-      type: object
-      required: [edition, project_metadata]
-      properties:
-        edition: {type: string, enum: [avid-vol1]}
-        task: {type: string}
-        project_metadata: {type: object, additionalProperties: true}
+    x402Payment:
+      type: apiKey
+      in: header
+      name: PAYMENT-SIGNATURE
+      description: x402 v2 payment payload. Omit on the initial request to receive PAYMENT-REQUIRED instructions.
