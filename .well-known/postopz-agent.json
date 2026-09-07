@@ -3,7 +3,7 @@
   "provider": "PostOpz",
   "homepage": "https://postopz.com/framework/agent/",
   "contact": "hello@postopz.com",
-  "status": "early_access",
+  "status": "live",
   "domain": "professional post-production workflow knowledge",
   "editions": [
     {
@@ -31,7 +31,8 @@
           "billing_period": "annual",
           "scope": "one internal agent or application",
           "retrieval_rights": true,
-          "model_training_rights": false
+          "model_training_rights": false,
+          "checkout_url": "https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"
         },
         {
           "id": "studio-agent-license",
@@ -39,16 +40,20 @@
           "billing_period": "annual",
           "scope": "internal post-team deployment and multiple internal agent workflows",
           "retrieval_rights": true,
-          "model_training_rights": false
+          "model_training_rights": false,
+          "checkout_url": "https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"
         }
       ],
       "enterprise_training_or_oem": "separate written license required",
       "api": {
-        "status": "planned",
-        "authentication": "licensed credentials",
+        "status": "live",
+        "base_url": "https://postopz-agent-api.onrender.com/v1",
+        "custom_domain": "https://api.postopz.com/v1",
+        "openapi": "https://postopz-agent-api.onrender.com/openapi.yaml",
+        "authentication": "licensed bearer credentials",
         "delivery": "structured task-scoped retrieval",
         "source_corpus_exposure": false,
-        "future_machine_payments": ["MPP", "x402"]
+        "machine_payment_roadmap": ["MPP", "x402"]
       }
     }
   ]
