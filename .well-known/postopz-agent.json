@@ -1,0 +1,55 @@
+{
+  "name": "PostOpz Framework Agent Edition",
+  "provider": "PostOpz",
+  "homepage": "https://postopz.com/framework/agent/",
+  "contact": "hello@postopz.com",
+  "status": "early_access",
+  "domain": "professional post-production workflow knowledge",
+  "editions": [
+    {
+      "id": "framework-vol1-avid-agent",
+      "name": "Framework Vol. 1 — Avid Media Composer Agent Edition",
+      "description": "Licensed professional Avid Media Composer workflow knowledge for AI agents and editorial systems.",
+      "knowledge_areas": [
+        "project architecture",
+        "media organization",
+        "bin structures",
+        "naming conventions",
+        "sync maps",
+        "grouping and multigroups",
+        "ScriptSync",
+        "stringouts",
+        "review exports",
+        "turnovers",
+        "assistant-editor communication",
+        "archive and operational handoffs"
+      ],
+      "licenses": [
+        {
+          "id": "developer-agent-license",
+          "price_usd": 799,
+          "billing_period": "annual",
+          "scope": "one internal agent or application",
+          "retrieval_rights": true,
+          "model_training_rights": false
+        },
+        {
+          "id": "studio-agent-license",
+          "price_usd": 3500,
+          "billing_period": "annual",
+          "scope": "internal post-team deployment and multiple internal agent workflows",
+          "retrieval_rights": true,
+          "model_training_rights": false
+        }
+      ],
+      "enterprise_training_or_oem": "separate written license required",
+      "api": {
+        "status": "planned",
+        "authentication": "licensed credentials",
+        "delivery": "structured task-scoped retrieval",
+        "source_corpus_exposure": false,
+        "future_machine_payments": ["MPP", "x402"]
+      }
+    }
+  ]
+}
