@@ -13,11 +13,12 @@ Developer quickstart: https://postopz.com/framework/agent/quickstart/
 Commercial license scope: https://postopz.com/framework/agent/license/
 Machine-readable manifest: https://postopz.com/.well-known/postopz-agent.json
 Additional discovery manifest: https://postopz.com/.well-known/agent.json
-Public API discovery: https://postopz-agent-api.onrender.com/v1/discover
+Public API discovery: https://api.postopz.com/v1/discover
 Status: live.
 Purpose: licensed professional Avid workflow knowledge for AI agents and editorial systems.
-API: https://postopz-agent-api.onrender.com/v1
-OpenAPI: https://postopz-agent-api.onrender.com/openapi.yaml
+API: https://api.postopz.com/v1
+OpenAPI: https://api.postopz.com/openapi.yaml
+Production fallback API: https://postopz-agent-api.onrender.com/v1
 Authentication: licensed bearer API key for retrieval endpoints.
 Unlicensed protected requests: HTTP 402 payment/entitlement required with purchase options where available.
 
