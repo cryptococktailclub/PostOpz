@@ -5,20 +5,32 @@
   "homepage": "https://postopz.com/framework/agent/",
   "quickstart": "https://postopz.com/framework/agent/quickstart/",
   "license_terms": "https://postopz.com/framework/agent/license/",
+  "ard_catalog": "https://postopz.com/.well-known/ai-catalog.json",
   "api": {
     "base_url": "https://api.postopz.com/v1",
     "fallback_base_url": "https://postopz-agent-api.onrender.com/v1",
     "discover": "https://api.postopz.com/v1/discover",
     "openapi": "https://api.postopz.com/openapi.yaml",
-    "authentication": "bearer",
+    "authentication": "bearer_or_x402",
     "payment_required_status": 402
   },
   "edition": "avid-vol1",
   "license_scope": "retrieval_only",
   "model_training_rights": false,
   "plans": [
-    {"id":"developer","annual_usd":799,"monthly_queries":500,"scope":"one internal agent or application","checkout_url":"https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"},
-    {"id":"studio","annual_usd":3500,"monthly_queries":5000,"scope":"internal post-team deployment and multiple internal agent workflows","checkout_url":"https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"}
+    {"id": "developer", "annual_usd": 799, "monthly_queries": 500, "scope": "one internal agent or application", "checkout_url": "https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"},
+    {"id": "studio", "annual_usd": 3500, "monthly_queries": 5000, "scope": "internal post-team deployment and multiple internal agent workflows", "checkout_url": "https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"}
   ],
-  "enterprise": {"contact":"hello@postopz.com","model_training_or_oem_requires_separate_written_license":true}
+  "autonomous_access": {
+    "protocol": "x402-v2",
+    "status": "configuration_required",
+    "network": "eip155:8453",
+    "asset": "USDC",
+    "routes": {
+      "query": {"method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/query", "price_usd": 0.50},
+      "checklist": {"method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/checklist", "price_usd": 0.35},
+      "audit": {"method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/audit", "price_usd": 0.75}
+    }
+  },
+  "enterprise": {"contact": "hello@postopz.com", "model_training_or_oem_requires_separate_written_license": true}
 }
