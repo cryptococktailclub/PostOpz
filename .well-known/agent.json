@@ -3,10 +3,14 @@
   "provider": "PostOpz",
   "status": "live",
   "homepage": "https://postopz.com/framework/agent/",
+  "quickstart": "https://postopz.com/framework/agent/quickstart/",
+  "license_terms": "https://postopz.com/framework/agent/license/",
   "api": {
     "base_url": "https://postopz-agent-api.onrender.com/v1",
+    "discover": "https://postopz-agent-api.onrender.com/v1/discover",
     "openapi": "https://postopz-agent-api.onrender.com/openapi.yaml",
-    "authentication": "bearer"
+    "authentication": "bearer",
+    "payment_required_status": 402
   },
   "edition": "avid-vol1",
   "license_scope": "retrieval_only",
@@ -16,12 +20,14 @@
       "id": "developer",
       "annual_usd": 799,
       "monthly_queries": 500,
+      "scope": "one internal agent or application",
       "checkout_url": "https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"
     },
     {
       "id": "studio",
       "annual_usd": 3500,
       "monthly_queries": 5000,
+      "scope": "internal post-team deployment and multiple internal agent workflows",
       "checkout_url": "https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"
     }
   ],
