@@ -12,49 +12,18 @@
       "id": "framework-vol1-avid-agent",
       "name": "Framework Vol. 1 — Avid Media Composer Agent Edition",
       "description": "Licensed professional Avid Media Composer workflow knowledge for AI agents and editorial systems.",
-      "knowledge_areas": [
-        "project architecture",
-        "media organization",
-        "bin structures",
-        "naming conventions",
-        "sync maps",
-        "grouping and multigroups",
-        "ScriptSync",
-        "stringouts",
-        "review exports",
-        "turnovers",
-        "assistant-editor communication",
-        "archive and operational handoffs"
-      ],
+      "knowledge_areas": ["project architecture","media organization","bin structures","naming conventions","sync maps","grouping and multigroups","ScriptSync","stringouts","review exports","turnovers","assistant-editor communication","archive and operational handoffs"],
       "licenses": [
-        {
-          "id": "developer-agent-license",
-          "price_usd": 799,
-          "billing_period": "annual",
-          "monthly_queries": 500,
-          "scope": "one internal agent or application",
-          "retrieval_rights": true,
-          "model_training_rights": false,
-          "checkout_url": "https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"
-        },
-        {
-          "id": "studio-agent-license",
-          "price_usd": 3500,
-          "billing_period": "annual",
-          "monthly_queries": 5000,
-          "scope": "internal post-team deployment and multiple internal agent workflows",
-          "retrieval_rights": true,
-          "model_training_rights": false,
-          "checkout_url": "https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"
-        }
+        {"id":"developer-agent-license","price_usd":799,"billing_period":"annual","monthly_queries":500,"scope":"one internal agent or application","retrieval_rights":true,"model_training_rights":false,"checkout_url":"https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"},
+        {"id":"studio-agent-license","price_usd":3500,"billing_period":"annual","monthly_queries":5000,"scope":"internal post-team deployment and multiple internal agent workflows","retrieval_rights":true,"model_training_rights":false,"checkout_url":"https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"}
       ],
       "enterprise_training_or_oem": "separate written license required",
       "api": {
         "status": "live",
-        "base_url": "https://postopz-agent-api.onrender.com/v1",
-        "planned_custom_domain": "https://api.postopz.com/v1",
-        "discover": "https://postopz-agent-api.onrender.com/v1/discover",
-        "openapi": "https://postopz-agent-api.onrender.com/openapi.yaml",
+        "base_url": "https://api.postopz.com/v1",
+        "fallback_base_url": "https://postopz-agent-api.onrender.com/v1",
+        "discover": "https://api.postopz.com/v1/discover",
+        "openapi": "https://api.postopz.com/openapi.yaml",
         "authentication": "licensed bearer credentials",
         "payment_required_status": 402,
         "delivery": "structured task-scoped retrieval",
