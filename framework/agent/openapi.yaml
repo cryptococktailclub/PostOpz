@@ -1,0 +1,178 @@
+openapi: 3.1.0
+info:
+  title: PostOpz Framework Agent API
+  version: 0.1.0
+  description: >-
+    Draft contract for authenticated, task-scoped retrieval from the PostOpz
+    Framework knowledge base. This specification defines the commercial API
+    surface without exposing the underlying Framework corpus.
+servers:
+  - url: https://api.postopz.com/v1
+    description: Planned production endpoint
+security:
+  - bearerAuth: []
+paths:
+  /workflow/query:
+    post:
+      operationId: queryWorkflow
+      summary: Retrieve professional workflow guidance
+      description: Returns scoped guidance grounded in the licensed PostOpz Framework edition.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkflowQuery'
+      responses:
+        '200':
+          description: Licensed workflow guidance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowResponse'
+        '401':
+          description: Missing or invalid license credential
+        '402':
+          description: Payment or active entitlement required
+        '429':
+          description: Usage limit exceeded
+  /workflow/checklist:
+    post:
+      operationId: getChecklist
+      summary: Generate a task-specific editorial checklist
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChecklistQuery'
+      responses:
+        '200':
+          description: Workflow checklist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChecklistResponse'
+        '401':
+          description: Missing or invalid license credential
+        '402':
+          description: Payment or active entitlement required
+  /workflow/audit:
+    post:
+      operationId: auditWorkflow
+      summary: Evaluate supplied workflow metadata against PostOpz standards
+      description: Accepts structured project/workflow metadata only. No source media upload is required by this contract.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditQuery'
+      responses:
+        '200':
+          description: Audit findings and next actions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditResponse'
+        '401':
+          description: Missing or invalid license credential
+        '402':
+          description: Payment or active entitlement required
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: PostOpz API key
+  schemas:
+    WorkflowQuery:
+      type: object
+      required: [edition, task]
+      properties:
+        edition:
+          type: string
+          enum: [avid-vol1]
+        task:
+          type: string
+          description: Specific editorial workflow question or task.
+        context:
+          type: object
+          additionalProperties: true
+        desired_output:
+          type: string
+          enum: [answer, diagnostic, next_action, structured_steps]
+          default: structured_steps
+    WorkflowResponse:
+      type: object
+      required: [answer, coverage, license_scope]
+      properties:
+        answer:
+          type: string
+        coverage:
+          type: array
+          items: {type: string}
+        diagnostic:
+          type: array
+          items: {type: string}
+        next_action:
+          type: array
+          items: {type: string}
+        source:
+          type: string
+          example: PostOpz Framework Vol. 1 — Avid Media Composer Edition
+        license_scope:
+          type: string
+          example: retrieval_only
+    ChecklistQuery:
+      type: object
+      required: [edition, workflow_stage]
+      properties:
+        edition:
+          type: string
+          enum: [avid-vol1]
+        workflow_stage:
+          type: string
+        context:
+          type: object
+          additionalProperties: true
+    ChecklistResponse:
+      type: object
+      properties:
+        checklist:
+          type: array
+          items:
+            type: object
+            properties:
+              step: {type: string}
+              rationale: {type: string}
+              required: {type: boolean}
+        source: {type: string}
+    AuditQuery:
+      type: object
+      required: [edition, project_metadata]
+      properties:
+        edition:
+          type: string
+          enum: [avid-vol1]
+        project_metadata:
+          type: object
+          additionalProperties: true
+    AuditResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ready, needs_attention, blocked]
+        findings:
+          type: array
+          items:
+            type: object
+            properties:
+              severity: {type: string, enum: [info, warning, critical]}
+              issue: {type: string}
+              recommendation: {type: string}
+        next_action:
+          type: array
+          items: {type: string}
+        source: {type: string}
