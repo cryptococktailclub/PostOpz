@@ -4,21 +4,34 @@
   "homepage": "https://postopz.com/framework/agent/",
   "quickstart": "https://postopz.com/framework/agent/quickstart/",
   "license_scope": "https://postopz.com/framework/agent/license/",
+  "ard_catalog": "https://postopz.com/.well-known/ai-catalog.json",
   "contact": "hello@postopz.com",
   "status": "live",
   "commerce_status": "verified",
-  "commerce_flow": ["stripe_checkout","webhook_processing","license_creation","api_key_issuance","email_delivery"],
+  "commerce_flow": ["stripe_checkout", "webhook_processing", "license_creation", "api_key_issuance", "email_delivery"],
   "domain": "professional post-production workflow knowledge",
   "editions": [
     {
       "id": "framework-vol1-avid-agent",
       "name": "Framework Vol. 1 — Avid Media Composer Agent Edition",
-      "description": "Licensed professional Avid Media Composer workflow knowledge for AI agents and editorial systems.",
-      "knowledge_areas": ["project architecture","media organization","bin structures","naming conventions","sync maps","grouping and multigroups","ScriptSync","stringouts","review exports","turnovers","assistant-editor communication","archive and operational handoffs"],
+      "description": "Licensed and machine-payable professional Avid Media Composer workflow knowledge for AI agents and editorial systems.",
+      "knowledge_areas": ["project architecture", "media organization", "bin structures", "naming conventions", "sync maps", "grouping and multigroups", "ScriptSync", "stringouts", "review exports", "turnovers", "assistant-editor communication", "archive and operational handoffs"],
       "licenses": [
-        {"id":"developer-agent-license","price_usd":799,"billing_period":"annual","monthly_queries":500,"scope":"one internal agent or application","retrieval_rights":true,"model_training_rights":false,"checkout_url":"https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"},
-        {"id":"studio-agent-license","price_usd":3500,"billing_period":"annual","monthly_queries":5000,"scope":"internal post-team deployment and multiple internal agent workflows","retrieval_rights":true,"model_training_rights":false,"checkout_url":"https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"}
+        {"id": "developer-agent-license", "price_usd": 799, "billing_period": "annual", "monthly_queries": 500, "scope": "one internal agent or application", "retrieval_rights": true, "model_training_rights": false, "checkout_url": "https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a"},
+        {"id": "studio-agent-license", "price_usd": 3500, "billing_period": "annual", "monthly_queries": 5000, "scope": "internal post-team deployment and multiple internal agent workflows", "retrieval_rights": true, "model_training_rights": false, "checkout_url": "https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b"}
       ],
+      "autonomous_access": {
+        "protocol": "x402-v2",
+        "status": "configuration_required",
+        "activation_requirement": "PostOpz-controlled Base-compatible payout address",
+        "network": "eip155:8453",
+        "settlement_asset": "USDC",
+        "endpoints": [
+          {"capability": "workflow_query", "method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/query", "price_usd": 0.50},
+          {"capability": "workflow_checklist", "method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/checklist", "price_usd": 0.35},
+          {"capability": "workflow_audit", "method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/audit", "price_usd": 0.75}
+        ]
+      },
       "enterprise_training_or_oem": "separate written license required",
       "api": {
         "status": "live",
@@ -26,11 +39,11 @@
         "fallback_base_url": "https://postopz-agent-api.onrender.com/v1",
         "discover": "https://api.postopz.com/v1/discover",
         "openapi": "https://api.postopz.com/openapi.yaml",
-        "authentication": "licensed bearer credentials",
+        "authentication": "licensed bearer credentials or x402 payment on autonomous endpoints",
         "payment_required_status": 402,
         "delivery": "structured task-scoped retrieval",
         "source_corpus_exposure": false,
-        "machine_payment_roadmap": ["MPP", "x402"]
+        "machine_payment_roadmap": ["MPP"]
       }
     }
   ]
