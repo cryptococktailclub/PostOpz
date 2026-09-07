@@ -21,6 +21,7 @@ OpenAPI: https://api.postopz.com/openapi.yaml
 Production fallback API: https://postopz-agent-api.onrender.com/v1
 Authentication: licensed bearer API key for retrieval endpoints.
 Unlicensed protected requests: HTTP 402 payment/entitlement required with purchase options where available.
+Commerce provisioning: verified end-to-end. Successful mapped Stripe checkout triggers webhook processing, license creation, API-key issuance, and delivery of the API key to the checkout email.
 
 ### Developer Agent License
 Price: $799/year.
