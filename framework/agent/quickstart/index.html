@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PostOpz Framework Agent API | Quickstart</title>
+  <meta name="description" content="Developer quickstart for integrating an AI agent with the PostOpz Framework Agent API." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://postopz.com/framework/agent/quickstart/" />
+  <style>
+    :root{--bg:#05070d;--panel:#0c121c;--text:#f7f9fc;--soft:#c9d2df;--muted:#8190a4;--line:rgba(255,255,255,.12);--orange:#ff7a18;--pink:#ef2bbd;--purple:#793cff;--blue:#389cff;--max:980px}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#04070c,#090e16 50%,#05070d);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:#8fc4ff}.wrap{width:min(var(--max),calc(100% - 36px));margin:auto}.nav{border-bottom:1px solid var(--line);background:#05070d}.navin{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:var(--text);text-decoration:none;font-weight:900}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:3px}main{padding:72px 0 90px}.eyebrow{color:var(--blue);font-size:10px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}h1{font-size:clamp(42px,6vw,70px);line-height:.98;letter-spacing:-.055em;margin:14px 0 18px}.lead{max-width:820px;color:var(--soft);font-size:18px;line-height:1.65}.section{padding:36px 0;border-top:1px solid var(--line)}h2{font-size:27px;letter-spacing:-.025em;margin:0 0 14px}p,li{color:#a7b3c3;line-height:1.7;font-size:14px}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow:auto;background:#02050a;border:1px solid var(--line);border-radius:16px;padding:18px;color:#dce7f5;line-height:1.55;font-size:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{padding:22px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.035)}.card h3{margin:0 0 8px}.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:#cbd4e0;font-size:10px;font-weight:800}.footer{border-top:1px solid var(--line);padding:32px 0 60px;color:var(--muted);font-size:11px;line-height:1.6}@media(max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand" href="https://postopz.com">PostOpz<small>Keep Editors Editing.</small></a><a href="/framework/agent/">← Agent Edition</a></div></header>
+<main class="wrap">
+  <div class="eyebrow">Developer Quickstart</div>
+  <h1>Connect an agent to professional Avid workflow knowledge.</h1>
+  <p class="lead">The Agent API returns task-scoped professional workflow guidance rather than exposing the underlying Framework corpus. Public discovery endpoints require no key; retrieval endpoints require an active Developer, Studio, or Enterprise license.</p>
+
+  <section class="section">
+    <h2>1. Discover the product</h2>
+    <div class="grid">
+      <div class="card"><h3>Public API discovery</h3><p><code>GET https://postopz-agent-api.onrender.com/v1/discover</code></p></div>
+      <div class="card"><h3>Machine-readable manifest</h3><p><a href="https://postopz.com/.well-known/postopz-agent.json">/.well-known/postopz-agent.json</a></p></div>
+    </div>
+    <pre>curl https://postopz-agent-api.onrender.com/v1/discover</pre>
+  </section>
+
+  <section class="section">
+    <h2>2. Obtain licensed credentials</h2>
+    <p>Choose a Developer or Studio license on the <a href="/framework/agent/#pricing">Agent Edition page</a>. The production service is designed to provision an API key to the checkout email after a mapped successful purchase. Store the key like any other production secret.</p>
+    <p><span class="badge">Developer</span> $799/year · 500 queries/month &nbsp; <span class="badge">Studio</span> $3,500/year · 5,000 queries/month</p>
+  </section>
+
+  <section class="section">
+    <h2>3. Query workflow guidance</h2>
+    <pre>curl -X POST https://postopz-agent-api.onrender.com/v1/workflow/query \
+  -H "Authorization: Bearer $POSTOPZ_AGENT_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "edition": "avid-vol1",
+    "task": "Design a professional bin and sequence structure for a feature documentary with interviews, verite and archival media.",
+    "desired_output": "structured_steps",
+    "context": {
+      "nle": "Avid Media Composer",
+      "production_type": "feature documentary"
+    }
+  }'</pre>
+  </section>
+
+  <section class="section">
+    <h2>4. Use the specialized routes</h2>
+    <div class="grid">
+      <div class="card"><h3>Workflow query</h3><p><code>POST /v1/workflow/query</code><br/>Professional guidance, diagnostics, structured steps, and next actions.</p></div>
+      <div class="card"><h3>Checklist</h3><p><code>POST /v1/workflow/checklist</code><br/>Task-specific implementation and QC checklists.</p></div>
+      <div class="card"><h3>Audit</h3><p><code>POST /v1/workflow/audit</code><br/>Evaluate structured project/workflow metadata against PostOpz standards.</p></div>
+      <div class="card"><h3>License status</h3><p><code>GET /v1/license</code><br/>Inspect the active plan and usage associated with the supplied API key.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Expected HTTP behavior</h2>
+    <ul>
+      <li><strong>200</strong> — successful licensed retrieval.</li>
+      <li><strong>401</strong> — invalid, expired, or inactive credential.</li>
+      <li><strong>402</strong> — active entitlement/payment required; the response can expose purchase options for an agent or developer.</li>
+      <li><strong>429</strong> — monthly allowance or burst-rate limit reached.</li>
+      <li><strong>503</strong> — retrieval capacity or model configuration temporarily unavailable.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Integration rules</h2>
+    <ul>
+      <li>Keep API keys server-side; do not expose them in browser or client bundles.</li>
+      <li>Send the minimum project context required to answer the workflow task.</li>
+      <li>Do not use systematic queries to reconstruct, mirror, train on, or redistribute the Framework corpus.</li>
+      <li>For model-training, OEM, high-volume, or redistribution rights, contact <a href="mailto:hello@postopz.com">hello@postopz.com</a> for an Enterprise / Model License.</li>
+    </ul>
+    <p>Full contract: <a href="https://postopz-agent-api.onrender.com/openapi.yaml">OpenAPI 3.1 specification</a> · <a href="/framework/agent/license/">Commercial license scope</a></p>
+  </section>
+</main>
+<footer class="footer"><div class="wrap">PostOpz Framework Agent API · Avid Media Composer Vol. 1 · hello@postopz.com</div></footer>
+</body>
+</html>
