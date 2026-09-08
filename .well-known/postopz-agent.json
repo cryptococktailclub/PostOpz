@@ -22,10 +22,10 @@
       ],
       "autonomous_access": {
         "protocol": "x402-v2",
-        "status": "configuration_required",
-        "activation_requirement": "PostOpz-controlled Base-compatible payout address",
+        "status": "live",
         "network": "eip155:8453",
         "settlement_asset": "USDC",
+        "pay_to": "0xce58e2e5c5f70d6e16e8dd34a3cb15d6dba42954",
         "endpoints": [
           {"capability": "workflow_query", "method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/query", "price_usd": 0.50},
           {"capability": "workflow_checklist", "method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/checklist", "price_usd": 0.35},
