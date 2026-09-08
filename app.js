@@ -254,8 +254,8 @@
     section.innerHTML = [
       '<div class="agent-commerce-shell">',
         '<div class="agent-commerce-heading">',
-          '<div class="agent-commerce-eyebrow"><span></span>POSTOPZ FOR AI AGENTS</div>',
-          '<h2>Professional editorial knowledge.<br><em class="agent-commerce-gradient">Now purchasable <span class="agent-no-break">by software.</span></em></h2>',
+          '<div class="agent-commerce-eyebrow"><span></span>PostOpz for AI Agents</div>',
+          '<h2>Professional editorial knowledge.<br><em class="agent-commerce-gradient">Ready for <span class="agent-no-break">AI agents.</span></em></h2>',
           '<div class="agent-commerce-signal" aria-hidden="true">',
             '<span class="agent-signal-label">AI AGENT</span>',
             '<span class="agent-signal-track"><i class="agent-signal-node agent-signal-node-1"></i><i class="agent-signal-node agent-signal-node-2"></i><i class="agent-signal-node agent-signal-node-3"></i><b class="agent-signal-pulse"></b></span>',
@@ -269,7 +269,7 @@
           '<small>Avid Media Composer Edition</small>',
         '</div>',
         '<div class="agent-commerce-grid">',
-          '<article><span class="agent-card-index">01</span><h3>Agent-Ready Knowledge</h3><p>Project architecture, assistant-editor workflows, handoffs, QC, turnovers, and operational reasoning grounded in professional long-form post production.</p></article>',
+          '<article><span class="agent-card-index">01</span><h3>Agent-Ready Knowledge</h3><p>Project architecture, AE workflows, handoffs, QC, turnovers, and operational reasoning grounded in <span class="agent-no-break">real post pipelines.</span></p></article>',
           '<article><span class="agent-card-index">02</span><h3>Flexible Commercial Access</h3><p>License persistent access for internal agents and production systems, or let compatible autonomous agents purchase task-scoped guidance <span class="agent-no-break">through x402.</span></p></article>',
           '<article><span class="agent-card-index">03</span><h3>Enterprise Rights</h3><p>Need model training, OEM use, or broader integration rights? PostOpz licenses those separately so teams can build on the knowledge without blurring ownership.</p></article>',
         '</div>',
@@ -308,7 +308,7 @@
       style.textContent = [
         '.agent-commerce-section{position:relative;padding:108px 0 112px;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);overflow:hidden;background:radial-gradient(circle at 82% 12%,rgba(124,60,255,.18),transparent 30%),radial-gradient(circle at 10% 90%,rgba(0,217,255,.08),transparent 28%),linear-gradient(180deg,#070a11,#0b0d15 55%,#07090f)}',
         '.agent-commerce-shell{width:min(1220px,calc(100% - 140px));margin:0 auto;display:grid;grid-template-columns:minmax(0,1.28fr) minmax(225px,.42fr);gap:32px 46px;align-items:end}',
-        '.agent-commerce-eyebrow{display:flex;align-items:center;gap:9px;margin-bottom:18px;color:#8ccfff;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.agent-commerce-eyebrow span{width:8px;height:8px;border-radius:50%;background:#59ffb2;box-shadow:0 0 18px rgba(89,255,178,.65)}',
+        '.agent-commerce-eyebrow{display:flex;align-items:center;gap:9px;margin-bottom:18px;color:#8ccfff;font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:none}.agent-commerce-eyebrow span{width:8px;height:8px;border-radius:50%;background:#59ffb2;box-shadow:0 0 18px rgba(89,255,178,.65)}',
         '.agent-commerce-heading h2{max-width:840px;margin:0;padding:.05em 0 .10em;color:#fff;font-size:clamp(42px,4.35vw,68px);font-weight:900;line-height:1.045;letter-spacing:-.055em}.agent-commerce-heading h2 em{display:inline-block;padding-bottom:.07em;font-style:normal}.agent-commerce-gradient{background:linear-gradient(105deg,#ff8735 0%,#ff3f7f 26%,#bd3cff 50%,#4b9fff 70%,#d9f4ff 78%,#4b9fff 85%,#ff8735 100%);background-size:240% 100%;background-position:0% 50%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:agentHeadlineSweep 6.8s ease-in-out infinite alternate}',
         '.agent-no-break{white-space:nowrap}',
         '.agent-commerce-signal{width:min(520px,100%);margin:8px 0 18px;display:grid;grid-template-columns:auto minmax(120px,1fr) auto;gap:12px;align-items:center}.agent-signal-label{color:#718197;font-size:9px;font-weight:900;letter-spacing:.14em;white-space:nowrap}.agent-signal-label-right{text-align:right}.agent-signal-track{position:relative;height:18px;display:block}.agent-signal-track:before{content:"";position:absolute;left:0;right:0;top:8px;height:1px;background:linear-gradient(90deg,rgba(89,255,178,.18),rgba(82,139,255,.45),rgba(189,60,255,.25))}.agent-signal-node{position:absolute;top:5px;width:7px;height:7px;border-radius:50%;border:1px solid rgba(156,204,255,.8);background:#0b1018;box-shadow:0 0 0 3px rgba(56,156,255,.03)}.agent-signal-node-1{left:0}.agent-signal-node-2{left:50%;transform:translateX(-50%)}.agent-signal-node-3{right:0}.agent-signal-pulse{position:absolute;top:3px;left:0;width:11px;height:11px;border-radius:50%;background:#59ffb2;box-shadow:0 0 18px rgba(89,255,178,.8),0 0 34px rgba(56,156,255,.35);animation:agentSignalPulse 4.8s cubic-bezier(.4,0,.2,1) infinite}.agent-signal-node-1{animation:agentNodeBlink 4.8s ease-in-out infinite}.agent-signal-node-2{animation:agentNodeBlink 4.8s ease-in-out 1.2s infinite}.agent-signal-node-3{animation:agentNodeBlink 4.8s ease-in-out 2.4s infinite}',
