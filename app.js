@@ -331,8 +331,21 @@
     }
   }
 
+  function installFounderFooterLink() {
+    var footerLinks = document.querySelector('.footer-links');
+    if (!footerLinks || footerLinks.querySelector('a[href="/founder/"]')) return;
+    var founderLink = document.createElement('a');
+    founderLink.href = '/founder/';
+    founderLink.textContent = 'Founder';
+    founderLink.className = 'footer-email footer-founder-link';
+    var emailLink = footerLinks.querySelector('.footer-email');
+    if (emailLink) footerLinks.insertBefore(founderLink, emailLink);
+    else footerLinks.insertBefore(founderLink, footerLinks.firstChild);
+  }
+
   installFrameworkGuideLaunch();
   installAgentCommerceSection();
+  installFounderFooterLink();
   installReveals();
   installProgressBars();
   installMetricCounters();
