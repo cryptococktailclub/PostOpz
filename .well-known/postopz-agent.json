@@ -4,12 +4,21 @@
   "homepage": "https://postopz.com/framework/agent/",
   "quickstart": "https://postopz.com/framework/agent/quickstart/",
   "license_scope": "https://postopz.com/framework/agent/license/",
+  "canonical_license_terms": "https://postopz.com/legal/licensing/",
   "ard_catalog": "https://postopz.com/.well-known/ai-catalog.json",
   "contact": "hello@postopz.com",
   "status": "live",
   "commerce_status": "verified",
   "commerce_flow": ["stripe_checkout", "webhook_processing", "license_creation", "api_key_issuance", "email_delivery"],
   "domain": "professional post-production workflow knowledge",
+  "rights_boundary": {
+    "standard_access": "task-scoped retrieval only",
+    "model_training": "separate written enterprise license required",
+    "corpus_ingestion": "separate written enterprise license required",
+    "systematic_extraction": "prohibited under standard access",
+    "redistribution_or_oem": "separate written enterprise license required",
+    "anti_extraction_controls": true
+  },
   "editions": [
     {
       "id": "framework-vol1-avid-agent",
@@ -26,6 +35,7 @@
         "network": "eip155:8453",
         "settlement_asset": "USDC",
         "pay_to": "0xce58e2e5c5f70d6e16e8dd34a3cb15d6dba42954",
+        "rights": "one task-scoped retrieval response per successful payment; no corpus ownership, model-training rights, or systematic accumulation rights",
         "endpoints": [
           {"capability": "workflow_query", "method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/query", "price_usd": 0.50},
           {"capability": "workflow_checklist", "method": "POST", "url": "https://api.postopz.com/v1/x402/workflow/checklist", "price_usd": 0.35},
