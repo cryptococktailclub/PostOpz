@@ -97,11 +97,25 @@
     .mission-panel{background:radial-gradient(circle at 92% 7%,rgba(124,60,255,.11),transparent 33%),linear-gradient(180deg,rgba(56,156,255,.045),rgba(255,255,255,.018));border-color:rgba(56,156,255,.18)}
     .mission-line{margin-top:24px;font-size:28px;font-weight:900;line-height:1.04;letter-spacing:-.04em;color:#fff}
 
-    .work-list{border-top:1px solid var(--line)}
-    .work-row{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:22px;align-items:center;min-height:98px;padding:20px 4px;border-bottom:1px solid var(--line)}
-    .work-index{color:#66768a;font-size:10px;font-weight:900;letter-spacing:.14em}
-    .work-title{font-size:clamp(21px,2vw,28px);font-weight:800;letter-spacing:-.035em;line-height:1.08}
-    .work-note{color:#788699;font-size:10px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;text-align:right;white-space:nowrap}
+    .featured-work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+    .project-card{overflow:hidden;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.016));box-shadow:0 22px 60px rgba(0,0,0,.18)}
+    .project-card.wide{grid-column:1/-1}
+    .project-video{aspect-ratio:16/9;width:100%;overflow:hidden;background:#090d14;border-bottom:1px solid var(--line)}
+    .project-video iframe{display:block;width:100%;height:100%;border:0}
+    .project-body{padding:27px 28px 29px}
+    .project-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 11px;color:#77869a;font-size:10px;font-weight:850;letter-spacing:.11em;text-transform:uppercase}
+    .project-meta span:not(:last-child)::after{content:"·";margin-left:11px;color:#505d70}
+    .project-title{margin-top:11px;font-size:clamp(23px,2.1vw,31px);font-weight:850;line-height:1.06;letter-spacing:-.04em}
+    .project-description{max-width:760px;margin-top:11px;color:#9eaaba;font-size:14px;line-height:1.68}
+    .project-card.wide .project-body{padding:30px 32px 32px}
+    .project-card.wide .project-title{font-size:clamp(27px,2.5vw,37px)}
+    .more-work{margin-top:58px}
+    .more-work-label{margin-bottom:20px;color:#748296;font-size:10px;font-weight:900;letter-spacing:.17em;text-transform:uppercase}
+    .more-work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .mini-project .project-body{padding:21px 22px 23px}
+    .mini-project .project-title{font-size:20px}
+    .mini-project .project-description{font-size:13px;line-height:1.6}
+    .mini-project .project-meta{font-size:9px}
 
     .evolution{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
     .evolution-step{position:relative;padding:29px 27px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.024)}
@@ -135,6 +149,7 @@
       .proof-strip{grid-template-columns:1fr 1fr}
       .proof-item:nth-child(2){border-right:0}
       .proof-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .more-work-grid{grid-template-columns:1fr 1fr}
       .evolution{grid-template-columns:1fr 1fr}
       .evolution-step:nth-child(2):after{display:none}
     }
@@ -154,8 +169,11 @@
       .section{padding:82px 0}
       h2{font-size:clamp(38px,11vw,52px)}
       .panel{padding:28px 24px}
-      .work-row{grid-template-columns:44px minmax(0,1fr);gap:14px;min-height:88px}
-      .work-note{grid-column:2;text-align:left;margin-top:-7px;white-space:normal}
+      .featured-work-grid,.more-work-grid{grid-template-columns:1fr}
+      .project-card.wide{grid-column:auto}
+      .project-body,.project-card.wide .project-body{padding:22px 20px 24px}
+      .project-card.wide .project-title,.project-title{font-size:23px}
+      .more-work{margin-top:42px}
       .evolution,.principles{grid-template-columns:1fr}
       .evolution-step:after{display:none!important}
       .closing{padding:80px 0 88px}
@@ -236,16 +254,68 @@
         <div class="section-heading">
           <div class="kicker">Selected work</div>
           <h2>Experience across documentary, unscripted, sports, and streaming.</h2>
-          <p>A focused selection of long-form editorial work that informs the production standards and workflow judgment behind PostOpz.</p>
+          <p>A focused selection of long-form editorial work that informs the production standards and workflow judgment behind PostOpz. Trailers are embedded directly from YouTube.</p>
         </div>
 
-        <div class="work-list" aria-label="Selected Michael Newton editorial credits">
-          <div class="work-row"><span class="work-index">01</span><div class="work-title">Strongman: The Brian Shaw Story</div><span class="work-note">Selected Editorial Work</span></div>
-          <div class="work-row"><span class="work-index">02</span><div class="work-title">Benedict Men</div><span class="work-note">Selected Editorial Work</span></div>
-          <div class="work-row"><span class="work-index">03</span><div class="work-title">Legacy: In the Shadow of Greatness</div><span class="work-note">Selected Editorial Work</span></div>
-          <div class="work-row"><span class="work-index">04</span><div class="work-title">Ted Bundy: Dialogue with the Devil</div><span class="work-note">Selected Editorial Work</span></div>
-          <div class="work-row"><span class="work-index">05</span><div class="work-title">Dance Moms: A New Era</div><span class="work-note">Selected Editorial Work</span></div>
-          <div class="work-row"><span class="work-index">06</span><div class="work-title">It’s In The Game: Madden NFL</div><span class="work-note">Selected Editorial Work</span></div>
+        <div class="featured-work-grid" aria-label="Featured Michael Newton editorial credits">
+          <article class="project-card wide">
+            <div class="project-video"><iframe loading="lazy" src="https://www.youtube.com/embed/McuzzH3mNHY" title="Strongman: The Brian Shaw Story trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Streaming · Docuseries</span><span>2025</span><span>Amazon</span></div>
+              <h3 class="project-title">Strongman: The Brian Shaw Story</h3>
+              <p class="project-description">Four-part docuseries following four-time World's Strongest Man Brian Shaw. Editorial work spanned assistant editing, picture editing, story producing, and the post-production pipeline.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-video"><iframe loading="lazy" src="https://www.youtube.com/embed/B8aaMsIERRQ" title="It's In The Game: Madden NFL trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Streaming · Documentary</span><span>2025</span><span>Amazon</span></div>
+              <h3 class="project-title">It's In The Game: Madden NFL</h3>
+              <p class="project-description">Feature documentary tracing the rise and cultural impact of the Madden NFL franchise through archival material, interviews, and sports storytelling.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-video"><iframe loading="lazy" src="https://www.youtube.com/embed/FmImoIB2C8c" title="Ted Bundy: Dialogue with the Devil trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+            <div class="project-body">
+              <div class="project-meta"><span>Streaming · True Crime</span><span>2024</span><span>Hulu</span></div>
+              <h3 class="project-title">Ted Bundy: Dialogue with the Devil</h3>
+              <p class="project-description">True-crime documentary built around archival interview tapes, investigator testimony, and revelation-driven long-form storytelling.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="more-work">
+          <div class="more-work-label">More work</div>
+          <div class="more-work-grid">
+            <article class="project-card mini-project">
+              <div class="project-video"><iframe loading="lazy" src="https://www.youtube.com/embed/cjC74JMZp0Q" title="Benedict Men trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+              <div class="project-body">
+                <div class="project-meta"><span>Streaming · Sports</span><span>2021</span><span>Victory Road+</span></div>
+                <h3 class="project-title">Benedict Men</h3>
+                <p class="project-description">Character-driven sports docuseries following the St. Benedict's Prep basketball program.</p>
+              </div>
+            </article>
+
+            <article class="project-card mini-project">
+              <div class="project-video"><iframe loading="lazy" src="https://www.youtube.com/embed/TQ03HJesMVQ" title="Dance Moms: A New Era trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+              <div class="project-body">
+                <div class="project-meta"><span>Streaming · Reality</span><span>2024</span><span>Hulu</span></div>
+                <h3 class="project-title">Dance Moms: A New Era</h3>
+                <p class="project-description">Reality franchise reboot shaped from multi-camera dance coverage, confessionals, competition, and character-driven story arcs.</p>
+              </div>
+            </article>
+
+            <article class="project-card mini-project">
+              <div class="project-video"><iframe loading="lazy" src="https://www.youtube.com/embed/JRgDgFw0ugo" title="Legacy: In the Shadow of Greatness trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+              <div class="project-body">
+                <div class="project-meta"><span>Streaming · Sports Docuseries</span><span>2022</span><span>Discovery+ · Prime Video</span></div>
+                <h3 class="project-title">Legacy: In the Shadow of Greatness</h3>
+                <p class="project-description">Sports docuseries following the children of Dwyane Wade, Evander Holyfield, and Randall Cunningham as they pursue their own athletic paths.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
