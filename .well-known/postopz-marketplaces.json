@@ -17,9 +17,15 @@
     "network_name": "Base mainnet",
     "asset": "USDC",
     "pay_to": "0xce58e2e5c5f70d6e16e8dd34a3cb15d6dba42954",
-    "status": "live",
+    "status": "production_verified",
     "authentication": "payment_is_authentication",
-    "model_training_rights": false
+    "facilitator": "coinbase_cdp",
+    "model_training_rights": false,
+    "wallet_topology": {
+      "core_seller_payout": "0xce58e2e5c5f70d6e16e8dd34a3cb15d6dba42954",
+      "cdp_marketplace_wallet": "0xc234a602ef2debc9c6898f6b1c9e4b05dd7e599f",
+      "agora402_native_payout": "0xc234a602ef2debc9c6898f6b1c9e4b05dd7e599f"
+    }
   },
   "services": [
     {
@@ -30,6 +36,8 @@
       "method": "POST",
       "url": "https://api.postopz.com/v1/x402/workflow/query",
       "price_usd": 0.50,
+      "settlement_status": "verified",
+      "verification_transaction": "0x382b1a74a6a403f634adf8f688075c30c9dd230df0f54624bbfe3388dca9c2a0",
       "description": "Task-scoped professional Avid Media Composer workflow guidance grounded in the PostOpz Framework Vol. 1 for documentary, unscripted, broadcast, and streaming editorial operations.",
       "tags": ["avid", "avid-media-composer", "assistant-editor", "post-production", "documentary", "unscripted", "media-management", "project-architecture", "sync-map", "multigroup", "scriptsync", "turnover"],
       "input_schema": {
@@ -57,6 +65,8 @@
       "method": "POST",
       "url": "https://api.postopz.com/v1/x402/workflow/checklist",
       "price_usd": 0.35,
+      "settlement_status": "verified",
+      "verification_transaction": "0xb59dbf85e93f33ffda3559a0e9949051b0347c1183d7ba861ebda89c59ffc771",
       "description": "Generate task-specific professional implementation and QC checklists for Avid assistant-editor workflows.",
       "tags": ["avid", "assistant-editor", "checklist", "qc", "sync-map", "grouping", "scriptsync", "handoff", "turnover"],
       "input_schema": {
@@ -82,6 +92,8 @@
       "method": "POST",
       "url": "https://api.postopz.com/v1/x402/workflow/audit",
       "price_usd": 0.75,
+      "settlement_status": "verified",
+      "verification_transaction": "0x7f567151618714186328851efb624928eb02004d9ab12c6f3456070213d07f6e",
       "description": "Audit structured Avid project and workflow metadata against professional PostOpz Framework standards and return findings with next actions.",
       "tags": ["avid", "workflow-audit", "project-structure", "assistant-editor", "media-management", "post-production", "quality-control"],
       "input_schema": {
@@ -99,18 +111,45 @@
       }
     }
   ],
+  "verification": {
+    "core_x402": "closed_production_verified",
+    "all_core_routes_settled": true,
+    "stripe_license_chain": "verified_separately",
+    "x402scan": {
+      "status": "registered",
+      "origin_id": "bdd13480-446e-408b-9bfc-2fde609929e6",
+      "payable_routes_registered": 3,
+      "failed_routes": 0
+    },
+    "x402_list": {
+      "status": "pending_external_review",
+      "submission_id": "d7d6de5c-253a-4789-a550-dd63ba810d60",
+      "probe": {"endpoints_found": 3, "errors": []}
+    },
+    "agora402": {
+      "status": "registered_verified",
+      "agent_id": "50bc0ebf-07b7-4364-a9a3-c9d9ea3ec49e",
+      "endpoint": "https://api.postopz.com/v1/x402/agora/workflow/query",
+      "price_usd": 0.50,
+      "pay_to": "0xc234a602ef2debc9c6898f6b1c9e4b05dd7e599f",
+      "listing_transaction": "0x138217359f7ae6f946fed1ac5c9705fe232c2c02b23461fc65145896288f4c8e"
+    }
+  },
   "distribution": {
     "open_web": {"status": "live", "mechanisms": ["llms.txt", "OpenAPI 3.1", "ARD ai-catalog", "RFC 9727 api-catalog", "PostOpz agent manifests"]},
-    "openx402_bazaar": {"status": "eligible_after_facilitator_observed_settlement"},
-    "coinbase_cdp_bazaar": {"status": "ready_for_cdp_credentials_and_first_cdp_settlement"},
-    "agent_bazaar": {"status": "submission_requires_marketplace_form_review"},
-    "402bazaar": {"status": "seller_registration_requires_wallet-signed x402 micro-payment"},
-    "the402": {"status": "provider_registration_requires wallet-signed x402 micro-payment or dashboard account"}
+    "coinbase_cdp": {"status": "live_and_settlement_verified"},
+    "coinbase_cdp_bazaar": {"status": "discovery_extension_processing", "note": "Core paid settlements are verified; independent marketplace indexing is asynchronous."},
+    "x402scan": {"status": "registered", "payable_routes": 3, "failed_routes": 0},
+    "x402_list": {"status": "pending_external_review", "submission_id": "d7d6de5c-253a-4789-a550-dd63ba810d60"},
+    "agora402": {"status": "registered_verified", "agent_id": "50bc0ebf-07b7-4364-a9a3-c9d9ea3ec49e"},
+    "agent_bazaar": {"status": "external_manual_submission_or_review_required", "note": "No stable public capabilities API was available during automated verification."},
+    "402bazaar": {"status": "external_registration_unconfirmed", "note": "Seller challenge was discovered and validated at <= $0.10 USDC, but the marketplace canonical registration resource returned HTTP 404 during verification."},
+    "the402": {"status": "external_platform_paused", "reason": "compliance_review"}
   },
   "rights": {
     "retrieval": "Permitted per paid call for the returned task-scoped response.",
     "training": "Not permitted. Model training, fine-tuning, distillation, corpus ingestion, systematic extraction, redistribution, and OEM use require a separate written enterprise license.",
     "terms": "https://postopz.com/framework/agent/license/"
   },
-  "updated_at": "2026-09-08T06:45:00Z"
+  "updated_at": "2026-09-08T11:35:00Z"
 }
