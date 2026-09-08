@@ -5,18 +5,25 @@ PostOpz builds professional post-production workflow systems for editors, assist
 ## Founder
 Founder page: https://postopz.com/founder/
 Michael Newton is the founder of PostOpz, an Avid Certified Professional, editor, and post-production operator whose experience spans assistant editing, picture editing, and post leadership across documentary and unscripted workflows.
-Selected project experience includes Strongman: The Brian Shaw Story; Benedict Men; Legacy: In the Shadow of Greatness; Ted Bundy: Dialogue with the Devil; Dance Moms: A New Era; and It's In The Game: Madden NFL.
+Selected project experience includes Strongman: The Brian Shaw Story; Benedict Men; Unidentified: Inside America's UFO Investigation; Ted Bundy: Dialogue with the Devil; Dance Moms: A New Era; and It's In The Game: Madden NFL.
 Purpose: establish the professional editorial experience and operating judgment behind The PostOpz Framework, PostOpz Guide, and Framework Agent Edition.
+
+## Commercial Licensing
+Canonical licensing terms: https://postopz.com/legal/licensing/
+The standard $197 Framework license is for one individual's professional reference and workflow implementation. Limited, user-directed excerpts may be used transiently with an AI assistant for clarification, but persistent ingestion into an agent, model, vector store, RAG index, knowledge base, API, plugin, SaaS product, or other software system is not included.
+Training, fine-tuning, distillation, systematic extraction, corpus reconstruction, redistribution, resale, shared team use, and OEM or embedded-product use require the appropriate Agent, Team, or written Enterprise rights.
 
 ## Framework Vol. 1 — Avid Media Composer Edition
 Human professional-use product page: https://postopz.com/framework/
 Price: $197 one-time launch price.
 Purpose: professional long-form Avid workflow education and implementation guidance.
+License: individual professional use; machine ingestion rights are not included in the standard purchase.
 
 ## Framework Agent Edition
 Product page: https://postopz.com/framework/agent/
 Developer quickstart: https://postopz.com/framework/agent/quickstart/
-Commercial license scope: https://postopz.com/framework/agent/license/
+Commercial license scope summary: https://postopz.com/framework/agent/license/
+Canonical commercial licensing terms: https://postopz.com/legal/licensing/
 Machine-readable manifest: https://postopz.com/.well-known/postopz-agent.json
 Additional discovery manifest: https://postopz.com/.well-known/agent.json
 ARD catalog: https://postopz.com/.well-known/ai-catalog.json
@@ -35,14 +42,13 @@ Commerce provisioning: verified end-to-end. Successful mapped Stripe checkout tr
 
 ### Autonomous x402 Access
 Protocol: x402 v2.
-Status: live.
+Status: live and production-verified.
 Network: Base mainnet (eip155:8453).
 Settlement asset: USDC.
-Receiving address: 0xce58e2e5c5f70d6e16e8dd34a3cb15d6dba42954
 - POST https://api.postopz.com/v1/x402/workflow/query — $0.50 per call
 - POST https://api.postopz.com/v1/x402/workflow/checklist — $0.35 per call
 - POST https://api.postopz.com/v1/x402/workflow/audit — $0.75 per call
-Discovery metadata is included in HTTP payment requirements for x402 Bazaar-compatible indexing. The canonical marketplace descriptor contains stable names, schemas, prices, tags, payout metadata, and listing-readiness status for agent marketplaces.
+Each successful payment purchases one task-scoped retrieval response. Payment does not create corpus ownership, systematic accumulation rights, model-training rights, or OEM rights. Machine-readable payment requirements returned by the endpoint control the exact transaction terms at request time.
 
 ### Portable Agent Skill
 Name: postopz-avid-workflow.
@@ -53,14 +59,14 @@ Purpose: lets skills-compatible agents recognize when professional Avid workflow
 Price: $799/year.
 Scope: one internal agent or application.
 Includes authenticated retrieval access with a 500-query monthly allowance.
-Does not include model-training, fine-tuning, distillation, corpus ingestion, redistribution, or OEM rights.
+Does not include model-training, fine-tuning, distillation, corpus ingestion, systematic extraction, redistribution, or OEM rights.
 Checkout: https://buy.stripe.com/cNi00l2RR2ov0M13SZ8Vi0a
 
 ### Studio Agent License
 Price: $3,500/year.
 Scope: internal post-team deployment and multiple internal agent workflows.
 Includes authenticated retrieval access with a 5,000-query monthly allowance.
-Does not include model-training, fine-tuning, distillation, corpus ingestion, redistribution, or OEM rights.
+Does not include model-training, fine-tuning, distillation, corpus ingestion, systematic extraction, redistribution, or OEM rights.
 Checkout: https://buy.stripe.com/aFa3cx4ZZ9QXamBblr8Vi0b
 
 ### Enterprise / Model License
@@ -101,4 +107,4 @@ Public discovery:
 - Archive and operational handoffs
 
 ## Rights boundary
-Public website content, annual Agent Edition licenses, and x402 pay-per-call access do not grant corpus ingestion or model-training rights. Access is delivered through task-scoped endpoints rather than unrestricted download of the canonical Framework source corpus.
+Public website content, the standard human Framework license, annual Agent Edition licenses, and x402 pay-per-call access do not grant unrestricted corpus ingestion or model-training rights. Human individual use permits ordinary professional reference and limited transient AI-assisted clarification. Machine products receive bounded retrieval rights only unless broader rights are separately granted in writing.
