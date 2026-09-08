@@ -44,8 +44,8 @@
         "What is the professional workflow for multigroups and ScriptSync in long-form unscripted editorial?",
         "How should I prepare an Avid sequence and media organization for mix, color, and archive turnover?"
       ],
-      "version": "0.2.1",
-      "updatedAt": "2026-09-08T04:52:00Z",
+      "version": "0.2.2",
+      "updatedAt": "2026-09-08T06:50:00Z",
       "metadata": {
         "provider": "PostOpz",
         "edition": "avid-vol1",
@@ -56,6 +56,7 @@
         "network": "eip155:8453",
         "settlementAsset": "USDC",
         "autonomousDiscovery": "https://api.postopz.com/v1/discover",
+        "marketplaceDescriptor": "https://postopz.com/.well-known/postopz-marketplaces.json",
         "modelTrainingRights": false
       }
     }
