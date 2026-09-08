@@ -20,19 +20,20 @@ Purpose: licensed and machine-payable professional Avid workflow knowledge for A
 API: https://api.postopz.com/v1
 OpenAPI: https://api.postopz.com/openapi.yaml
 Production fallback API: https://postopz-agent-api.onrender.com/v1
-Authentication: licensed bearer API key for annual retrieval plans; x402 v2 payment on autonomous pay-per-call endpoints when activated.
+Authentication: licensed bearer API key for annual retrieval plans; x402 v2 payment on autonomous pay-per-call endpoints.
 Unlicensed annual-plan requests: HTTP 402 payment/entitlement required with purchase options where available.
 Commerce provisioning: verified end-to-end. Successful mapped Stripe checkout triggers webhook processing, license creation, API-key issuance, and delivery of the API key to the checkout email.
 
 ### Autonomous x402 Access
 Protocol: x402 v2.
+Status: live.
 Network: Base mainnet (eip155:8453).
 Settlement asset: USDC.
-Current activation state: configuration required pending a PostOpz-controlled Base-compatible payout address. The pay-per-call routes are deployed and documented but must not be treated as live settlement endpoints until /v1/discover reports autonomous_access.status = live.
+Receiving address: 0xce58e2e5c5f70d6e16e8dd34a3cb15d6dba42954
 - POST https://api.postopz.com/v1/x402/workflow/query — $0.50 per call
 - POST https://api.postopz.com/v1/x402/workflow/checklist — $0.35 per call
 - POST https://api.postopz.com/v1/x402/workflow/audit — $0.75 per call
-Discovery metadata is included in HTTP payment requirements for x402 Bazaar-compatible indexing when autonomous settlement is activated.
+Discovery metadata is included in HTTP payment requirements for x402 Bazaar-compatible indexing.
 
 ### Developer Agent License
 Price: $799/year.
