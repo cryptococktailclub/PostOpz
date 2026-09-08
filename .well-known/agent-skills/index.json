@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "provider": "PostOpz",
+  "provider_url": "https://postopz.com",
+  "description": "Portable agent skills for professional post-production workflow knowledge and PostOpz autonomous commerce.",
+  "contact": "hello@postopz.com",
+  "skills": [
+    {
+      "name": "postopz-avid-workflow",
+      "title": "PostOpz Avid Workflow",
+      "description": "Professional Avid Media Composer workflow guidance, checklists, and audits for assistant editing and long-form post-production, available through x402 pay-per-call retrieval or annual Agent Edition licensing.",
+      "url": "https://postopz.com/.well-known/agent-skills/postopz-avid-workflow/SKILL.md",
+      "tags": ["avid", "avid-media-composer", "assistant-editor", "post-production", "documentary", "unscripted", "workflow", "x402"],
+      "languages": ["en"],
+      "execution_url": "https://postopz.com/framework/agent/"
+    }
+  ]
+}
