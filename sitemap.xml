@@ -10,8 +10,13 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://postopz.com/founder/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://postopz.com/framework/agent/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
