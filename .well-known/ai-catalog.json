@@ -11,7 +11,7 @@
       "displayName": "PostOpz Framework Agent API",
       "type": "application/vnd.oai.openapi;version=3.1",
       "url": "https://api.postopz.com/openapi.yaml",
-      "description": "Professional Avid Media Composer workflow knowledge for AI agents. Supports annual licensed retrieval and autonomous x402 pay-per-call workflow guidance, checklists, and project audits without exposing the underlying Framework corpus.",
+      "description": "Professional Avid Media Composer workflow knowledge for AI agents. Supports annual licensed retrieval and live autonomous x402 pay-per-call workflow guidance, checklists, and project audits without exposing the underlying Framework corpus.",
       "tags": [
         "Avid Media Composer",
         "assistant editor",
@@ -44,14 +44,17 @@
         "What is the professional workflow for multigroups and ScriptSync in long-form unscripted editorial?",
         "How should I prepare an Avid sequence and media organization for mix, color, and archive turnover?"
       ],
-      "version": "0.2.0",
-      "updatedAt": "2026-09-07T15:58:00Z",
+      "version": "0.2.1",
+      "updatedAt": "2026-09-08T04:52:00Z",
       "metadata": {
         "provider": "PostOpz",
         "edition": "avid-vol1",
         "licenseScope": "retrieval-only",
         "annualLicenses": "https://postopz.com/framework/agent/#pricing",
         "autonomousCommerce": "x402-v2",
+        "autonomousCommerceStatus": "live",
+        "network": "eip155:8453",
+        "settlementAsset": "USDC",
         "autonomousDiscovery": "https://api.postopz.com/v1/discover",
         "modelTrainingRights": false
       }
