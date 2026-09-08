@@ -2,6 +2,12 @@
 
 PostOpz builds professional post-production workflow systems for editors, assistant editors, post teams, and AI systems.
 
+## Founder
+Founder page: https://postopz.com/founder/
+Michael Newton is the founder of PostOpz, an Avid Certified Professional, editor, and post-production operator whose experience spans assistant editing, picture editing, and post leadership across documentary and unscripted workflows.
+Selected project experience includes Strongman: The Brian Shaw Story; Benedict Men; Legacy: In the Shadow of Greatness; Ted Bundy: Dialogue with the Devil; Dance Moms: A New Era; and It's In The Game: Madden NFL.
+Purpose: establish the professional editorial experience and operating judgment behind The PostOpz Framework, PostOpz Guide, and Framework Agent Edition.
+
 ## Framework Vol. 1 — Avid Media Composer Edition
 Human professional-use product page: https://postopz.com/framework/
 Price: $197 one-time launch price.
