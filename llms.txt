@@ -14,6 +14,7 @@ Commercial license scope: https://postopz.com/framework/agent/license/
 Machine-readable manifest: https://postopz.com/.well-known/postopz-agent.json
 Additional discovery manifest: https://postopz.com/.well-known/agent.json
 ARD catalog: https://postopz.com/.well-known/ai-catalog.json
+Marketplace descriptor: https://postopz.com/.well-known/postopz-marketplaces.json
 Public API discovery: https://api.postopz.com/v1/discover
 Status: live.
 Purpose: licensed and machine-payable professional Avid workflow knowledge for AI agents and editorial systems.
@@ -33,7 +34,7 @@ Receiving address: 0xce58e2e5c5f70d6e16e8dd34a3cb15d6dba42954
 - POST https://api.postopz.com/v1/x402/workflow/query — $0.50 per call
 - POST https://api.postopz.com/v1/x402/workflow/checklist — $0.35 per call
 - POST https://api.postopz.com/v1/x402/workflow/audit — $0.75 per call
-Discovery metadata is included in HTTP payment requirements for x402 Bazaar-compatible indexing.
+Discovery metadata is included in HTTP payment requirements for x402 Bazaar-compatible indexing. The canonical marketplace descriptor contains stable names, schemas, prices, tags, payout metadata, and listing-readiness status for agent marketplaces.
 
 ### Developer Agent License
 Price: $799/year.
@@ -70,6 +71,7 @@ Public discovery:
 - GET /v1/discover — machine-readable commercial and autonomous-access discovery
 - GET /v1/health — service health and x402 activation status
 - GET /.well-known/ai-catalog.json — Agentic Resource Discovery catalog
+- GET /.well-known/postopz-marketplaces.json — canonical agent-marketplace service descriptor
 
 ## Knowledge domains currently covered
 - Avid project architecture
