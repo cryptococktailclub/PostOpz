@@ -1,11 +1,71 @@
 {
   "name": "PostOpz Framework Agent Edition",
-  "provider": "PostOpz",
+  "description": "Professional Avid Media Composer workflow knowledge for AI agents and editorial systems, including workflow guidance, assistant-editor checklists, and structured workflow audits.",
+  "provider": {
+    "organization": "PostOpz",
+    "url": "https://postopz.com"
+  },
   "status": "live",
+  "version": "0.3.0",
+  "url": "https://api.postopz.com/",
   "homepage": "https://postopz.com/framework/agent/",
   "quickstart": "https://postopz.com/framework/agent/quickstart/",
   "license_terms": "https://postopz.com/framework/agent/license/",
   "ard_catalog": "https://postopz.com/.well-known/ai-catalog.json",
+  "supportedInterfaces": [
+    {
+      "url": "https://api.postopz.com/",
+      "protocolBinding": "JSONRPC",
+      "protocolVersion": "1.0"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": ["application/json", "text/plain"],
+  "defaultOutputModes": ["application/json", "text/plain"],
+  "skills": [
+    {
+      "id": "avid_workflow_query",
+      "name": "Avid Workflow Query",
+      "description": "Answer task-scoped professional Avid Media Composer workflow questions for documentary and unscripted editorial.",
+      "tags": ["avid-media-composer", "assistant-editor", "post-production", "workflow"],
+      "examples": ["How should I organize an Avid project for a feature documentary?"]
+    },
+    {
+      "id": "avid_workflow_checklist",
+      "name": "Avid Workflow Checklist",
+      "description": "Generate task-specific assistant-editor implementation and QC checklists using PostOpz workflow standards.",
+      "tags": ["avid-media-composer", "assistant-editor", "qc", "checklist"],
+      "examples": ["Create a QC checklist for a documentary sync-map handoff."]
+    },
+    {
+      "id": "avid_workflow_audit",
+      "name": "Avid Workflow Audit",
+      "description": "Audit supplied project or workflow metadata against PostOpz professional editorial workflow standards.",
+      "tags": ["avid-media-composer", "audit", "project-architecture", "post-production"],
+      "examples": ["Audit this Avid project structure before editor handoff."]
+    }
+  ],
+  "securitySchemes": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "description": "Licensed PostOpz API credential."
+    },
+    "x402": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "PAYMENT-SIGNATURE",
+      "description": "x402 payment authorization for autonomous pay-per-call endpoints."
+    }
+  },
+  "security": [
+    {"bearerAuth": []},
+    {"x402": []}
+  ],
   "api": {
     "base_url": "https://api.postopz.com/v1",
     "fallback_base_url": "https://postopz-agent-api.onrender.com/v1",
