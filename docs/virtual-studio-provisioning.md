@@ -9,14 +9,23 @@
 - Intake records are immutable. Netlify Forms is the live source of customer-submitted fields. Netlify Blobs is only for per-request configuration documents, NOT financial balances or transactional state. For lifecycle transitions use PostOpz's own relational database with an auditable approval trail.
 
 ## Workstation vendor: Vagon Teams
-Official API: https://docs.vagon.io/teams/reference/teams-api-documentation
-Authentication: HMAC over public key, request method, path, timestamp, nonce and body. A Teams account with a computer and access to API keys is required. Contact Vagon for supported `seat_plan_id` values.
-- Identify enterprise/commercial terms and whether PostOpz may resell managed access.
-- Inventory approved machine image IDs, applications, plan IDs, regions, codec support and hourly pricing.
-- Plan provisioning uses `POST /organization-management/v1/seats`. Never submit before customer-signed quote and a bounded spend authorization.
-- Associate the created `seat/machine` ID with a specific customer and project in a private relational record.
-- Only then perform approved start/access operations, audit session hours and stop the machine when idle.
-- Enforce a monthly spend cap, auto-stop policy, positive per-request idempotency key and approval checkpoint.
+Current Machines API: https://docs.vagon.io/teams/reference/machines
+HMAC authentication: https://docs.vagon.io/teams/reference/how-to-use-teams-api
+**Documentation discrepancy:** The older Teams API guide still describes `POST /organization-management/v1/seats` using `seat_plan_id`. The current Machines API documents **`POST /organization-management/v1/machines`** with **`plan_id`**, `region`, `quantity` and optional `software_ids`/`base_image_id`. Do not mix the two schema generations; confirm the current account's contracted version with Vagon.
+- A Vagon Teams account with **at least one Team Computer** is required before the Teams API Public Key and Secret Key are available under Teams dashboard **Settings**.
+- Configure secrets only under Netlify's **production Functions scope**:
+  - `VAGON_TEAMS_API_PUBLIC_KEY`
+  - `VAGON_TEAMS_API_SECRET_KEY`
+  - `STUDIO_OPERATOR_TOKEN` (an independently generated random token of at least 43 characters)
+- Never paste API secrets into public HTML, GitHub, chat messages, analytics or forms.
+- The signed payload is `publicKey + uppercase HTTP method + request path including initial / + UTC milliseconds + nonce + exact request body`; the result is HMAC SHA256 hex.
+- The server-only library at `netlify/functions/lib/vagon-teams.mjs` supports **only listing machines and software**. `draftVagonMachine` assembles an unexecutable request, with `executionEnabled: false`.
+- The operator-only `POST /api/studio/internal/vagon-health` endpoint requires production context, `Authorization: Bearer <STUDIO_OPERATOR_TOKEN>` and both Vagon keys. It lists machines but returns only summary counts; no customer data or access links. Until secrets are configured it is disabled / unconfigured.
+- Only after contract and budget approval can we add a privileged `POST /machines` provisioning operation. **Vagon says machine creation charges the organization's balance.** Never submit before customer-signed quote, client-owner authorization, a bounded spend ceiling and an idempotent approval ledger.
+- Inventory approved plan IDs, machine performance settings, app images, regions, codecs, network/egress behavior and negotiated volume pricing. Vagon must confirm managed-service/resale terms.
+- Associate machine ID and customer/project only inside a private transactional PostOpz database; never in a public form response.
+- Perform any start/stop/access generation under separate operator role checks and usage limits; no shareable access link may appear in diagnostics.
+- Enforce auto-stop, session allowances, monthly spend cap, explicit audit entries and emergency suspension.
 
 ## LucidLink
 Official API: https://developer.lucidlink.com/docs/lucid-api/reference/overview
