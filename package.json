@@ -1,0 +1,12 @@
+{
+  "name": "postopz-marketing-and-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node --test tests/studio-pricing.test.mjs && node scripts/prepare-framework-gallery.mjs && node scripts/build-site.mjs",
+    "test:studio": "node --test tests/studio-pricing.test.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "11.1.4"
+  }
+}
