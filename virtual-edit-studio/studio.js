@@ -37,6 +37,41 @@
   radios.forEach(function(el){el.addEventListener('change',update)});
   ['storage','hours','workflow'].forEach(function(id){get(id).addEventListener('change',update)});
   update();
+  // Compare the live frontend estimate against PostOpz's independently
+  // calculated server quote; never use the browser estimate to authorize spend.
+  var quoteRequestNumber=0;
+  async function verifyQuote(){
+    var ticket=++quoteRequestNumber;
+    var status=get('server-verification');
+    status.textContent='Verifying your estimate…';
+    try{
+      var result=await fetch('/api/studio/quote',{
+        method:'POST',
+        headers:{'content-type':'application/json'},
+        body:JSON.stringify({
+          tier:get('form-tier').value,
+          monthlyGpuHours:Number(get('form-hours').value),
+          sharedStorageTB:Number(get('form-storage').value),
+          workflow:get('form-workflow').value
+        })
+      });
+      if(!result.ok)throw new Error('Cannot verify configuration');
+      var response=await result.json();
+      if(ticket!==quoteRequestNumber)return;
+      if(response.configuration.estimate.monthlyUSD!==Number(get('form-monthly').value)||
+        response.configuration.estimate.onboardingUSD!==Number(get('form-setup').value))
+        throw new Error('Price mismatch');
+      status.textContent='✓ Estimate validated by the PostOpz pricing service · Formal quote required';
+      status.dataset.verified='true';
+    }catch{
+      if(ticket!==quoteRequestNumber)return;
+      status.textContent='Estimated pricing only · Final amount confirmed by PostOpz';
+      status.dataset.verified='false';
+    }
+  }
+  radios.forEach(function(el){el.addEventListener('change',verifyQuote)});
+  ['storage','hours','workflow'].forEach(function(id){get(id).addEventListener('change',verifyQuote)});
+  verifyQuote();
 
   var menuButton=document.querySelector('.menu-button');
   var mobileNav=get('mobile-nav');
